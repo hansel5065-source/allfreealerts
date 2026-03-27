@@ -43,11 +43,13 @@ function checkUrl(url) {
 async function main() {
   console.log('Dead-link checker starting...');
   const data = JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8'));
-  const toCheck = data.filter(i => i.category !== 'Settlements');
-  console.log(`Checking ${toCheck.length} sweepstakes/freebies links...`);
+  // Only check links older than 3 days (new ones are almost always live)
+  const threeDaysAgo = new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0];
+  const toCheck = data.filter(i => i.category !== 'Settlements' && (!i.date_found || i.date_found <= threeDaysAgo));
+  console.log(`Checking ${toCheck.length} links (skipping items newer than 3 days)...`);
 
   const deadLinks = new Set();
-  const BATCH = 15;
+  const BATCH = 30;
 
   for (let i = 0; i < toCheck.length; i += BATCH) {
     const batch = toCheck.slice(i, i + BATCH);

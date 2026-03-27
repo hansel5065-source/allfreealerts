@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advertise With Us — AllFreeAlerts</title>
+  <meta name="description" content="Promote your sweepstakes, freebie, or brand to thousands of engaged deal-seekers on AllFreeAlerts.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --teal:#0ABAB5;--teal-dark:#089E9A;--teal-light:#E6FAF9;
+      --orange:#FF6F3C;--orange-hover:#E8612F;
+      --gold:#F5A623;--gold-light:#FFF8EB;
+      --bg:#F5F7FA;--white:#FFFFFF;
+      --text:#1A1D21;--text-mid:#636E72;--text-light:#9CA3AF;
+      --border:#E5E7EB;
+      --shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --radius:16px;
+    }
+    body{font-family:'Inter',-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+
+    .nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;height:60px;gap:2rem}
+    .nav-logo{font-size:1.35rem;font-weight:900;color:var(--teal);letter-spacing:-0.03em}
+    .nav-logo span{color:var(--text)}
+    .nav-back{font-size:0.88rem;font-weight:600;color:var(--text-mid);margin-left:auto;display:flex;align-items:center;gap:0.3rem}
+    .nav-back:hover{color:var(--teal)}
+
+    .hero{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);padding:3.5rem 1.5rem;text-align:center;color:#fff}
+    .hero h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em}
+    .hero p{margin-top:0.5rem;font-size:1.05rem;opacity:0.9;max-width:600px;margin-left:auto;margin-right:auto}
+
+    .content{max-width:800px;margin:0 auto;padding:2rem 1.5rem 3rem}
+
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+    .benefit{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center}
+    .benefit-icon{font-size:2rem;margin-bottom:0.5rem}
+    .benefit h3{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem}
+    .benefit p{font-size:0.82rem;color:var(--text-mid)}
+
+    .options{margin:2rem 0}
+    .options h2{font-size:1.3rem;font-weight:800;margin-bottom:1rem;letter-spacing:-0.02em}
+    .option-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .option{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all 0.2s}
+    .option:hover{border-color:var(--teal);box-shadow:var(--shadow-md)}
+    .option.featured{border-color:var(--orange);position:relative}
+    .option.featured::before{content:'Most Popular';position:absolute;top:-0.6rem;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:0.7rem;font-weight:700;padding:0.2rem 0.7rem;border-radius:6px;white-space:nowrap}
+    .option h3{font-size:1rem;font-weight:700;margin-bottom:0.25rem}
+    .option .price{font-size:1.5rem;font-weight:800;color:var(--teal);margin-bottom:0.5rem}
+    .option .price small{font-size:0.75rem;font-weight:600;color:var(--text-mid)}
+    .option ul{list-style:none;margin-top:0.5rem}
+    .option li{font-size:0.82rem;color:var(--text-mid);padding:0.25rem 0;display:flex;align-items:center;gap:0.4rem}
+    .option li::before{content:'✓';color:var(--teal);font-weight:700}
+
+    .form-section{margin:2.5rem 0}
+    .form-section h2{font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;letter-spacing:-0.02em}
+    .form-section p{font-size:0.9rem;color:var(--text-mid);margin-bottom:1.5rem}
+    .form{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+    .form-group{display:flex;flex-direction:column;gap:0.35rem}
+    .form-group.full{grid-column:1/-1}
+    .form-group label{font-size:0.82rem;font-weight:600;color:var(--text)}
+    .form-group input,.form-group select,.form-group textarea{padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;font-family:inherit;color:var(--text);outline:none;transition:border-color 0.2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal)}
+    .form-group textarea{resize:vertical;min-height:100px}
+    .form-submit{margin-top:1rem;padding:0.8rem 2rem;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:0.95rem;font-weight:700;font-family:inherit;cursor:pointer;transition:background 0.15s;width:100%}
+    .form-submit:hover{background:var(--orange-hover)}
+    .form-msg{margin-top:0.75rem;font-size:0.85rem;font-weight:600;text-align:center;display:none}
+
+    .footer{background:var(--white);border-top:1px solid var(--border);text-align:center;padding:2rem 1.5rem;color:var(--text-light);font-size:.8rem;margin-top:2rem}
+
+    @media(max-width:768px){
+      .benefits{grid-template-columns:1fr}
+      .option-cards{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}
+      .hero{padding:2.5rem 1rem}
+      .hero h1{font-size:1.5rem}
+      .content{padding:1.5rem 1rem 2rem}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">All<span>Free</span>Alerts</a>
+      <a class="nav-back" href="/">← Back to deals</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Get Your Brand in Front of Deal-Seekers</h1>
+    <p>Reach thousands of engaged users actively looking for sweepstakes, freebies, and deals.</p>
+  </section>
+
+  <div class="content">
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">👥</div>
+        <h3>Engaged Audience</h3>
+        <p>Visitors actively looking to enter, claim, and engage with offers.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">📱</div>
+        <h3>Daily Exposure</h3>
+        <p>Your listing stays visible to returning users who check daily for new deals.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🎯</div>
+        <h3>Targeted Traffic</h3>
+        <p>Send high-intent visitors directly to your sweepstakes, offer, or landing page.</p>
+      </div>
+    </div>
+
+    <div class="options">
+      <h2>Listing Options</h2>
+      <div class="option-cards">
+        <div class="option">
+          <h3>Standard Listing</h3>
+          <div class="price">Free</div>
+          <ul>
+            <li>Included in daily scrape</li>
+            <li>Appears in category feed</li>
+            <li>Direct link to your page</li>
+          </ul>
+        </div>
+        <div class="option featured">
+          <h3>Featured Listing</h3>
+          <div class="price">$49 <small>/week</small></div>
+          <ul>
+            <li>Pinned to top of category</li>
+            <li>"Featured" badge on card</li>
+            <li>Included in daily email</li>
+            <li>Priority placement</li>
+          </ul>
+        </div>
+        <div class="option">
+          <h3>Email Sponsorship</h3>
+          <div class="price">$99 <small>/send</small></div>
+          <ul>
+            <li>Dedicated spot in daily email</li>
+            <li>Custom description + CTA</li>
+            <li>Reaches all subscribers</li>
+            <li>Click tracking included</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Submit Your Listing</h2>
+      <p>Tell us about your sweepstakes, freebie, or promotion and we'll get it in front of the right audience.</p>
+      <form class="form" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" name="name" required placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label>Company / Brand *</label>
+            <input type="text" name="company" required placeholder="Acme Inc">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" required placeholder="jane@acme.com">
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select name="category" required>
+              <option value="">Select...</option>
+              <option value="Sweepstakes">Sweepstakes / Contest</option>
+              <option value="Freebie">Freebie / Free Sample</option>
+              <option value="Settlement">Settlement / Refund</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Website / Landing Page URL *</label>
+            <input type="url" name="url" required placeholder="https://example.com/sweepstakes">
+          </div>
+          <div class="form-group">
+            <label>Listing Type</label>
+            <select name="listing_type">
+              <option value="standard">Standard (Free)</option>
+              <option value="featured">Featured ($49/week)</option>
+              <option value="email">Email Sponsorship ($99/send)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Description</label>
+          <textarea name="description" placeholder="Tell us about your offer — prize details, dates, eligibility, etc."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Submit Listing</button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    &copy; 2026 AllFreeAlerts.com &mdash; We look for them so you don't have to.<br>
+    <a href="mailto:contact@allfreealerts.com" style="color:var(--teal);font-weight:600">contact@allfreealerts.com</a>
+  </footer>
+
+<script>
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button');
+  const msg = document.getElementById('formMsg');
+  btn.textContent = 'Submitting...'; btn.disabled = true;
+
+  const data = Object.fromEntries(new FormData(form));
+
+  try {
+    const r = await fetch('/api/advertise', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const d = await r.json();
+    msg.textContent = d.message || "Submitted! We'll be in touch within 24 hours.";
+    msg.style.color = 'var(--teal)';
+    msg.style.display = 'block';
+    if (d.ok) form.reset();
+  } catch (err) {
+    msg.textContent = "Submitted! We'll review and get back to you soon.";
+    msg.style.color = 'var(--teal)';
+    msg.style.display = 'block';
+  }
+  btn.textContent = 'Submit Listing'; btn.disabled = false;
+  return false;
+}
+</script>
+</body>
+</html>

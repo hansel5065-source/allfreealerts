@@ -542,21 +542,20 @@ async function ultraContest() {
   for (const pageUrl of pages) {
     const html = await fetchPage(pageUrl);
     if (!html) { log(`  UC: FAILED ${pageUrl.split('/').pop()}`); continue; }
-    // Find "enter contest" links - these are direct external links
-    const re = /href="(https?:\/\/[^"]+)"[^>]*>\s*enter contest/gi;
+    // Each contest card has: h5.contest-card-title > a with title, then btn target=_blank with entry link
+    // Split by contest-card blocks
+    const cardRe = /contest-card-title">\s*<a[^>]*href="[^"]*">\s*([^<]+)<\/a>[\s\S]*?<a[^>]*href="(https?:\/\/(?!ultracontest)[^"]+)"[^>]*class="btn[^"]*"[^>]*target="_blank"[^>]*>\s*enter contest/gi;
     let m, count = 0;
-    while ((m = re.exec(html)) !== null) {
-      const url = m[1].replace(/&amp;/g, '&');
+    while ((m = cardRe.exec(html)) !== null) {
+      const title = m[1].trim();
+      const url = m[2].replace(/&amp;/g, '&');
       if (seen.has(url)) continue;
       if (JUNK_DOMAINS.some(junk => url.toLowerCase().includes(junk))) continue;
+      if (title.length < 10) continue;
       seen.add(url);
       count++;
-      // Try to find a title near this link (look backwards in HTML for heading text)
-      const before = html.substring(Math.max(0, m.index - 500), m.index);
-      const titleMatch = before.match(/<(?:h[234]|strong|b)[^>]*>([^<]{10,})<\/(?:h[234]|strong|b)>/g);
-      const title = titleMatch ? titleMatch[titleMatch.length-1].replace(/<[^>]+>/g, '').trim() : '';
       items.push({
-        title: title.length >= 10 ? decodeEntities(title) : 'Sweepstakes Entry',
+        title: decodeEntities(title),
         link: url,
         source: 'ultracontest', category: 'Sweepstakes',
       });
@@ -826,7 +825,7 @@ async function main() {
   const existingLinks = new Set(existing.map(e => e.link));
 
   // Scrape all sources in parallel where possible
-  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, os, tfg, yfs, gf, uc, ilg, fsf] = await Promise.all([
+  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf] = await Promise.all([
     scrapeContestgirl().catch(e => { log(`CG ERROR: ${e.message}`); return []; }),
     sweepstakesFanatics().catch(e => { log(`SF ERROR: ${e.message}`); return []; }),
     freebieshark().catch(e => { log(`FS ERROR: ${e.message}`); return []; }),
@@ -838,7 +837,7 @@ async function main() {
     topClassActions().catch(e => { log(`TCA ERROR: ${e.message}`); return []; }),
     ftcRefunds().catch(e => { log(`FTC ERROR: ${e.message}`); return []; }),
     heyItsFree().catch(e => { log(`HIF ERROR: ${e.message}`); return []; }),
-    onlineSweepstakes().catch(e => { log(`OS ERROR: ${e.message}`); return []; }),
+    // onlineSweepstakes — removed: JS-rendered site, can't scrape server-side
     theFreebieGuy().catch(e => { log(`TFG ERROR: ${e.message}`); return []; }),
     yoFreeSamples().catch(e => { log(`YFS ERROR: ${e.message}`); return []; }),
     giveawayFrenzy().catch(e => { log(`GF ERROR: ${e.message}`); return []; }),
@@ -847,7 +846,7 @@ async function main() {
     freeStuffFinder().catch(e => { log(`FSF ERROR: ${e.message}`); return []; }),
   ]);
 
-  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...os, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf];
+  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf];
 
   // Clean + Deduplicate
   const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/'];

@@ -1,7 +1,6 @@
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  // CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
@@ -11,31 +10,53 @@ export async function onRequestPost(context) {
     const body = await request.json();
     const email = (body.email || '').trim().toLowerCase();
 
-    // Validate email
     if (!email || !email.includes('@') || !email.includes('.')) {
       return new Response(JSON.stringify({ ok: false, error: 'Invalid email' }), { status: 400, headers });
     }
 
-    // Check if already subscribed
-    const existing = await env.SUBSCRIBERS.get(email);
-    if (existing) {
-      return new Response(JSON.stringify({ ok: true, message: 'Already subscribed!' }), { headers });
+    const apiKey = env.BREVO_API_KEY;
+    if (!apiKey) {
+      return new Response(JSON.stringify({ ok: false, error: 'Email service not configured' }), { status: 500, headers });
     }
 
-    // Store in KV: key=email, value=metadata
-    await env.SUBSCRIBERS.put(email, JSON.stringify({
-      email,
-      subscribed_at: new Date().toISOString(),
-      source: 'website',
-    }));
+    // Add contact to Brevo with list ID 2 (default contacts list)
+    const res = await fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        listIds: [2],
+        updateEnabled: true,
+        attributes: {
+          SIGNUP_SOURCE: 'website',
+          SIGNUP_DATE: new Date().toISOString().split('T')[0],
+        },
+      }),
+    });
 
-    return new Response(JSON.stringify({ ok: true, message: "You're in! We'll send you daily alerts." }), { headers });
+    if (res.ok || res.status === 204) {
+      return new Response(JSON.stringify({ ok: true, message: "You're in! Daily alerts coming your way." }), { headers });
+    }
+
+    const errData = await res.json().catch(() => ({}));
+
+    // Already exists = still a success
+    if (errData.code === 'duplicate_parameter') {
+      return new Response(JSON.stringify({ ok: true, message: "You're already subscribed!" }), { headers });
+    }
+
+    console.error('Brevo error:', JSON.stringify(errData));
+    return new Response(JSON.stringify({ ok: false, error: 'Could not subscribe. Try again.' }), { status: 500, headers });
   } catch (e) {
+    console.error('Subscribe error:', e.message);
     return new Response(JSON.stringify({ ok: false, error: 'Something went wrong' }), { status: 500, headers });
   }
 }
 
-// Handle CORS preflight
 export async function onRequestOptions() {
   return new Response(null, {
     headers: {

@@ -1,0 +1,6 @@
+node_modules/
+*.log
+.env
+.wrangler/
+.claude/
+data/results_backup.json

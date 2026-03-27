@@ -1,0 +1,112 @@
+{
+  "name": "Test HTTP Request vs Code Node",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-800, -200],
+      "id": "manual-trigger-test",
+      "name": "Run Test"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Generate test URLs\nreturn [\n  { json: { testName: 'Sweepstakes Fanatics', url: 'https://sweepstakesfanatics.com/home-depot-2026-march-madness-sweepstakes/' } },\n  { json: { testName: 'Hip2Save', url: 'https://hip2save.com/deals/clear-promo-code/' } },\n  { json: { testName: 'Contestgirl', url: 'https://www.contestgirl.com/contests/contests.pl?ar=na&b=nb&c=us&f=s&s=_&sort=p' } }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-560, -200],
+      "id": "test-urls-node",
+      "name": "Test URLs"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-300, -200],
+      "id": "http-request-test",
+      "name": "Fetch via HTTP Request",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Analyze what the HTTP Request node returned\nconst results = [];\nfor (const item of $input.all()) {\n  const data = item.json.data || '';\n  const testName = item.json.testName || 'Unknown';\n  const isString = typeof data === 'string';\n  const length = isString ? data.length : 0;\n  const hasCloudflare = isString && data.includes('Just a moment');\n  const has500 = isString && data.includes('500 Server Error');\n  const isError = !!item.json.error;\n  \n  // Source-specific checks\n  let hasContent = false;\n  if (testName === 'Sweepstakes Fanatics') {\n    hasContent = isString && data.includes('entry-content');\n  } else if (testName === 'Hip2Save') {\n    hasContent = isString && data.includes('entry-content');\n  } else if (testName === 'Contestgirl') {\n    hasContent = isString && data.includes('class=\"padded\"');\n  }\n  \n  results.push({ json: {\n    test: testName,\n    status: isError ? 'ERROR' : hasCloudflare ? 'CLOUDFLARE_BLOCKED' : has500 ? 'SERVER_ERROR' : hasContent ? 'SUCCESS' : length > 0 ? 'GOT_HTML_BUT_NO_CONTENT' : 'EMPTY',\n    html_length: length,\n    cloudflare_blocked: hasCloudflare,\n    server_error: has500,\n    has_expected_content: hasContent,\n    error: item.json.error || '',\n    first_200_chars: isString ? data.substring(0, 200) : '',\n  }});\n}\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-40, -200],
+      "id": "analyze-results-test",
+      "name": "Analyze Results"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Run Test": {
+      "main": [
+        [
+          {
+            "node": "Test URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Test URLs": {
+      "main": [
+        [
+          {
+            "node": "Fetch via HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch via HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Analyze Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

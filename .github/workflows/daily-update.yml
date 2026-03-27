@@ -1,0 +1,48 @@
+name: Daily Scrape & Deploy
+
+on:
+  schedule:
+    # 11am ET = 3pm UTC (during EDT) / 4pm UTC (during EST)
+    - cron: '0 15 * * *'
+  workflow_dispatch: # manual trigger button
+
+jobs:
+  scrape-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Scrape all sources
+        run: node scraper.js
+
+      - name: Check dead links
+        run: node check_links.js
+
+      - name: Show stats
+        run: |
+          node -e "
+          const d=require('./data/results.json');
+          const c={};
+          for(const i of d){c[i.category]=(c[i.category]||0)+1}
+          console.log('Total:',d.length);
+          Object.entries(c).forEach(([k,v])=>console.log(' ',k,':',v));
+          "
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler pages deploy site/ --project-name=allfreealerts
+
+      - name: Commit updated data
+        run: |
+          git config user.name "AllFreeAlerts Bot"
+          git config user.email "bot@allfreealerts.com"
+          git add data/results.json data/results.csv site/data.json
+          git diff --staged --quiet || git commit -m "Daily update: $(date +%Y-%m-%d)"
+          git push

@@ -1,0 +1,444 @@
+{
+  "name": "Free-for-All Finder",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1200,
+        -400
+      ],
+      "id": "7881cfa0-fd47-4847-965c-010ae49c9b67",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1_CByYYq2-dfd8JC1X4D9ww8wdv-QQzOkqeDvz9wYm-A",
+          "mode": "list",
+          "cachedResultName": "Sweepstakes Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_CByYYq2-dfd8JC1X4D9ww8wdv-QQzOkqeDvz9wYm-A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "entries",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_CByYYq2-dfd8JC1X4D9ww8wdv-QQzOkqeDvz9wYm-A/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -960,
+        -400
+      ],
+      "id": "558eeb02-0ad0-4aa2-b940-b4ff20c8e3b2",
+      "name": "Get Existing Entries",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Urwde4LbrIZninOW",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// PASTE THIS DIRECTLY INTO THE n8n CODE NODE\n// Mode: Run Once for All Items\n\n// Step 1: Separate input - sheet rows vs Contestgirl HTML from HTTP Request node\nconst existingLinks = new Set();\nconst cgHtmlPages = [];\nfor (const row of $input.all()) {\n  if (row.json._isCgHtml && row.json.data) {\n    // CG HTML page fetched by the HTTP Request node\n    cgHtmlPages.push({ html: row.json.data, category: row.json.cgCategory || 'Sweepstakes' });\n  } else if (row.json.link) {\n    existingLinks.add(row.json.link.trim());\n  }\n}\n\n// Step 2: Scrape all sources (with direct link resolution)\nconst scraped = [];\nconst self = this;\n\nfunction decodeEntities(str) {\n  return str\n    .replace(/&#(\\d+);/g, (_, n) => String.fromCharCode(n))\n    .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))\n    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"').replace(/&apos;/g, \"'\")\n    .replace(/&ndash;/g, '\\u2013').replace(/&mdash;/g, '\\u2014');\n}\n\nasync function fetchPage(url) {\n  try {\n    const html = await self.helpers.httpRequest({\n      method: 'GET', url,\n      headers: {\n        \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36\",\n        \"Accept\": \"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\",\n        \"Accept-Language\": \"en-US,en;q=0.9\",\n      },\n      returnFullResponse: false,\n      timeout: 15000,\n    });\n    if (typeof html !== 'string') return null;\n    if (html.includes(\"Just a moment\") || html.includes(\"500 Server Error\")) return null;\n    return html;\n  } catch (e) { return null; }\n}\n\n// Resolve redirect URL without following (for Contestgirl direct links)\nasync function resolveRedirect(url) {\n  try {\n    const resp = await self.helpers.httpRequest({\n      method: 'GET', url,\n      headers: {\n        \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\",\n        \"Referer\": \"https://www.contestgirl.com/\",\n      },\n      returnFullResponse: true,\n      maxRedirects: 0,\n      ignoreHttpStatusErrors: true,\n      timeout: 8000,\n    });\n    if (resp.headers && resp.headers.location) return resp.headers.location;\n    if (resp.headers && resp.headers.Location) return resp.headers.Location;\n    return null;\n  } catch (e) {\n    if (e.response && e.response.headers) {\n      return e.response.headers.location || e.response.headers.Location || null;\n    }\n    return null;\n  }\n}\n\n// Extract first significant outbound link from an article page\nfunction extractOutboundLink(html, excludeDomain) {\n  const linkRegex = /href=\"(https?:\\/\\/[^\"]+)\"/g;\n  let m;\n  while ((m = linkRegex.exec(html)) !== null) {\n    const url = m[1].toLowerCase();\n    if (url.includes(excludeDomain)) continue;\n    if (url.includes('facebook.com') || url.includes('twitter.com') || url.includes('instagram.com') ||\n        url.includes('pinterest.com') || url.includes('youtube.com') || url.includes('google.com') ||\n        url.includes('google-analytics.com') || url.includes('googletagmanager.com') ||\n        url.includes('googlesyndication.com') || url.includes('googleadservices.com') ||\n        url.includes('doubleclick.net') || url.includes('gstatic.com') ||\n        url.includes('linkedin.com') || url.includes('tiktok.com') || url.includes('reddit.com') ||\n        url.includes('apple.com/app') || url.includes('play.google.com') ||\n        url.includes('amazon.com/gp/') || url.includes('amzn.to') ||\n        url.includes('.css') || url.includes('.js') || url.includes('.png') || url.includes('.jpg') ||\n        url.includes('.gif') || url.includes('.svg') || url.includes('.woff') ||\n        url.includes('wp-content') || url.includes('wp-json') || url.includes('cdn.') ||\n        url.includes('gravatar.com') || url.includes('cloudflare.com') || url.includes('googleapis.com') ||\n        url.includes('shareaholic') || url.includes('addtoany') || url.includes('sharethis') ||\n        url.includes('disqus.com') || url.includes('w.org') || url.includes('wordpress.org') ||\n        url.includes('schema.org') || url.includes('creativecommons.org') ||\n        url.includes('feeds.feedburner') || url.includes('feedburner.com') ||\n        url.includes('gmpg.org') || url.includes('hip.attn.tv') || url.includes('attn.tv') ||\n        url.includes('shophermedia.net') || url.includes('magik.ly') ||\n        url.includes('apps.apple.com') || url.includes('itunes.apple.com')) continue;\n    return m[1];\n  }\n  return null;\n}\n\n// Batch-resolve URLs with concurrency limit\nasync function resolveInBatches(items, resolver, batchSize) {\n  for (let i = 0; i < items.length; i += batchSize) {\n    const batch = items.slice(i, i + batchSize);\n    await Promise.all(batch.map(resolver));\n  }\n}\n\nfunction parseRssItems(xml) {\n  return (xml.match(/<item>([\\s\\S]*?)<\\/item>/g) || []).map(item => ({\n    title: (item.match(/<title>(.*?)<\\/title>/) || [])[1] || '',\n    link: (item.match(/<link>(.*?)<\\/link>/) || [])[1] || '',\n    categories: (item.match(/<category><!\\[CDATA\\[(.*?)\\]\\]><\\/category>/g) || [])\n      .map(c => c.replace(/<category><!\\[CDATA\\[|\\]\\]><\\/category>/g, '')),\n  }));\n}\n\n// === CONTESTGIRL (parse HTML from HTTP Request node + resolve redirects) ===\ntry {\n  const cgItems = [];\n  for (const page of cgHtmlPages) {\n    const html = page.html;\n    if (!html || typeof html !== 'string') continue;\n    if (html.includes(\"Just a moment\") || html.includes(\"500 Server Error\")) continue;\n    const listingRegex = /<td class=\"padded\"[^>]*>([\\s\\S]*?)<\\/td>\\s*<\\/tr>/g;\n    let match;\n    while ((match = listingRegex.exec(html)) !== null) {\n      const block = match[1];\n      const titleMatch = block.match(/<a[^>]*href=\"\\/sweepstakes\\/countHits\\.pl\\?[^\"]*\"[^>]*rel=\"nofollow\">([^<]+)<\\/a><\\/b>/);\n      if (!titleMatch) continue;\n      const linkMatch = block.match(/href=\"(\\/sweepstakes\\/countHits\\.pl\\?[^\"]*)\"/);\n      const endDateMatch = block.match(/<b>End Date:<\\/b>\\s*([^<]+)/);\n      const prizeMatch = block.match(/<div style=\"margin-top:6px;margin-bottom:4px;font-size:15px;\">([^<]+)<\\/div>/);\n      const restrictMatch = block.match(/<b>Restrictions:&nbsp;<\\/b><\\/td><td[^>]*>\\s*([^<]+)/);\n      const redirectUrl = linkMatch ? \"https://www.contestgirl.com\" + linkMatch[1] : \"\";\n      cgItems.push({\n        title: decodeEntities(titleMatch[1].replace(/--/g, \" - \").trim()),\n        link: redirectUrl,\n        source: \"contestgirl\", category: page.category,\n        end_date: endDateMatch ? endDateMatch[1].trim() : \"\",\n        prize_summary: prizeMatch ? prizeMatch[1].trim() : \"\",\n        eligibility: restrictMatch ? restrictMatch[1].trim() : \"\",\n      });\n    }\n  }\n  // Try to resolve redirects to direct contest links (best effort)\n  try {\n    await resolveInBatches(cgItems, async (item) => {\n      if (!item.link) return;\n      try {\n        const resolved = await resolveRedirect(item.link);\n        if (resolved) item.link = resolved;\n      } catch (e) { /* keep redirect URL */ }\n    }, 10);\n  } catch (e) { /* redirect resolution failed, keep redirect URLs */ }\n  for (const item of cgItems) {\n    scraped.push(item);\n  }\n} catch (e) { /* contestgirl section failed entirely */ }\n\n// === SWEEPSTAKES FANATICS (RSS + follow article for direct link) ===\n{\n  const sfItems = [];\n  const xml = await fetchPage(\"https://sweepstakesfanatics.com/feed/\");\n  if (xml) {\n    for (const item of parseRssItems(xml)) {\n      if (!item.title || !item.link) continue;\n      if (item.categories.some(c => c.toLowerCase().includes('expired'))) continue;\n      sfItems.push({\n        title: decodeEntities(item.title.trim()),\n        articleUrl: item.link.trim(),\n        link: item.link.trim(),\n        source: \"sweepstakesfanatics\", category: \"Sweepstakes\",\n      });\n    }\n  }\n  await resolveInBatches(sfItems, async (item) => {\n    const html = await fetchPage(item.articleUrl);\n    if (!html) return;\n    const direct = extractOutboundLink(html, 'sweepstakesfanatics.com');\n    if (direct) item.link = direct;\n  }, 10);\n  for (const item of sfItems) {\n    const { articleUrl, ...rest } = item;\n    scraped.push(rest);\n  }\n}\n\n// === FREEBIE SHARK (HTML + follow article for direct link) ===\n{\n  const fsItems = [];\n  const feeds = [\n    { category: \"Freebies\", url: \"https://freebieshark.com/\" },\n    { category: \"Sweepstakes\", url: \"https://freebieshark.com/category/sweepstakes/\" },\n  ];\n  for (const feed of feeds) {\n    const html = await fetchPage(feed.url);\n    if (!html) continue;\n    const regex = /<h2 class=\"headline\">\\s*<a href=\"([^\"]+)\"[^>]*>([^<]+)<\\/a>\\s*<\\/h2>/g;\n    let m;\n    while ((m = regex.exec(html)) !== null) {\n      fsItems.push({\n        title: decodeEntities(m[2].trim()),\n        articleUrl: m[1],\n        link: m[1],\n        source: \"freebieshark\", category: feed.category,\n      });\n    }\n  }\n  await resolveInBatches(fsItems, async (item) => {\n    const html = await fetchPage(item.articleUrl);\n    if (!html) return;\n    const direct = extractOutboundLink(html, 'freebieshark.com');\n    if (direct) item.link = direct;\n  }, 10);\n  for (const item of fsItems) {\n    const { articleUrl, ...rest } = item;\n    scraped.push(rest);\n  }\n}\n\n// === FREEFLYS (RSS + follow article for direct link) ===\n{\n  const ffItems = [];\n  const xml = await fetchPage(\"https://www.freeflys.com/feed/\");\n  if (xml) {\n    for (const item of parseRssItems(xml)) {\n      if (!item.title || !item.link) continue;\n      ffItems.push({\n        title: decodeEntities(item.title.trim()),\n        articleUrl: item.link.trim(),\n        link: item.link.trim(),\n        source: \"freeflys\", category: \"Freebies\",\n      });\n    }\n  }\n  await resolveInBatches(ffItems, async (item) => {\n    const html = await fetchPage(item.articleUrl);\n    if (!html) return;\n    const direct = extractOutboundLink(html, 'freeflys.com');\n    if (direct) item.link = direct;\n  }, 5);\n  for (const item of ffItems) {\n    const { articleUrl, ...rest } = item;\n    scraped.push(rest);\n  }\n}\n\n// === HIP2SAVE (RSS freebies + follow article for direct link) ===\n{\n  const h2sItems = [];\n  const xml = await fetchPage(\"https://hip2save.com/freebies/feed/\");\n  if (xml) {\n    for (const item of parseRssItems(xml)) {\n      if (!item.title || !item.link) continue;\n      h2sItems.push({\n        title: decodeEntities(item.title.trim()),\n        articleUrl: item.link.trim(),\n        link: item.link.trim(),\n        source: \"hip2save\", category: \"Freebies\",\n      });\n    }\n  }\n  // Follow article pages to extract direct deal links from article body\n  await resolveInBatches(h2sItems, async (item) => {\n    const html = await fetchPage(item.articleUrl);\n    if (!html) return;\n    // Only look inside the article content area to avoid nav/sidebar junk\n    const contentStart = html.indexOf('entry-content');\n    if (contentStart === -1) return;\n    const contentEnd = html.indexOf('</article', contentStart);\n    const content = contentEnd > contentStart ? html.substring(contentStart, contentEnd) : html.substring(contentStart, contentStart + 10000);\n    const direct = extractOutboundLink(content, 'hip2save.com');\n    if (direct) item.link = direct;\n  }, 20);\n  for (const item of h2sItems) {\n    const { articleUrl, ...rest } = item;\n    scraped.push(rest);\n  }\n}\n\n// === CLASSACTION.ORG (settlements with real deadlines + details) ===\n{\n  const html = await fetchPage(\"https://www.classaction.org/settlements\");\n  if (html) {\n    const cardBlocks = html.split(/class=\"[^\"]*settlement-card[^\"]*\"/);\n    for (let i = 1; i < cardBlocks.length; i++) {\n      const block = cardBlocks[i].substring(0, 3000);\n      const prevEnd = cardBlocks[i - 1].slice(-200);\n      const deadlineMatch = prevEnd.match(/data-deadline=\"(\\d+)\"/);\n      const daysLeft = deadlineMatch ? parseInt(deadlineMatch[1]) : null;\n      if (daysLeft === 9999 || daysLeft === null) continue;\n\n      const linkMatch = block.match(/<a\\s+href=\"([^\"]+)\"\\s+class=\"js-settlement-link[^\"]*\"[^>]*>([^<]+)<\\/a>/);\n      if (!linkMatch) continue;\n\n      const payoutMatch = block.match(/Payout<\\/span>\\s*<span[^>]*>([^<]+)<\\/span>/);\n      const deadlineDateMatch = block.match(/Deadline<\\/span>\\s*<span[^>]*>([^<]+)<\\/span>/);\n      const proofMatch = block.match(/Required\\?<\\/span>\\s*<span[^>]*>([^<]+)<\\/span>/);\n      const descMatch = block.match(/<p class=\"f6 lh-copy[^\"]*\">([^<]+)<\\/p>/);\n\n      let deadlineDate = deadlineDateMatch ? deadlineDateMatch[1].trim() : \"\";\n      if (deadlineDate) {\n        const parsed = new Date(deadlineDate);\n        if (!isNaN(parsed.getTime()) && parsed < new Date()) continue;\n      }\n\n      scraped.push({\n        title: decodeEntities(linkMatch[2].trim()),\n        link: linkMatch[1],\n        source: \"classaction\", category: \"Settlements\",\n        deadline: deadlineDate,\n        payout: payoutMatch ? payoutMatch[1].trim() : \"\",\n        proof_required: proofMatch ? proofMatch[1].trim() : \"\",\n        description: descMatch ? decodeEntities(descMatch[1].trim()) : \"\",\n      });\n    }\n  }\n}\n\n// === SWEETIES SWEEPS (WP REST API - direct entry links in content) ===\n{\n  try {\n    const json = await self.helpers.httpRequest({\n      method: 'GET',\n      url: 'https://sweetiessweeps.com/wp-json/wp/v2/posts?per_page=50',\n      headers: {\n        \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\",\n        \"Accept\": \"application/json\",\n      },\n      returnFullResponse: false,\n      timeout: 15000,\n    });\n    const posts = typeof json === 'string' ? JSON.parse(json) : json;\n    if (Array.isArray(posts)) {\n      for (const post of posts) {\n        const title = post.title?.rendered || '';\n        const content = post.content?.rendered || '';\n        if (!title) continue;\n        // Extract the first significant outbound link from article content\n        const directLink = extractOutboundLink(content, 'sweetiessweeps.com');\n        scraped.push({\n          title: decodeEntities(title.trim()),\n          link: directLink || post.link,\n          source: \"sweetiessweeps\", category: \"Sweepstakes\",\n        });\n      }\n    }\n  } catch (e) { /* sweeties sweeps failed */ }\n}\n\n// === SWEEPSTAKES ADVANTAGE (HTML - direct entry links on listing pages) ===\n{\n  const saPages = [\n    'https://www.sweepsadvantage.com/daily-sweepstakes.html',\n    'https://www.sweepsadvantage.com/one-entry-sweepstakes.html',\n    'https://www.sweepsadvantage.com/instant-win-sweepstakes',\n    'https://www.sweepsadvantage.com/cash-sweepstakes',\n  ];\n  for (const pageUrl of saPages) {\n    try {\n      const html = await fetchPage(pageUrl);\n      if (!html) continue;\n      // SA uses target=\"_blank\" rel=\"nofollow\" for direct entry links with thumbnail images\n      const entryRe = /href=\"(https?:\\/\\/[^\"]+)\"[^>]*target=\"_blank\"[^>]*rel=\"nofollow\"[^>]*>[\\s\\S]*?alt=\"([^\"]+)\"/g;\n      let m;\n      while ((m = entryRe.exec(html)) !== null) {\n        const url = m[1];\n        if (url.includes('sweepsadvantage') || url.includes('sweepstakesplus')) continue;\n        scraped.push({\n          title: decodeEntities(m[2].replace(/ Sweepstakes$/, '').trim()),\n          link: url,\n          source: \"sweepsadvantage\", category: \"Sweepstakes\",\n        });\n      }\n      // Also try text links with nofollow\n      const textRe = /href=\"(https?:\\/\\/[^\"]+)\"[^>]*rel=\"nofollow\"[^>]*target=\"_blank\"[^>]*>([^<]{10,})/g;\n      while ((m = textRe.exec(html)) !== null) {\n        const url = m[1];\n        if (url.includes('sweepsadvantage') || url.includes('sweepstakesplus')) continue;\n        scraped.push({\n          title: decodeEntities(m[2].trim()),\n          link: url,\n          source: \"sweepsadvantage\", category: \"Sweepstakes\",\n        });\n      }\n    } catch (e) { /* SA page failed */ }\n  }\n}\n\n// === TOP CLASS ACTIONS (RSS - open settlements) ===\n{\n  const xml = await fetchPage(\"https://topclassactions.com/feed/\");\n  if (xml) {\n    for (const item of parseRssItems(xml)) {\n      if (!item.title || !item.link) continue;\n      // Only include settlement-related articles\n      const titleLower = item.title.toLowerCase();\n      if (titleLower.includes('settlement') || titleLower.includes('class action') ||\n          titleLower.includes('refund') || titleLower.includes('claim')) {\n        scraped.push({\n          title: decodeEntities(item.title.trim()),\n          link: item.link.trim(),\n          source: \"topclassactions\", category: \"Settlements\",\n        });\n      }\n    }\n  }\n}\n\n// === FTC REFUNDS (government settlement/refund pages) ===\n{\n  const html = await fetchPage(\"https://www.ftc.gov/enforcement/refunds\");\n  if (html) {\n    const refundRe = /<a[^>]*href=\"(\\/enforcement\\/refunds\\/[^\"]+)\"[^>]*>([^<]+)/g;\n    let m;\n    while ((m = refundRe.exec(html)) !== null) {\n      const title = m[2].trim();\n      if (title.length < 5) continue;\n      scraped.push({\n        title: decodeEntities(title),\n        link: \"https://www.ftc.gov\" + m[1],\n        source: \"ftc\", category: \"Settlements\",\n      });\n    }\n  }\n}\n\n// Step 3: Deduplicate against existing sheet entries\nconst newItems = [];\nfor (const item of scraped) {\n  if (!item.link || !item.title) continue;\n  if (existingLinks.has(item.link.trim())) continue;\n  newItems.push({ json: item });\n}\n\nreturn newItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        -280
+      ],
+      "id": "e79d498d-code-scraper-node",
+      "name": "Scrape and Deduplicate"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Build a single Telegram summary message from all new items\nconst items = $input.all();\nif (items.length === 0) return [{ json: { message: 'Free-for-All: No new entries found today.' } }];\n\n// Count by category\nconst counts = {};\nfor (const item of items) {\n  const cat = item.json.category || 'Other';\n  counts[cat] = (counts[cat] || 0) + 1;\n}\n\n// Build summary lines\nconst lines = [\n  `\\ud83c\\udf81 Free-for-All: ${items.length} new entries found!`,\n  '',\n];\n\nfor (const [cat, count] of Object.entries(counts)) {\n  const emoji = cat === 'Sweepstakes' ? '\\ud83c\\udfb0' : cat === 'Settlements' ? '\\u2696\\ufe0f' : '\\ud83c\\udf81';\n  lines.push(`${emoji} ${cat}: ${count}`);\n}\n\nlines.push('');\n\n// Show top settlements with details\nconst settlements = items.filter(i => i.json.source === 'classaction').slice(0, 5);\nif (settlements.length > 0) {\n  lines.push('\\u2696\\ufe0f Top Settlements:');\n  for (const s of settlements) {\n    const details = [];\n    if (s.json.payout) details.push(s.json.payout);\n    if (s.json.deadline) details.push('by ' + s.json.deadline);\n    if (s.json.proof_required) details.push('Proof: ' + s.json.proof_required);\n    lines.push(`\\u2022 ${s.json.title}`);\n    if (details.length > 0) lines.push(`  ${details.join(' | ')}`);\n  }\n  lines.push('');\n}\n\n// Show top sweepstakes/freebies\nconst other = items.filter(i => i.json.source !== 'classaction').slice(0, 10);\nif (other.length > 0) {\n  lines.push('\\ud83c\\udfb0 Top Deals:');\n  for (const item of other) {\n    lines.push(`\\u2022 ${item.json.title}`);\n  }\n}\n\nconst remaining = items.length - settlements.length - other.length;\nif (remaining > 0) {\n  lines.push(`... and ${remaining} more`);\n}\n\nlines.push('');\nlines.push('\\ud83d\\udcca Check the sheet for full details.');\n\nreturn [{ json: { message: lines.join('\\n') } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        -400
+      ],
+      "id": "telegram-summary-code",
+      "name": "Build Summary"
+    },
+    {
+      "parameters": {
+        "chatId": "674396484",
+        "text": "={{$json.message}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        -400
+      ],
+      "id": "4d4587fb-5455-4e7c-a5b5-1cb800e14ee3",
+      "name": "Send Telegram Alert",
+      "webhookId": "49472d63-2e64-4a83-8714-f23a4e1198a9",
+      "credentials": {
+        "telegramApi": {
+          "id": "1RPNjDNakJOvsC1m",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1_CByYYq2-dfd8JC1X4D9ww8wdv-QQzOkqeDvz9wYm-A",
+          "mode": "list",
+          "cachedResultName": "Sweepstakes Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_CByYYq2-dfd8JC1X4D9ww8wdv-QQzOkqeDvz9wYm-A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "entries",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_CByYYq2-dfd8JC1X4D9ww8wdv-QQzOkqeDvz9wYm-A/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{$json.title}}",
+            "link": "={{$json.link}}",
+            "date_found": "={{$now}}",
+            "source": "={{$json.source}}",
+            "Type": "={{$json.category}}",
+            "End date": "={{$json.end_date}}",
+            "price summary": "={{$json.prize_summary}}",
+            "elegibility": "={{$json.eligibility}}",
+            "deadline": "={{$json.deadline}}",
+            "payout": "={{$json.payout}}",
+            "proof_required": "={{$json.proof_required}}",
+            "description": "={{$json.description}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "date_found",
+              "displayName": "date_found",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type",
+              "displayName": "Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "End date",
+              "displayName": "End date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "price summary",
+              "displayName": "price summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "elegibility",
+              "displayName": "elegibility",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "deadline",
+              "displayName": "deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "payout",
+              "displayName": "payout",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_required",
+              "displayName": "proof_required",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -140,
+        -160
+      ],
+      "id": "3a8a6d01-3025-458b-92de-2459eb9a3fe6",
+      "name": "Add New To Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Urwde4LbrIZninOW",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Generate Contestgirl feed URLs\nconst feeds = [\n  { f: 's', category: 'Sweepstakes' },\n  { f: 'd', category: 'Sweepstakes' },\n  { f: 'w', category: 'Sweepstakes' },\n  { f: 'o', category: 'Sweepstakes' },\n  { f: 'g', category: 'Sweepstakes' },\n  { f: 'f', category: 'Freebies' },\n];\nreturn feeds.map(feed => ({\n  json: {\n    url: `https://www.contestgirl.com/contests/contests.pl?ar=na&b=nb&c=us&f=${feed.f}&s=_&sort=p`,\n    cgCategory: feed.category,\n    _isCgHtml: true,\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1200,
+        -160
+      ],
+      "id": "cg-feed-urls-node",
+      "name": "CG Feed URLs"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -960,
+        -160
+      ],
+      "id": "fetch-cg-http-node",
+      "name": "Fetch Contestgirl",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput",
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "mode": "append"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -680,
+        -280
+      ],
+      "id": "merge-sheet-cg-node",
+      "name": "Merge Sheet + CG"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Existing Entries",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "CG Feed URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Existing Entries": {
+      "main": [
+        [
+          {
+            "node": "Merge Sheet + CG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CG Feed URLs": {
+      "main": [
+        [
+          {
+            "node": "Fetch Contestgirl",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Contestgirl": {
+      "main": [
+        [
+          {
+            "node": "Merge Sheet + CG",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Sheet + CG": {
+      "main": [
+        [
+          {
+            "node": "Scrape and Deduplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape and Deduplicate": {
+      "main": [
+        [
+          {
+            "node": "Build Summary",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Add New To Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Summary": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "11-new-sources-v9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "75de94d9d567d9dbf7367b8e0986ee0bf6da94d8a5e706037809993c5648c4b5"
+  },
+  "id": "f9R2BVADRxPJObN3",
+  "tags": []
+}

@@ -184,6 +184,23 @@ function guessCategory(title, description) {
   return 'Restaurant Deals';
 }
 
+function makeDeal({ title, description, category, link, source, date_found, brand, discount, promo_code, expiry, image }) {
+  const text = (title || '') + ' ' + (description || '');
+  return {
+    title: (title || '').trim(),
+    description: (description || '').trim(),
+    category: category || guessCategory(title || '', description || ''),
+    brand: brand || guessBrand(title || ''),
+    discount: discount || guessDiscount(text),
+    promo_code: promo_code || guessPromoCode(text),
+    expiry: expiry || '',
+    link: (link || '').trim(),
+    image: image || '',
+    source: source || '',
+    date_found: date_found || TODAY,
+  };
+}
+
 // === SCRAPERS ===
 
 async function scrapeHip2SaveFood() {
@@ -1090,6 +1107,193 @@ async function scrapeWeeklyAds() {
   return items;
 }
 
+// --- BATCH 2: NEW SOURCES ---
+
+async function scrapeEatDrinkDeals() {
+  log('Scraping EatDrinkDeals (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://www.eatdrinkdeals.com/feed/');
+  if (!xml) { log('  EatDrinkDeals: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    items.push({
+      title: decodeEntities(rss.title),
+      description: stripHtml(rss.description || '').slice(0, 200),
+      category: 'Restaurant Deals',
+      brand: guessBrand(rss.title),
+      discount: guessDiscount(rss.title + ' ' + (rss.description || '')),
+      promo_code: guessPromoCode(rss.title + ' ' + (rss.description || '')),
+      expiry: '',
+      link: rss.link,
+      image: '',
+      source: 'eatdrinkdeals',
+      date_found: rss.pubDate ? new Date(rss.pubDate).toISOString().slice(0, 10) : TODAY,
+    });
+  }
+  log(`  EatDrinkDeals: ${items.length} items`);
+  return items;
+}
+
+async function scrapeDealNewsFood() {
+  log('Scraping DealNews Food & Drink (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://www.dealnews.com/rss/c213/');
+  if (!xml) { log('  DealNews Food: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    items.push(makeDeal({
+      title: decodeEntities(rss.title),
+      description: stripHtml(rss.description || '').slice(0, 200),
+      category: 'Restaurant Deals',
+      link: rss.link,
+      source: 'dealnews',
+      date_found: rss.pubDate ? new Date(rss.pubDate).toISOString().slice(0, 10) : TODAY,
+    }));
+  }
+  log(`  DealNews Food: ${items.length} items`);
+  return items;
+}
+
+async function scrapeClarkDeals() {
+  log('Scraping Clark Deals Food (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://clarkdeals.com/feed/');
+  if (!xml) { log('  ClarkDeals: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    const text = (rss.title + ' ' + (rss.description || '')).toLowerCase();
+    // Only food-related items
+    const foodSignal = ['food', 'eat', 'restaurant', 'pizza', 'burger', 'chicken', 'taco', 'coffee',
+      'free fry', 'free drink', 'doordash', 'uber eats', 'grubhub', 'mcdonald', 'wendy',
+      'starbucks', 'dunkin', 'chipotle', 'sandwich', 'meal', 'dinner', 'lunch', 'breakfast',
+      'grocery', 'coupon', 'bogo', 'freebie'].some(kw => text.includes(kw));
+    if (!foodSignal) continue;
+    items.push(makeDeal({
+      title: decodeEntities(rss.title),
+      description: stripHtml(rss.description || '').slice(0, 200),
+      category: 'Restaurant Deals',
+      link: rss.link,
+      source: 'clarkdeals',
+      date_found: rss.pubDate ? new Date(rss.pubDate).toISOString().slice(0, 10) : TODAY,
+    }));
+  }
+  log(`  ClarkDeals Food: ${items.length} items`);
+  return items;
+}
+
+async function scrapeYoFreeSamples() {
+  log('Scraping Yo Free Samples (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://yofreesamples.com/feed/');
+  if (!xml) { log('  YoFreeSamples: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    const text = (rss.title + ' ' + (rss.description || '')).toLowerCase();
+    const foodSignal = ['food', 'snack', 'drink', 'coffee', 'tea', 'candy', 'chocolate', 'chip',
+      'cookie', 'cereal', 'yogurt', 'bar', 'sauce', 'spice', 'seasoning', 'protein',
+      'juice', 'soda', 'water', 'energy drink', 'beer', 'wine', 'pizza', 'burger',
+      'free sample', 'free box', 'free pack'].some(kw => text.includes(kw));
+    if (!foodSignal) continue;
+    items.push(makeDeal({
+      title: decodeEntities(rss.title),
+      description: stripHtml(rss.description || '').slice(0, 200),
+      category: 'Free Food',
+      link: rss.link,
+      source: 'yofreesamples',
+      date_found: rss.pubDate ? new Date(rss.pubDate).toISOString().slice(0, 10) : TODAY,
+    }));
+  }
+  log(`  YoFreeSamples Food: ${items.length} items`);
+  return items;
+}
+
+async function scrapeRedditFastFood() {
+  log('Scraping Reddit r/fastfood...');
+  const items = [];
+  const data = await fetchPage('https://www.reddit.com/r/fastfood/.json');
+  if (!data) { log('  r/fastfood: FAILED'); return items; }
+  try {
+    const json = JSON.parse(data);
+    const posts = json.data.children || [];
+    for (const p of posts) {
+      const d = p.data;
+      if (!d || d.stickied) continue;
+      const title = d.title || '';
+      const text = (title + ' ' + (d.selftext || '')).toLowerCase();
+      // Focus on deals/promos/freebies
+      const dealSignal = ['deal', 'free', 'coupon', 'promo', 'bogo', 'discount', 'offer',
+        'app', 'reward', 'special', 'limited time', 'new item', 'price'].some(kw => text.includes(kw));
+      if (!dealSignal) continue;
+      items.push(makeDeal({
+        title: title.slice(0, 120),
+        description: (d.selftext || '').slice(0, 200),
+        category: 'Restaurant Deals',
+        link: d.url || `https://reddit.com${d.permalink}`,
+        source: 'reddit_fastfood',
+        date_found: d.created_utc ? new Date(d.created_utc * 1000).toISOString().slice(0, 10) : TODAY,
+      }));
+    }
+  } catch (e) { log('  r/fastfood: parse error'); }
+  log(`  r/fastfood: ${items.length} deal items`);
+  return items;
+}
+
+async function scrapeRedditFreebiesFood() {
+  log('Scraping Reddit r/freebies (food filter)...');
+  const items = [];
+  const data = await fetchPage('https://www.reddit.com/r/freebies/.json');
+  if (!data) { log('  r/freebies: FAILED'); return items; }
+  try {
+    const json = JSON.parse(data);
+    const posts = json.data.children || [];
+    for (const p of posts) {
+      const d = p.data;
+      if (!d || d.stickied) continue;
+      const text = ((d.title || '') + ' ' + (d.selftext || '') + ' ' + (d.link_flair_text || '')).toLowerCase();
+      const foodSignal = ['food', 'snack', 'drink', 'coffee', 'tea', 'pizza', 'burger', 'taco',
+        'chicken', 'fry', 'sandwich', 'donut', 'cookie', 'ice cream', 'candy', 'chocolate',
+        'cereal', 'sample', 'mcdonald', 'wendy', 'starbucks', 'dunkin', 'chipotle',
+        'restaurant', 'meal', 'eat', 'grocery'].some(kw => text.includes(kw));
+      if (!foodSignal) continue;
+      items.push(makeDeal({
+        title: (d.title || '').slice(0, 120),
+        description: (d.selftext || '').slice(0, 200),
+        category: 'Free Food',
+        link: d.url || `https://reddit.com${d.permalink}`,
+        source: 'reddit_freebies',
+        date_found: d.created_utc ? new Date(d.created_utc * 1000).toISOString().slice(0, 10) : TODAY,
+      }));
+    }
+  } catch (e) { log('  r/freebies: parse error'); }
+  log(`  r/freebies food: ${items.length} items`);
+  return items;
+}
+
+async function scrapePassionForSavings() {
+  log('Scraping Passion for Savings Grocery (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://www.passionforsavings.com/feed/');
+  if (!xml) { log('  PassionForSavings: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    const text = (rss.title + ' ' + (rss.description || '')).toLowerCase();
+    const foodSignal = ['food', 'grocery', 'coupon', 'freebie', 'free sample', 'restaurant',
+      'pizza', 'snack', 'cereal', 'drink', 'coffee', 'meal', 'recipe',
+      'kroger', 'walmart', 'target', 'aldi', 'publix', 'costco'].some(kw => text.includes(kw));
+    if (!foodSignal) continue;
+    items.push(makeDeal({
+      title: decodeEntities(rss.title),
+      description: stripHtml(rss.description || '').slice(0, 200),
+      category: 'Grocery Coupons',
+      link: rss.link,
+      source: 'passionforsavings',
+      date_found: rss.pubDate ? new Date(rss.pubDate).toISOString().slice(0, 10) : TODAY,
+    }));
+  }
+  log(`  PassionForSavings: ${items.length} food items`);
+  return items;
+}
+
 // === DEDUPLICATION ===
 function deduplicateDeals(allItems) {
   const seen = new Set();
@@ -1134,6 +1338,14 @@ async function main() {
     scrapeDealsPlusFood(),
     scrapeFastFoodAppDeals(),
     scrapeWeeklyAds(),
+    // Batch 2: new sources
+    scrapeEatDrinkDeals(),
+    scrapeDealNewsFood(),
+    scrapeClarkDeals(),
+    scrapeYoFreeSamples(),
+    scrapeRedditFastFood(),
+    scrapeRedditFreebiesFood(),
+    scrapePassionForSavings(),
   ]);
 
   // Collect all items
@@ -1144,6 +1356,8 @@ async function main() {
     'freebieguy', 'reddit',
     'slickdeals', 'bensbargains', 'reddit_deals', 'reddit_coupons',
     'pennyhoarder', 'offers_com', 'dealsplus', 'fastfood_apps', 'weeklyads',
+    'eatdrinkdeals', 'dealnews', 'clarkdeals', 'yofreesamples',
+    'reddit_fastfood', 'reddit_freebies', 'passionforsavings',
   ];
 
   for (let i = 0; i < results.length; i++) {

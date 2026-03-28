@@ -1,0 +1,62 @@
+name: Daily Scrape & Deploy — Sub-Sites
+
+on:
+  # DISABLED — uncomment schedule when ready to go live
+  # schedule:
+  #   - cron: '0 15 * * *'
+  workflow_dispatch: # manual trigger only for now
+
+jobs:
+  subsites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false  # don't cancel other sites if one fails
+      matrix:
+        site:
+          - name: recall-alerts
+            project: recall-alerts
+          - name: remote-jobs
+            project: remote-jobs
+          - name: ltd-deals
+            project: ltd-deals
+          - name: grant-finder
+            project: grant-finder
+          - name: food-deals
+            project: food-deals
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Scrape ${{ matrix.site.name }}
+        run: node sites/${{ matrix.site.name }}/scraper.js
+
+      - name: Show stats
+        run: |
+          node -e "
+          const d=require('./sites/${{ matrix.site.name }}/site/data.json');
+          console.log('=== ${{ matrix.site.name }} ===');
+          console.log('Total items:',d.length);
+          "
+
+      - name: Deploy ${{ matrix.site.name }} to Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler pages deploy sites/${{ matrix.site.name }}/site/ --project-name=${{ matrix.site.project }}
+
+      - name: Commit updated data
+        run: |
+          git config user.name "AllFreeAlerts Bot"
+          git config user.email "bot@allfreealerts.com"
+          git pull --rebase || true
+          git add sites/${{ matrix.site.name }}/site/data.json
+          git diff --staged --quiet || git commit -m "Daily update: ${{ matrix.site.name }} $(date +%Y-%m-%d)"
+          git push || (git pull --rebase && git push)

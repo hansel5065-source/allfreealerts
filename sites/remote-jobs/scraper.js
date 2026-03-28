@@ -573,6 +573,234 @@ async function scrapeWorkingNomads() {
   return items;
 }
 
+// --- BATCH 2: NEW SOURCES ---
+
+async function scrapeTheMuse() {
+  log('Scraping The Muse (JSON API)...');
+  const items = [];
+  // Fetch first 3 pages (60 jobs)
+  for (let page = 0; page < 3; page++) {
+    const data = await fetchJSON(`https://www.themuse.com/api/public/jobs?page=${page}&location=Flexible%20/%20Remote`);
+    if (!data || !data.results) break;
+    for (const job of data.results) {
+      const company = job.company ? job.company.name : '';
+      const locations = (job.locations || []).map(l => l.name).join(', ');
+      const levels = (job.levels || []).map(l => l.name).join(', ');
+      const cats = (job.categories || []).map(c => c.name);
+      items.push(makeJob({
+        title: job.name || '',
+        company,
+        description: (job.contents || '').substring(0, 500),
+        salary: '',
+        category: cats.length > 0 ? cats[0] : '',
+        location: locations || 'Remote',
+        link: job.refs && job.refs.landing_page ? job.refs.landing_page : '',
+        image: '',
+        source: 'themuse',
+        date_posted: job.publication_date ? job.publication_date.split('T')[0] : '',
+        job_type: levels.includes('Intern') ? 'Internship' : 'Full-time',
+      }));
+    }
+  }
+  log(`  TheMuse: ${items.length} remote jobs`);
+  return items;
+}
+
+async function scrapeRealWorkFromAnywhere() {
+  log('Scraping Real Work From Anywhere (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://www.realworkfromanywhere.com/rss.xml');
+  if (!xml) { log('  RWFA: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    // Try to extract company from title (often "Job Title at Company")
+    let title = decodeEntities(rss.title.trim());
+    let company = '';
+    const atMatch = title.match(/^(.+?)\s+at\s+(.+)$/i);
+    if (atMatch) {
+      title = atMatch[1].trim();
+      company = atMatch[2].trim();
+    }
+    items.push(makeJob({
+      title,
+      company,
+      description: stripHtml(rss.description || ''),
+      category: rss.categories.length > 0 ? rss.categories[0] : '',
+      location: 'Remote',
+      link: rss.link.trim(),
+      source: 'realworkfromanywhere',
+      date_posted: rss.pubDate ? new Date(rss.pubDate).toISOString().split('T')[0] : '',
+    }));
+  }
+  log(`  RWFA: ${items.length} jobs`);
+  return items;
+}
+
+async function scrapeRemotewx() {
+  log('Scraping Remotewx (JSON API)...');
+  const items = [];
+  const data = await fetchJSON('https://remotewx.com/api');
+  if (!data) { log('  Remotewx: FAILED'); return items; }
+  const jobs = Array.isArray(data) ? data : (data.jobs || []);
+  for (const job of jobs) {
+    if (job.legal || job.usage) continue;
+    items.push(makeJob({
+      title: job.position || job.title || '',
+      company: job.company || '',
+      description: job.description || '',
+      salary: job.salary || '',
+      category: Array.isArray(job.tags) ? job.tags[0] || '' : '',
+      location: job.location || 'Remote',
+      link: job.url || job.link || '',
+      image: job.logo || job.company_logo || '',
+      source: 'remotewx',
+      date_posted: job.date ? job.date.split('T')[0] : '',
+    }));
+  }
+  log(`  Remotewx: ${items.length} jobs`);
+  return items;
+}
+
+async function scrapeEmpllo() {
+  log('Scraping Empllo (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://empllo.com/feeds/remote-jobs.rss');
+  if (!xml) { log('  Empllo: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    // Extract company from custom <company> tag if present
+    const companyMatch = xml.match(new RegExp(`<company>([^<]*)</company>`));
+    let title = decodeEntities(rss.title.trim());
+    let company = '';
+    const atMatch = title.match(/^(.+?)\s+at\s+(.+)$/i);
+    if (atMatch) {
+      title = atMatch[1].trim();
+      company = atMatch[2].trim();
+    }
+    items.push(makeJob({
+      title,
+      company,
+      description: stripHtml(rss.description || ''),
+      category: rss.categories.length > 0 ? rss.categories[0] : '',
+      location: 'Remote',
+      link: rss.link.trim(),
+      source: 'empllo',
+      date_posted: rss.pubDate ? new Date(rss.pubDate).toISOString().split('T')[0] : '',
+    }));
+  }
+  log(`  Empllo: ${items.length} jobs`);
+  return items;
+}
+
+async function scrapeVirtualVocations() {
+  log('Scraping Virtual Vocations (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://www.virtualvocations.com/jobs/rss');
+  if (!xml) { log('  VirtualVocations: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    items.push(makeJob({
+      title: decodeEntities(rss.title.trim()),
+      company: '',
+      description: stripHtml(rss.description || ''),
+      category: rss.categories.length > 0 ? rss.categories[0] : '',
+      location: 'Remote',
+      link: rss.link.trim(),
+      source: 'virtualvocations',
+      date_posted: rss.pubDate ? new Date(rss.pubDate).toISOString().split('T')[0] : '',
+    }));
+  }
+  log(`  VirtualVocations: ${items.length} jobs`);
+  return items;
+}
+
+async function scrapeLandingJobs() {
+  log('Scraping Landing.jobs (Atom)...');
+  const items = [];
+  const xml = await fetchPage('https://landing.jobs/feed?remote=true');
+  if (!xml) { log('  Landing.jobs: FAILED'); return items; }
+  // Parse Atom entries
+  const entries = xml.match(/<entry>([\s\S]*?)<\/entry>/g) || [];
+  for (const entry of entries) {
+    const getTag = (tag) => {
+      const m = entry.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`));
+      return m ? decodeEntities(m[1].trim()) : '';
+    };
+    const linkMatch = entry.match(/<link[^>]*href="([^"]+)"/);
+    const link = linkMatch ? linkMatch[1] : '';
+    const title = getTag('title');
+    if (!title || !link) continue;
+    items.push(makeJob({
+      title,
+      company: getTag('author') ? getTag('name') : '',
+      description: stripHtml(getTag('content') || getTag('summary') || ''),
+      location: 'Remote (EU)',
+      link,
+      source: 'landingjobs',
+      date_posted: getTag('published') ? getTag('published').split('T')[0] : '',
+    }));
+  }
+  log(`  Landing.jobs: ${items.length} jobs`);
+  return items;
+}
+
+async function scrapePythonOrg() {
+  log('Scraping Python.org Jobs (RSS)...');
+  const items = [];
+  const xml = await fetchPage('https://www.python.org/jobs/feed/rss/');
+  if (!xml) { log('  Python.org: FAILED'); return items; }
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    const desc = (rss.description || '').toLowerCase();
+    // Only include if mentions remote
+    if (!desc.includes('remote') && !rss.title.toLowerCase().includes('remote')) continue;
+    items.push(makeJob({
+      title: decodeEntities(rss.title.trim()),
+      company: '',
+      description: stripHtml(rss.description || ''),
+      category: 'Engineering',
+      location: 'Remote',
+      link: rss.link.trim(),
+      source: 'pythonorg',
+      date_posted: rss.pubDate ? new Date(rss.pubDate).toISOString().split('T')[0] : '',
+    }));
+  }
+  log(`  Python.org: ${items.length} remote jobs`);
+  return items;
+}
+
+async function scrapeRemoteFirstJobs() {
+  log('Scraping RemoteFirstJobs (RSS)...');
+  const items = [];
+  const categories = ['software-development', 'design', 'marketing', 'data', 'devops', 'customer-service', 'sales'];
+  for (const cat of categories) {
+    const xml = await fetchPage(`https://remotefirstjobs.com/rss/jobs/${cat}.rss`);
+    if (!xml) continue;
+    for (const rss of parseRssItems(xml)) {
+      if (!rss.title || !rss.link) continue;
+      let title = decodeEntities(rss.title.trim());
+      let company = '';
+      const atMatch = title.match(/^(.+?)\s+at\s+(.+)$/i);
+      if (atMatch) {
+        title = atMatch[1].trim();
+        company = atMatch[2].trim();
+      }
+      items.push(makeJob({
+        title,
+        company,
+        description: stripHtml(rss.description || ''),
+        category: cat.replace(/-/g, ' '),
+        location: 'Remote',
+        link: rss.link.trim(),
+        source: 'remotefirstjobs',
+        date_posted: rss.pubDate ? new Date(rss.pubDate).toISOString().split('T')[0] : '',
+      }));
+    }
+  }
+  log(`  RemoteFirstJobs: ${items.length} jobs`);
+  return items;
+}
+
 // === DEDUPLICATION ===
 function deduplicateJobs(jobs) {
   const seen = new Set();
@@ -600,7 +828,7 @@ async function main() {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   }
 
-  // Run all scrapers (some in parallel where safe)
+  // Run all scrapers in parallel
   const results = await Promise.allSettled([
     scrapeWeWorkRemotely(),
     scrapeRemotive(),
@@ -614,9 +842,18 @@ async function main() {
     scrapeJobspresso(),
     scrapeFindRemotelyDev(),
     scrapeWorkingNomads(),
+    // Batch 2: new sources
+    scrapeTheMuse(),
+    scrapeRealWorkFromAnywhere(),
+    scrapeRemotewx(),
+    scrapeEmpllo(),
+    scrapeVirtualVocations(),
+    scrapeLandingJobs(),
+    scrapePythonOrg(),
+    scrapeRemoteFirstJobs(),
   ]);
 
-  const sourceNames = ['weworkremotely', 'remotive', 'himalayas', 'remoteok', 'hackernews', 'arbeitnow', 'jobicy', 'remoteco', 'builtin', 'jobspresso', 'findremotely', 'workingnomads'];
+  const sourceNames = ['weworkremotely', 'remotive', 'himalayas', 'remoteok', 'hackernews', 'arbeitnow', 'jobicy', 'remoteco', 'builtin', 'jobspresso', 'findremotely', 'workingnomads', 'themuse', 'realworkfromanywhere', 'remotewx', 'empllo', 'virtualvocations', 'landingjobs', 'pythonorg', 'remotefirstjobs'];
   let allJobs = [];
   const counts = {};
 

@@ -1158,11 +1158,80 @@ async function main() {
   log(`\nTotal raw items: ${allItems.length}`);
 
   // Deduplicate
-  const unique = deduplicateDeals(allItems);
+  let unique = deduplicateDeals(allItems);
   log(`After dedup: ${unique.length} unique deals`);
 
-  // Sort by date found then source
-  unique.sort((a, b) => a.source.localeCompare(b.source) || a.title.localeCompare(b.title));
+  // === FOOD RELEVANCE FILTER ===
+  // Remove items that are clearly not food-related
+  const FOOD_KEYWORDS = [
+    'food', 'eat', 'meal', 'restaurant', 'pizza', 'burger', 'chicken', 'taco', 'fry', 'fries',
+    'sandwich', 'coffee', 'drink', 'beer', 'wine', 'soda', 'juice', 'smoothie', 'tea',
+    'breakfast', 'lunch', 'dinner', 'brunch', 'snack', 'appetizer', 'dessert', 'ice cream',
+    'donut', 'bagel', 'sushi', 'ramen', 'noodle', 'pasta', 'salad', 'soup', 'steak',
+    'bbq', 'barbecue', 'grill', 'bogo', 'free fry', 'free drink', 'free meal',
+    'mcdonald', 'wendy', 'chick-fil-a', 'taco bell', 'burger king', 'subway', 'chipotle',
+    'popeyes', 'domino', 'papa john', 'little caesars', 'sonic', 'arby', 'jack in the box',
+    'kfc', 'panera', 'five guys', 'shake shack', 'panda express', 'wingstop', 'buffalo wild',
+    'olive garden', 'applebee', 'chili', 'denny', 'ihop', 'waffle house', 'cracker barrel',
+    'starbucks', 'dunkin', 'krispy kreme', 'baskin', 'dairy queen', 'jamba',
+    'doordash', 'uber eats', 'ubereats', 'grubhub', 'instacart', 'gopuff',
+    'grocery', 'supermarket', 'walmart', 'kroger', 'target food', 'costco food', 'aldi',
+    'trader joe', 'whole foods', 'publix', 'safeway', 'albertson',
+    'coupon', 'promo code', 'discount code', 'off your order', '% off', 'buy one get',
+    'free delivery', 'free shipping on food', 'birthday freebie', 'app deal', 'app offer',
+    'recipe', 'cooking', 'chef', 'kitchen', 'bakery', 'deli', 'seafood', 'wings',
+    'nugget', 'hot dog', 'pretzel', 'cookie', 'cake', 'pie', 'candy', 'chocolate',
+    'cereal', 'yogurt', 'cheese', 'bread', 'milk', 'egg',
+  ];
+  const NOT_FOOD = [
+    '3d printer', 'chromebook', 'laptop', 'computer', 'projector', 'camera', 'monitor',
+    'headphone', 'speaker', 'keyboard', 'mouse', 'printer', 'router', 'modem',
+    'fragrance', 'cosmetic', 'makeup', 'skincare', 'perfume',
+    'auto accessor', 'car part', 'tire', 'motor oil',
+    'baby monitor', 'child safety', 'stroller',
+    'action cam', 'console', 'handheld', 'gaming',
+    'mattress', 'furniture', 'vacuum', 'air purifier',
+    'bank promotion', 'budgeting app', 'budgeting for', 'investment',
+    'credit card', 'cashback', 'cash back', 'browser extension',
+    'book', 'magazine', 'streaming', 'peacock', 'netflix', 'hulu',
+    'hotel', 'flight', 'travel', 'luggage', 'vacation',
+    'pet suppli', 'dog food', 'cat food', 'pet treat',
+    'garden', 'diy', 'power tool', 'drill', 'saw',
+    'clothing', 'shoe', 'sneaker', 'jacket', 'dress',
+    'phone plan', 'wireless service', 'wi-fi',
+    'tiktok shop', 'partner with us', 'severely ill',
+    'dick\'s sporting', 'home depot', 'home goods', 'shutterfly', 'ferguson',
+    'march madness', 'sports', 'outdoor',
+    'subscription', 'tech & gadget', 'events & experience',
+  ];
+
+  const beforeFilter = unique.length;
+  unique = unique.filter(item => {
+    const text = ((item.title || '') + ' ' + (item.description || '') + ' ' + (item.brand || '')).toLowerCase();
+
+    // Auto-reject if matches NOT_FOOD
+    for (const nf of NOT_FOOD) {
+      if (text.includes(nf)) return false;
+    }
+
+    // Auto-accept if from known food-specific sources
+    const foodSources = ['fastfood_wendys', 'fastfood_mcdonalds', 'fastfood_chickfila', 'fastfood_tacobell', 'fastfood_bk', 'restaurantdotcom', 'doordash', 'ubereats', 'grubhub'];
+    if (foodSources.includes(item.source)) return true;
+
+    // Check if any food keyword matches
+    for (const kw of FOOD_KEYWORDS) {
+      if (text.includes(kw)) return true;
+    }
+
+    // Short generic titles with no food signal = reject
+    if (text.length < 40) return false;
+
+    return false; // If no food signal, reject
+  });
+  log(`Food relevance filter: ${beforeFilter} -> ${unique.length} (removed ${beforeFilter - unique.length} non-food items)`);
+
+  // Sort by date found then category
+  unique.sort((a, b) => (a.category || '').localeCompare(b.category || '') || a.title.localeCompare(b.title));
 
   // Save results
   const output = {

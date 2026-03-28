@@ -428,8 +428,8 @@ function doFilter(){
 
   const newCount=filtered.filter(i=>isNew(i)).length;
   document.getElementById('totalCount').innerHTML=
-    (newCount>0?`<span style="color:var(--gold);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">|</span>`:'')+
-    `<span>${filtered.length} Total</span>`;
+    (newCount>0?`<span style="color:var(--gold);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">·</span>`:'')+
+    `<span style="font-weight:600">${filtered.length}</span> Active Grants`;
 }
 
 function render(){

@@ -390,7 +390,7 @@ function doFilter(){
   else if(curSort==='newtoday')items=items.filter(i=>isNew(i));
   filtered=items;curPage=1;render();
   const newCount=filtered.filter(i=>isNew(i)).length;
-  document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--accent);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">|</span>`:'')+`<span>${filtered.length} Jobs</span>`;
+  document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--accent);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">·</span>`:'')+`<span style="font-weight:600">${filtered.length}</span> Active Jobs`;
 }
 
 function render(){
@@ -434,7 +434,7 @@ function render(){
         ${i.salary?`<div class="card-salary">${esc(i.salary)}</div>`:''}
         ${i.location?`<div class="card-location"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${esc(i.location)}</div>`:''}
         ${i.description?`<div class="card-desc">${esc(i.description)}</div>`:''}
-        <div class="card-source">${esc(i.source)}</div>
+        ${''/* source hidden */}
       </div>
       <div class="card-footer">
         <a class="card-cta" href="${esc(i.link)}" target="_blank" rel="noopener">Apply Now</a>

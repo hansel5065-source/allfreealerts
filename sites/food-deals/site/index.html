@@ -509,7 +509,7 @@ function doFilter(){
   else if(curSort==='category')items.sort((a,b)=>(a.category||'').localeCompare(b.category||''));
   filtered=items;curPage=1;render();
   const newCount=filtered.filter(i=>isNew(i)).length;
-  document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--red);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">·</span>`:'')+`<span>${filtered.length} Total</span>`;
+  document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--red);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">·</span>`:'')+`<span style="font-weight:600">${filtered.length}</span> Active Deals`;
 }
 
 function render(){

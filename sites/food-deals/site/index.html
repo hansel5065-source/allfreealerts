@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DealBites — Food Deals, Coupons & Free Eats</title>
+  <meta name="description" content="Restaurant coupons, grocery deals, delivery promos & free food. Updated daily so you save on every meal.">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --orange:#EA580C;--orange-dark:#C2410C;--orange-light:#FFF7ED;
+      --red:#DC2626;--red-light:#FEF2F2;
+      --green:#16A34A;--green-light:#F0FDF4;
+      --cream:#FFFBEB;--cream-dark:#FEF3C7;
+      --amber:#F59E0B;--amber-light:#FFFBEB;
+      --bg:#FFF9F5;--white:#FFFFFF;
+      --text:#1A1D21;--text-mid:#636E72;--text-light:#9CA3AF;
+      --border:#E5E7EB;--border-light:#F1F3F5;
+      --shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg:0 10px 30px rgba(0,0,0,0.1);
+      --radius:16px;
+    }
+    body{font-family:'Inter',-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+
+    /* NAV */
+    .nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;height:60px;gap:2rem}
+    .nav-logo{font-size:1.35rem;font-weight:900;color:var(--orange);letter-spacing:-0.03em;flex-shrink:0}
+    .nav-logo span{color:var(--text)}
+    .nav-tabs{display:flex;align-items:center;gap:0.25rem;overflow-x:auto;scrollbar-width:none}
+    .nav-tabs::-webkit-scrollbar{display:none}
+    .nav-tab{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.84rem;font-weight:600;color:var(--text-mid);border:none;background:none;font-family:inherit;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+    .nav-tab:hover{color:var(--text);background:var(--orange-light)}
+    .nav-tab.active{color:var(--white);background:var(--orange)}
+    .nav-right{margin-left:auto;display:flex;align-items:center;gap:0.75rem}
+    .nav-new{display:flex;align-items:center;gap:0.35rem;padding:0.4rem 0.9rem;border-radius:100px;background:var(--red);color:#fff;font-size:0.78rem;font-weight:700;border:none;cursor:pointer;font-family:inherit}
+    .nav-new .dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1.5s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+    .nav-saved{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.84rem;font-weight:600;color:var(--text-mid);border:1.5px solid var(--border);background:var(--white);font-family:inherit;cursor:pointer;transition:all 0.15s}
+    .nav-saved:hover{border-color:var(--orange);color:var(--orange)}
+
+    /* HERO */
+    .hero{background:linear-gradient(180deg,var(--white) 0%,var(--bg) 100%);padding:2.5rem 1.5rem 1rem;text-align:center}
+    .hero h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;line-height:1.25;color:var(--text)}
+    .hero h1 b{color:var(--orange);font-weight:800}
+    .hero-sub{margin-top:0.5rem;font-size:1rem;color:var(--text-mid);font-weight:400}
+
+    /* SEARCH BAR */
+    .search-wrap{max-width:680px;margin:1.5rem auto 0;display:flex;align-items:center;background:var(--white);border:1.5px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;transition:border-color 0.2s}
+    .search-wrap:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(234,88,12,0.1)}
+    .search-icon{padding:0 0 0 1rem;color:var(--text-light);display:flex}
+    .search-input{flex:1;padding:0.85rem 0.75rem;border:none;font-size:0.95rem;font-family:inherit;color:var(--text);outline:none;background:transparent}
+    .search-input::placeholder{color:var(--text-light)}
+    .search-cat{padding:0.5rem 0.75rem;border-left:1px solid var(--border);font-size:0.82rem;font-weight:600;color:var(--text-mid);background:none;border-top:none;border-bottom:none;border-right:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:0.3rem}
+    .search-btn{padding:0.65rem 1.5rem;margin:0.35rem;border-radius:10px;background:var(--orange);color:#fff;border:none;font-size:0.88rem;font-weight:700;font-family:inherit;cursor:pointer;transition:background 0.15s;white-space:nowrap}
+    .search-btn:hover{background:var(--orange-dark)}
+
+    /* CATEGORY CARDS */
+    .cats-row{max-width:1200px;margin:1.5rem auto 0;padding:0 1.5rem;display:grid;grid-template-columns:repeat(6,1fr);gap:0.75rem}
+    .cat-card{display:flex;flex-direction:column;align-items:center;gap:0.5rem;padding:1rem 0.5rem;background:var(--white);border:1.5px solid var(--border);border-radius:14px;cursor:pointer;transition:all 0.2s;font-family:inherit;text-align:center}
+    .cat-card:hover{border-color:var(--orange);box-shadow:var(--shadow-md)}
+    .cat-card.active{border-color:var(--orange);background:var(--orange-light)}
+    .cat-card-icon{font-size:1.8rem;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .cat-card-icon.restaurant{background:#FFF7ED}
+    .cat-card-icon.grocery{background:#F0FDF4}
+    .cat-card-icon.delivery{background:#FEF3C7}
+    .cat-card-icon.free{background:#ECFDF5}
+    .cat-card-icon.birthday{background:#FEF2F2}
+    .cat-card-icon.bogo{background:#FFF7ED}
+    .cat-card-text h3{font-size:0.82rem;font-weight:700;line-height:1.2}
+    .cat-card-text p{font-size:0.7rem;color:var(--text-mid);margin-top:0.1rem}
+
+    /* SECTION HEADER */
+    .section-header{max-width:1200px;margin:2rem auto 0;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    .section-header h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em}
+    .pills{display:flex;gap:0.35rem;flex-wrap:wrap}
+    .pill{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.8rem;font-weight:600;color:var(--text-mid);background:var(--white);border:1.5px solid var(--border);cursor:pointer;font-family:inherit;transition:all 0.15s}
+    .pill:hover{border-color:var(--orange);color:var(--orange)}
+    .pill.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+    .section-right{margin-left:auto;font-size:0.85rem;font-weight:600;color:var(--orange);cursor:pointer;display:flex;align-items:center;gap:0.3rem}
+
+    /* EXPIRING SOON BANNER */
+    .ending-section{max-width:1200px;margin:1rem auto 0;padding:0 1.5rem}
+    .ending-scroll{display:flex;gap:0.75rem;overflow-x:auto;padding-bottom:0.5rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .ending-scroll::-webkit-scrollbar{height:4px}
+    .ending-scroll::-webkit-scrollbar-track{background:var(--border-light);border-radius:2px}
+    .ending-scroll::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+    .e-card{flex-shrink:0;width:260px;background:var(--white);border:1.5px solid var(--red-light);border-radius:14px;padding:0.9rem 1rem;scroll-snap-align:start;transition:all 0.2s;text-decoration:none;color:inherit}
+    .e-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(220,38,38,0.15)}
+    .e-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem}
+    .e-card-days{font-size:0.75rem;font-weight:700;color:var(--red);background:var(--red-light);padding:0.2rem 0.6rem;border-radius:6px}
+    .e-card-cat{font-size:0.65rem;font-weight:700;text-transform:uppercase;color:var(--text-light)}
+    .e-card-title{font-size:0.85rem;font-weight:700;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .e-card-val{font-size:0.78rem;font-weight:700;color:var(--green);margin-top:0.25rem}
+
+    /* GRID */
+    .main{max-width:1200px;margin:1rem auto;padding:0 1.5rem 3rem}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+
+    /* CARD */
+    .card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;transition:all 0.2s;position:relative}
+    .card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:transparent}
+    .card-img-wrap{position:relative;width:100%;height:160px;overflow:hidden;background:var(--bg)}
+    .card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s}
+    .card:hover .card-img{transform:scale(1.05)}
+    .card-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+    .card-img-fallback.restaurant{background:linear-gradient(135deg,#FFF7ED 0%,#FDBA74 50%,#FB923C 100%)}
+    .card-img-fallback.grocery{background:linear-gradient(135deg,#F0FDF4 0%,#86EFAC 50%,#4ADE80 100%)}
+    .card-img-fallback.delivery{background:linear-gradient(135deg,#FFFBEB 0%,#FDE68A 50%,#FBBF24 100%)}
+    .card-img-fallback.free{background:linear-gradient(135deg,#ECFDF5 0%,#6EE7B7 50%,#34D399 100%)}
+    .card-img-fallback.birthday{background:linear-gradient(135deg,#FEF2F2 0%,#FCA5A5 50%,#F87171 100%)}
+    .card-img-fallback.bogo{background:linear-gradient(135deg,#FFF7ED 0%,#FB923C 50%,#EA580C 100%)}
+    .card-badge-wrap{position:absolute;top:0.6rem;left:0.6rem;display:flex;gap:0.35rem;flex-wrap:wrap}
+    .card-new{padding:0.2rem 0.55rem;border-radius:6px;font-size:0.65rem;font-weight:700;background:var(--red);color:#fff}
+    .card-days{padding:0.2rem 0.55rem;border-radius:6px;font-size:0.65rem;font-weight:700}
+    .card-days.urgent{background:var(--red);color:#fff}
+    .card-days.ok{background:rgba(255,255,255,0.9);color:var(--orange);backdrop-filter:blur(4px)}
+
+    .card-body{padding:0.9rem 1rem;flex:1;display:flex;flex-direction:column}
+    .card-cat{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.72rem;font-weight:700;margin-bottom:0.4rem}
+    .card-cat.restaurant{color:#EA580C}
+    .card-cat.grocery{color:#16A34A}
+    .card-cat.delivery{color:#D97706}
+    .card-cat.free{color:#059669}
+    .card-cat.birthday{color:#DC2626}
+    .card-cat.bogo{color:#C2410C}
+    .card-cat-icon{font-size:0.85rem}
+    .card-title{font-size:0.9rem;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text)}
+    .card-brand{font-size:0.78rem;color:var(--text-mid);margin-top:0.15rem;font-weight:500}
+    .card-desc{font-size:0.78rem;color:var(--text-mid);margin-top:0.3rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .card-value{font-size:0.95rem;font-weight:800;margin-top:0.5rem}
+    .card-value.free{color:var(--green)}
+    .card-value.discount{color:var(--orange)}
+    .card-value.hot{color:var(--red)}
+    .card-detail{font-size:0.75rem;color:var(--text-mid);margin-top:0.25rem;display:flex;align-items:center;gap:0.3rem}
+    .card-detail svg{width:12px;height:12px;flex-shrink:0}
+
+    /* PROMO CODE BOX */
+    .promo-box{display:flex;align-items:center;margin-top:0.5rem;border:1.5px dashed var(--orange);border-radius:8px;overflow:hidden;background:var(--orange-light)}
+    .promo-code{flex:1;padding:0.35rem 0.6rem;font-size:0.78rem;font-weight:700;color:var(--orange-dark);letter-spacing:0.04em;font-family:'Inter',monospace}
+    .promo-copy{padding:0.35rem 0.6rem;background:var(--orange);color:#fff;border:none;font-size:0.72rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.15s;white-space:nowrap}
+    .promo-copy:hover{background:var(--orange-dark)}
+    .promo-copy.copied{background:var(--green)}
+
+    .card-footer{padding:0 1rem 0.9rem;margin-top:auto;display:flex;gap:0.5rem;align-items:center}
+    .card-cta{flex:1;display:flex;align-items:center;justify-content:center;gap:0.35rem;padding:0.65rem;font-size:0.82rem;font-weight:700;border-radius:10px;border:none;cursor:pointer;font-family:inherit;transition:all 0.15s;text-decoration:none}
+    .card-cta.deal-btn{background:var(--orange);color:#fff}
+    .card-cta.deal-btn:hover{background:var(--orange-dark)}
+    .card-cta.free-btn{background:var(--green);color:#fff}
+    .card-cta.free-btn:hover{background:#15803D}
+    .card-cta.bogo-btn{background:var(--red);color:#fff}
+    .card-cta.bogo-btn:hover{background:#B91C1C}
+    .save-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.15s;color:var(--text-light);flex-shrink:0}
+    .save-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-light)}
+    .save-btn.saved{background:var(--red);color:#fff;border-color:var(--red)}
+
+    /* EMAIL SIGNUP */
+    .email-section{max-width:1200px;margin:2rem auto 0;padding:0 1.5rem}
+    .email-box{background:linear-gradient(135deg,var(--orange) 0%,var(--orange-dark) 100%);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;color:#fff}
+    .email-box h3{font-size:1.25rem;font-weight:800}
+    .email-box p{font-size:0.9rem;opacity:0.9;margin-top:0.3rem}
+    .email-form{display:flex;gap:0.5rem;max-width:460px;margin:1.2rem auto 0}
+    .email-input{flex:1;padding:0.75rem 1rem;border:2px solid rgba(255,255,255,0.25);border-radius:10px;background:rgba(255,255,255,0.12);color:#fff;font-size:0.9rem;font-family:inherit;outline:none;backdrop-filter:blur(8px)}
+    .email-input::placeholder{color:rgba(255,255,255,0.6)}
+    .email-input:focus{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.18)}
+    .email-btn{padding:0.75rem 1.5rem;border:none;border-radius:10px;background:var(--red);color:#fff;font-size:0.9rem;font-weight:700;font-family:inherit;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+    .email-btn:hover{background:#B91C1C}
+
+    /* STATES */
+    .loading{text-align:center;padding:4rem;color:var(--text-light);grid-column:1/-1}
+    .spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--orange);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:.8rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .no-results{text-align:center;padding:3rem;color:var(--text-light);grid-column:1/-1}
+    .pagination{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.5rem 0}
+    .pg-btn{padding:0.55rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-size:0.84rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:0.3rem}
+    .pg-btn:hover{border-color:var(--orange);color:var(--orange)}
+    .pg-btn:disabled{opacity:0.35;cursor:default;border-color:var(--border);color:var(--text-light)}
+    .pg-btn:disabled:hover{border-color:var(--border);color:var(--text-light)}
+    .pg-info{font-size:0.84rem;font-weight:600;color:var(--text-mid);padding:0 0.5rem}
+
+    /* FOOTER */
+    .footer{background:var(--white);border-top:1px solid var(--border);text-align:center;padding:2rem 1.5rem;color:var(--text-light);font-size:.8rem;margin-top:1rem}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .grid{grid-template-columns:repeat(3,1fr)}
+      .cats-row{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:768px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .cats-row{grid-template-columns:repeat(3,1fr);gap:0.5rem}
+      .cat-card{padding:0.7rem 0.4rem;gap:0.35rem}
+      .cat-card-icon{width:36px;height:36px;font-size:1.3rem;border-radius:8px}
+      .cat-card-text h3{font-size:0.75rem}
+      .cat-card-text p{font-size:0.65rem}
+      .hero{padding:2rem 1rem 0.8rem}
+      .hero h1{font-size:1.35rem}
+      .hero-sub{font-size:0.88rem}
+      .search-wrap{margin:1rem auto 0;border-radius:12px}
+      .search-input{padding:0.75rem 0.6rem;font-size:0.9rem}
+      .search-btn{padding:0.6rem 1rem;font-size:0.82rem;margin:0.3rem}
+      .nav-tabs{display:none}
+      .nav-inner{padding:0 1rem}
+      .section-header{padding:0 1rem;margin-top:1.5rem}
+      .section-header h2{font-size:1.1rem}
+      .ending-section{padding:0 1rem}
+      .main{padding:0 1rem 2rem}
+      .email-section{padding:0 1rem}
+      .email-box{padding:1.5rem 1rem}
+      .card-img-wrap{height:140px}
+      .card-body{padding:0.75rem 0.85rem}
+      .card-footer{padding:0 0.85rem 0.75rem}
+      .pills{gap:0.25rem}
+      .pill{padding:0.35rem 0.7rem;font-size:0.75rem}
+    }
+    @media(max-width:500px){
+      .grid{grid-template-columns:repeat(2,1fr);gap:0.6rem}
+      .cats-row{padding:0 1rem;grid-template-columns:repeat(3,1fr)}
+      .search-cat{display:none}
+      .search-btn{display:none}
+      .search-wrap{border-radius:12px}
+      .search-input{padding:0.8rem 0.7rem}
+      .email-form{flex-direction:column}
+      .e-card{width:200px}
+      .nav-saved{display:none}
+      .card-img-wrap{height:120px}
+      .card-title{font-size:0.82rem}
+      .card-value{font-size:0.85rem}
+      .card-detail{font-size:0.7rem}
+      .card-cta{padding:0.55rem;font-size:0.78rem}
+      .save-btn{width:34px;height:34px;font-size:0.9rem}
+      .card-cat{font-size:0.68rem}
+      .footer{padding:1.5rem 1rem}
+    }
+    @media(max-width:380px){
+      .grid{grid-template-columns:repeat(2,1fr);gap:0.5rem}
+      .hero h1{font-size:1.15rem}
+      .hero-sub{font-size:0.8rem}
+      .cats-row{grid-template-columns:repeat(2,1fr);gap:0.4rem}
+      .nav-new{font-size:0.72rem;padding:0.35rem 0.7rem}
+      .card-body{padding:0.6rem 0.7rem}
+      .card-footer{padding:0 0.7rem 0.6rem;gap:0.35rem}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">Deal<span>Bites</span></a>
+      <div class="nav-tabs" id="navTabs">
+        <button class="nav-tab active" data-cat="all">All</button>
+        <button class="nav-tab" data-cat="Restaurant Deals">Restaurant</button>
+        <button class="nav-tab" data-cat="Grocery Coupons">Grocery</button>
+        <button class="nav-tab" data-cat="Delivery Promos">Delivery</button>
+        <button class="nav-tab" data-cat="Free Food">Free Food</button>
+        <button class="nav-tab" data-cat="Birthday Freebies">Birthday</button>
+        <button class="nav-tab" data-cat="BOGO Deals">BOGO</button>
+      </div>
+      <div class="nav-right">
+        <button class="nav-new" id="newTodayBtn" onclick="syncCat('all');curSort='newtoday';document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('active',p.dataset.sort==='newtoday'));doFilter()">New Today <span class="dot"></span></button>
+        <button class="nav-saved" onclick="showSaved()">Saved</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Food Deals &amp; Free Eats &mdash; <b>Save on Every Meal</b></h1>
+    <p class="hero-sub">Restaurant coupons, grocery deals, delivery promos &amp; free food. Updated daily.</p>
+
+    <div class="search-wrap">
+      <span class="search-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input type="text" class="search-input" id="search" placeholder="Search deals, restaurants, brands...">
+      <select class="search-cat" id="searchCat" onchange="syncCat(this.value)">
+        <option value="all">All Categories</option>
+        <option value="Restaurant Deals">Restaurant Deals</option>
+        <option value="Grocery Coupons">Grocery Coupons</option>
+        <option value="Delivery Promos">Delivery Promos</option>
+        <option value="Free Food">Free Food</option>
+        <option value="Birthday Freebies">Birthday Freebies</option>
+        <option value="BOGO Deals">BOGO Deals</option>
+      </select>
+      <button class="search-btn" onclick="curQ=document.getElementById('search').value.trim();doFilter()">Find Deals</button>
+    </div>
+  </section>
+
+  <!-- CATEGORY CARDS -->
+  <div class="cats-row" id="catsRow">
+    <div class="cat-card active" data-cat="all" onclick="syncCat('all')">
+      <div class="cat-card-icon restaurant">&#127829;</div>
+      <div class="cat-card-text">
+        <h3>Restaurant</h3>
+        <p>Dine-in &amp; takeout</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="Grocery Coupons" onclick="syncCat('Grocery Coupons')">
+      <div class="cat-card-icon grocery">&#128722;</div>
+      <div class="cat-card-text">
+        <h3>Grocery</h3>
+        <p>Coupons &amp; savings</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="Delivery Promos" onclick="syncCat('Delivery Promos')">
+      <div class="cat-card-icon delivery">&#128663;</div>
+      <div class="cat-card-text">
+        <h3>Delivery</h3>
+        <p>App promos &amp; codes</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="Free Food" onclick="syncCat('Free Food')">
+      <div class="cat-card-icon free">&#127381;</div>
+      <div class="cat-card-text">
+        <h3>Free Food</h3>
+        <p>Totally free eats</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="Birthday Freebies" onclick="syncCat('Birthday Freebies')">
+      <div class="cat-card-icon birthday">&#127874;</div>
+      <div class="cat-card-text">
+        <h3>Birthday</h3>
+        <p>Free birthday treats</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="BOGO Deals" onclick="syncCat('BOGO Deals')">
+      <div class="cat-card-icon bogo">&#127828;</div>
+      <div class="cat-card-text">
+        <h3>BOGO</h3>
+        <p>Buy one get one</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPIRING SOON -->
+  <section class="ending-section" id="endingSection" style="display:none">
+    <div class="section-header" style="padding:0;margin:0 0 0.7rem">
+      <h2>&#128293; Expiring Soon</h2>
+    </div>
+    <div class="ending-scroll" id="endingScroll"></div>
+  </section>
+
+  <!-- SECTION HEADER + SORT -->
+  <div class="section-header">
+    <h2>Today's Deals</h2>
+    <div class="pills" id="sortPills">
+      <button class="pill active" data-sort="newest">All</button>
+      <button class="pill" data-sort="newtoday">New Today</button>
+      <button class="pill" data-sort="expiring">Expiring Soon</button>
+      <button class="pill" data-sort="category">By Category</button>
+    </div>
+    <span class="section-right" id="totalCount" style="display:flex;gap:0.75rem">-</span>
+  </div>
+
+  <main class="main">
+    <div class="grid" id="grid">
+      <div class="loading"><div class="spinner"></div><br>Finding delicious deals...</div>
+    </div>
+  </main>
+
+  <!-- EMAIL SIGNUP -->
+  <section class="email-section">
+    <div class="email-box">
+      <h3>Get Daily Food Deal Alerts</h3>
+      <p>Restaurant coupons, free food, and BOGO deals delivered to your inbox every morning.</p>
+      <form class="email-form" onsubmit="return handleEmail(event)">
+        <input type="email" class="email-input" id="emailInput" placeholder="Enter your email" required>
+        <button type="submit" class="email-btn">Subscribe</button>
+      </form>
+      <p id="emailMsg" style="margin-top:0.5rem;font-size:0.8rem;display:none"></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    &copy; 2026 DealBites &mdash; Saving you money on every meal.<br>
+    DealBites is an independent aggregator. We are not affiliated with, endorsed by, or responsible for any listed brand, restaurant, or retailer.<br>
+    Always verify details on the official page before redeeming. Deals and promo codes may expire without notice.
+  </footer>
+
+<script>
+let allItems=[],filtered=[],curPage=1;
+const PER_PAGE=12;
+let curCat='all',curSort='newest',curQ='';
+let showingSaved=false;
+
+const saved=new Set(JSON.parse(localStorage.getItem('db_saved')||'[]'));
+function saveSavedItems(){localStorage.setItem('db_saved',JSON.stringify([...saved]))}
+
+const today=new Date().toISOString().split('T')[0];
+function isNew(item){return item.date_found===today}
+
+const CATS={
+  'Restaurant Deals':'restaurant',
+  'Grocery Coupons':'grocery',
+  'Delivery Promos':'delivery',
+  'Free Food':'free',
+  'Birthday Freebies':'birthday',
+  'BOGO Deals':'bogo'
+};
+const CAT_ICONS={
+  'Restaurant Deals':'\u{1F355}',
+  'Grocery Coupons':'\u{1F6D2}',
+  'Delivery Promos':'\u{1F697}',
+  'Free Food':'\u{1F193}',
+  'Birthday Freebies':'\u{1F382}',
+  'BOGO Deals':'\u{1F354}'
+};
+const CAT_FALLBACK_EMOJI={
+  'Restaurant Deals':'\u{1F355}',
+  'Grocery Coupons':'\u{1F34E}',
+  'Delivery Promos':'\u{1F4E6}',
+  'Free Food':'\u{1F389}',
+  'Birthday Freebies':'\u{1F382}',
+  'BOGO Deals':'\u{1F354}'
+};
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function itemId(i){return(i.link||'').substring(0,100)}
+
+function expiryMs(i){
+  const d=i.expiry||'';
+  if(!d)return Infinity;
+  const p=new Date(d);
+  return isNaN(p)?Infinity:p.getTime();
+}
+function daysLeft(i){
+  const d=i.expiry||'';
+  if(!d)return null;
+  const p=new Date(d);
+  if(isNaN(p))return null;
+  const n=Math.ceil((p-new Date())/864e5);
+  return n>=0?n:null;
+}
+
+function isFreeItem(i){
+  const cat=i.category||'';
+  if(cat==='Free Food'||cat==='Birthday Freebies')return true;
+  const disc=(i.discount||'').toLowerCase();
+  if(disc.includes('free'))return true;
+  return false;
+}
+
+function valueFor(i){
+  if(isFreeItem(i))return{text:'FREE',cls:'free'};
+  if(i.discount)return{text:i.discount,cls:'discount'};
+  if(i.category==='BOGO Deals')return{text:'BOGO',cls:'hot'};
+  return null;
+}
+
+function ctaFor(i){
+  if(isFreeItem(i))return{text:'Claim Free',cls:'free-btn'};
+  if(i.category==='BOGO Deals')return{text:'Get BOGO',cls:'bogo-btn'};
+  return{text:'Get Deal',cls:'deal-btn'};
+}
+
+// Copy promo code
+function copyPromo(e,btn,code){
+  e.stopPropagation();
+  e.preventDefault();
+  navigator.clipboard.writeText(code).then(()=>{
+    btn.textContent='Copied!';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},1500);
+  }).catch(()=>{
+    // Fallback
+    const ta=document.createElement('textarea');
+    ta.value=code;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent='Copied!';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},1500);
+  });
+}
+
+// Expiring Soon
+function renderExpiring(){
+  const expiring=allItems.filter(i=>{const d=daysLeft(i);return d!==null&&d<=14}).sort((a,b)=>expiryMs(a)-expiryMs(b)).slice(0,15);
+  if(!expiring.length){document.getElementById('endingSection').style.display='none';return}
+  document.getElementById('endingSection').style.display='block';
+  let h='';
+  for(const i of expiring){
+    const days=daysLeft(i);
+    const val=i.discount||'';
+    const cls=CATS[i.category]||'restaurant';
+    h+=`<a class="e-card" href="${esc(i.link)}" target="_blank" rel="noopener">
+      <div class="e-card-head">
+        <span class="e-card-days">${days}d left</span>
+        <span class="e-card-cat">${esc(i.category)}</span>
+      </div>
+      <div class="e-card-title">${esc(i.title)}</div>
+      ${val?`<div class="e-card-val">${esc(val)}</div>`:''}
+      ${i.brand?`<div style="font-size:0.72rem;color:var(--text-mid);margin-top:0.15rem;font-weight:500">${esc(i.brand)}</div>`:''}
+    </a>`;
+  }
+  document.getElementById('endingScroll').innerHTML=h;
+}
+
+function doFilter(){
+  let items=allItems;
+  if(showingSaved){items=items.filter(i=>saved.has(itemId(i)))}
+  if(curCat!=='all')items=items.filter(i=>i.category===curCat);
+  if(curQ){const q=curQ.toLowerCase();items=items.filter(i=>(i.title||'').toLowerCase().includes(q)||(i.description||'').toLowerCase().includes(q)||(i.brand||'').toLowerCase().includes(q)||(i.discount||'').toLowerCase().includes(q)||(i.promo_code||'').toLowerCase().includes(q))}
+  items=[...items];
+  if(curSort==='expiring')items.sort((a,b)=>expiryMs(a)-expiryMs(b));
+  else if(curSort==='newtoday')items=items.filter(i=>isNew(i));
+  else if(curSort==='category')items.sort((a,b)=>(a.category||'').localeCompare(b.category||''));
+  filtered=items;curPage=1;render();
+  const newCount=filtered.filter(i=>isNew(i)).length;
+  document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--red);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">·</span>`:'')+`<span>${filtered.length} Total</span>`;
+}
+
+function render(){
+  const g=document.getElementById('grid');
+  const totalPages=Math.ceil(filtered.length/PER_PAGE)||1;
+  if(curPage>totalPages)curPage=totalPages;
+  const vis=filtered.slice((curPage-1)*PER_PAGE,curPage*PER_PAGE);
+  if(!vis.length){g.innerHTML='<div class="no-results">No deals found. Try a different search or category.</div>';return}
+  let h='';
+  for(const i of vis){
+    const id=itemId(i);
+    const isSaved=saved.has(id);
+    const cls=CATS[i.category]||'restaurant';
+    const icon=CAT_ICONS[i.category]||'\u{1F355}';
+    const cta=ctaFor(i);
+    const days=daysLeft(i);
+    const isNewItem=isNew(i);
+    const val=valueFor(i);
+    const fallback=CAT_FALLBACK_EMOJI[i.category]||'\u{1F355}';
+
+    const imgInner=i.image?`<img class="card-img" src="${esc(i.image)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'card-img-fallback ${cls}\\'>${fallback}</div>'">`:`<div class="card-img-fallback ${cls}">${fallback}</div>`;
+
+    let badges='';
+    if(isNewItem)badges+=`<span class="card-new">NEW</span>`;
+    if(days!==null&&days<=3)badges+=`<span class="card-days urgent">${days}d left</span>`;
+    else if(days!==null&&days<=14)badges+=`<span class="card-days ok">${days}d left</span>`;
+
+    const expiryLine=i.expiry?'Expires '+i.expiry:'';
+
+    h+=`<div class="card" data-id="${esc(id)}">
+      <a href="${esc(i.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-img-wrap">
+          ${imgInner}
+          ${badges?`<div class="card-badge-wrap">${badges}</div>`:''}
+        </div>
+      </a>
+      <div class="card-body">
+        <div class="card-cat ${cls}"><span class="card-cat-icon">${icon}</span> ${esc(i.category)}</div>
+        <a href="${esc(i.link)}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="card-title">${esc(i.title)}</div>
+        </a>
+        ${i.brand?`<div class="card-brand">${esc(i.brand)}</div>`:''}
+        ${i.description?`<div class="card-desc">${esc(i.description)}</div>`:''}
+        ${val?`<div class="card-value ${val.cls}">${esc(val.text)}</div>`:''}
+        ${i.promo_code?`<div class="promo-box"><span class="promo-code">${esc(i.promo_code)}</span><button class="promo-copy" onclick="copyPromo(event,this,'${esc(i.promo_code)}')">Copy</button></div>`:''}
+        ${expiryLine?`<div class="card-detail"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${esc(expiryLine)}</div>`:''}
+      </div>
+      <div class="card-footer">
+        <a class="card-cta ${cta.cls}" href="${esc(i.link)}" target="_blank" rel="noopener">${cta.text}</a>
+        <button class="save-btn ${isSaved?'saved':''}" onclick="toggleSave(this)" title="Save">
+          ${isSaved?'&#10084;':'&#9825;'}
+        </button>
+      </div>
+    </div>`;
+  }
+  if(totalPages>1)h+=`<div class="pagination">
+    <button class="pg-btn" onclick="goPage(curPage-1)" ${curPage<=1?'disabled':''}>&#8592; Prev</button>
+    <span class="pg-info">Page ${curPage} of ${totalPages}</span>
+    <button class="pg-btn" onclick="goPage(curPage+1)" ${curPage>=totalPages?'disabled':''}>Next &#8594;</button>
+  </div>`;
+  g.innerHTML=h;
+}
+
+function goPage(p){
+  const totalPages=Math.ceil(filtered.length/PER_PAGE)||1;
+  if(p<1||p>totalPages)return;
+  curPage=p;
+  render();
+  window.scrollTo({top:document.getElementById('grid').offsetTop-80,behavior:'smooth'});
+}
+
+function toggleSave(btn){
+  const card=btn.closest('.card');
+  const id=card.dataset.id;
+  if(saved.has(id)){
+    saved.delete(id);
+    btn.classList.remove('saved');
+    btn.innerHTML='&#9825;';
+  } else {
+    saved.add(id);
+    btn.classList.add('saved');
+    btn.innerHTML='&#10084;';
+  }
+  saveSavedItems();
+}
+
+function showSaved(){
+  showingSaved=!showingSaved;
+  const btn=document.querySelector('.nav-saved');
+  btn.style.background=showingSaved?'var(--orange-light)':'';
+  btn.style.color=showingSaved?'var(--orange)':'';
+  btn.style.borderColor=showingSaved?'var(--orange)':'';
+  doFilter();
+}
+
+function syncCat(cat){
+  curCat=cat;
+  showingSaved=false;
+  document.querySelectorAll('.nav-tab').forEach(n=>n.classList.toggle('active',n.dataset.cat===cat));
+  document.querySelectorAll('.cat-card').forEach(c=>{
+    const cc=c.dataset.cat;
+    c.classList.toggle('active',(cc===cat)||(cat==='all'&&cc==='all'));
+  });
+  document.getElementById('searchCat').value=cat;
+  doFilter();
+}
+
+// Nav tabs
+document.getElementById('navTabs').addEventListener('click',e=>{const b=e.target.closest('.nav-tab');if(b)syncCat(b.dataset.cat)});
+
+// Sort pills
+document.getElementById('sortPills').addEventListener('click',e=>{
+  const p=e.target.closest('.pill');
+  if(!p)return;
+  document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');
+  curSort=p.dataset.sort;
+  doFilter();
+});
+
+// Search with debounce
+let st;document.getElementById('search').addEventListener('input',e=>{clearTimeout(st);st=setTimeout(()=>{curQ=e.target.value.trim();doFilter()},250)});
+
+async function handleEmail(e){
+  e.preventDefault();
+  const email=document.getElementById('emailInput').value;
+  const msg=document.getElementById('emailMsg');
+  const btn=e.target.querySelector('button');
+  btn.textContent='Subscribing...';btn.disabled=true;
+  try{
+    const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+    const d=await r.json();
+    msg.textContent=d.message||"You're in!";
+    msg.style.display='block';
+    if(d.ok)document.getElementById('emailInput').value='';
+  }catch(err){
+    msg.textContent="You're in! We'll send you daily deal alerts.";
+    msg.style.display='block';
+    const subs=JSON.parse(localStorage.getItem('db_subs')||'[]');
+    subs.push({email,date:new Date().toISOString()});
+    localStorage.setItem('db_subs',JSON.stringify(subs));
+    document.getElementById('emailInput').value='';
+  }
+  btn.textContent='Subscribe';btn.disabled=false;
+  return false;
+}
+
+function updateNewCount(){
+  const n=allItems.filter(i=>isNew(i)).length;
+  document.getElementById('newTodayBtn').innerHTML=n>0?`New Today (${n}) <span class="dot"></span>`:'New Today';
+}
+
+localStorage.setItem('db_lastvisit',Date.now().toString());
+
+fetch('data.json').then(r=>r.json()).then(d=>{
+  allItems=d.deals||d;
+  updateNewCount();
+  renderExpiring();
+  doFilter();
+}).catch(()=>{document.getElementById('grid').innerHTML='<div class="no-results">Failed to load deals.</div>'});
+</script>
+</body>
+</html>

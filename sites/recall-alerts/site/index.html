@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecallAlerts — Product Recalls & Safety Alerts</title>
+  <meta name="description" content="Stay informed about product recalls and safety alerts. Consumer products, food, drugs, vehicles — all in one place.">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --red:#E53E3E;--red-dark:#C53030;--red-light:#FFF5F5;--red-border:#FED7D7;
+      --orange:#DD6B20;--orange-light:#FFFAF0;--orange-border:#FEEBC8;
+      --yellow:#D69E2E;--yellow-light:#FFFFF0;--yellow-border:#FEFCBF;
+      --green:#38A169;--green-light:#F0FFF4;--green-border:#C6F6D5;
+      --dark:#1A202C;--dark-mid:#2D3748;
+      --bg:#F7FAFC;--white:#FFFFFF;
+      --text:#1A202C;--text-mid:#636E72;--text-light:#9CA3AF;
+      --border:#E2E8F0;--border-light:#EDF2F7;
+      --shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg:0 10px 30px rgba(0,0,0,0.1);
+      --radius:16px;
+    }
+    body{font-family:'Inter',-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+
+    /* NAV */
+    .nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;height:60px;gap:2rem}
+    .nav-logo{font-size:1.35rem;font-weight:900;color:var(--red);letter-spacing:-0.03em;flex-shrink:0;display:flex;align-items:center;gap:0.4rem}
+    .nav-logo span{color:var(--text)}
+    .nav-logo-icon{font-size:1.3rem}
+    .nav-tabs{display:flex;align-items:center;gap:0.25rem}
+    .nav-tab{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.84rem;font-weight:600;color:var(--text-mid);border:none;background:none;font-family:inherit;cursor:pointer;transition:all 0.15s}
+    .nav-tab:hover{color:var(--text);background:var(--bg)}
+    .nav-tab.active{color:var(--white);background:var(--red)}
+    .nav-right{margin-left:auto;display:flex;align-items:center;gap:0.75rem}
+    .nav-saved{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.84rem;font-weight:600;color:var(--text-mid);border:1.5px solid var(--border);background:var(--white);font-family:inherit;cursor:pointer;transition:all 0.15s}
+    .nav-saved:hover{border-color:var(--red);color:var(--red)}
+
+    /* HERO */
+    .hero{background:linear-gradient(180deg,var(--white) 0%,var(--bg) 100%);padding:2.5rem 1.5rem 1rem;text-align:center}
+    .hero h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;line-height:1.25;color:var(--text)}
+    .hero h1 b{color:var(--red);font-weight:800}
+    .hero-sub{margin-top:0.5rem;font-size:1rem;color:var(--text-mid);font-weight:400}
+
+    /* SEARCH BAR */
+    .search-wrap{max-width:680px;margin:1.5rem auto 0;display:flex;align-items:center;background:var(--white);border:1.5px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;transition:border-color 0.2s}
+    .search-wrap:focus-within{border-color:var(--red);box-shadow:0 0 0 3px rgba(229,62,62,0.1)}
+    .search-icon{padding:0 0 0 1rem;color:var(--text-light);display:flex}
+    .search-input{flex:1;padding:0.85rem 0.75rem;border:none;font-size:0.95rem;font-family:inherit;color:var(--text);outline:none;background:transparent}
+    .search-input::placeholder{color:var(--text-light)}
+    .search-cat{padding:0.5rem 0.75rem;border-left:1px solid var(--border);font-size:0.82rem;font-weight:600;color:var(--text-mid);background:none;border-top:none;border-bottom:none;border-right:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:0.3rem}
+    .search-btn{padding:0.65rem 1.5rem;margin:0.35rem;border-radius:10px;background:var(--red);color:#fff;border:none;font-size:0.88rem;font-weight:700;font-family:inherit;cursor:pointer;transition:background 0.15s;white-space:nowrap}
+    .search-btn:hover{background:var(--red-dark)}
+
+    /* CATEGORY CARDS */
+    .cats-row{max-width:1200px;margin:1.5rem auto 0;padding:0 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem}
+    .cat-card{display:flex;align-items:center;gap:0.85rem;padding:1rem 1.25rem;background:var(--white);border:1.5px solid var(--border);border-radius:14px;cursor:pointer;transition:all 0.2s;font-family:inherit}
+    .cat-card:hover{border-color:var(--red);box-shadow:var(--shadow-md)}
+    .cat-card.active{border-color:var(--red);background:var(--red-light)}
+    .cat-card-icon{font-size:1.6rem;width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .cat-card-icon.consumer{background:#FFF5F5}
+    .cat-card-icon.food-drug{background:#EBF8FF}
+    .cat-card-icon.vehicles{background:#FFFFF0}
+    .cat-card-icon.food-safety{background:#F0FFF4}
+    .cat-card-text h3{font-size:0.92rem;font-weight:700;line-height:1.2}
+    .cat-card-text p{font-size:0.76rem;color:var(--text-mid);margin-top:0.1rem}
+
+    /* SECTION HEADER */
+    .section-header{max-width:1200px;margin:2rem auto 0;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    .section-header h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em}
+    .pills{display:flex;gap:0.35rem;flex-wrap:wrap}
+    .pill{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.8rem;font-weight:600;color:var(--text-mid);background:var(--white);border:1.5px solid var(--border);cursor:pointer;font-family:inherit;transition:all 0.15s}
+    .pill:hover{border-color:var(--red);color:var(--red)}
+    .pill.active{background:var(--red);color:#fff;border-color:var(--red)}
+    .section-right{margin-left:auto;font-size:0.85rem;font-weight:600;color:var(--red);cursor:pointer;display:flex;align-items:center;gap:0.75rem}
+
+    /* GRID */
+    .main{max-width:1200px;margin:1rem auto;padding:0 1.5rem 3rem}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+
+    /* CARD */
+    .card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;transition:all 0.2s;position:relative}
+    .card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:transparent}
+    .card-img-wrap{position:relative;width:100%;height:160px;overflow:hidden;background:var(--bg)}
+    .card-img{width:100%;height:100%;object-fit:contain;display:block;transition:transform 0.3s;background:#fff;padding:8px}
+    .card:hover .card-img{transform:scale(1.05)}
+    .card-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.8rem;background:linear-gradient(135deg,#FFF5F5 0%,#FED7D7 50%,#FC8181 100%)}
+
+    .card-badge-wrap{position:absolute;top:0.6rem;left:0.6rem;display:flex;gap:0.35rem;flex-wrap:wrap}
+    .sev-badge{padding:0.2rem 0.6rem;border-radius:6px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.03em}
+    .sev-badge.high{background:var(--red);color:#fff}
+    .sev-badge.medium{background:var(--orange);color:#fff}
+    .sev-badge.low{background:var(--green);color:#fff}
+    .card-new{padding:0.2rem 0.55rem;border-radius:6px;font-size:0.65rem;font-weight:700;background:var(--dark);color:#fff}
+
+    .card-body{padding:0.9rem 1rem;flex:1;display:flex;flex-direction:column}
+    .card-cat{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.72rem;font-weight:700;margin-bottom:0.4rem;color:var(--text-mid)}
+    .card-cat-icon{font-size:0.85rem}
+    .card-title{font-size:0.9rem;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text)}
+    .card-desc{font-size:0.78rem;color:var(--text-mid);margin-top:0.3rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .card-remedy{font-size:0.75rem;color:var(--dark-mid);margin-top:0.4rem;padding:0.4rem 0.6rem;background:var(--border-light);border-radius:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}
+    .card-remedy strong{color:var(--red);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.02em}
+    .card-date{font-size:0.75rem;color:var(--text-light);margin-top:0.35rem;display:flex;align-items:center;gap:0.3rem}
+    .card-date svg{width:12px;height:12px;flex-shrink:0}
+
+    .card-footer{padding:0 1rem 0.9rem;margin-top:auto;display:flex;gap:0.5rem;align-items:center}
+    .card-cta{flex:1;display:flex;align-items:center;justify-content:center;gap:0.35rem;padding:0.65rem;font-size:0.82rem;font-weight:700;border-radius:10px;border:none;cursor:pointer;font-family:inherit;transition:all 0.15s;text-decoration:none;background:var(--red);color:#fff}
+    .card-cta:hover{background:var(--red-dark)}
+    .card-cta.saved-btn{background:var(--green-light);color:var(--green);border:1.5px solid var(--green-border)}
+    .save-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.15s;color:var(--text-light);flex-shrink:0}
+    .save-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-light)}
+    .save-btn.saved{background:var(--red);color:#fff;border-color:var(--red)}
+
+    /* SHARE */
+    .share-wrap{position:relative;flex-shrink:0}
+    .share-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.15s;color:var(--text-light);flex-shrink:0}
+    .share-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-light)}
+    .share-popup{display:none;position:absolute;bottom:calc(100% + 6px);right:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-md);padding:0.35rem 0;min-width:140px;z-index:50}
+    .share-popup.open{display:block}
+    .share-popup a,.share-popup button{display:flex;align-items:center;gap:0.45rem;width:100%;padding:0.4rem 0.75rem;font-size:0.78rem;font-weight:500;color:var(--text);background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;transition:background 0.1s}
+    .share-popup a:hover,.share-popup button:hover{background:var(--bg)}
+    .share-popup .share-icon{font-size:0.85rem;width:1.1rem;text-align:center}
+
+    /* EMAIL SIGNUP */
+    .email-section{max-width:1200px;margin:2rem auto 0;padding:0 1.5rem}
+    .email-box{background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;color:#fff}
+    .email-box h3{font-size:1.25rem;font-weight:800}
+    .email-box p{font-size:0.9rem;opacity:0.9;margin-top:0.3rem}
+    .email-form{display:flex;gap:0.5rem;max-width:460px;margin:1.2rem auto 0}
+    .email-input{flex:1;padding:0.75rem 1rem;border:2px solid rgba(255,255,255,0.25);border-radius:10px;background:rgba(255,255,255,0.12);color:#fff;font-size:0.9rem;font-family:inherit;outline:none;backdrop-filter:blur(8px)}
+    .email-input::placeholder{color:rgba(255,255,255,0.6)}
+    .email-input:focus{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.18)}
+    .email-btn{padding:0.75rem 1.5rem;border:none;border-radius:10px;background:var(--dark);color:#fff;font-size:0.9rem;font-weight:700;font-family:inherit;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+    .email-btn:hover{background:#000}
+
+    /* STATES */
+    .loading{text-align:center;padding:4rem;color:var(--text-light);grid-column:1/-1}
+    .spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:.8rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .no-results{text-align:center;padding:3rem;color:var(--text-light);grid-column:1/-1}
+    .pagination{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.5rem 0}
+    .pg-btn{padding:0.55rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-size:0.84rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:0.3rem}
+    .pg-btn:hover{border-color:var(--red);color:var(--red)}
+    .pg-btn:disabled{opacity:0.35;cursor:default;border-color:var(--border);color:var(--text-light)}
+    .pg-btn:disabled:hover{border-color:var(--border);color:var(--text-light)}
+    .pg-info{font-size:0.84rem;font-weight:600;color:var(--text-mid);padding:0 0.5rem}
+
+    /* FOOTER */
+    .footer{background:var(--white);border-top:1px solid var(--border);text-align:center;padding:2rem 1.5rem;color:var(--text-light);font-size:.8rem;margin-top:1rem}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:768px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .cats-row{grid-template-columns:repeat(2,1fr);gap:0.5rem}
+      .cat-card{padding:0.7rem;gap:0.5rem}
+      .cat-card-icon{width:32px;height:32px;font-size:1.1rem;border-radius:8px}
+      .cat-card-text h3{font-size:0.82rem}
+      .cat-card-text p{font-size:0.68rem}
+      .hero{padding:2rem 1rem 0.8rem}
+      .hero h1{font-size:1.35rem}
+      .hero-sub{font-size:0.88rem}
+      .search-wrap{margin:1rem auto 0;border-radius:12px}
+      .search-input{padding:0.75rem 0.6rem;font-size:0.9rem}
+      .search-btn{padding:0.6rem 1rem;font-size:0.82rem;margin:0.3rem}
+      .nav-tabs{display:none}
+      .nav-inner{padding:0 1rem}
+      .section-header{padding:0 1rem;margin-top:1.5rem}
+      .section-header h2{font-size:1.1rem}
+      .main{padding:0 1rem 2rem}
+      .email-section{padding:0 1rem}
+      .email-box{padding:1.5rem 1rem}
+      .card-img-wrap{height:140px}
+      .card-body{padding:0.75rem 0.85rem}
+      .card-footer{padding:0 0.85rem 0.75rem}
+      .pills{gap:0.25rem}
+      .pill{padding:0.35rem 0.7rem;font-size:0.75rem}
+    }
+    @media(max-width:500px){
+      .grid{grid-template-columns:repeat(2,1fr);gap:0.6rem}
+      .cats-row{padding:0 1rem}
+      .search-cat{display:none}
+      .search-btn{display:none}
+      .search-wrap{border-radius:12px}
+      .search-input{padding:0.8rem 0.7rem}
+      .email-form{flex-direction:column}
+      .nav-saved{display:none}
+      .card-img-wrap{height:120px}
+      .card-title{font-size:0.82rem}
+      .card-date{font-size:0.7rem}
+      .card-cta{padding:0.55rem;font-size:0.78rem}
+      .save-btn{width:34px;height:34px;font-size:0.9rem}
+      .share-btn{width:34px;height:34px;font-size:0.9rem}
+      .card-cat{font-size:0.68rem}
+      .footer{padding:1.5rem 1rem}
+    }
+    @media(max-width:380px){
+      .grid{grid-template-columns:repeat(2,1fr);gap:0.5rem}
+      .hero h1{font-size:1.15rem}
+      .hero-sub{font-size:0.8rem}
+      .cats-row{grid-template-columns:1fr 1fr;gap:0.4rem}
+      .card-body{padding:0.6rem 0.7rem}
+      .card-footer{padding:0 0.7rem 0.6rem;gap:0.35rem}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/"><span class="nav-logo-icon">&#9888;&#65039;</span> Recall<span>Alerts</span></a>
+      <div class="nav-tabs" id="navTabs">
+        <button class="nav-tab active" data-cat="all">All</button>
+        <button class="nav-tab" data-cat="Consumer Products">Consumer Products</button>
+        <button class="nav-tab" data-cat="Food & Drug">Food &amp; Drug</button>
+        <button class="nav-tab" data-cat="Vehicles">Vehicles</button>
+        <button class="nav-tab" data-cat="Food Safety">Food Safety</button>
+      </div>
+      <div class="nav-right">
+        <button class="nav-saved" onclick="showSaved()">&#9829; Saved</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Product Recalls &amp; Safety Alerts &mdash; <b>All in One Place</b></h1>
+    <p class="hero-sub">Stay informed. Protect your family.</p>
+
+    <div class="search-wrap">
+      <span class="search-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input type="text" class="search-input" id="search" placeholder="Search recalls by product, brand, or hazard...">
+      <select class="search-cat" id="searchCat" onchange="syncCat(this.value)">
+        <option value="all">All Categories</option>
+        <option value="Consumer Products">Consumer Products</option>
+        <option value="Food & Drug">Food &amp; Drug</option>
+        <option value="Vehicles">Vehicles</option>
+        <option value="Food Safety">Food Safety</option>
+      </select>
+      <button class="search-btn" onclick="curQ=document.getElementById('search').value.trim();doFilter()">Search Recalls</button>
+    </div>
+  </section>
+
+  <!-- CATEGORY CARDS -->
+  <div class="cats-row" id="catsRow">
+    <div class="cat-card" data-cat="Consumer Products" onclick="syncCat('Consumer Products')">
+      <div class="cat-card-icon consumer">&#128722;</div>
+      <div class="cat-card-text">
+        <h3>Consumer Products</h3>
+        <p>Household, toys, electronics</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="Food & Drug" onclick="syncCat('Food & Drug')">
+      <div class="cat-card-icon food-drug">&#128138;</div>
+      <div class="cat-card-text">
+        <h3>Food &amp; Drug</h3>
+        <p>FDA recalls &amp; warnings</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="Vehicles" onclick="syncCat('Vehicles')">
+      <div class="cat-card-icon vehicles">&#128663;</div>
+      <div class="cat-card-text">
+        <h3>Vehicles</h3>
+        <p>Cars, trucks, auto parts</p>
+      </div>
+    </div>
+    <div class="cat-card" data-cat="Food Safety" onclick="syncCat('Food Safety')">
+      <div class="cat-card-icon food-safety">&#129367;</div>
+      <div class="cat-card-text">
+        <h3>Food Safety</h3>
+        <p>USDA &amp; food alerts</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION HEADER + SORT -->
+  <div class="section-header">
+    <h2>Recent Recalls</h2>
+    <div class="pills" id="sortPills">
+      <button class="pill active" data-sort="newest">All</button>
+      <button class="pill" data-sort="newtoday">New Today</button>
+      <button class="pill" data-sort="highsev">High Severity</button>
+      <button class="pill" data-sort="bydate">By Date</button>
+    </div>
+    <span class="section-right" id="totalCount" style="display:flex;gap:0.75rem">-</span>
+  </div>
+
+  <main class="main">
+    <div class="grid" id="grid">
+      <div class="loading"><div class="spinner"></div><br>Loading recall alerts...</div>
+    </div>
+  </main>
+
+  <!-- EMAIL SIGNUP -->
+  <section class="email-section">
+    <div class="email-box">
+      <h3>Get Recall Alerts in Your Inbox</h3>
+      <p>Stay safe. Get notified about new product recalls that matter to you.</p>
+      <form class="email-form" onsubmit="return handleEmail(event)">
+        <input type="email" class="email-input" id="emailInput" placeholder="Enter your email" required>
+        <button type="submit" class="email-btn">Subscribe</button>
+      </form>
+      <p id="emailMsg" style="margin-top:0.5rem;font-size:0.8rem;display:none"></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    &copy; 2026 RecallAlerts &mdash; Keeping you informed about product safety.<br>
+    RecallAlerts is an independent aggregator. We are not affiliated with CPSC, FDA, NHTSA, or USDA.<br>
+    Always verify recall details on the official source before taking action.<br>
+    <a href="mailto:contact@recallalerts.com" style="color:var(--red);font-weight:600">contact@recallalerts.com</a>
+  </footer>
+
+<script>
+let allItems=[],filtered=[],curPage=1;
+const PER_PAGE=12;
+let curCat='all',curSort='newest',curQ='';
+let showingSavedMode=false;
+
+const saved=new Set(JSON.parse(localStorage.getItem('ra_saved')||'[]'));
+function saveSaved(){localStorage.setItem('ra_saved',JSON.stringify([...saved]))}
+
+const today=new Date().toISOString().split('T')[0];
+function isNew(item){return item.date===today || item.date_scraped===today}
+
+const CI={'Consumer Products':'&#128722;','Food & Drug':'&#128138;','Vehicles':'&#128663;','Food Safety':'&#129367;'};
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function itemId(i){return(i.link||i.title||'').substring(0,120)}
+
+function sevCls(s){
+  if(!s)return 'medium';
+  const l=s.toLowerCase();
+  if(l==='high')return 'high';
+  if(l==='low')return 'low';
+  return 'medium';
+}
+
+function formatDate(d){
+  if(!d)return '';
+  const p=new Date(d+'T00:00:00');
+  if(isNaN(p))return d;
+  return p.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+
+function doFilter(){
+  let items=allItems;
+  if(showingSavedMode){items=items.filter(i=>saved.has(itemId(i)))}
+  if(curCat!=='all')items=items.filter(i=>i.category===curCat);
+  if(curQ){const q=curQ.toLowerCase();items=items.filter(i=>(i.title||'').toLowerCase().includes(q)||(i.description||'').toLowerCase().includes(q)||(i.remedy||'').toLowerCase().includes(q)||(i.products||'').toLowerCase().includes(q)||(i.category||'').toLowerCase().includes(q))}
+  items=[...items];
+  if(curSort==='bydate')items.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+  else if(curSort==='highsev')items=items.filter(i=>(i.severity||'').toLowerCase()==='high');
+  else if(curSort==='newtoday')items=items.filter(i=>isNew(i));
+  else items.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+  filtered=items;curPage=1;render();
+  const newCount=filtered.filter(i=>isNew(i)).length;
+  const highCount=filtered.filter(i=>(i.severity||'').toLowerCase()==='high').length;
+  document.getElementById('totalCount').innerHTML=
+    (highCount>0?`<span style="color:var(--red);font-weight:700">${highCount} High Severity</span><span style="color:var(--border)">&#183;</span>`:'')+
+    `<span>${filtered.length} Total</span>`;
+}
+
+function render(){
+  const g=document.getElementById('grid');
+  const totalPages=Math.ceil(filtered.length/PER_PAGE)||1;
+  if(curPage>totalPages)curPage=totalPages;
+  const vis=filtered.slice((curPage-1)*PER_PAGE,curPage*PER_PAGE);
+  if(!vis.length){g.innerHTML='<div class="no-results">No recalls found. Try a different search or category.</div>';return}
+  let h='';
+  for(const i of vis){
+    const id=itemId(i);
+    const isSaved=saved.has(id);
+    const sc=sevCls(i.severity);
+    const isNewItem=isNew(i);
+    const icon=CI[i.category]||'&#9888;&#65039;';
+
+    const imgInner=i.image?`<img class="card-img" src="${esc(i.image)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'card-img-fallback\\'>&#9888;&#65039;</div>'">`:`<div class="card-img-fallback">&#9888;&#65039;</div>`;
+
+    let badges=`<span class="sev-badge ${sc}">${esc(i.severity||'Medium')}</span>`;
+    if(isNewItem)badges+=`<span class="card-new">NEW</span>`;
+
+    const remedySnippet=i.remedy?i.remedy.substring(0,120):'';
+
+    h+=`<div class="card" data-id="${esc(id)}">
+      <a href="${esc(i.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-img-wrap">
+          ${imgInner}
+          <div class="card-badge-wrap">${badges}</div>
+        </div>
+      </a>
+      <div class="card-body">
+        <div class="card-cat"><span class="card-cat-icon">${icon}</span> ${esc(i.category)}</div>
+        <a href="${esc(i.link)}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="card-title">${esc(i.title)}</div>
+        </a>
+        ${i.description?`<div class="card-desc">${esc(i.description)}</div>`:''}
+        ${remedySnippet?`<div class="card-remedy"><strong>What to do:</strong> ${esc(remedySnippet)}${i.remedy&&i.remedy.length>120?'...':''}</div>`:''}
+        <div class="card-date"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${formatDate(i.date)}</div>
+      </div>
+      <div class="card-footer">
+        <a class="card-cta" href="${esc(i.link)}" target="_blank" rel="noopener">View Recall Details</a>
+        <div class="share-wrap">
+          <button class="share-btn" onclick="toggleShare(event,this)" title="Share">&#8599;</button>
+          <div class="share-popup">
+            <button onclick="copyLink(event,this,'${esc(i.link)}')"><span class="share-icon">&#128203;</span> Copy Link</button>
+            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(i.link)}&text=${encodeURIComponent('RECALL: '+i.title)}" target="_blank" rel="noopener" onclick="closeSharePopups()"><span class="share-icon">&#120143;</span> Share on X</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(i.link)}" target="_blank" rel="noopener" onclick="closeSharePopups()"><span class="share-icon">&#128216;</span> Share on Facebook</a>
+          </div>
+        </div>
+        <button class="save-btn ${isSaved?'saved':''}" onclick="toggleSave(this)" title="Save">
+          ${isSaved?'&#10003;':'&#9825;'}
+        </button>
+      </div>
+    </div>`;
+  }
+  if(totalPages>1)h+=`<div class="pagination">
+    <button class="pg-btn" onclick="goPage(curPage-1)" ${curPage<=1?'disabled':''}>&#8592; Prev</button>
+    <span class="pg-info">Page ${curPage} of ${totalPages}</span>
+    <button class="pg-btn" onclick="goPage(curPage+1)" ${curPage>=totalPages?'disabled':''}>Next &#8594;</button>
+  </div>`;
+  g.innerHTML=h;
+}
+
+function goPage(p){
+  const totalPages=Math.ceil(filtered.length/PER_PAGE)||1;
+  if(p<1||p>totalPages)return;
+  curPage=p;
+  render();
+  window.scrollTo({top:document.getElementById('grid').offsetTop-80,behavior:'smooth'});
+}
+
+function closeSharePopups(){
+  document.querySelectorAll('.share-popup.open').forEach(p=>p.classList.remove('open'));
+}
+function toggleShare(e,btn){
+  e.stopPropagation();
+  const popup=btn.nextElementSibling;
+  const wasOpen=popup.classList.contains('open');
+  closeSharePopups();
+  if(!wasOpen) popup.classList.add('open');
+}
+function copyLink(e,btn,url){
+  e.stopPropagation();
+  navigator.clipboard.writeText(url).then(()=>{
+    const orig=btn.innerHTML;
+    btn.innerHTML='<span class="share-icon">&#10003;</span> Copied!';
+    setTimeout(()=>{btn.innerHTML=orig;},1500);
+  });
+  closeSharePopups();
+}
+document.addEventListener('click',()=>closeSharePopups());
+
+function toggleSave(btn){
+  const card=btn.closest('.card');
+  const id=card.dataset.id;
+  if(saved.has(id)){
+    saved.delete(id);
+    btn.classList.remove('saved');
+    btn.innerHTML='&#9825;';
+  } else {
+    saved.add(id);
+    btn.classList.add('saved');
+    btn.innerHTML='&#10003;';
+  }
+  saveSaved();
+}
+
+function showSaved(){
+  showingSavedMode=!showingSavedMode;
+  const btn=document.querySelector('.nav-saved');
+  btn.style.background=showingSavedMode?'var(--red-light)':'';
+  btn.style.color=showingSavedMode?'var(--red)':'';
+  btn.style.borderColor=showingSavedMode?'var(--red)':'';
+  doFilter();
+}
+
+function syncCat(cat){
+  curCat=cat;
+  showingSavedMode=false;
+  document.querySelectorAll('.nav-tab').forEach(n=>n.classList.toggle('active',n.dataset.cat===cat));
+  document.querySelectorAll('.cat-card').forEach(c=>{
+    c.classList.toggle('active',c.dataset.cat===cat);
+  });
+  document.getElementById('searchCat').value=cat;
+  doFilter();
+}
+
+// Nav tabs
+document.getElementById('navTabs').addEventListener('click',e=>{const b=e.target.closest('.nav-tab');if(b)syncCat(b.dataset.cat)});
+
+// Sort pills
+document.getElementById('sortPills').addEventListener('click',e=>{
+  const p=e.target.closest('.pill');
+  if(!p)return;
+  document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');
+  curSort=p.dataset.sort;
+  doFilter();
+});
+
+// Search
+let st;document.getElementById('search').addEventListener('input',e=>{clearTimeout(st);st=setTimeout(()=>{curQ=e.target.value.trim();doFilter()},250)});
+
+async function handleEmail(e){
+  e.preventDefault();
+  const email=document.getElementById('emailInput').value;
+  const msg=document.getElementById('emailMsg');
+  const btn=e.target.querySelector('button');
+  btn.textContent='Subscribing...';btn.disabled=true;
+  try{
+    const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,source:'recall-alerts'})});
+    const d=await r.json();
+    msg.textContent=d.message||"You're subscribed!";
+    msg.style.display='block';
+    if(d.ok)document.getElementById('emailInput').value='';
+  }catch(err){
+    msg.textContent="You're subscribed! We'll send you recall alerts.";
+    msg.style.display='block';
+    const subs=JSON.parse(localStorage.getItem('ra_subs')||'[]');
+    subs.push({email,date:new Date().toISOString()});
+    localStorage.setItem('ra_subs',JSON.stringify(subs));
+    document.getElementById('emailInput').value='';
+  }
+  btn.textContent='Subscribe';btn.disabled=false;
+  return false;
+}
+
+fetch('data.json').then(r=>r.json()).then(d=>{
+  allItems=d;
+  doFilter();
+}).catch(()=>{document.getElementById('grid').innerHTML='<div class="no-results">Failed to load recall data.</div>'});
+</script></body>
+</html>

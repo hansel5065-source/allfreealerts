@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AllFreeAlerts — Sweepstakes, Freebies & Settlements</title>
   <meta name="description" content="Daily alerts for sweepstakes, freebies, and class-action settlements. We find them so you never miss free stuff.">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3295178838066537" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -143,6 +144,16 @@
     .check-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-light)}
     .check-btn.checked{background:var(--green);color:#fff;border-color:var(--green)}
 
+    /* SHARE BUTTON & POPUP */
+    .share-wrap{position:relative;flex-shrink:0}
+    .share-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.15s;color:var(--text-light);flex-shrink:0}
+    .share-btn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light)}
+    .share-popup{display:none;position:absolute;bottom:calc(100% + 6px);right:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-md);padding:0.35rem 0;min-width:140px;z-index:50}
+    .share-popup.open{display:block}
+    .share-popup a,.share-popup button{display:flex;align-items:center;gap:0.45rem;width:100%;padding:0.4rem 0.75rem;font-size:0.78rem;font-weight:500;color:var(--text);background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;transition:background 0.1s}
+    .share-popup a:hover,.share-popup button:hover{background:var(--bg)}
+    .share-popup .share-icon{font-size:0.85rem;width:1.1rem;text-align:center}
+
     /* EMAIL SIGNUP */
     .email-section{max-width:1200px;margin:2rem auto 0;padding:0 1.5rem}
     .email-box{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;color:#fff}
@@ -199,6 +210,9 @@
       .pills{gap:0.25rem}
       .pill{padding:0.35rem 0.7rem;font-size:0.75rem}
     }
+    @media(max-width:768px){
+      .bottom-cta{grid-template-columns:1fr !important}
+    }
     @media(max-width:500px){
       .grid{grid-template-columns:repeat(2,1fr);gap:0.6rem}
       .cats-row{padding:0 1rem}
@@ -215,6 +229,7 @@
       .card-detail{font-size:0.7rem}
       .card-cta{padding:0.55rem;font-size:0.78rem}
       .check-btn{width:34px;height:34px;font-size:0.9rem}
+      .share-btn{width:34px;height:34px;font-size:0.9rem}
       .card-cat{font-size:0.68rem}
       .footer{padding:1.5rem 1rem}
     }
@@ -306,7 +321,7 @@
       <button class="pill" data-sort="deadline">Ending Soon</button>
       <button class="pill" data-sort="payout">Top Value</button>
     </div>
-    <span class="section-right" id="totalCount">-</span>
+    <span class="section-right" id="totalCount" style="display:flex;gap:0.75rem">-</span>
   </div>
 
   <main class="main">
@@ -315,9 +330,9 @@
     </div>
   </main>
 
-  <!-- EMAIL SIGNUP -->
-  <div class="email-section">
-    <div class="email-box">
+  <!-- EMAIL SIGNUP + ADVERTISE -->
+  <div class="bottom-cta" style="max-width:1200px;margin:2rem auto 0;padding:0 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+    <div class="email-box" style="border-radius:var(--radius)">
       <h3>Get Daily Free Stuff Alerts</h3>
       <p>New sweepstakes, freebies, and settlements delivered to your inbox every morning.</p>
       <form class="email-form" onsubmit="return handleEmail(event)">
@@ -326,6 +341,14 @@
       </form>
       <p id="emailMsg" style="margin-top:0.5rem;font-size:0.8rem;display:none"></p>
     </div>
+    <a href="/advertise" style="display:flex;text-decoration:none">
+      <div style="flex:1;background:linear-gradient(135deg,var(--orange) 0%,var(--orange-hover) 100%);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 0.2s">
+        <div style="font-size:2.2rem;margin-bottom:0.5rem">📢</div>
+        <h3 style="font-size:1.25rem;font-weight:800">Advertise With Us</h3>
+        <p style="font-size:0.9rem;opacity:0.9;margin-top:0.3rem">Get your brand in front of thousands of deal-seekers daily.</p>
+        <span style="margin-top:1rem;padding:0.6rem 1.5rem;background:rgba(255,255,255,0.2);border-radius:10px;font-size:0.88rem;font-weight:700;backdrop-filter:blur(8px)">Learn More →</span>
+      </div>
+    </a>
   </div>
 
   <footer class="footer">
@@ -414,7 +437,8 @@ function doFilter(){
   else if(curSort==='payout')items.sort((a,b)=>payNum(b.payout||b.prize_summary)-payNum(a.payout||a.prize_summary));
   else if(curSort==='newtoday')items=items.filter(i=>isNew(i));
   filtered=items;curPage=1;render();
-  document.getElementById('totalCount').textContent=filtered.length+' items';
+  const newCount=filtered.filter(i=>isNew(i)).length;
+  document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--orange);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">·</span>`:'')+`<span>${filtered.length} Total</span>`;
 }
 
 function render(){
@@ -462,6 +486,14 @@ function render(){
       </div>
       <div class="card-footer">
         <a class="card-cta ${btnCls}" href="${esc(i.link)}" target="_blank" rel="noopener">${act}</a>
+        <div class="share-wrap">
+          <button class="share-btn" onclick="toggleShare(event,this)" title="Share">↗</button>
+          <div class="share-popup">
+            <button onclick="copyLink(event,this,'${esc(i.link)}')"><span class="share-icon">📋</span> Copy Link</button>
+            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(i.link)}&text=${encodeURIComponent(i.title)}" target="_blank" rel="noopener" onclick="closeSharePopups()"><span class="share-icon">𝕏</span> Share on X</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(i.link)}" target="_blank" rel="noopener" onclick="closeSharePopups()"><span class="share-icon">📘</span> Share on Facebook</a>
+          </div>
+        </div>
         <button class="check-btn ${isDone?'checked':''}" onclick="toggleDone(this)" title="Save">
           ${isDone?'✓':'♡'}
         </button>
@@ -483,6 +515,27 @@ function goPage(p){
   render();
   window.scrollTo({top:document.getElementById('grid').offsetTop-80,behavior:'smooth'});
 }
+
+function closeSharePopups(){
+  document.querySelectorAll('.share-popup.open').forEach(p=>p.classList.remove('open'));
+}
+function toggleShare(e,btn){
+  e.stopPropagation();
+  const popup=btn.nextElementSibling;
+  const wasOpen=popup.classList.contains('open');
+  closeSharePopups();
+  if(!wasOpen) popup.classList.add('open');
+}
+function copyLink(e,btn,url){
+  e.stopPropagation();
+  navigator.clipboard.writeText(url).then(()=>{
+    const orig=btn.innerHTML;
+    btn.innerHTML='<span class="share-icon">✓</span> Copied!';
+    setTimeout(()=>{btn.innerHTML=orig;},1500);
+  });
+  closeSharePopups();
+}
+document.addEventListener('click',()=>closeSharePopups());
 
 function toggleDone(btn){
   const card=btn.closest('.card');
@@ -564,7 +617,8 @@ async function handleEmail(e){
 
 function updateNewCount(){
   const n=allItems.filter(i=>isNew(i)).length;
-  document.getElementById('newTodayBtn').innerHTML=n>0?`New Today (${n}) <span class="dot"></span>`:'New Today';
+  const total=allItems.length;
+  document.getElementById('newTodayBtn').innerHTML=n>0?`${n} New Today <span class="dot"></span>`:`${total} Alerts`;
 }
 
 localStorage.setItem('afa_lastvisit',Date.now().toString());

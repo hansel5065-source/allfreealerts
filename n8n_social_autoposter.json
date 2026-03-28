@@ -1,0 +1,118 @@
+{
+  "name": "AllFreeAlerts — Daily Social Media Auto-Poster",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24,
+              "triggerAtHour": 12
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Daily at Noon",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "url": "https://allfreealerts.com/data.json",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "http-get-data",
+      "name": "Get Latest Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// === AllFreeAlerts Auto-Poster: Pick items + generate posts ===\n// Priority: NEW items first, then oldest recycled\n// Settlements: no-proof-needed first\n\nconst items = $input.all().map(i => i.json);\nconst allItems = Array.isArray(items[0]) ? items[0] : items;\n\n// --- Post history (stored in static data) ---\nconst staticData = $getWorkflowStaticData('global');\nif (!staticData.postHistory) staticData.postHistory = [];\nconst history = staticData.postHistory;\nconst postedTitles = new Set(history.map(h => h.title));\n\nfunction pickBest(candidates) {\n  if (candidates.length === 0) return null;\n  const neverPosted = candidates.filter(i => !postedTitles.has(i.title));\n  if (neverPosted.length > 0) {\n    const pick = neverPosted[Math.floor(Math.random() * neverPosted.length)];\n    pick._pickReason = 'NEW';\n    return pick;\n  }\n  const withDates = candidates.map(i => {\n    const lastPost = history.filter(h => h.title === i.title).sort((a, b) => new Date(b.date) - new Date(a.date))[0];\n    return { item: i, lastPosted: lastPost ? new Date(lastPost.date) : new Date(0) };\n  }).sort((a, b) => a.lastPosted - b.lastPosted);\n  const pick = withDates[0].item;\n  pick._pickReason = 'RECYCLED';\n  return pick;\n}\n\n// Pick 1 per category\nconst picks = [];\nconst sweepPick = pickBest(allItems.filter(i => i.category === 'Sweepstakes'));\nif (sweepPick) picks.push(sweepPick);\n\nconst freebiePick = pickBest(allItems.filter(i => i.category === 'Freebies'));\nif (freebiePick) picks.push(freebiePick);\n\n// Settlements: no-proof first\nconst settlements = allItems.filter(i => i.category === 'Settlements');\nconst noProof = settlements.filter(i => i.proof_required === 'No' || i.proof_required === 'N/A');\nconst proofNeeded = settlements.filter(i => i.proof_required === 'Yes');\nconst unclear = settlements.filter(i => !i.proof_required || (i.proof_required !== 'No' && i.proof_required !== 'Yes' && i.proof_required !== 'N/A'));\nlet settlePick = pickBest(noProof);\nif (settlePick) { settlePick._proofStatus = 'NO PROOF NEEDED'; }\nelse { settlePick = pickBest(unclear); if (settlePick) settlePick._proofStatus = 'PROOF UNKNOWN'; }\nif (!settlePick) { settlePick = pickBest(proofNeeded); if (settlePick) settlePick._proofStatus = 'PROOF REQUIRED'; }\nif (settlePick) picks.push(settlePick);\n\n// --- Tweet templates ---\nconst templates = {\n  Sweepstakes: [\n    (i) => `🎉 SWEEPSTAKES ALERT\\n\\n${i.title}\\n\\n${i.prize_summary ? i.prize_summary.slice(0,100)+'...' : 'Enter now for a chance to win!'}\\n\\n👉 allfreealerts.com\\n\\n#sweepstakes #giveaway #win #allfreealerts`,\n    (i) => `Win something amazing today! 🏆\\n\\n${i.title}\\n\\nFind it on 👉 allfreealerts.com\\n\\n#entertowin #sweepstakes #contest #free`,\n    (i) => `Don't miss this one 👀\\n\\n${i.title}\\n\\n${i.prize_summary ? i.prize_summary.slice(0,100) : 'Free to enter!'}\\n\\n👉 allfreealerts.com\\n\\n#giveaway #sweepstakes #win #allfreealerts`\n  ],\n  Freebies: [\n    (i) => `🆓 FREE STUFF ALERT\\n\\n${i.title}\\n\\nNo purchase necessary. Get yours before it's gone!\\n\\n👉 allfreealerts.com\\n\\n#freestuff #freebie #freesample #allfreealerts`,\n    (i) => `This is completely FREE 👇\\n\\n${i.title}\\n\\nNo credit card. No catch.\\n\\n👉 allfreealerts.com\\n\\n#free #freebie #freesample #freestuff`,\n    (i) => `Today's freebie find 🎁\\n\\n${i.title}\\n\\nGrab it while supplies last 👉 allfreealerts.com\\n\\n#freebies #freestuff #savemoney #allfreealerts`\n  ],\n  Settlements: [\n    (i) => `💰 CLASS ACTION ALERT\\n\\n${i.title}\\n\\n${i.payout ? '💵 Payout: ' + i.payout : 'You may be owed money!'}\\n${i._proofStatus === 'NO PROOF NEEDED' ? '✅ No proof of purchase needed!\\n' : ''}\\nFile your claim 👉 allfreealerts.com\\n\\n#classaction #settlement #freemoney #allfreealerts`,\n    (i) => `You might be owed money 💵\\n\\n${i.title}\\n${i.payout ? '\\n💰 ' + i.payout : ''}\\n${i._proofStatus === 'NO PROOF NEEDED' ? '✅ No receipt needed!\\n' : ''}\\nCheck if you qualify 👉 allfreealerts.com\\n\\n#settlement #classaction #moneytok #allfreealerts`,\n    (i) => `Don't leave money on the table!\\n\\n${i.title}\\n${i.payout ? '\\nPayout: ' + i.payout : ''}\\n${i._proofStatus === 'NO PROOF NEEDED' ? '\\n🙌 No proof needed — just file a claim!' : ''}\\n\\n👉 allfreealerts.com\\n\\n#classaction #freemoney #settlement`\n  ]\n};\n\n// --- Generate posts + QA ---\nconst posts = [];\nfor (const item of picks) {\n  const catTemplates = templates[item.category] || templates.Freebies;\n  const template = catTemplates[Math.floor(Math.random() * catTemplates.length)];\n  let text = template(item);\n  if (text.length > 280) text = text.slice(0, 277) + '...';\n\n  // QA checks\n  const errors = [];\n  if (text.length > 280) errors.push('Over 280 chars');\n  if (!item.title || item.title.trim() === '') errors.push('Missing title');\n  if (!text.includes('allfreealerts.com')) errors.push('Missing link');\n  if (!text.includes('#')) errors.push('Missing hashtags');\n  if (text.includes('undefined') || text.includes('null')) errors.push('Broken text');\n  if (errors.length > 0) continue;\n\n  posts.push({\n    category: item.category,\n    title: item.title,\n    prize_summary: item.prize_summary || '',\n    payout: item.payout || '',\n    tweetText: text,\n    link: item.link || 'https://allfreealerts.com',\n    pickReason: item._pickReason,\n    proofStatus: item._proofStatus || ''\n  });\n}\n\n// --- Instagram carousel caption ---\nlet igCaption = `🔥 Today's FREE Finds — Swipe Through! 👉\\n\\n`;\nfor (const p of posts) {\n  if (p.category === 'Sweepstakes') {\n    igCaption += `🎉 SWEEPSTAKES: ${p.title}\\n`;\n    if (p.prize_summary) igCaption += `   ${p.prize_summary.slice(0, 80)}\\n`;\n    igCaption += '\\n';\n  } else if (p.category === 'Freebies') {\n    igCaption += `🎁 FREE: ${p.title}\\n   No purchase necessary!\\n\\n`;\n  } else if (p.category === 'Settlements') {\n    igCaption += `💰 SETTLEMENT: ${p.title}\\n`;\n    if (p.payout) igCaption += `   Payout: ${p.payout}\\n`;\n    if (p.proofStatus === 'NO PROOF NEEDED') igCaption += '   ✅ No proof needed!\\n';\n    igCaption += '\\n';\n  }\n}\nigCaption += '👉 Link in bio — allfreealerts.com\\n📱 Follow @allfreealerts for daily finds!\\n\\n';\nigCaption += '#freestuff #sweepstakes #classaction #settlement #freebie #giveaway #freemoney #savemoney #freesample #allfreealerts';\n\n// Save to history\nconst now = new Date().toISOString().split('T')[0];\nfor (const p of posts) {\n  history.push({ title: p.title, category: p.category, date: now });\n}\n\n// Return single item with all data for downstream nodes\nreturn [{\n  json: {\n    tweets: posts,\n    instagram: {\n      type: 'carousel',\n      caption: igCaption,\n      slideCount: posts.length\n    },\n    postCount: posts.length\n  }\n}];"
+      },
+      "id": "pick-and-create",
+      "name": "Pick Items & Create Posts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Post each tweet to X/Twitter with OAuth 1.0a signing\nconst crypto = require('crypto');\n\nconst CONSUMER_KEY = 'YOUR_CONSUMER_KEY';\nconst CONSUMER_SECRET = 'YOUR_CONSUMER_SECRET';\nconst ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN';\nconst ACCESS_SECRET = 'YOUR_ACCESS_SECRET';\n\nfunction percentEncode(str) {\n  return encodeURIComponent(str).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase());\n}\n\nfunction signRequest(method, url, params) {\n  const sorted = Object.keys(params).sort().map(k => `${percentEncode(k)}=${percentEncode(params[k])}`).join('&');\n  const base = `${method}&${percentEncode(url)}&${percentEncode(sorted)}`;\n  const key = `${percentEncode(CONSUMER_SECRET)}&${percentEncode(ACCESS_SECRET)}`;\n  return crypto.createHmac('sha1', key).update(base).digest('base64');\n}\n\nconst data = $input.first().json;\nconst tweets = data.tweets || [];\nconst results = [];\n\nfor (const post of tweets) {\n  const url = 'https://api.twitter.com/2/tweets';\n  const oauthParams = {\n    oauth_consumer_key: CONSUMER_KEY,\n    oauth_nonce: crypto.randomBytes(16).toString('hex'),\n    oauth_signature_method: 'HMAC-SHA1',\n    oauth_timestamp: Math.floor(Date.now() / 1000).toString(),\n    oauth_token: ACCESS_TOKEN,\n    oauth_version: '1.0'\n  };\n  oauthParams.oauth_signature = signRequest('POST', url, oauthParams);\n  const authHeader = 'OAuth ' + Object.keys(oauthParams).sort().map(k => `${percentEncode(k)}=\"${percentEncode(oauthParams[k])}\"`).join(', ');\n\n  try {\n    const resp = await this.helpers.httpRequest({\n      method: 'POST',\n      url: url,\n      headers: { 'Authorization': authHeader, 'Content-Type': 'application/json' },\n      body: JSON.stringify({ text: post.tweetText })\n    });\n    results.push({ category: post.category, status: 'posted', tweetId: resp.data?.id });\n  } catch (e) {\n    results.push({ category: post.category, status: 'failed', error: e.message });\n  }\n}\n\nreturn [{ json: { ...data, tweetResults: results } }];"
+      },
+      "id": "post-tweets",
+      "name": "Post Tweets to X",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, -120],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Instagram Carousel via Graph API\n// Requires: IG_USER_ID and IG_ACCESS_TOKEN\n//\n// Flow:\n//   1. Upload each image as a carousel child container\n//   2. Create carousel container with all children\n//   3. Publish the carousel\n//\n// NOTE: Images must be publicly accessible URLs.\n// Host images on allfreealerts.com or use Cloudflare R2.\n\nconst IG_USER_ID = 'YOUR_IG_USER_ID';\nconst IG_ACCESS_TOKEN = 'YOUR_IG_ACCESS_TOKEN';\nconst IMAGE_BASE_URL = 'https://allfreealerts.com/social/images';\n\nconst data = $input.first().json;\nconst ig = data.instagram;\nconst posts = data.tweets || [];\n\nif (!ig || posts.length === 0) {\n  return [{ json: { ...data, igResult: { status: 'skipped', reason: 'no posts' } } }];\n}\n\ntry {\n  // Step 1: Create child containers for each slide\n  const childIds = [];\n  for (let i = 0; i < posts.length; i++) {\n    const imageUrl = `${IMAGE_BASE_URL}/post_${i}.png`;\n    const resp = await this.helpers.httpRequest({\n      method: 'POST',\n      url: `https://graph.facebook.com/v18.0/${IG_USER_ID}/media`,\n      body: {\n        image_url: imageUrl,\n        is_carousel_item: true,\n        access_token: IG_ACCESS_TOKEN\n      }\n    });\n    childIds.push(resp.id);\n  }\n\n  // Step 2: Create carousel container\n  const carouselResp = await this.helpers.httpRequest({\n    method: 'POST',\n    url: `https://graph.facebook.com/v18.0/${IG_USER_ID}/media`,\n    body: {\n      media_type: 'CAROUSEL',\n      children: childIds.join(','),\n      caption: ig.caption,\n      access_token: IG_ACCESS_TOKEN\n    }\n  });\n\n  // Step 3: Publish\n  const publishResp = await this.helpers.httpRequest({\n    method: 'POST',\n    url: `https://graph.facebook.com/v18.0/${IG_USER_ID}/media_publish`,\n    body: {\n      creation_id: carouselResp.id,\n      access_token: IG_ACCESS_TOKEN\n    }\n  });\n\n  return [{ json: { ...data, igResult: { status: 'posted', mediaId: publishResp.id, slides: childIds.length } } }];\n} catch (e) {\n  return [{ json: { ...data, igResult: { status: 'failed', error: e.message } } }];\n}"
+      },
+      "id": "post-ig-carousel",
+      "name": "Post Instagram Carousel",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 120],
+      "continueOnFail": true
+    }
+  ],
+  "connections": {
+    "Daily at Noon": {
+      "main": [
+        [
+          {
+            "node": "Get Latest Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Latest Data": {
+      "main": [
+        [
+          {
+            "node": "Pick Items & Create Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick Items & Create Posts": {
+      "main": [
+        [
+          {
+            "node": "Post Tweets to X",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post Instagram Carousel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

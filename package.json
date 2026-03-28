@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "edge-tts": "^1.0.1",
+    "puppeteer": "^24.40.0"
+  }
+}

@@ -741,6 +741,186 @@ async function giveawayBase() {
   return items.filter(i => i.link && i.link.startsWith('http')).map(({ detailUrl, ...rest }) => rest);
 }
 
+// Consumer-Action.org — open class action settlements
+async function consumerAction() {
+  log('Scraping Consumer-Action.org (open settlements)...');
+  const items = [];
+  const html = await fetchPage('https://www.consumer-action.org/lawsuits/by-status/open');
+  if (!html) { log('  CACT: FAILED'); return items; }
+
+  // Each listing: <div class="white-bkgrnd open_to_claims"> with title, defendant, description, claim link
+  // Claim link: <a href="https://..." title="View Deadline"><strong>Claim deadline is ...</strong></a>
+  const blockRe = /<div[^>]*class="white-bkgrnd[^"]*open[^"]*"[^>]*>([\s\S]*?)<\/div>\s*(?:<div|<\/div>)/g;
+  let block;
+  while ((block = blockRe.exec(html)) !== null) {
+    const content = block[1];
+
+    // Title from h2.action-title
+    const titleMatch = content.match(/<h2[^>]*class="action-title"[^>]*>\s*<a[^>]*>([^<]+)/);
+    if (!titleMatch) continue;
+    const title = decodeEntities(titleMatch[1].replace(/\s*»\s*$/, '').trim());
+
+    // Claim link — external URL in the description area
+    const claimMatch = content.match(/<a[^>]*href="(https?:\/\/(?!www\.consumer-action)[^"]+)"[^>]*>/);
+    if (!claimMatch) continue;
+    const link = claimMatch[1].trim();
+
+    // Deadline text
+    const deadlineMatch = content.match(/deadline\s+is\s+([^<]+)\./i);
+    let endDate = '';
+    if (deadlineMatch) {
+      // Parse "Tuesday, 04 August 2026" format
+      const parsed = new Date(deadlineMatch[1].replace(/^\w+,\s*/, '').trim());
+      if (!isNaN(parsed) && parsed > new Date()) {
+        endDate = parsed.toISOString().split('T')[0];
+      } else if (!isNaN(parsed) && parsed <= new Date()) {
+        continue; // expired, skip
+      }
+    }
+
+    if (title.length < 10) continue;
+
+    items.push({
+      title: title + ' Settlement',
+      link,
+      source: 'consumer-action', category: 'Settlements',
+      scope: detectScope(title),
+      ...(endDate ? { end_date: endDate } : {}),
+    });
+  }
+
+  // Also scrape pending settlements (no deadlines yet, but upcoming)
+  const pendingHtml = await fetchPage('https://www.consumer-action.org/lawsuits/by-status/pending');
+  if (pendingHtml) {
+    const pendingRe = /<div[^>]*class="white-bkgrnd[^"]*"[^>]*>([\s\S]*?)<\/div>\s*(?:<div|<\/div>)/g;
+    let pb;
+    while ((pb = pendingRe.exec(pendingHtml)) !== null) {
+      const content = pb[1];
+      const titleMatch = content.match(/<h2[^>]*class="action-title"[^>]*>\s*<a[^>]*>([^<]+)/);
+      if (!titleMatch) continue;
+      const title = decodeEntities(titleMatch[1].replace(/\s*»\s*$/, '').trim());
+
+      // For pending, get "Learn More" link
+      const linkMatch = content.match(/<a[^>]*href="(https?:\/\/(?!www\.consumer-action)[^"]+)"[^>]*>/);
+      if (!linkMatch) continue;
+
+      if (title.length < 10) continue;
+
+      items.push({
+        title: title + ' Class Action',
+        link: linkMatch[1].trim(),
+        source: 'consumer-action', category: 'Settlements',
+        scope: detectScope(title),
+      });
+    }
+  }
+
+  log(`  CACT: ${items.length} settlements`);
+  return items;
+}
+
+// Settlemate.io — class action settlement directory
+async function settlemate() {
+  log('Scraping Settlemate.io (settlement directory)...');
+  const items = [];
+  const html = await fetchPage('https://www.settlemate.io/settlements');
+  if (!html) { log('  SM: FAILED'); return items; }
+
+  // Each listing row has a link to detail page with title, deadline, payout
+  // Structure: <a href="/settlements/slug" ...> containing .blog-title-settlements and .text-block-86 (deadline)
+  const seen = new Set();
+
+  // Extract all settlement detail page links and titles
+  const rowRe = /<a[^>]*href="(\/settlements\/[^"]+)"[^>]*>[\s\S]*?<div[^>]*class="[^"]*blog-title-settlements[^"]*"[^>]*>([^<]+)<\/div>[\s\S]*?<\/a>/g;
+  let m;
+  const detailItems = [];
+  while ((m = rowRe.exec(html)) !== null) {
+    const slug = m[1].trim();
+    const title = decodeEntities(m[2].trim());
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    if (title.length < 5) continue;
+    detailItems.push({ slug, title });
+  }
+
+  // Also try a simpler regex to catch listings
+  if (detailItems.length === 0) {
+    const simpleRe = /href="(\/settlements\/[a-z0-9-]+)"[^>]*>/g;
+    let sm;
+    const slugs = new Set();
+    while ((sm = simpleRe.exec(html)) !== null) {
+      const slug = sm[1].trim();
+      if (slug === '/settlements/' || slug === '/settlements') continue;
+      slugs.add(slug);
+    }
+    for (const slug of slugs) {
+      detailItems.push({ slug, title: '' });
+    }
+  }
+
+  log(`  SM: Found ${detailItems.length} settlement pages, following details...`);
+
+  // Follow detail pages to get claim URLs, deadlines, and full titles
+  await resolveInBatches(detailItems, async (item) => {
+    const detailHtml = await fetchPage(`https://www.settlemate.io${item.slug}`);
+    if (!detailHtml) return;
+
+    // Get title from detail page if missing
+    if (!item.title) {
+      const titleMatch = detailHtml.match(/<h1[^>]*>([^<]+)<\/h1>/);
+      if (titleMatch) item.title = decodeEntities(titleMatch[1].trim());
+    }
+
+    // Get deadline from detail page
+    const deadlineMatch = detailHtml.match(/deadline[:\s]*([A-Z][a-z]+ \d{1,2},?\s*\d{4})/i) ||
+                          detailHtml.match(/(\d{1,2}\/\d{1,2}\/\d{2,4})/);
+    if (deadlineMatch) {
+      const parsed = new Date(deadlineMatch[1]);
+      if (!isNaN(parsed) && parsed <= new Date()) {
+        item.expired = true; // mark for removal
+        return;
+      }
+      if (!isNaN(parsed)) item.end_date = parsed.toISOString().split('T')[0];
+    }
+
+    // Extract claim form URL — external link that's not settlemate.io, social, or CDN
+    const linkRe = /href="(https?:\/\/(?!www\.settlemate|settlemate\.io|web\.settlemate|cdn\.|apps\.apple|play\.google|facebook\.com|twitter\.com|instagram\.com|linkedin\.com|tiktok\.com)[^"]+)"/g;
+    let lm;
+    while ((lm = linkRe.exec(detailHtml)) !== null) {
+      const url = lm[1].replace(/&amp;/g, '&').trim();
+      // Prefer settlement/claim domain links
+      if (url.includes('settlement') || url.includes('claim') || url.includes('filing')) {
+        item.claimUrl = url;
+        break;
+      }
+      if (!item.claimUrl) item.claimUrl = url; // fallback to first external link
+    }
+
+    // Extract image
+    const img = extractImage(detailHtml);
+    if (img) item.image = img;
+  }, 5);
+
+  // Build final items — only those with claim URLs and not expired
+  for (const item of detailItems) {
+    if (item.expired) continue;
+    if (!item.claimUrl || !item.title) continue;
+    if (item.title.length < 10) continue;
+
+    items.push({
+      title: item.title,
+      link: item.claimUrl,
+      source: 'settlemate', category: 'Settlements',
+      scope: detectScope(item.title),
+      ...(item.end_date ? { end_date: item.end_date } : {}),
+      ...(item.image ? { image: item.image } : {}),
+    });
+  }
+
+  log(`  SM: ${items.length} settlements with claim URLs`);
+  return items;
+}
+
 // === NEW SOURCES ===
 
 // UltraContest - scrape category pages for direct contest links
@@ -1041,7 +1221,7 @@ async function main() {
   const existingLinks = new Set(existing.map(e => e.link));
 
   // Scrape all sources in parallel where possible
-  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb] = await Promise.all([
+  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, cact, sm] = await Promise.all([
     scrapeContestgirl().catch(e => { log(`CG ERROR: ${e.message}`); return []; }),
     sweepstakesFanatics().catch(e => { log(`SF ERROR: ${e.message}`); return []; }),
     freebieshark().catch(e => { log(`FS ERROR: ${e.message}`); return []; }),
@@ -1062,9 +1242,11 @@ async function main() {
     freeStuffFinder().catch(e => { log(`FSF ERROR: ${e.message}`); return []; }),
     contestListing().catch(e => { log(`CL ERROR: ${e.message}`); return []; }),
     giveawayBase().catch(e => { log(`GB ERROR: ${e.message}`); return []; }),
+    consumerAction().catch(e => { log(`CACT ERROR: ${e.message}`); return []; }),
+    settlemate().catch(e => { log(`SM ERROR: ${e.message}`); return []; }),
   ]);
 
-  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb];
+  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...cact, ...sm];
 
   // Clean + Deduplicate
   const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/'];
@@ -1107,7 +1289,7 @@ async function main() {
 
   // Count direct vs middleman links
   let directCount = 0, middlemanCount = 0;
-  const middlemanDomains = ['contestgirl.com/sweepstakes/countHits', 'sweepstakesfanatics.com', 'freebieshark.com', 'freeflys.com', 'hip2save.com', 'topclassactions.com'];
+  const middlemanDomains = ['contestgirl.com/sweepstakes/countHits', 'sweepstakesfanatics.com', 'freebieshark.com', 'freeflys.com', 'hip2save.com', 'topclassactions.com', 'settlemate.io', 'consumer-action.org'];
   for (const item of newItems) {
     if (middlemanDomains.some(d => item.link.includes(d))) middlemanCount++;
     else directCount++;

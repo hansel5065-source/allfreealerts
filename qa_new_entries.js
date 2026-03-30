@@ -29,6 +29,8 @@ const MIDDLEMAN_DOMAINS = [
   'thefreebieguy.com', 'freebiefindingmom.com', 'freestuff.com',
   'heysitsfree.net', 'freesamples.org', 'allfreestuff.com',
   'freestuffinder.com', 'ilovegiveaways.com',
+  // Settlement aggregators (we scrape FROM them but links should go to actual claim forms)
+  'settlemate.io', 'consumer-action.org',
   // Generic deal aggregators
   'slickdeals.net', 'dealnews.com', 'offers.com', 'retailmenot.com',
   'coupons.com', 'groupon.com',

@@ -533,7 +533,7 @@ async function postFBReel(videoFilePath, caption) {
     video_id: videoId,
     title: "Today's Free Stuff Picks",
     description: caption,
-    published: 'true',
+    video_state: 'PUBLISHED',
     access_token: FB_PAGE_TOKEN
   });
 

@@ -514,15 +514,18 @@ async function postFBReel(videoFilePath, caption) {
 
   // Step 3: Wait for processing before publishing
   log('  Waiting for FB video processing...');
-  let status = 'not_started';
+  let ready = false;
   for (let i = 0; i < 30; i++) {
     await new Promise(r => setTimeout(r, 5000));
-    const check = await graphAPI(`${videoId}`, { fields: 'status', access_token: FB_PAGE_TOKEN }, 'GET');
-    status = check?.status?.processing_phase?.status || check?.status?.video_status || 'unknown';
-    log(`  Processing status (${i + 1}/30): ${status}`);
-    if (status === 'ready' || status === 'complete') break;
-    if (status === 'error') { log('  FB processing error'); return null; }
+    const check = await graphAPI(`${videoId}`, { fields: 'status,published', access_token: FB_PAGE_TOKEN }, 'GET');
+    const raw = JSON.stringify(check?.status || check);
+    log(`  Processing check (${i + 1}/30): ${raw}`);
+    // FB video status can be: { video_status: 'processing'|'ready'|'error' } or nested
+    const vs = check?.status?.video_status || check?.status?.processing_phase?.status || check?.status;
+    if (vs === 'ready' || vs === 'complete' || check?.status?.uploading_phase?.status === 'complete') { ready = true; break; }
+    if (vs === 'error') { log('  FB processing error'); return null; }
   }
+  if (!ready) log('  Warning: proceeding to finish without confirmed processing completion');
 
   // Step 3: Finish and publish
   const finish = await graphAPI(`${FB_PAGE_ID}/video_reels`, {

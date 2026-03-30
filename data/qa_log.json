@@ -1,0 +1,103 @@
+[
+  {
+    "date": "2026-03-29",
+    "timestamp": "2026-03-29T16:23:51.925Z",
+    "total_checked": 40,
+    "passed": 28,
+    "removed": 12,
+    "removed_entries": [
+      {
+        "title": "Wonderful Halos “Spring Snacking” Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/03/wonderful-halos-spring-snacking-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "Kernel Seasons “Super Mario Galaxy” Sweepstakes (200 Winners)",
+        "link": "https://www.freebieshark.com/2026/03/kernel-seasons-super-mario-galaxy-sweepstakes-200-winners.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "Sunday Mail Call – March 23-29",
+        "link": "https://www.freebieshark.com/2026/03/sunday-mail-call-march-23-29.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "Aorus - Gigabyte Resident Evil Requiem Custom PC Giveaway",
+        "link": "https://gleam.io/VPItO/gigabyte-resident-evil-requiem-custom-pc-giveaway",
+        "source": "contestgirl",
+        "reason": "Dead link [403]: HTTP 403"
+      },
+      {
+        "title": "Babylist “Hello Baby Box” Giveaway",
+        "link": "https://gleam.io/IXerz/hbb-group-giveaway-q1-2026",
+        "source": "freebieshark",
+        "reason": "Dead link [403]: HTTP 403"
+      },
+      {
+        "title": "Sportsman's Outdoor Superstore Gift Card Giveaway",
+        "link": "https://gleam.io/6DMxs/mambasnake-giveaway-round-51",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [403]: HTTP 403"
+      },
+      {
+        "title": "Goldvine - Gourmet Syrups Giveaway",
+        "link": "https://givelab.com/g/O38FUc/goldvine-gourmet-syrups-giveaway",
+        "source": "contestgirl",
+        "reason": "Dead link [403]: HTTP 403"
+      },
+      {
+        "title": "MRT Tire Set Giveaway",
+        "link": "https://app.viralsweep.com/sweeps/full/538ee5-223993",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [403]: HTTP 403"
+      },
+      {
+        "title": "Wedding Vibe The Cutting Edge Sweepstakes",
+        "link": "https://gleam.io/KEVO0/evo-awards-2026-giveaway",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [403]: HTTP 403"
+      },
+      {
+        "title": "Ntonpower 2026 Easter Giveaway",
+        "link": "https://weddingvibe.com/giveaway/dinner4two/",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [0]: Network error: socket hang up"
+      },
+      {
+        "title": "LOccitane Spring Sweepstakes",
+        "link": "https://gleam.io/0O14y/2026-easter-giveaway",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [403]: HTTP 403"
+      },
+      {
+        "title": "From Fans to Dream Rigs Sweepstakes",
+        "link": "https://gleam.io/R4K0g/from-fans-to-dream-rigs-hall-of-tech",
+        "source": "ultracontest",
+        "reason": "Dead link [403]: HTTP 403"
+      }
+    ]
+  },
+  {
+    "date": "2026-03-29",
+    "timestamp": "2026-03-29T16:25:01.708Z",
+    "total_checked": 28,
+    "passed": 28,
+    "flagged": 0,
+    "removed": 0,
+    "removed_entries": [],
+    "flagged_entries": []
+  },
+  {
+    "date": "2026-03-29",
+    "timestamp": "2026-03-29T16:48:26.012Z",
+    "total_checked": 28,
+    "passed": 28,
+    "flagged": 0,
+    "removed": 0,
+    "removed_entries": [],
+    "flagged_entries": []
+  }
+]

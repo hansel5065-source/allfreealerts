@@ -6,6 +6,7 @@
   <title>AllFreeAlerts — Sweepstakes, Freebies & Settlements</title>
   <meta name="description" content="Daily alerts for sweepstakes, freebies, and class-action settlements. We find them so you never miss free stuff.">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://allfreealerts.com/">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3295178838066537" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -49,6 +50,19 @@
     .hero h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;line-height:1.25;color:var(--text)}
     .hero h1 b{color:var(--teal);font-weight:800}
     .hero-sub{margin-top:0.5rem;font-size:1rem;color:var(--text-mid);font-weight:400}
+
+    /* TRUST STRIP */
+    .trust-strip{display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-top:1rem;flex-wrap:wrap}
+    .trust-strip span{font-size:0.82rem;font-weight:600;color:var(--teal-dark)}
+    .trust-dot{width:4px;height:4px;border-radius:50%;background:var(--border);flex-shrink:0}
+
+    /* HERO EMAIL */
+    .hero-email{display:flex;gap:0.5rem;max-width:460px;margin:1.2rem auto 0}
+    .hero-email .email-input{flex:1;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:var(--white);color:var(--text);font-size:0.88rem;font-family:inherit;outline:none}
+    .hero-email .email-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(10,186,181,0.1)}
+    .hero-email .email-input::placeholder{color:var(--text-light)}
+    .hero-email .email-btn{padding:0.7rem 1.5rem;border:none;border-radius:10px;background:var(--orange);color:#fff;font-size:0.88rem;font-weight:700;font-family:inherit;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+    .hero-email .email-btn:hover{background:var(--orange-hover)}
 
     /* SEARCH BAR */
     .search-wrap{max-width:680px;margin:1.5rem auto 0;display:flex;align-items:center;background:var(--white);border:1.5px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;transition:border-color 0.2s}
@@ -242,6 +256,13 @@
       .card-body{padding:0.6rem 0.7rem}
       .card-footer{padding:0 0.7rem 0.6rem;gap:0.35rem}
     }
+    /* Responsive for static content sections */
+    @media(max-width:768px){
+      section [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr !important}
+      section [style*="grid-template-columns:repeat(2"]{grid-template-columns:1fr !important}
+      section [style*="grid-template-columns: repeat(3"]{grid-template-columns:1fr !important}
+      section [style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr !important}
+    }
   </style>
 </head>
 <body>
@@ -263,8 +284,26 @@
   </nav>
 
   <section class="hero">
-    <h1>Freebies, Sweepstakes, and Settlements &mdash; <b>All in One Place</b></h1>
-    <p class="hero-sub">Fresh opportunities updated daily. Search, filter, and save what matters.</p>
+    <h1><b>Free Stuff, Found For You</b></h1>
+    <p class="hero-sub">We check multiple sources daily so you don't have to. Sweepstakes, freebies, and settlements &mdash; all in one place.</p>
+
+    <!-- TRUST STRIP -->
+    <div class="trust-strip">
+      <span>Updated Daily</span>
+      <span class="trust-dot"></span>
+      <span>Verified Links</span>
+      <span class="trust-dot"></span>
+      <span>Multiple Categories</span>
+      <span class="trust-dot"></span>
+      <span>No Login Required</span>
+    </div>
+
+    <!-- SLIM EMAIL SIGNUP -->
+    <form class="hero-email" onsubmit="return handleEmail(event)">
+      <input type="email" class="email-input" id="heroEmailInput" placeholder="Get tomorrow's deals in your inbox" required>
+      <button type="submit" class="email-btn">Subscribe Free</button>
+    </form>
+    <p id="heroEmailMsg" style="margin-top:0.3rem;font-size:0.8rem;display:none;color:var(--teal)"></p>
 
     <div class="search-wrap">
       <span class="search-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
@@ -277,6 +316,14 @@
       </select>
       <button class="search-btn" onclick="curQ=document.getElementById('search').value.trim();doFilter()">Browse Today's Picks</button>
     </div>
+  </section>
+
+  <!-- ENDING SOON (above categories for urgency) -->
+  <section class="ending-section" id="endingSection" style="display:none">
+    <div class="section-header" style="padding:0;margin:0 0 0.7rem">
+      <h2>🔥 Ending Soon</h2>
+    </div>
+    <div class="ending-scroll" id="endingScroll"></div>
   </section>
 
   <!-- CATEGORY CARDS -->
@@ -304,14 +351,6 @@
     </div>
   </div>
 
-  <!-- ENDING SOON -->
-  <section class="ending-section" id="endingSection" style="display:none">
-    <div class="section-header" style="padding:0;margin:0 0 0.7rem">
-      <h2>🔥 Ending Soon</h2>
-    </div>
-    <div class="ending-scroll" id="endingScroll"></div>
-  </section>
-
   <!-- SECTION HEADER + SORT -->
   <div class="section-header">
     <h2>Trending Now</h2>
@@ -320,6 +359,10 @@
       <button class="pill" data-sort="newtoday">New Today</button>
       <button class="pill" data-sort="deadline">Ending Soon</button>
       <button class="pill" data-sort="payout">Top Value</button>
+      <button class="pill proof-pill" data-sort="noproof" style="display:none">No Proof Needed</button>
+      <button class="pill proof-pill" data-sort="proofyes" style="display:none">Proof Required</button>
+      <button class="pill scope-pill" data-sort="nationwide" style="display:none">Nationwide</button>
+      <button class="pill scope-pill" data-sort="state-specific" style="display:none">State-Specific</button>
     </div>
     <span class="section-right" id="totalCount" style="display:flex;gap:0.75rem">-</span>
   </div>
@@ -351,11 +394,101 @@
     </a>
   </div>
 
+  <!-- STATIC CONTENT FOR SEO + ADSENSE -->
+  <section style="max-width:1200px;margin:3rem auto 0;padding:0 1.5rem">
+
+    <!-- HOW IT WORKS -->
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem;margin-bottom:1.5rem">
+      <h2 style="font-size:1.5rem;font-weight:800;text-align:center;margin-bottom:0.5rem;letter-spacing:-0.02em">How AllFreeAlerts Works</h2>
+      <p style="text-align:center;color:var(--text-mid);max-width:600px;margin:0 auto 2rem;font-size:0.95rem">We check multiple trusted sources every day so you never miss a chance to win, save, or claim what you deserve.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;text-align:center">
+        <div>
+          <div style="font-size:2.5rem;margin-bottom:0.5rem">1</div>
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem">We Check Daily</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Our automated system checks sweepstakes databases, freebie forums, and federal settlement registries every morning to find new opportunities.</p>
+        </div>
+        <div>
+          <div style="font-size:2.5rem;margin-bottom:0.5rem">2</div>
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem">We Verify &amp; Organize</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Each listing is checked for working links, accurate deadlines, and legitimate sources. We organize everything into three clear categories: sweepstakes, freebies, and class-action settlements.</p>
+        </div>
+        <div>
+          <div style="font-size:2.5rem;margin-bottom:0.5rem">3</div>
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.3rem">You Browse &amp; Save</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Search, filter by category, sort by deadline or value, and save your favorites. Every link goes directly to the official source so you can enter or claim with confidence.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT / WHAT WE OFFER -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2rem">
+        <h2 style="font-size:1.25rem;font-weight:800;margin-bottom:1rem;letter-spacing:-0.02em">About AllFreeAlerts</h2>
+        <p style="font-size:0.9rem;color:var(--text-mid);margin-bottom:0.75rem">AllFreeAlerts is a free daily aggregator that brings together the best sweepstakes, freebies, and class-action settlements from across the internet into one easy-to-browse hub.</p>
+        <p style="font-size:0.9rem;color:var(--text-mid);margin-bottom:0.75rem">Every day, millions of dollars in prizes, free products, and settlement payouts go unclaimed simply because people do not know they exist. We built AllFreeAlerts to change that.</p>
+        <p style="font-size:0.9rem;color:var(--text-mid)">We never require you to create an account, and every listing links directly to the original official source. Our goal is simple: help you find free stuff faster.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2rem">
+        <h2 style="font-size:1.25rem;font-weight:800;margin-bottom:1rem;letter-spacing:-0.02em">What You'll Find Here</h2>
+        <div style="margin-bottom:1rem">
+          <h3 style="font-size:0.95rem;font-weight:700;color:var(--gold);margin-bottom:0.2rem">Sweepstakes &amp; Giveaways</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Cash prizes, gift cards, vacations, electronics, and more. We list sweepstakes from trusted brands and verified contest platforms with clear entry requirements and end dates.</p>
+        </div>
+        <div style="margin-bottom:1rem">
+          <h3 style="font-size:0.95rem;font-weight:700;color:var(--green);margin-bottom:0.2rem">Free Samples &amp; Products</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Free trials, sample boxes, coupons, and completely free products from major brands. Most require no purchase and ship right to your door.</p>
+        </div>
+        <div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:var(--blue);margin-bottom:0.2rem">Class-Action Settlements</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Open settlement claims where you may be owed money. We track deadlines, payout amounts, and whether proof of purchase is required so you know exactly what to expect.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem">
+      <h2 style="font-size:1.25rem;font-weight:800;margin-bottom:1.25rem;letter-spacing:-0.02em">Frequently Asked Questions</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem 2rem">
+        <div>
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem">Is AllFreeAlerts really free?</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Yes, completely free. We do not charge for access, require signups, or hide listings behind a paywall. Our site is supported by advertising.</p>
+        </div>
+        <div>
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem">How often do you update listings?</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Every day. Our automated scraper runs each morning and pulls the latest sweepstakes, freebies, and settlement claims from over a dozen trusted sources.</p>
+        </div>
+        <div>
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem">Are these sweepstakes legitimate?</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">We only aggregate from established, well-known sources. However, always read the official rules on the entry page before providing personal information.</p>
+        </div>
+        <div>
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem">How do class-action settlements work?</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">When companies lose or settle lawsuits, affected consumers can file claims for refunds. Some require proof of purchase, while others pay everyone who files. We clearly mark which is which.</p>
+        </div>
+        <div>
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem">Do I need to create an account?</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">No. You can browse, search, and access all listings without any account. Your saved items are stored locally in your browser for convenience.</p>
+        </div>
+        <div>
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem">Can I get email alerts for new listings?</h3>
+          <p style="font-size:0.85rem;color:var(--text-mid)">Yes. Enter your email in the subscribe box above and you will receive a daily summary of new sweepstakes, freebies, and settlements each morning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <noscript>
+    <div style="max-width:800px;margin:2rem auto;padding:2rem;text-align:center;background:#fff;border-radius:16px">
+      <h2>AllFreeAlerts — Daily Sweepstakes, Freebies &amp; Settlements</h2>
+      <p>AllFreeAlerts aggregates hundreds of active sweepstakes, free product samples, and class-action settlement claims updated every day. Enable JavaScript to browse, search, and filter all listings interactively, or subscribe to receive daily alerts by email.</p>
+    </div>
+  </noscript>
+
   <footer class="footer">
     &copy; 2026 AllFreeAlerts.com &mdash; We look for them so you don't have to.<br>
     AllFreeAlerts is an independent aggregator. We are not affiliated with, endorsed by, or responsible for any listed brand, contest, sweepstakes, or settlement administrator.<br>
     Always verify details on the official page before entering. If you represent a listed organization and wish to update or remove a listing, contact us.<br>
-    <a href="mailto:contact@allfreealerts.com" style="color:var(--teal);font-weight:600">contact@allfreealerts.com</a> · <a href="/advertise" style="color:var(--teal);font-weight:600">Advertise With Us</a>
+    <a href="mailto:contact@allfreealerts.com" style="color:var(--teal);font-weight:600">contact@allfreealerts.com</a> · <a href="/advertise" style="color:var(--teal);font-weight:600">Advertise</a> · <a href="/privacy" style="color:var(--teal);font-weight:600">Privacy Policy</a> · <a href="/terms" style="color:var(--teal);font-weight:600">Terms of Service</a>
   </footer>
 
 <script>
@@ -398,7 +531,8 @@ function detailFor(i){
   if(i.category==='Settlements'){
     const dl=i.deadline?'Ends '+i.deadline:'Open';
     const pr=i.proof_required&&i.proof_required!=='No'?'Proof needed':'No proof';
-    return dl+' · '+pr;
+    const sc=i.scope==='state-specific'?'State-Specific':'Nationwide';
+    return dl+' · '+pr+' · '+sc;
   }
   const ed=i.end_date||i.deadline;
   if(ed)return 'Ends '+ed;
@@ -436,6 +570,10 @@ function doFilter(){
   if(curSort==='deadline')items.sort((a,b)=>dlMs(a)-dlMs(b));
   else if(curSort==='payout')items.sort((a,b)=>payNum(b.payout||b.prize_summary)-payNum(a.payout||a.prize_summary));
   else if(curSort==='newtoday')items=items.filter(i=>isNew(i));
+  else if(curSort==='noproof')items=items.filter(i=>i.category==='Settlements'&&(!i.proof_required||i.proof_required==='No'||i.proof_required==='N/A'));
+  else if(curSort==='proofyes')items=items.filter(i=>i.category==='Settlements'&&i.proof_required==='Yes');
+  else if(curSort==='nationwide')items=items.filter(i=>i.category==='Settlements'&&(!i.scope||i.scope==='nationwide'));
+  else if(curSort==='state-specific')items=items.filter(i=>i.category==='Settlements'&&i.scope==='state-specific');
   filtered=items;curPage=1;render();
   const newCount=filtered.filter(i=>isNew(i)).length;
   document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--orange);font-weight:700">${newCount} New Today</span><span style="color:var(--border)">·</span>`:'')+`<span style="font-weight:600">${filtered.length}</span> Active Alerts`;
@@ -571,6 +709,15 @@ function syncCat(cat){
     c.classList.toggle('active',(cc===cat)||(cat==='all'&&cc==='all'));
   });
   document.getElementById('searchCat').value=cat;
+  // Show/hide proof and scope filter pills for Settlements
+  document.querySelectorAll('.proof-pill').forEach(p=>p.style.display=cat==='Settlements'?'':'none');
+  document.querySelectorAll('.scope-pill').forEach(p=>p.style.display=cat==='Settlements'?'':'none');
+  // Reset proof/scope filter when switching categories
+  if(cat!=='Settlements'){
+    document.querySelectorAll('.proof-pill').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.scope-pill').forEach(p=>p.classList.remove('active'));
+    if(curSort==='noproof'||curSort==='proofyes'||curSort==='nationwide'||curSort==='state-specific'){curSort='newest';document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('active',p.dataset.sort==='newest'))}
+  }
   doFilter();
 }
 
@@ -592,24 +739,27 @@ let st;document.getElementById('search').addEventListener('input',e=>{clearTimeo
 
 async function handleEmail(e){
   e.preventDefault();
-  const email=document.getElementById('emailInput').value;
-  const msg=document.getElementById('emailMsg');
-  const btn=e.target.querySelector('button');
+  const form=e.target;
+  const input=form.querySelector('input[type="email"]');
+  const email=input.value;
+  // Find the closest message element (hero or bottom)
+  const msgId=input.id==='heroEmailInput'?'heroEmailMsg':'emailMsg';
+  const msg=document.getElementById(msgId);
+  const btn=form.querySelector('button');
   btn.textContent='Subscribing...';btn.disabled=true;
   try{
     const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
     const d=await r.json();
     msg.textContent=d.message||"You're in!";
     msg.style.display='block';
-    if(d.ok)document.getElementById('emailInput').value='';
+    if(d.ok)input.value='';
   }catch(err){
     msg.textContent="You're in! We'll send you daily alerts.";
     msg.style.display='block';
-    // Fallback: save locally
     const subs=JSON.parse(localStorage.getItem('afa_subs')||'[]');
     subs.push({email,date:new Date().toISOString()});
     localStorage.setItem('afa_subs',JSON.stringify(subs));
-    document.getElementById('emailInput').value='';
+    input.value='';
   }
   btn.textContent='Subscribe';btn.disabled=false;
   return false;
@@ -623,7 +773,11 @@ function updateNewCount(){
 
 localStorage.setItem('afa_lastvisit',Date.now().toString());
 
-fetch('data.json').then(r=>r.json()).then(d=>{
+fetch('data.json').then(r=>r.text()).then(raw=>{
+  // Decode XOR-encoded data
+  const k='aFa2026xK';
+  const b=Uint8Array.from(atob(raw),c=>c.charCodeAt(0));
+  const d=JSON.parse(new TextDecoder().decode(b.map((v,i)=>v^k.charCodeAt(i%k.length))));
   allItems=d;
   updateNewCount();
   renderEnding();

@@ -1,6 +1,7 @@
 User-agent: *
 Disallow: /data.json
 
+# Block AI crawlers
 User-agent: GPTBot
 Disallow: /
 
@@ -14,6 +15,58 @@ User-agent: Google-Extended
 Disallow: /
 
 User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /data.json
+
+# Block common scraping tools
+User-agent: Scrapy
+Disallow: /
+
+User-agent: curl
+Disallow: /data.json
+
+User-agent: wget
+Disallow: /data.json
+
+User-agent: python-requests
+Disallow: /
+
+User-agent: Go-http-client
+Disallow: /
+
+User-agent: Java
+Disallow: /
+
+User-agent: node-fetch
+Disallow: /
+
+User-agent: axios
+Disallow: /
+
+User-agent: HttpClient
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /data.json
+
+User-agent: SemrushBot
+Disallow: /data.json
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
 Disallow: /
 
 Sitemap: https://allfreealerts.com/sitemap.xml

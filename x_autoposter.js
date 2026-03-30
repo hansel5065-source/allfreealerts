@@ -174,26 +174,35 @@ async function generateImage(item, category, index) {
 }
 
 // ── Tweet Templates ──
+// ── Cross-Promotion Lines for X (rotate randomly) ──
+const X_CROSS_PROMO = [
+  '📸 Follow us on IG → @allfreealerts',
+  '📘 More deals on our Facebook page!',
+  '📸 Daily posts on Instagram → @allfreealerts',
+  '📘 Like us on Facebook for extra finds!',
+];
+function pickXPromo() { return X_CROSS_PROMO[Math.floor(Math.random() * X_CROSS_PROMO.length)]; }
+
 const TEMPLATES = {
   sweepstakes: [
-    (item) => `🎉 SWEEPSTAKES ALERT\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 100) + '...' : 'Enter now for a chance to win!'}\n\n${item.end_date ? '⏰ Ends: ' + item.end_date + '\n' : ''}👉 allfreealerts.com\n\n#sweepstakes #giveaway #win #free #allfreealerts`,
-    (item) => `Win something amazing today! 🏆\n\n${item.title}\n\n${item.end_date ? 'Deadline: ' + item.end_date + '\n' : ''}Find it on 👉 allfreealerts.com\n\n#entertowin #sweepstakes #contest #free`,
-    (item) => `Don't miss this one 👀\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 120) : 'Free to enter!'}\n\n👉 allfreealerts.com\n\n#giveaway #sweepstakes #win #allfreealerts`
+    (item) => `🎉 SWEEPSTAKES ALERT\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 100) + '...' : 'Enter now for a chance to win!'}\n\n${item.end_date ? '⏰ Ends: ' + item.end_date + '\n' : ''}👉 allfreealerts.com\n${pickXPromo()}\n\n#sweepstakes #giveaway #win #free #allfreealerts`,
+    (item) => `Win something amazing today! 🏆\n\n${item.title}\n\n${item.end_date ? 'Deadline: ' + item.end_date + '\n' : ''}Find it on 👉 allfreealerts.com\n${pickXPromo()}\n\n#entertowin #sweepstakes #contest #free`,
+    (item) => `Don't miss this one 👀\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 120) : 'Free to enter!'}\n\n👉 allfreealerts.com\n${pickXPromo()}\n\n#giveaway #sweepstakes #win #allfreealerts`
   ],
   freebies: [
-    (item) => `🆓 FREE STUFF ALERT\n\n${item.title}\n\nNo purchase necessary. Get yours before it's gone!\n\n👉 allfreealerts.com\n\n#freestuff #freebie #freesample #allfreealerts`,
-    (item) => `This is completely FREE 👇\n\n${item.title}\n\nNo credit card. No catch.\n\nFind it at 👉 allfreealerts.com\n\n#free #freebie #freesample #freestuff`,
-    (item) => `Today's freebie find 🎁\n\n${item.title}\n\nGrab it while supplies last 👉 allfreealerts.com\n\n#freebies #freestuff #savemoney #allfreealerts`
+    (item) => `🆓 FREE STUFF ALERT\n\n${item.title}\n\nNo purchase necessary. Get yours before it's gone!\n\n👉 allfreealerts.com\n${pickXPromo()}\n\n#freestuff #freebie #freesample #allfreealerts`,
+    (item) => `This is completely FREE 👇\n\n${item.title}\n\nNo credit card. No catch.\n\nFind it at 👉 allfreealerts.com\n${pickXPromo()}\n\n#free #freebie #freesample #freestuff`,
+    (item) => `Today's freebie find 🎁\n\n${item.title}\n\nGrab it while supplies last 👉 allfreealerts.com\n${pickXPromo()}\n\n#freebies #freestuff #savemoney #allfreealerts`
   ],
   settlements: [
-    (item) => `💰 CLASS ACTION ALERT\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 100) + '...' : 'You may be owed money!'}\n\nFile your claim 👉 allfreealerts.com\n\n#classaction #settlement #freemoney #allfreealerts`,
-    (item) => `You might be owed money 💵\n\n${item.title}\n\nCheck if you qualify 👉 allfreealerts.com\n\n#settlement #classaction #moneytok #allfreealerts`,
-    (item) => `Don't leave money on the table!\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 100) : 'Check if you qualify.'}\n\n👉 allfreealerts.com\n\n#classaction #freemoney #settlement`
+    (item) => `💰 CLASS ACTION ALERT\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 100) + '...' : 'You may be owed money!'}\n\nFile your claim 👉 allfreealerts.com\n${pickXPromo()}\n\n#classaction #settlement #freemoney #allfreealerts`,
+    (item) => `You might be owed money 💵\n\n${item.title}\n\nCheck if you qualify 👉 allfreealerts.com\n${pickXPromo()}\n\n#settlement #classaction #moneytok #allfreealerts`,
+    (item) => `Don't leave money on the table!\n\n${item.title}\n\n${item.prize_summary ? item.prize_summary.slice(0, 100) : 'Check if you qualify.'}\n\n👉 allfreealerts.com\n${pickXPromo()}\n\n#classaction #freemoney #settlement`
   ],
   general: [
-    () => `🔥 ${getItemCount()} free things on ONE website right now.\n\nSweepstakes. Freebies. Settlement payouts.\n\nUpdated daily. Completely free.\n\n👉 allfreealerts.com\n\n#freestuff #sweepstakes #freebies #settlements #allfreealerts`,
-    () => `You're leaving free money on the table every single month.\n\nFree samples. Sweepstakes. Class action settlements.\n\nWe find them so you don't have to.\n\n👉 allfreealerts.com\n\n#free #savemoney #freemoney #allfreealerts`,
-    () => `Most people don't know this, but companies that lose class action lawsuits have to pay you money.\n\nThe catch? You have to file a claim before the deadline.\n\nWe track every open settlement:\n👉 allfreealerts.com\n\n#classaction #freemoney #allfreealerts`
+    () => `🔥 ${getItemCount()} free things on ONE website right now.\n\nSweepstakes. Freebies. Settlement payouts.\n\nUpdated daily. Completely free.\n\n👉 allfreealerts.com\n${pickXPromo()}\n\n#freestuff #sweepstakes #freebies #settlements #allfreealerts`,
+    () => `You're leaving free money on the table every single month.\n\nFree samples. Sweepstakes. Class action settlements.\n\nWe find them so you don't have to.\n\n👉 allfreealerts.com\n${pickXPromo()}\n\n#free #savemoney #freemoney #allfreealerts`,
+    () => `Most people don't know this, but companies that lose class action lawsuits have to pay you money.\n\nThe catch? You have to file a claim before the deadline.\n\nWe track every open settlement:\n👉 allfreealerts.com\n${pickXPromo()}\n\n#classaction #freemoney #allfreealerts`
   ]
 };
 
@@ -214,12 +223,21 @@ function saveHistory(history) {
 
 // ── Load scraped data ──
 function loadData() {
-  const dataFile = path.join(__dirname, 'site', 'data.json');
   try {
-    return JSON.parse(fs.readFileSync(dataFile, 'utf8'));
-  } catch (e) {
-    console.error('Could not load data.json:', e.message);
-    return [];
+    // Try internal data first (not encoded)
+    return JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'results.json'), 'utf8'));
+  } catch {
+    try {
+      // Fallback: decode encoded site/data.json
+      const raw = fs.readFileSync(path.join(__dirname, 'site', 'data.json'), 'utf8');
+      const key = 'aFa2026xK';
+      const b = Buffer.from(raw, 'base64');
+      const decoded = Buffer.from(b.map((v, i) => v ^ key.charCodeAt(i % key.length)));
+      return JSON.parse(decoded.toString('utf8'));
+    } catch (e) {
+      console.error('Could not load data:', e.message);
+      return [];
+    }
   }
 }
 
@@ -237,6 +255,7 @@ function pickItems() {
   const categories = ['Sweepstakes', 'Freebies', 'Settlements'];
   const tweets = [];
 
+  // Pick 1 per category first (3 tweets)
   for (const cat of categories) {
     const catItems = data.filter(i =>
       i.category === cat && !postedLinks.has(i.link)
@@ -254,17 +273,36 @@ function pickItems() {
       let text = template(item);
       if (text.length > 280) text = text.slice(0, 277) + '...';
       tweets.push({ text, link: item.link, type: cat, item });
+      postedLinks.add(item.link); // avoid picking same item again
     }
   }
 
-  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-  if (dayOfYear % 3 === 0) {
-    const genTemplates = TEMPLATES.general;
-    const template = genTemplates[dayOfYear % genTemplates.length];
-    let text = template();
-    if (text.length > 280) text = text.slice(0, 277) + '...';
-    tweets.push({ text, link: null, type: 'general', item: null });
+  // Pick 1 more from a random category (4th tweet)
+  const shuffled = categories.sort(() => Math.random() - 0.5);
+  for (const cat of shuffled) {
+    const catItems = data.filter(i =>
+      i.category === cat && !postedLinks.has(i.link)
+    );
+    if (catItems.length > 0) {
+      const item = catItems[Math.floor(Math.random() * catItems.length)];
+      const templateKey = cat.toLowerCase();
+      const templates = TEMPLATES[templateKey] || TEMPLATES.freebies;
+      const template = templates[Math.floor(Math.random() * templates.length)];
+      let text = template(item);
+      if (text.length > 280) text = text.slice(0, 277) + '...';
+      tweets.push({ text, link: item.link, type: cat, item });
+      postedLinks.add(item.link);
+      break;
+    }
   }
+
+  // Always add 1 general tweet (5th tweet)
+  const genTemplates = TEMPLATES.general;
+  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  const template = genTemplates[dayOfYear % genTemplates.length];
+  let text = template();
+  if (text.length > 280) text = text.slice(0, 277) + '...';
+  tweets.push({ text, link: null, type: 'general', item: null });
 
   return tweets;
 }

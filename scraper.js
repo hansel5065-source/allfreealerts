@@ -116,6 +116,26 @@ const JUNK_DOMAINS = [
   'wp-content', 'wp-json', 'cdn.',
 ];
 
+// US state names for settlement scope detection
+const US_STATES = [
+  'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
+  'Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa',
+  'Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan',
+  'Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire',
+  'New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio',
+  'Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota',
+  'Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia',
+  'Wisconsin','Wyoming'
+];
+
+function detectScope(text) {
+  const lower = (text || '').toLowerCase();
+  for (const state of US_STATES) {
+    if (lower.includes(state.toLowerCase())) return 'state-specific';
+  }
+  return 'nationwide';
+}
+
 function extractOutboundLink(html, excludeDomain) {
   const linkRegex = /href="(https?:\/\/[^"]+)"/g;
   let m;
@@ -381,14 +401,17 @@ async function classactionOrg() {
       if (!isNaN(parsed.getTime()) && parsed < new Date()) { skipped++; continue; }
     }
 
+    const titleText = decodeEntities(linkMatch[2].trim());
+    const descText = descMatch ? decodeEntities(descMatch[1].trim()) : '';
     items.push({
-      title: decodeEntities(linkMatch[2].trim()),
+      title: titleText,
       link: linkMatch[1],
       source: 'classaction', category: 'Settlements',
       deadline: deadlineDate,
       payout: payoutMatch ? payoutMatch[1].trim() : '',
       proof_required: proofMatch ? proofMatch[1].trim() : '',
-      description: descMatch ? decodeEntities(descMatch[1].trim()) : '',
+      description: descText,
+      scope: detectScope(titleText + ' ' + descText),
     });
   }
   log(`  CA: ${items.length} active settlements (${skipped} skipped)`);
@@ -493,10 +516,12 @@ async function topClassActions() {
     const titleLower = rss.title.toLowerCase();
     if (titleLower.includes('settlement') || titleLower.includes('class action') ||
         titleLower.includes('refund') || titleLower.includes('claim')) {
+      const tcaTitle = decodeEntities(rss.title.trim());
       items.push({
-        title: decodeEntities(rss.title.trim()),
+        title: tcaTitle,
         link: rss.link.trim(),
         source: 'topclassactions', category: 'Settlements',
+        scope: detectScope(tcaTitle),
       });
     }
   }
@@ -519,10 +544,201 @@ async function ftcRefunds() {
       title: decodeEntities(title),
       link: 'https://www.ftc.gov' + m[1],
       source: 'ftc', category: 'Settlements',
+      scope: 'nationwide',
     });
   }
   log(`  FTC: ${items.length} refund cases`);
   return items;
+}
+
+// ContestListing.com - scrape listing pages, follow detail pages for direct entry links
+async function contestListing() {
+  log('Scraping ContestListing (pages 1-2, detail follow)...');
+  const items = [];
+  const seen = new Set();
+  const pageUrls = [
+    'https://www.contestlisting.com/',
+    'https://www.contestlisting.com/?page=2',
+  ];
+
+  for (const pageUrl of pageUrls) {
+    const html = await fetchPage(pageUrl);
+    if (!html) { log(`  CL: FAILED ${pageUrl}`); continue; }
+
+    // Each card: <a href="/slug/"> <div class="col-sm-2"> ... <p>Title</p> ... labels ... </div></div></div></a>
+    const cardRe = /<a href="(\/[a-z0-9][a-z0-9\-]+-?(?:\d+)?\/)">[\s\S]*?<div class="col-sm-2"[\s\S]*?<p>([^<]+)<\/p>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>\s*<\/a>/g;
+    let m, count = 0;
+    while ((m = cardRe.exec(html)) !== null) {
+      const slug = m[1];
+      const title = decodeEntities(m[2].trim());
+      if (seen.has(slug)) continue;
+      if (title.length < 10) continue;
+
+      // Extract country labels from the card block
+      const cardBlock = m[0];
+      const countryLabels = [];
+      const countryRe = /label-warning[^>]*>([^<]+)</g;
+      let cm;
+      while ((cm = countryRe.exec(cardBlock)) !== null) {
+        countryLabels.push(cm[1].trim());
+      }
+      const eligibility = countryLabels.join(', ');
+
+      // Only include US or Worldwide entries
+      const eligible = countryLabels.some(c =>
+        c.toLowerCase().includes('united states') || c.toLowerCase().includes('worldwide')
+      );
+      if (!eligible) continue;
+
+      seen.add(slug);
+      count++;
+      items.push({
+        title,
+        detailUrl: 'https://www.contestlisting.com' + slug,
+        link: '', // will be resolved from detail page
+        source: 'contestlisting', category: 'Sweepstakes',
+        eligibility,
+        end_date: '',
+      });
+    }
+    log(`  CL page ${pageUrl.includes('page=2') ? '2' : '1'}: ${count} eligible items`);
+  }
+
+  // Follow detail pages to get direct entry links and deadlines
+  log(`  CL: Following ${items.length} detail pages...`);
+  let resolved = 0;
+  await resolveInBatches(items, async (item) => {
+    const html = await fetchPage(item.detailUrl);
+    if (!html) return;
+
+    // Extract direct entry link: <a target="_blank" href="EXTERNAL_URL" class="btn btn-success"
+    const entryMatch = html.match(/<a[^>]*target="_blank"[^>]*href="(https?:\/\/[^"]+)"[^>]*class="btn btn-success"/);
+    if (!entryMatch) {
+      // Try alternate order: class before href
+      const altMatch = html.match(/<a[^>]*class="btn btn-success"[^>]*href="(https?:\/\/[^"]+)"[^>]*target="_blank"/);
+      if (altMatch) {
+        item.link = altMatch[1].replace(/&amp;/g, '&');
+        resolved++;
+      }
+    } else {
+      item.link = entryMatch[1].replace(/&amp;/g, '&');
+      resolved++;
+    }
+
+    // Extract deadline: Ending in X days <small>(on DATE)</small>
+    const deadlineMatch = html.match(/Ending in \d+ days?\s*<small>\(on ([^)]+)\)<\/small>/);
+    if (deadlineMatch) {
+      item.end_date = deadlineMatch[1].trim();
+    }
+
+    // Extract image from detail page
+    const img = extractImage(html);
+    if (img) item.image = img;
+  }, 10);
+  log(`  CL: ${resolved}/${items.length} direct entry links found`);
+
+  // Only keep items where we found a direct external link (no middleman)
+  return items.filter(i => i.link && i.link.startsWith('http')).map(({ detailUrl, ...rest }) => rest);
+}
+
+// GiveawayBase - scrape active giveaways listing, follow detail pages for entry links
+// NOTE: Site uses Cloudflare managed challenge. fetchPage() may get 403 in some environments.
+// If it fails, it returns [] gracefully via the .catch() wrapper in main().
+async function giveawayBase() {
+  log('Scraping GiveawayBase (pages 1-3, detail follow)...');
+  const items = [];
+  const seen = new Set();
+  const pageUrls = [
+    'https://giveawaybase.com/category/active-giveaways/',
+    'https://giveawaybase.com/category/active-giveaways/page/2/',
+    'https://giveawaybase.com/category/active-giveaways/page/3/',
+  ];
+
+  for (const pageUrl of pageUrls) {
+    const html = await fetchPage(pageUrl);
+    if (!html) { log(`  GB: FAILED ${pageUrl}`); continue; }
+
+    // Each listing: <article class="post-XXXX ..."> <header> <h2 class="entry-title"><a href="URL">Title</a></h2>
+    const articleRe = /<article[^>]*class="[^"]*post[^"]*"[^>]*>[\s\S]*?<h2[^>]*class="entry-title"[^>]*>\s*<a[^>]*href="(https:\/\/giveawaybase\.com\/[^"]+)"[^>]*>([^<]+)<\/a>/g;
+    let m, count = 0;
+    while ((m = articleRe.exec(html)) !== null) {
+      const detailUrl = m[1].replace(/&amp;/g, '&');
+      const title = decodeEntities(m[2].trim());
+      if (seen.has(detailUrl)) continue;
+      if (title.length < 10) continue;
+      seen.add(detailUrl);
+      count++;
+      items.push({
+        title,
+        detailUrl,
+        link: '', // will be resolved from detail page
+        source: 'giveawaybase', category: 'Sweepstakes',
+        eligibility: '',
+        end_date: '',
+      });
+    }
+    log(`  GB page ${pageUrl.includes('page/2') ? '2' : pageUrl.includes('page/3') ? '3' : '1'}: ${count} items`);
+  }
+
+  // Follow detail pages to get direct entry links, end dates, and eligibility
+  log(`  GB: Following ${items.length} detail pages...`);
+  let resolved = 0;
+  await resolveInBatches(items, async (item) => {
+    const html = await fetchPage(item.detailUrl);
+    if (!html) return;
+
+    // Extract eligibility: <h3>OPEN TO: WORLDWIDE</h3> or similar heading tag
+    const openMatch = html.match(/<h[1-6][^>]*>[^<]*OPEN TO:\s*([^<]+)<\/h[1-6]>/i);
+    if (openMatch) {
+      item.eligibility = openMatch[1].trim();
+    }
+
+    // Only include US/Worldwide entries
+    const elig = item.eligibility.toUpperCase();
+    if (!elig.includes('WORLDWIDE') && !elig.includes('US') && !elig.includes('UNITED STATES')) {
+      item.link = ''; // mark for removal
+      return;
+    }
+
+    // Extract end date: <h3>GIVEAWAY END: April 28th, 2026</h3>
+    const endMatch = html.match(/<h[1-6][^>]*>[^<]*GIVEAWAY END:\s*([^<]+)<\/h[1-6]>/i);
+    if (endMatch) {
+      item.end_date = endMatch[1].trim();
+    }
+
+    // Extract direct entry link: target="_blank" link that's NOT giveawaybase.com or social media
+    // The entry link is typically in STEP 1 area, inside <a target="_blank" href="https://wn.nr/..." or "https://gleam.io/..."
+    const linkRe = /<a[^>]*target="_blank"[^>]*href="(https?:\/\/[^"]+)"[^>]*>/g;
+    let lm;
+    while ((lm = linkRe.exec(html)) !== null) {
+      const url = lm[1].replace(/&amp;/g, '&').trim();
+      const lower = url.toLowerCase();
+      // Skip internal and social/ad links
+      if (lower.includes('giveawaybase.com')) continue;
+      if (lower.includes('facebook.com')) continue;
+      if (lower.includes('twitter.com')) continue;
+      if (lower.includes('instagram.com')) continue;
+      if (lower.includes('pinterest.com')) continue;
+      if (lower.includes('youtube.com')) continue;
+      if (lower.includes('t.me/')) continue;
+      if (lower.includes('binance.com')) continue;
+      if (lower.includes('earnapp.com')) continue;
+      if (lower.includes('proxyrack.com')) continue;
+      if (lower.includes('honeygain.me')) continue;
+      // Found the entry link (first external non-social link)
+      item.link = url;
+      resolved++;
+      break;
+    }
+
+    // Extract image from detail page
+    const img = extractImage(html);
+    if (img) item.image = img;
+  }, 10);
+  log(`  GB: ${resolved}/${items.length} direct entry links found`);
+
+  // Only keep items where we found a direct external link and eligibility passed
+  return items.filter(i => i.link && i.link.startsWith('http')).map(({ detailUrl, ...rest }) => rest);
 }
 
 // === NEW SOURCES ===
@@ -825,7 +1041,7 @@ async function main() {
   const existingLinks = new Set(existing.map(e => e.link));
 
   // Scrape all sources in parallel where possible
-  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf] = await Promise.all([
+  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb] = await Promise.all([
     scrapeContestgirl().catch(e => { log(`CG ERROR: ${e.message}`); return []; }),
     sweepstakesFanatics().catch(e => { log(`SF ERROR: ${e.message}`); return []; }),
     freebieshark().catch(e => { log(`FS ERROR: ${e.message}`); return []; }),
@@ -844,9 +1060,11 @@ async function main() {
     ultraContest().catch(e => { log(`UC ERROR: ${e.message}`); return []; }),
     iLoveGiveaways().catch(e => { log(`ILG ERROR: ${e.message}`); return []; }),
     freeStuffFinder().catch(e => { log(`FSF ERROR: ${e.message}`); return []; }),
+    contestListing().catch(e => { log(`CL ERROR: ${e.message}`); return []; }),
+    giveawayBase().catch(e => { log(`GB ERROR: ${e.message}`); return []; }),
   ]);
 
-  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf];
+  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb];
 
   // Clean + Deduplicate
   const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/'];
@@ -922,12 +1140,17 @@ async function main() {
   fs.writeFileSync(CSV_FILE, csvRows.join('\n'), 'utf8');
   log(`Saved CSV to ${CSV_FILE}`);
 
-  // Copy data to site folder for the website
+  // Copy data to site folder for the website (strip source + encode for anti-scraping)
   const SITE_DATA = path.join(__dirname, 'site', 'data.json');
   try {
-    fs.copyFileSync(RESULTS_FILE, SITE_DATA);
-    log(`Copied data to site folder`);
-  } catch (e) { log(`Could not copy to site: ${e.message}`); }
+    const publicData = final.map(({ source, ...rest }) => rest);
+    const jsonStr = JSON.stringify(publicData);
+    // XOR encode with rotating key to prevent plain-text scraping
+    const key = 'aFa2026xK';
+    const encoded = Buffer.from(jsonStr).map((b, i) => b ^ key.charCodeAt(i % key.length));
+    fs.writeFileSync(SITE_DATA, encoded.toString('base64'), 'utf8');
+    log(`Wrote ${publicData.length} items to site folder (encoded, source stripped)`);
+  } catch (e) { log(`Could not write to site: ${e.message}`); }
 
   // Send Telegram summary
   if (newItems.length > 0) {

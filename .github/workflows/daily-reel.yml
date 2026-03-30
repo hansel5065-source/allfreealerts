@@ -1,0 +1,50 @@
+name: Daily Reel — AllFreeAlerts
+
+on:
+  schedule:
+    # 5pm ET = 9pm UTC (during EDT) / 10pm UTC (during EST)
+    - cron: '0 21 * * *'
+  workflow_dispatch: # manual trigger button
+
+jobs:
+  autopost-reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: git pull origin main
+        name: Pull latest data
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          npm install puppeteer
+          pip install numpy scipy
+
+      - name: Generate and post Reel to IG + FB
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node generate_reel.js
+
+      - name: Commit post history
+        run: |
+          git config user.name "AllFreeAlerts Bot"
+          git config user.email "bot@allfreealerts.com"
+          git add ig_fb_post_history.json
+          git diff --staged --quiet || git commit -m "Update Reel post history $(date +%Y-%m-%d)"
+          git push || echo "Push failed, will retry next run"

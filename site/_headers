@@ -1,0 +1,12 @@
+# Restrict data.json — only our site can fetch it via browser
+/data.json
+  Access-Control-Allow-Origin: https://allfreealerts.com
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+# Security headers for all pages
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin

@@ -512,12 +512,25 @@ async function postFBReel(videoFilePath, caption) {
   }
   log('  FB binary upload successful');
 
+  // Step 3: Wait for processing before publishing
+  log('  Waiting for FB video processing...');
+  let status = 'not_started';
+  for (let i = 0; i < 30; i++) {
+    await new Promise(r => setTimeout(r, 5000));
+    const check = await graphAPI(`${videoId}`, { fields: 'status', access_token: FB_PAGE_TOKEN }, 'GET');
+    status = check?.status?.processing_phase?.status || check?.status?.video_status || 'unknown';
+    log(`  Processing status (${i + 1}/30): ${status}`);
+    if (status === 'ready' || status === 'complete') break;
+    if (status === 'error') { log('  FB processing error'); return null; }
+  }
+
   // Step 3: Finish and publish
   const finish = await graphAPI(`${FB_PAGE_ID}/video_reels`, {
     upload_phase: 'finish',
     video_id: videoId,
     title: "Today's Free Stuff Picks",
     description: caption,
+    published: 'true',
     access_token: FB_PAGE_TOKEN
   });
 

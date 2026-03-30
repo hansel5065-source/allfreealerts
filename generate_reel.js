@@ -462,10 +462,10 @@ async function postIGReel(videoUrl, caption) {
 }
 
 // ── Upload Reel to Facebook ──
-async function postFBReel(videoUrl, caption) {
+// FB Reels require binary upload: init → upload binary to rupload URL → finish
+async function postFBReel(videoFilePath, caption) {
   log('Posting Reel to Facebook...');
 
-  // FB Reels use the video_reels endpoint
   // Step 1: Initialize upload
   const init = await graphAPI(`${FB_PAGE_ID}/video_reels`, {
     upload_phase: 'start',
@@ -474,34 +474,55 @@ async function postFBReel(videoUrl, caption) {
 
   if (init.error) {
     log('FB init error: ' + JSON.stringify(init.error));
-    // Fallback: post as regular video
-    log('Falling back to regular video post...');
-    const fallback = await graphAPI(`${FB_PAGE_ID}/videos`, {
-      file_url: videoUrl,
-      description: caption,
-      access_token: FB_PAGE_TOKEN
-    });
-    if (fallback.id) log(`  FB video posted: ${fallback.id}`);
-    else log('  FB fallback error: ' + JSON.stringify(fallback));
-    return fallback.id || null;
+    return null;
   }
 
   const videoId = init.video_id;
+  const uploadUrl = init.upload_url;
   log(`  FB upload initialized: ${videoId}`);
 
-  // Step 2: Upload video binary
-  // For URL-based upload, use file_url in finish phase
+  // Step 2: Upload video binary to rupload URL
+  const videoData = fs.readFileSync(videoFilePath);
+  const uploaded = await new Promise((resolve, reject) => {
+    const parsed = new URL(uploadUrl);
+    const req = https.request({
+      hostname: parsed.hostname,
+      path: parsed.pathname,
+      method: 'POST',
+      headers: {
+        'Authorization': `OAuth ${FB_PAGE_TOKEN}`,
+        'offset': '0',
+        'file_size': videoData.length.toString(),
+        'Content-Type': 'application/octet-stream',
+        'Content-Length': videoData.length
+      }
+    }, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => { try { resolve(JSON.parse(data)); } catch { resolve(data); } });
+    });
+    req.on('error', reject);
+    req.write(videoData);
+    req.end();
+  });
+
+  if (!uploaded.success) {
+    log('  FB binary upload failed: ' + JSON.stringify(uploaded));
+    return null;
+  }
+  log('  FB binary upload successful');
+
+  // Step 3: Finish and publish
   const finish = await graphAPI(`${FB_PAGE_ID}/video_reels`, {
     upload_phase: 'finish',
     video_id: videoId,
-    video_file_url: videoUrl,
     title: "Today's Free Stuff Picks",
     description: caption,
     access_token: FB_PAGE_TOKEN
   });
 
-  if (finish.success || finish.id) {
-    log(`  FB Reel published: ${videoId}`);
+  if (finish.success) {
+    log(`  FB Reel published: ${videoId} (post: ${finish.post_id || 'processing'})`);
     return videoId;
   } else {
     log('  FB finish error: ' + JSON.stringify(finish));
@@ -576,7 +597,7 @@ async function main() {
 
   // Post to Facebook
   if (FB_PAGE_TOKEN) {
-    await postFBReel(videoUrl, caption);
+    await postFBReel(REEL_FILE, caption);
   } else {
     log('Skipping FB (no page token)');
   }

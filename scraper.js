@@ -789,31 +789,6 @@ async function consumerAction() {
     });
   }
 
-  // Also scrape pending settlements (no deadlines yet, but upcoming)
-  const pendingHtml = await fetchPage('https://www.consumer-action.org/lawsuits/by-status/pending');
-  if (pendingHtml) {
-    const pendingRe = /<div[^>]*class="white-bkgrnd[^"]*"[^>]*>([\s\S]*?)<\/div>\s*(?:<div|<\/div>)/g;
-    let pb;
-    while ((pb = pendingRe.exec(pendingHtml)) !== null) {
-      const content = pb[1];
-      const titleMatch = content.match(/<h2[^>]*class="action-title"[^>]*>\s*<a[^>]*>([^<]+)/);
-      if (!titleMatch) continue;
-      const title = decodeEntities(titleMatch[1].replace(/\s*»\s*$/, '').trim());
-
-      // For pending, get "Learn More" link
-      const linkMatch = content.match(/<a[^>]*href="(https?:\/\/(?!www\.consumer-action)[^"]+)"[^>]*>/);
-      if (!linkMatch) continue;
-
-      if (title.length < 10) continue;
-
-      items.push({
-        title: title + ' Class Action',
-        link: linkMatch[1].trim(),
-        source: 'consumer-action', category: 'Settlements',
-        scope: detectScope(title),
-      });
-    }
-  }
 
   log(`  CACT: ${items.length} settlements`);
   return items;

@@ -77,6 +77,7 @@ function pickItems() {
 
 // ── Generate beat ──
 function generateBeat() {
+  if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
   if (fs.existsSync(BEAT_FILE)) {
     const stat = fs.statSync(BEAT_FILE);
     const age = Date.now() - stat.mtimeMs;
@@ -86,7 +87,8 @@ function generateBeat() {
     }
   }
   log('Generating beat...');
-  const result = spawnSync('python', [path.join(__dirname, 'generate_beat.py'), BEAT_FILE], {
+  const pyCmd = process.platform === 'win32' ? 'python' : 'python3';
+  const result = spawnSync(pyCmd, [path.join(__dirname, 'generate_beat.py'), BEAT_FILE], {
     stdio: 'pipe', timeout: 30000
   });
   if (result.status !== 0) {

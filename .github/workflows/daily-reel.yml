@@ -31,8 +31,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
           npm install puppeteer
           pip install numpy scipy
+          mkdir -p tmp_videos
 
       - name: Generate and post Reel to IG + FB
         env:

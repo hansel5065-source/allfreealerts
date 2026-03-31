@@ -833,11 +833,13 @@ async function settlemate() {
     }
   }
 
-  log(`  SM: Found ${detailItems.length} settlement pages, following details...`);
+  // Limit to 12 detail pages to avoid pipeline timeout
+  const detailBatch = detailItems.slice(0, 12);
+  log(`  SM: Found ${detailItems.length} settlement pages, following top ${detailBatch.length}...`);
 
   // Follow detail pages to get claim URLs, deadlines, and full titles
-  await resolveInBatches(detailItems, async (item) => {
-    const detailHtml = await fetchPage(`https://www.settlemate.io${item.slug}`);
+  await resolveInBatches(detailBatch, async (item) => {
+    const detailHtml = await fetchPage(`https://www.settlemate.io${item.slug}`, 8000);
     if (!detailHtml) return;
 
     // Get title from detail page if missing
@@ -877,7 +879,7 @@ async function settlemate() {
   }, 5);
 
   // Build final items — only those with claim URLs and not expired
-  for (const item of detailItems) {
+  for (const item of detailBatch) {
     if (item.expired) continue;
     if (!item.claimUrl || !item.title) continue;
     if (item.title.length < 10) continue;
@@ -1300,7 +1302,7 @@ async function main() {
   // Copy data to site folder for the website (strip source + encode for anti-scraping)
   const SITE_DATA = path.join(__dirname, 'site', 'data.json');
   try {
-    const publicData = final.map(({ source, ...rest }) => rest);
+    const publicData = allResults.map(({ source, ...rest }) => rest);
     const jsonStr = JSON.stringify(publicData);
     // XOR encode with rotating key to prevent plain-text scraping
     const key = 'aFa2026xK';

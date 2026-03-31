@@ -147,12 +147,12 @@ async function generateImage(item, category, index) {
 
 // ── Cross-Promotion Lines (rotate randomly) ──
 const IG_CROSS_PROMO = [
-  '📘 Facebook · 🐦 X @allabordfree · 🎵 TikTok @allfreealerts',
-  '🔗 Also on Facebook, X (@allabordfree) & TikTok!',
+  '👤 facebook.com/allfreealerts · 🐦 @allfreealerts on X · 🦋 @allfreealerts.bsky.social',
+  '🔗 Also on Facebook, X & Bluesky → @allfreealerts everywhere!',
 ];
 const FB_CROSS_PROMO = [
-  '📸 IG @allfreealerts · 🐦 X @allabordfree · 🎵 TikTok @allfreealerts',
-  '🔗 Also on Instagram, X (@allabordfree) & TikTok!',
+  '📸 @allfreealerts on IG · 🐦 @allfreealerts on X · 🦋 @allfreealerts.bsky.social',
+  '🔗 Also on Instagram, X & Bluesky → @allfreealerts everywhere!',
 ];
 function pickPromo(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 

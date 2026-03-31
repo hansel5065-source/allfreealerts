@@ -455,6 +455,9 @@ function buildReelCaption(picks) {
   }
   lines.push(`\n👉 Link in bio — allfreealerts.com`);
   lines.push(`📱 Follow @allfreealerts for daily finds!`);
+  lines.push(`\n👤 facebook.com/allfreealerts`);
+  lines.push(`🐦 @allfreealerts on X`);
+  lines.push(`🦋 @allfreealerts.bsky.social`);
   lines.push(`\n#freestuff #sweepstakes #giveaway #freebie #classaction #settlements #free #deals #win #contest`);
   return lines.join('\n');
 }

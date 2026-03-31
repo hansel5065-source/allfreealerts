@@ -40,7 +40,7 @@ function buildTweetText(item) {
   }
 
   text += `\n\n👉 ${SITE_URL}`;
-  text += '\n\n📸 IG @allfreealerts';
+  text += '\n📸 IG · 👤 FB · 🦋 Bluesky → @allfreealerts';
   text += '\n#allfreealerts #freestuff #sweepstakes #settlements';
 
   // Keep under 280 chars for X

@@ -184,3 +184,36 @@ jobs:
           git diff --staged --quiet || git commit -m "Update IG/FB post history $(date +%Y-%m-%d)"
           git push || echo "Push failed, will retry next run"
 
+  # ── Auto-Post to Bluesky (after deploy) ──
+  autopost-bluesky:
+    runs-on: ubuntu-latest
+    needs: [allfreealerts]
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: git pull origin main
+        name: Pull latest data
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Post to Bluesky
+        env:
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+        run: node bluesky_autoposter.js
+
+      - name: Commit post history
+        run: |
+          git config user.name "AllFreeAlerts Bot"
+          git config user.email "bot@allfreealerts.com"
+          git add bluesky_post_history.json
+          git diff --staged --quiet || git commit -m "Update Bluesky post history $(date +%Y-%m-%d)"
+          git push || echo "Push failed, will retry next run"
+

@@ -2,8 +2,8 @@ name: Daily Scrape & Deploy — AllFreeAlerts
 
 on:
   schedule:
-    # 9am ET = 1pm UTC (during EDT) — buffer for GitHub Actions delays
-    - cron: '0 13 * * *'
+    # 11am ET = 3pm UTC (during EDT)
+    - cron: '0 15 * * *'
   workflow_dispatch: # manual trigger button
 
 jobs:

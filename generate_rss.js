@@ -52,13 +52,15 @@ function buildTweetText(item) {
 }
 
 function generateRSS() {
-  const dataPath = path.join(__dirname, 'site', 'data.json');
+  const dataPath = path.join(__dirname, 'data', 'results.json');
   if (!fs.existsSync(dataPath)) {
-    console.error('❌ site/data.json not found');
+    console.error('❌ data/results.json not found');
     process.exit(1);
   }
 
-  const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+  const raw = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+  // Strip source field (not public)
+  const data = raw.map(({ source, ...rest }) => rest);
   const now = new Date().toUTCString();
 
   // Get latest 30 items, sorted by date_found (newest first)

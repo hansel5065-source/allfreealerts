@@ -2,8 +2,8 @@ name: Daily Reel — AllFreeAlerts
 
 on:
   schedule:
-    # 5pm ET = 9pm UTC (during EDT) / 10pm UTC (during EST)
-    - cron: '0 21 * * *'
+    # 2pm ET = 6pm UTC (during EDT) — buffer for GitHub Actions delays
+    - cron: '0 18 * * *'
   workflow_dispatch: # manual trigger button
 
 jobs:

@@ -746,7 +746,7 @@ async function consumerAction() {
   log('Scraping Consumer-Action.org (open settlements)...');
   const items = [];
   const html = await fetchPage('https://www.consumer-action.org/lawsuits/by-status/open');
-  if (!html) { log('  CACT: FAILED'); return items; }
+  if (!html) { log('  CACT: FAILED (Cloudflare bot protection — site blocks non-browser requests)'); return items; }
 
   // Each listing: <div class="white-bkgrnd open_to_claims"> with title, defendant, description, claim link
   // Claim link: <a href="https://..." title="View Deadline"><strong>Claim deadline is ...</strong></a>

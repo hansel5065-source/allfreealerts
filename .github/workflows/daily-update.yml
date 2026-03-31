@@ -32,6 +32,7 @@ jobs:
         run: node qa_new_entries.js
 
       - name: Email QA report
+        continue-on-error: true
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
         run: |
@@ -97,6 +98,7 @@ jobs:
         run: npx wrangler pages deploy site/ --project-name=allfreealerts --commit-dirty=true
 
       - name: Send daily email digest to subscribers
+        continue-on-error: true
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
         run: node generate_email.js

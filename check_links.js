@@ -69,7 +69,12 @@ async function main() {
     const clean = data.filter(i => !deadLinks.has(i.link));
     console.log(`Removed ${data.length - clean.length} dead items. Remaining: ${clean.length}`);
     fs.writeFileSync(RESULTS_FILE, JSON.stringify(clean, null, 2));
-    fs.copyFileSync(RESULTS_FILE, SITE_DATA);
+    // Encode for anti-scraping (XOR + base64, strip source field)
+    const publicData = clean.map(({ source, ...rest }) => rest);
+    const jsonStr = JSON.stringify(publicData);
+    const key = 'aFa2026xK';
+    const encoded = Buffer.from(jsonStr).map((b, i) => b ^ key.charCodeAt(i % key.length));
+    fs.writeFileSync(SITE_DATA, encoded.toString('base64'), 'utf8');
     console.log('Saved.');
   } else {
     console.log('All links are live!');

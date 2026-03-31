@@ -345,7 +345,12 @@ async function main() {
   if (removed.length > 0) {
     const cleanData = [...existingEntries, ...passed];
     fs.writeFileSync(RESULTS_FILE, JSON.stringify(cleanData, null, 2));
-    fs.copyFileSync(RESULTS_FILE, SITE_DATA);
+    // Encode for anti-scraping (XOR + base64, strip source field)
+    const publicData = cleanData.map(({ source, ...rest }) => rest);
+    const jsonStr = JSON.stringify(publicData);
+    const key = 'aFa2026xK';
+    const encoded = Buffer.from(jsonStr).map((b, i) => b ^ key.charCodeAt(i % key.length));
+    fs.writeFileSync(SITE_DATA, encoded.toString('base64'), 'utf8');
     log(`\nSaved ${cleanData.length} entries (removed ${removed.length} bad entries)`);
   } else {
     log('\nAll new entries passed QA — no changes needed.');

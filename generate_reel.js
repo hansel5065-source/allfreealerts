@@ -30,6 +30,21 @@ const COLORS = { teal: '#0ABAB5', orange: '#FF6F3C', gold: '#F5A623' };
 const CAT_COLORS = { Sweepstakes: COLORS.teal, Freebies: COLORS.orange, Settlements: COLORS.gold };
 const CAT_EMOJI = { Sweepstakes: '🎉', Freebies: '🎁', Settlements: '💰' };
 
+// Rotate theme daily for visual variety
+const THEMES = [
+  { name: 'midnight', bg: 'linear-gradient(160deg, #0e1628 0%, #1a1a2e 50%, #0e1628 100%)', text: 'white', sub: 'rgba(255,255,255,0.6)', muted: 'rgba(255,255,255,0.4)' },
+  { name: 'sunset', bg: 'linear-gradient(160deg, #1a0a2e 0%, #2d1b4e 40%, #1a0a2e 100%)', text: 'white', sub: 'rgba(255,255,255,0.6)', muted: 'rgba(255,255,255,0.4)' },
+  { name: 'ocean', bg: 'linear-gradient(160deg, #0a1628 0%, #0d2137 50%, #0a1628 100%)', text: 'white', sub: 'rgba(255,255,255,0.6)', muted: 'rgba(255,255,255,0.4)' },
+  { name: 'forest', bg: 'linear-gradient(160deg, #0a1a14 0%, #0d2e1f 50%, #0a1a14 100%)', text: 'white', sub: 'rgba(255,255,255,0.6)', muted: 'rgba(255,255,255,0.4)' },
+  { name: 'ember', bg: 'linear-gradient(160deg, #1a0f0a 0%, #2e1810 50%, #1a0f0a 100%)', text: 'white', sub: 'rgba(255,255,255,0.6)', muted: 'rgba(255,255,255,0.4)' },
+  { name: 'slate', bg: 'linear-gradient(160deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)', text: 'white', sub: 'rgba(255,255,255,0.6)', muted: 'rgba(255,255,255,0.4)' },
+  { name: 'arctic', bg: 'linear-gradient(160deg, #0a1520 0%, #102838 50%, #0a1520 100%)', text: 'white', sub: 'rgba(255,255,255,0.6)', muted: 'rgba(255,255,255,0.4)' },
+];
+function getTodayTheme() {
+  const day = Math.floor(Date.now() / 86400000); // days since epoch
+  return THEMES[day % THEMES.length];
+}
+
 function log(msg) { console.log(`[Reel] ${msg}`); }
 
 // ── Load data ──
@@ -106,6 +121,7 @@ function generateSlideHTML(item, category, slideNum, totalSlides) {
   const color = CAT_COLORS[category] || COLORS.teal;
   const emoji = CAT_EMOJI[category] || '🔔';
   const catLabel = category === 'Freebies' ? 'FREE STUFF' : category.toUpperCase();
+  const theme = getTodayTheme();
 
   // Determine if settlement has deadline
   const deadline = item.end_date || item.deadline || '';
@@ -123,7 +139,7 @@ function generateSlideHTML(item, category, slideNum, totalSlides) {
   return `<!DOCTYPE html><html><head><style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{width:1080px;height:1920px;display:flex;justify-content:center;align-items:center;
-      background:linear-gradient(160deg, #0e1628 0%, #1a1a2e 50%, #0e1628 100%);
+      background:${theme.bg};
       font-family:'Segoe UI',Arial,sans-serif;overflow:hidden}
     .slide{width:1080px;height:1920px;display:flex;flex-direction:column;justify-content:center;
       align-items:center;padding:80px 60px;position:relative}
@@ -190,73 +206,130 @@ function generateSlideHTML(item, category, slideNum, totalSlides) {
 
 // Intro slide
 function generateIntroHTML(count) {
+  const theme = getTodayTheme();
+  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  const variant = Math.floor(Date.now() / 86400000) % 3;
+
+  const intros = [
+    // Variant 0: Big count focus
+    `<div class="slide">
+      <div class="bg-circle c1"></div><div class="bg-circle c2"></div>
+      <div class="logo">AllFree<span>Alerts</span></div>
+      <div class="tagline">Free Stuff, Found For You</div>
+      <div class="big">${count}+</div>
+      <div class="big-sub">Active Deals Right Now</div>
+      <div class="today">${today}</div>
+      <div class="swipe">👇 Swipe for today's top picks</div>
+    </div>`,
+    // Variant 1: Value proposition — we do the work
+    `<div class="slide">
+      <div class="bg-circle c1"></div><div class="bg-circle c2"></div>
+      <div class="logo">AllFree<span>Alerts</span></div>
+      <div class="tagline">${today}</div>
+      <div class="big" style="font-size:72px;line-height:1.2;text-align:center">We Check<br>So You Don't<br>Have To</div>
+      <div class="big-sub" style="margin-top:30px">${count}+ verified deals from dozens of sources</div>
+      <div class="swipe">👇 Here's what we found today</div>
+    </div>`,
+    // Variant 2: Categories value hook
+    `<div class="slide">
+      <div class="bg-circle c1"></div><div class="bg-circle c2"></div>
+      <div class="logo">AllFree<span>Alerts</span></div>
+      <div class="big" style="font-size:68px;line-height:1.2;text-align:center">Free Stuff<br>Found For You</div>
+      <div class="big-sub" style="margin-top:30px;font-size:30px">🎁 Freebies &nbsp; 🎉 Sweepstakes &nbsp; 💰 Settlements</div>
+      <div class="today" style="margin-top:20px">Updated daily — ${count}+ active deals</div>
+      <div class="swipe">👇 Today's top picks</div>
+    </div>`,
+  ];
+
   return `<!DOCTYPE html><html><head><style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{width:1080px;height:1920px;display:flex;justify-content:center;align-items:center;
-      background:linear-gradient(160deg, #0e1628 0%, #1a1a2e 50%, #0e1628 100%);
-      font-family:'Segoe UI',Arial,sans-serif;overflow:hidden}
+      background:${theme.bg};font-family:'Segoe UI',Arial,sans-serif;overflow:hidden}
     .slide{width:1080px;height:1920px;display:flex;flex-direction:column;justify-content:center;
       align-items:center;padding:80px 60px;position:relative}
     .bg-circle{position:absolute;border-radius:50%;opacity:0.1}
     .bg-circle.c1{width:800px;height:800px;background:${COLORS.teal};top:-200px;right:-200px}
     .bg-circle.c2{width:500px;height:500px;background:${COLORS.orange};bottom:-100px;left:-150px}
-    .logo{font-size:52px;font-weight:900;color:white;letter-spacing:-1px;margin-bottom:20px;z-index:1}
+    .logo{font-size:52px;font-weight:900;color:${theme.text};letter-spacing:-1px;margin-bottom:20px;z-index:1}
     .logo span{color:${COLORS.teal}}
-    .tagline{font-size:32px;color:rgba(255,255,255,0.6);font-weight:500;margin-bottom:60px;z-index:1}
-    .big{font-size:120px;font-weight:900;color:white;z-index:1;margin-bottom:10px;
+    .tagline{font-size:32px;color:${theme.sub};font-weight:500;margin-bottom:60px;z-index:1}
+    .big{font-size:120px;font-weight:900;color:${theme.text};z-index:1;margin-bottom:10px;
       text-shadow:0 4px 30px rgba(10,186,181,0.4)}
     .big-sub{font-size:36px;color:${COLORS.teal};font-weight:700;z-index:1;margin-bottom:60px}
-    .today{font-size:28px;color:rgba(255,255,255,0.5);z-index:1}
-    .swipe{position:absolute;bottom:120px;font-size:26px;color:rgba(255,255,255,0.4);z-index:1;
+    .today{font-size:28px;color:${theme.muted};z-index:1}
+    .swipe{position:absolute;bottom:120px;font-size:26px;color:${theme.muted};z-index:1;
       display:flex;align-items:center;gap:10px}
   </style></head><body>
-  <div class="slide">
-    <div class="bg-circle c1"></div>
-    <div class="bg-circle c2"></div>
-    <div class="logo">AllFree<span>Alerts</span></div>
-    <div class="tagline">Free Stuff, Found For You</div>
-    <div class="big">${count}+</div>
-    <div class="big-sub">Active Deals Right Now</div>
-    <div class="today">${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</div>
-    <div class="swipe">👇 Swipe for today's top picks</div>
-  </div>
+  ${intros[variant]}
   </body></html>`;
 }
 
-// Outro/CTA slide
+// Outro/CTA slide — 3 variants
 function generateOutroHTML() {
+  const theme = getTodayTheme();
+  const variant = Math.floor(Date.now() / 86400000) % 3;
+
+  const outros = [
+    // Variant 0: Follow CTA
+    `<div class="slide">
+      <div class="bg-circle c1"></div><div class="bg-circle c2"></div>
+      <div class="emoji">🔔</div>
+      <div class="headline">Don't Miss Tomorrow's Deals</div>
+      <div class="sub">Follow for daily sweepstakes,<br>free stuff, and settlements</div>
+      <div class="cta-btn">Follow @allfreealerts</div>
+      <div class="cta-small">Link in bio for all deals</div>
+      <div class="handles">
+        <div class="handle">📸 @allfreealerts</div>
+        <div class="handle">🌐 allfreealerts.com</div>
+      </div>
+    </div>`,
+    // Variant 1: Share CTA
+    `<div class="slide">
+      <div class="bg-circle c1"></div><div class="bg-circle c2"></div>
+      <div class="emoji">📲</div>
+      <div class="headline">Know Someone Who<br>Loves Free Stuff?</div>
+      <div class="sub">Share this Reel and help<br>them discover today's deals</div>
+      <div class="cta-btn">Share & Save 🔖</div>
+      <div class="cta-small">New deals posted every day</div>
+      <div class="handles">
+        <div class="handle">📸 @allfreealerts</div>
+        <div class="handle">🌐 allfreealerts.com</div>
+      </div>
+    </div>`,
+    // Variant 2: Website CTA
+    `<div class="slide">
+      <div class="bg-circle c1"></div><div class="bg-circle c2"></div>
+      <div class="emoji">🎯</div>
+      <div class="headline">Want All The Deals?</div>
+      <div class="sub">Visit our site for the full list<br>Updated every single day</div>
+      <div class="cta-btn">allfreealerts.com</div>
+      <div class="cta-small">Link in bio ☝️</div>
+      <div class="handles">
+        <div class="handle">📸 @allfreealerts</div>
+        <div class="handle">🔔 Turn on notifications</div>
+      </div>
+    </div>`,
+  ];
+
   return `<!DOCTYPE html><html><head><style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{width:1080px;height:1920px;display:flex;justify-content:center;align-items:center;
-      background:linear-gradient(160deg, #0e1628 0%, #1a1a2e 50%, #0e1628 100%);
-      font-family:'Segoe UI',Arial,sans-serif;overflow:hidden}
+      background:${theme.bg};font-family:'Segoe UI',Arial,sans-serif;overflow:hidden}
     .slide{width:1080px;height:1920px;display:flex;flex-direction:column;justify-content:center;
       align-items:center;padding:80px 60px;position:relative}
     .bg-circle{position:absolute;border-radius:50%;opacity:0.1}
     .bg-circle.c1{width:700px;height:700px;background:${COLORS.teal};top:-100px;left:-200px}
     .bg-circle.c2{width:400px;height:400px;background:${COLORS.gold};bottom:-50px;right:-100px}
     .emoji{font-size:80px;margin-bottom:30px;z-index:1}
-    .headline{font-size:48px;font-weight:800;color:white;text-align:center;line-height:1.3;z-index:1;margin-bottom:20px}
-    .sub{font-size:28px;color:rgba(255,255,255,0.6);text-align:center;z-index:1;margin-bottom:50px;line-height:1.5}
+    .headline{font-size:48px;font-weight:800;color:${theme.text};text-align:center;line-height:1.3;z-index:1;margin-bottom:20px}
+    .sub{font-size:28px;color:${theme.sub};text-align:center;z-index:1;margin-bottom:50px;line-height:1.5}
     .cta-btn{background:${COLORS.teal};color:white;padding:22px 60px;border-radius:60px;font-size:32px;
       font-weight:800;z-index:1;box-shadow:0 8px 30px rgba(10,186,181,0.4);margin-bottom:15px}
-    .cta-small{font-size:22px;color:rgba(255,255,255,0.4);z-index:1}
+    .cta-small{font-size:22px;color:${theme.muted};z-index:1}
     .handles{position:absolute;bottom:100px;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px}
-    .handle{font-size:22px;color:rgba(255,255,255,0.5);font-weight:600}
+    .handle{font-size:22px;color:${theme.muted};font-weight:600}
   </style></head><body>
-  <div class="slide">
-    <div class="bg-circle c1"></div>
-    <div class="bg-circle c2"></div>
-    <div class="emoji">🔔</div>
-    <div class="headline">Don't Miss Tomorrow's Deals</div>
-    <div class="sub">Follow for daily sweepstakes,<br>free stuff, and settlements</div>
-    <div class="cta-btn">Follow @allfreealerts</div>
-    <div class="cta-small">Link in bio for all deals</div>
-    <div class="handles">
-      <div class="handle">📸 @allfreealerts</div>
-      <div class="handle">🌐 allfreealerts.com</div>
-    </div>
-  </div>
+  ${outros[variant]}
   </body></html>`;
 }
 

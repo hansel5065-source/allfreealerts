@@ -2,8 +2,8 @@ name: Daily Reel — AllFreeAlerts
 
 on:
   schedule:
-    # 4pm ET = 8pm UTC (during EDT) — target 4pm posting
-    - cron: '0 20 * * *'
+    # 3pm ET = 7pm UTC (during EDT)
+    - cron: '0 19 * * *'
   workflow_dispatch: # manual trigger button
 
 jobs:

@@ -2,8 +2,8 @@ name: Daily Scrape & Deploy — AllFreeAlerts
 
 on:
   schedule:
-    # 11am ET = 3pm UTC (during EDT)
-    - cron: '0 15 * * *'
+    # 10am ET = 2pm UTC (during EDT)
+    - cron: '0 14 * * *'
   workflow_dispatch: # manual trigger button
 
 jobs:

@@ -1365,5 +1365,485 @@
         "flag": "403 — may be bot-blocked, check manually"
       }
     ]
+  },
+  {
+    "date": "2026-03-31",
+    "timestamp": "2026-03-31T17:36:30.804Z",
+    "total_checked": 160,
+    "passed": 113,
+    "flagged": 31,
+    "removed": 47,
+    "removed_entries": [
+      {
+        "title": "Score a Free LEGO Magazine Subscription for Your Kids",
+        "link": "https://www.searchcactus.com/publisher/trackofr.asp?chnl=218357&amp;ofr=1087380&amp;uid=",
+        "source": "hip2save",
+        "reason": "Dead link [200]: Dead pattern: \"no longer available\""
+      },
+      {
+        "title": "FREE goodwipes Flushable Wipes 3-Pack After Cash Back at Walmart ($10 Value!)",
+        "link": "https://vtagz.com/claim?token=DExGxmtL",
+        "source": "hip2save",
+        "reason": "Dead link [200]: Dead pattern: \"offer expired\""
+      },
+      {
+        "title": "Get 3 Audiobooks AND a 30-Day Trial for FREE!",
+        "link": "https://www.searchcactus.com/publisher/trackofr.asp?chnl=218357&amp;ofr=1086366&amp;uid=",
+        "source": "hip2save",
+        "reason": "Dead link [200]: Dead pattern: \"no longer available\""
+      },
+      {
+        "title": "FREE 3 Months of SiriusXM w/ No Credit Card Needed (20+ Christmas Music Channels!)",
+        "link": "https://www.searchcactus.com/publisher/trackofr.asp?chnl=218357&amp;ofr=1087632&amp;uid=",
+        "source": "hip2save",
+        "reason": "Dead link [200]: Dead pattern: \"no longer available\""
+      },
+      {
+        "title": "Play The Raising Cane’s Halloween Game to Score FREE Food!",
+        "link": "https://raisingcanes.com/halloween/",
+        "source": "hip2save",
+        "reason": "Dead link [404]: HTTP 404"
+      },
+      {
+        "title": "FREE Pataday Eye Itch Relief Drops Sample – Just Ask Alexa!",
+        "link": "https://account.sendmeasample.net/order-form?campaign=df8cb597-4bd6-49a4-bc58-e053f149825e",
+        "source": "hip2save",
+        "reason": "Dead link [404]: HTTP 404"
+      },
+      {
+        "title": "Lakeview Loan Servicing - Data Breach Class Action Settlement",
+        "link": "https://lakeviewdatabreachsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Cardiovascular Consultants - Data Breach Class Action Settlement",
+        "link": "https://cvcdatasettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Robinhood - Order Flow Class Action Settlement",
+        "link": "https://www.robinhoodorderflowsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Complete Payroll Solutions - Data Breach Class Action Settlement",
+        "link": "https://cpssettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "PowerSchool Holdings - Student Privacy Class Action Settlement",
+        "link": "https://powerschoolnaviancesettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Clackamas County - Property Foreclosures (Oregon) Class Action Settlement",
+        "link": "https://www.clackamastaxforeclosuresettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Proliance Surgeons - Data Breach Class Action Settlement",
+        "link": "https://proliancedatasettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "LA Times - Data Privacy (California) Class Action Settlement",
+        "link": "https://www.latimescipasettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "General Physician, P.C. - Data Breach Class Action Settlement",
+        "link": "https://www.generalphysiciandataincidentsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Ideal Image Development Corporation Class Action Settlement",
+        "link": "https://www.idealimagesettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Norton Healthcare - Data Breach Class Action Settlement",
+        "link": "https://nortondataincidentsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Catholic Health System - Data Privacy Class Action Settlement",
+        "link": "https://catholichealthsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Royal Caribbean Cruises Discover the Med Sweepstakes",
+        "link": "https://www.silverseasweepstakes.com/register",
+        "source": "sweetiessweeps",
+        "reason": "Dead link [404]: HTTP 404"
+      },
+      {
+        "title": "Garnet Health - Data Privacy Class Action Settlement",
+        "link": "https://garnethealthsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "ALN Medical Management - Data Breach Class Action Settlement",
+        "link": "https://alnsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Gen Digital - Unwanted Calls Class Action Settlement",
+        "link": "https://www.jacksonivrsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Pacific Life Insurance (California) Class Action Settlement",
+        "link": "https://illustrationsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "California Northstate University - Data Breach Class Action Settlement",
+        "link": "https://cnusettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Monterey County Jail Class Action Settlement",
+        "link": "https://montereyjailsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "PharMerica - Data Breach Class Action Settlement",
+        "link": "https://pmcsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Asheville Eye Associates - Data Breach Class Action Settlement",
+        "link": "https://aeadatasettlement.com",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Southeast Series of Lockton Companies - Data Breach Class Action Settlement",
+        "link": "https://thelocktondatasettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Community First Medical Center - Data Breach Class Action Settlement",
+        "link": "https://cfmcsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Bayhealth Medical Center - Data Breach Class Action Settlement",
+        "link": "https://bayhealthdataincidentsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Murfreesboro Medical Clinic – Data Breach Class Action Settlement",
+        "link": "https://mmcsettlement.com/",
+        "source": "classaction",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Soda 12-Packs as Low as $4.xx on Amazon | Pepsi, Mountain Dew, Dr. Pepper, & More",
+        "link": "https://a.pub.network/",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: a.pub.network"
+      },
+      {
+        "title": "Coca-Cola 16.9oz 6-Packs For From $3.xx on Amazon",
+        "link": "http://freebi.es/2d6j",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "Touchland Hand Sanitizer Only $8 at ULTA – Perfect for Teen Easter Baskets!",
+        "link": "http://freebi.es/2azs",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "Paper Mate InkJoy 100ST Ballpoint Pens 18-Count Only $2.xx! (Reg. $8)",
+        "link": "http://freebi.es/2d1n",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "Aeropostale Jeans & Shorts Buy 1 Get 1 Free",
+        "link": "http://freebi.es/1vqg",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "Taco Bell Deals & Coupons | NEW! Tuesday Drop for Today Only! $1 Mexican Pizza for First 30,000 at 5PM ET",
+        "link": "http://freebi.es/2cc1",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "Over $91 Worth of P&G Laundry Products Only $44.xx Shipped on Amazon",
+        "link": "http://freebi.es/2cxp",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "April Fools Day Freebies & Deals on April 1st",
+        "link": "http://freebi.es/2arq",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "Under Armour Outlet Triple Stack is Back! | Shorts from $8.xx!",
+        "link": "http://freebi.es/286z",
+        "source": "thefreebieguy",
+        "reason": "Middleman: Link points to aggregator: freebi.es"
+      },
+      {
+        "title": "Yunite - Share and Earn Rewards",
+        "link": "https://trk.adbloom.co/SHtS",
+        "source": "ultracontest",
+        "reason": "Middleman: Link points to aggregator: trk.adbloom.co"
+      },
+      {
+        "title": "Maximize Your Spare Time: Start Earning Cash with Survey Junkie!",
+        "link": "https://bmv.biz/?a=7796&c=1&s1=",
+        "source": "ultracontest",
+        "reason": "Middleman: Link points to aggregator: bmv.biz"
+      },
+      {
+        "title": "Kids Bowl Free All Summer in 2026",
+        "link": "https://d9.flashtalking.com",
+        "source": "heyitsfree",
+        "reason": "Dead link [404]: HTTP 404"
+      },
+      {
+        "title": "Chili’s Find the Dente Sweepstakes",
+        "link": "https://hi.chilis.com/giveaway",
+        "source": "ultracontest",
+        "reason": "Dead link [200]: Dead pattern: \"giveaway has ended\""
+      },
+      {
+        "title": "You Could Win Time Outz - 2026 NCAA March Madness Sweepstakes",
+        "link": "https://www.timeoutz4snacks.com/login",
+        "source": "ultracontest",
+        "reason": "Dead link [404]: HTTP 404"
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "KitchenAid Artisan Plus Sweepstakes",
+        "link": "https://gleam.io/kRbCf/gaming-pc-giveaway",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Aorus - Gigabyte Resident Evil Requiem Custom PC Giveaway",
+        "link": "https://gleam.io/VPItO/gigabyte-resident-evil-requiem-custom-pc-giveaway",
+        "source": "contestgirl",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "ClassOneModelWorks Ultimate Autorack Giveaway",
+        "link": "https://kitchenaid-artisan-plus-sweepstakes.com/rules",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Perkins Builder Brothers Spring Tool Belt Bundle Giveaway",
+        "link": "https://gleam.io/zYHsG/spring-refresh-giveaway",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "KitchenAid “Artisan Plus” Sweepstakes (5 Winners)",
+        "link": "https://www.kitchenaid.com/countertop-appliances/stand-mixers/tilt-head-stand-mixers/artisan-plus",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Electrolit Summer Tour Instant Win and Sweepstakes",
+        "link": "https://c.airbaton.net/campaigns/Ja4WGVcySxcpIFkCOUvs/assets/Ezra_Brooks_90_Sweepstakes_AirBaton_Rev_10.16_2.pdf",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Goldvine - Gourmet Syrups Giveaway",
+        "link": "https://givelab.com/g/O38FUc/goldvine-gourmet-syrups-giveaway",
+        "source": "contestgirl",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Free LEGO Star Wars Event at Barnes & Noble on May 1st",
+        "link": "https://stores.barnesandnoble.com/search?searchText=lego&amp;sort=distance",
+        "source": "hip2save",
+        "flag": "Timeout (12s) — check manually"
+      },
+      {
+        "title": "From Fans to Dream Rigs Sweepstakes",
+        "link": "https://gleam.io/R4K0g/from-fans-to-dream-rigs-hall-of-tech",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Jackery Explorer 1000 V2 Power Station Giveaway",
+        "link": "https://gleam.io/r1reO/win-a-jackery-1000-v2-power-station",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Let’s Get Posh: Dolly Beauty 9 to 5 Giveaway",
+        "link": "https://gleam.io/gUi7A/-win-dolly-beauty-9-to-5-bundle-",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "$50 Gift Card Giveaway",
+        "link": "https://gleam.io/z5jgW/craftons-summit-sourdough-sweepstakes",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "$25.00 Amazon Gift Card Giveaway",
+        "link": "https://gleam.io/mKOW2/new-releases-giveaway",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Aurphany Led Light Therapy Mask Giveaway",
+        "link": "https://rebrand.ly/contestlist",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Free IHOP Pancakes Today – No Purchase Needed!",
+        "link": "https://www.ihop.com/en/national-pancake-day",
+        "source": "hip2save",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "FREE $5 Lush Credit (Snag a Free Bath Bomb!)",
+        "link": "https://www.lush.com/us/en_us/l/club",
+        "source": "hip2save",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Sony Wh-1000xm6 Flagship Noise Cancelling Wireless Over-Ear Headphones Giveaway",
+        "link": "https://gleam.io/UAtU9/win-sony-wh-1000xm6-flagship-noise-cancelling-wireless-over-ear-headphones-worth-us39999",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Dreame Z50 Station Auto-Empty Cordless Vacuum, Worth $1,299 Aud Giveaway",
+        "link": "https://gleam.io/muwHW/win-a-dreame-z50-station-auto-empty-cordless-vacuum-worth-1299-aud",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Win Blue Theater Loveseat Worth $1699",
+        "link": "https://gleam.io/SN1ze/comfiroom-march-2026-giveaway-win-blue-theater-loveseat-worth-1699",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Iphone 17 Pro Contest",
+        "link": "https://gleam.io/rE5r8/follow-manictrade-on-x-to-win-iphone-17-pro",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Ray-Ban Meta 2nd Gen Wayfarer Smart Glasses Worth Us$329 Giveaway",
+        "link": "https://gleam.io/qO1OR/win-a-pair-of-ray-ban-meta-2nd-gen-smart-glasses-in-the-style-colour-of-your-choice-worth-329-usd",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Win The World’s Smartest Backpack!",
+        "link": "https://gleam.io/pncI9/ismartpack",
+        "source": "contestlisting",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Service Spot - Parking Reservation Fees Class Action Settlement",
+        "link": "https://servicespotsettlement.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "St. Louis Medium Security Institution Class Action Settlement",
+        "link": "https://www.stlmediumsecurityinstitutionclassaction.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "LastPass - Data Breach Class Action Settlement",
+        "link": "https://www.lastpasssettlement.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Krispy Kreme - Data Breach Class Action Settlement",
+        "link": "https://krispykremedatasettlement.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "CommuniCare - Foreign-Trained Nurses Class Action Settlement",
+        "link": "https://www.communicaresettlement.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "P&S Transportation - Data Breach Class Action Settlement",
+        "link": "https://transportationbreachsettlement.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Discover Products - Employee Wages Class Action Settlement",
+        "link": "https://www.harrisdiscoversettlement.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Juul - Indirect Resellers Class Action Settlement",
+        "link": "https://www.juulindirectresellerclassaction.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "What Grocery Store Are You? Quiz Sweepstakes",
+        "link": "https://forms.people.inc/peopleinc/faw_grocery_store_quiz_and_sweeps_2026",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
   }
 ]

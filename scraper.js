@@ -741,58 +741,7 @@ async function giveawayBase() {
   return items.filter(i => i.link && i.link.startsWith('http')).map(({ detailUrl, ...rest }) => rest);
 }
 
-// Consumer-Action.org — open class action settlements
-async function consumerAction() {
-  log('Scraping Consumer-Action.org (open settlements)...');
-  const items = [];
-  const html = await fetchPage('https://www.consumer-action.org/lawsuits/by-status/open');
-  if (!html) { log('  CACT: FAILED (Cloudflare bot protection — site blocks non-browser requests)'); return items; }
-
-  // Each listing: <div class="white-bkgrnd open_to_claims"> with title, defendant, description, claim link
-  // Claim link: <a href="https://..." title="View Deadline"><strong>Claim deadline is ...</strong></a>
-  const blockRe = /<div[^>]*class="white-bkgrnd[^"]*open[^"]*"[^>]*>([\s\S]*?)<\/div>\s*(?:<div|<\/div>)/g;
-  let block;
-  while ((block = blockRe.exec(html)) !== null) {
-    const content = block[1];
-
-    // Title from h2.action-title
-    const titleMatch = content.match(/<h2[^>]*class="action-title"[^>]*>\s*<a[^>]*>([^<]+)/);
-    if (!titleMatch) continue;
-    const title = decodeEntities(titleMatch[1].replace(/\s*»\s*$/, '').trim());
-
-    // Claim link — external URL in the description area
-    const claimMatch = content.match(/<a[^>]*href="(https?:\/\/(?!www\.consumer-action)[^"]+)"[^>]*>/);
-    if (!claimMatch) continue;
-    const link = claimMatch[1].trim();
-
-    // Deadline text
-    const deadlineMatch = content.match(/deadline\s+is\s+([^<]+)\./i);
-    let endDate = '';
-    if (deadlineMatch) {
-      // Parse "Tuesday, 04 August 2026" format
-      const parsed = new Date(deadlineMatch[1].replace(/^\w+,\s*/, '').trim());
-      if (!isNaN(parsed) && parsed > new Date()) {
-        endDate = parsed.toISOString().split('T')[0];
-      } else if (!isNaN(parsed) && parsed <= new Date()) {
-        continue; // expired, skip
-      }
-    }
-
-    if (title.length < 10) continue;
-
-    items.push({
-      title: title + ' Settlement',
-      link,
-      source: 'consumer-action', category: 'Settlements',
-      scope: detectScope(title),
-      ...(endDate ? { end_date: endDate } : {}),
-    });
-  }
-
-
-  log(`  CACT: ${items.length} settlements`);
-  return items;
-}
+// Consumer-Action.org — removed: Cloudflare bot protection blocks non-browser requests, only had 2 settlements
 
 // Settlemate.io — class action settlement directory
 async function settlemate() {
@@ -1198,7 +1147,7 @@ async function main() {
   const existingLinks = new Set(existing.map(e => e.link));
 
   // Scrape all sources in parallel where possible
-  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, cact, sm] = await Promise.all([
+  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, sm] = await Promise.all([
     scrapeContestgirl().catch(e => { log(`CG ERROR: ${e.message}`); return []; }),
     sweepstakesFanatics().catch(e => { log(`SF ERROR: ${e.message}`); return []; }),
     freebieshark().catch(e => { log(`FS ERROR: ${e.message}`); return []; }),
@@ -1219,11 +1168,10 @@ async function main() {
     freeStuffFinder().catch(e => { log(`FSF ERROR: ${e.message}`); return []; }),
     contestListing().catch(e => { log(`CL ERROR: ${e.message}`); return []; }),
     giveawayBase().catch(e => { log(`GB ERROR: ${e.message}`); return []; }),
-    consumerAction().catch(e => { log(`CACT ERROR: ${e.message}`); return []; }),
     settlemate().catch(e => { log(`SM ERROR: ${e.message}`); return []; }),
   ]);
 
-  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...cact, ...sm];
+  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm];
 
   // Clean + Deduplicate
   const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/'];
@@ -1266,7 +1214,7 @@ async function main() {
 
   // Count direct vs middleman links
   let directCount = 0, middlemanCount = 0;
-  const middlemanDomains = ['contestgirl.com/sweepstakes/countHits', 'sweepstakesfanatics.com', 'freebieshark.com', 'freeflys.com', 'hip2save.com', 'topclassactions.com', 'settlemate.io', 'consumer-action.org'];
+  const middlemanDomains = ['contestgirl.com/sweepstakes/countHits', 'sweepstakesfanatics.com', 'freebieshark.com', 'freeflys.com', 'hip2save.com', 'topclassactions.com', 'settlemate.io'];
   for (const item of newItems) {
     if (middlemanDomains.some(d => item.link.includes(d))) middlemanCount++;
     else directCount++;

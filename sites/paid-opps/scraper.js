@@ -95,7 +95,7 @@ async function checkUrl(url) {
 const CURATED_PLATFORMS = [
 
   // ========================================================================
-  // SURVEYS (42 platforms)
+  // SURVEYS (36 platforms)
   // ========================================================================
   {
     title: 'Prolific',
@@ -546,26 +546,10 @@ const CURATED_PLATFORMS = [
     cons: ['Must record video responses', 'Limited study availability', 'Must pass screening', 'Webcam required']
   },
   {
-    title: 'Panel App',
-    category: 'surveys',
-    url: 'https://www.panelapp.com',
-    signupUrl: 'https://www.panelapp.com',
-    description: 'Mobile survey app that also earns passive income through location tracking. Quick surveys plus sweepstakes entries.',
-    payType: 'mixed',
-    typicalPay: '$0.10-$1/survey',
-    payRange: { min: 0, max: 2 },
-    format: 'remote',
-    qualification: 'US, 18+',
-    trustLevel: 'medium',
-    badges: ['verified', 'remote', 'beginner-friendly'],
-    pros: ['Passive earnings from location data', 'Quick surveys', 'Sweepstakes entries', 'Simple mobile app'],
-    cons: ['Very low pay', 'Location tracking privacy concern', 'US only', 'Slow earnings']
-  },
-  {
     title: 'Forthright',
     category: 'surveys',
-    url: 'https://www.forthright.com',
-    signupUrl: 'https://www.forthright.com/signup',
+    url: 'https://www.beforthright.com',
+    signupUrl: 'https://www.beforthright.com/signup',
     description: 'Transparent survey platform that shows pay upfront and respects your time. Compensates for disqualifications with sweepstakes entries.',
     payType: 'cash',
     typicalPay: '$1-$5/survey',
@@ -576,22 +560,6 @@ const CURATED_PLATFORMS = [
     badges: ['verified', 'cash', 'remote', 'beginner-friendly'],
     pros: ['Transparent pay shown upfront', 'Compensates for disqualifications', 'Direct deposit available', 'Respects participant time'],
     cons: ['Newer platform', 'Limited survey volume', 'US only']
-  },
-  {
-    title: 'Springboard America',
-    category: 'surveys',
-    url: 'https://www.springboardamerica.com',
-    signupUrl: 'https://www.springboardamerica.com/signup',
-    description: 'Survey community focused on shaping products and services in America. Earn points redeemable for Amazon gift cards.',
-    payType: 'gift-card',
-    typicalPay: '$0.50-$3/survey',
-    payRange: { min: 0, max: 5 },
-    format: 'remote',
-    qualification: 'US, 14+',
-    trustLevel: 'medium',
-    badges: ['verified', 'remote', 'beginner-friendly'],
-    pros: ['Community-driven', 'See how opinions compare to others', 'Regular survey invitations', 'Teens can join (14+)'],
-    cons: ['Amazon gift cards only', 'Smaller platform', 'Some long surveys']
   },
   {
     title: 'Maru Voice Canada',
@@ -624,22 +592,6 @@ const CURATED_PLATFORMS = [
     badges: ['verified', 'cash', 'remote', 'beginner-friendly'],
     pros: ['Bitcoin cashout option', 'Low minimum thresholds', 'Clean modern interface', 'Promo codes for bonus earnings'],
     cons: ['Lower earnings than top platforms', 'Some offers are spammy', 'Smaller community']
-  },
-  {
-    title: 'Curious Cat',
-    category: 'surveys',
-    url: 'https://curiouscat.com',
-    signupUrl: 'https://curiouscat.com',
-    description: 'Simple survey app available on mobile. Quick surveys with immediate point crediting. No frills, straightforward survey experience.',
-    payType: 'mixed',
-    typicalPay: '$0.10-$1/survey',
-    payRange: { min: 0, max: 2 },
-    format: 'remote',
-    qualification: 'US, 18+',
-    trustLevel: 'medium',
-    badges: ['verified', 'remote', 'beginner-friendly'],
-    pros: ['Simple and straightforward', 'Quick surveys', 'Mobile-friendly', 'Immediate point crediting'],
-    cons: ['Very low pay', 'Limited availability', 'Basic interface']
   },
   {
     title: 'KashKick',
@@ -675,10 +627,10 @@ const CURATED_PLATFORMS = [
   },
   {
     title: 'Clickworker',
-    category: 'surveys',
+    category: 'user-testing',
     url: 'https://www.clickworker.com',
     signupUrl: 'https://www.clickworker.com/clickworker/',
-    description: 'Microtask platform offering surveys, data categorization, text creation, and UHRS tasks from Microsoft. Low $5 minimum cashout via PayPal or SEPA.',
+    description: 'Microtask and data-labeling platform offering data categorization, text creation, web research, and UHRS tasks from Microsoft. Low $5 minimum cashout via PayPal or SEPA.',
     payType: 'cash',
     typicalPay: '$5-$15/hr',
     payRange: { min: 3, max: 20 },
@@ -723,10 +675,10 @@ const CURATED_PLATFORMS = [
   },
   {
     title: 'Premise',
-    category: 'surveys',
+    category: 'user-testing',
     url: 'https://www.premise.com',
     signupUrl: 'https://www.premise.com/contributors/',
-    description: 'Mobile data collection and survey platform with a gig-economy style. Complete field tasks, surveys, and photo verification jobs. Available globally with PayPal payouts.',
+    description: 'Location-based data collection platform with a gig-economy style. Complete field tasks, photo verification jobs, and location-based surveys. Available globally with PayPal payouts.',
     payType: 'cash',
     typicalPay: '$0.10-$5/task',
     payRange: { min: 0, max: 10 },
@@ -755,7 +707,7 @@ const CURATED_PLATFORMS = [
   },
 
   // ========================================================================
-  // USER TESTING (25 platforms)
+  // USER TESTING (22 platforms)
   // ========================================================================
   {
     title: 'UserTesting',
@@ -1014,22 +966,6 @@ const CURATED_PLATFORMS = [
     cons: ['Lower pay', 'Limited test volume', 'Newer platform']
   },
   {
-    title: 'Rally',
-    category: 'user-testing',
-    url: 'https://www.rallyuxr.com',
-    signupUrl: 'https://www.rallyuxr.com/participants',
-    description: 'User research recruiting platform connecting participants with UX studies. Offers remote interviews, usability tests, and surveys paying $50-200 per study.',
-    payType: 'cash',
-    typicalPay: '$50-$200/study',
-    payRange: { min: 50, max: 200 },
-    format: 'remote',
-    qualification: 'US, 18+, varies by study',
-    trustLevel: 'high',
-    badges: ['verified', 'cash', 'remote', 'high-pay'],
-    pros: ['High pay per study', 'Remote-friendly', 'Growing platform', 'Professional research teams'],
-    cons: ['Must match study demographics', 'Limited study volume', 'Competitive screening', 'US-focused']
-  },
-  {
     title: 'Askable',
     category: 'user-testing',
     url: 'https://www.askable.com',
@@ -1048,8 +984,8 @@ const CURATED_PLATFORMS = [
   {
     title: 'Recruit by UserZoom',
     category: 'user-testing',
-    url: 'https://www.userzoom.com',
-    signupUrl: 'https://www.userzoom.com/participants/',
+    url: 'https://www.usertesting.com/get-paid-to-test',
+    signupUrl: 'https://www.usertesting.com/get-paid-to-test',
     description: 'Paid UX studies from UserZoom, a leading enterprise UX research platform. Complete remote usability tests, card sorts, and surveys for $10-100 per test.',
     payType: 'cash',
     typicalPay: '$10-$100/test',
@@ -1095,7 +1031,7 @@ const CURATED_PLATFORMS = [
   },
 
   // ========================================================================
-  // FOCUS GROUPS (22 platforms)
+  // FOCUS GROUPS (21 platforms)
   // ========================================================================
   {
     title: 'Fieldwork',
@@ -1433,25 +1369,9 @@ const CURATED_PLATFORMS = [
     pros: ['High pay per session', 'Both online and in-person options', 'Nationwide recruitment', 'Variety of study topics'],
     cons: ['Competitive screening process', 'Must match demographics', 'Irregular scheduling', 'In-person may require travel']
   },
-  {
-    title: 'Apex Focus Group',
-    category: 'focus-groups',
-    url: 'https://www.apexfocusgroup.com',
-    signupUrl: 'https://www.apexfocusgroup.com/sign-up',
-    description: 'Nationwide paid focus group company offering sessions paying $75-750. Covers a wide range of industries including healthcare, technology, and consumer products.',
-    payType: 'cash',
-    typicalPay: '$75-$750/session',
-    payRange: { min: 75, max: 750 },
-    format: 'both',
-    qualification: 'US, 18+',
-    trustLevel: 'medium',
-    badges: ['verified', 'cash', 'high-pay'],
-    pros: ['Very high pay potential up to $750', 'Nationwide availability', 'Wide range of industries', 'Both remote and in-person'],
-    cons: ['Competitive screening', 'Some studies require specific demographics', 'Scheduling can be rigid', 'Must verify legitimacy of each listing']
-  },
 
   // ========================================================================
-  // PRODUCT TESTING (24 platforms)
+  // PRODUCT TESTING (22 platforms)
   // ========================================================================
   {
     title: 'Home Tester Club',
@@ -1772,38 +1692,6 @@ const CURATED_PLATFORMS = [
     badges: ['verified', 'product-only', 'remote', 'beginner-friendly'],
     pros: ['Write reviews for products you already own', 'Occasional free products', 'Build reviewer reputation', 'Simple to get started'],
     cons: ['Low monetary rewards', 'Must write detailed reviews', 'Free product offers are competitive', 'Slow reward accumulation']
-  },
-  {
-    title: 'MomSelect',
-    category: 'product-testing',
-    url: 'https://www.bsmedia.com/momselect',
-    signupUrl: 'https://www.bsmedia.com/momselect/join',
-    description: 'Product testing community for parents and families. Receive free products from family-oriented brands to test at home and share feedback.',
-    payType: 'product',
-    typicalPay: 'Free products',
-    payRange: { min: 5, max: 75 },
-    format: 'remote',
-    qualification: 'US, parents/families',
-    trustLevel: 'medium',
-    badges: ['verified', 'product-only', 'remote', 'beginner-friendly'],
-    pros: ['Family-focused products', 'Free products to keep', 'Fun for kids and parents', 'Major brand partnerships'],
-    cons: ['Parents/families only', 'No cash payment', 'Limited campaigns', 'Must share on social media']
-  },
-  {
-    title: 'Babelforce Product Testing',
-    category: 'product-testing',
-    url: 'https://www.babelforce.com',
-    signupUrl: 'https://www.babelforce.com/testers',
-    description: 'Tech product testing program where you test new technology products and often get to keep them. Focus on communication and collaboration tools.',
-    payType: 'product',
-    typicalPay: 'Free tech products',
-    payRange: { min: 20, max: 200 },
-    format: 'remote',
-    qualification: 'Global, tech-savvy users',
-    trustLevel: 'medium',
-    badges: ['verified', 'product-only', 'remote'],
-    pros: ['Keep tech products after testing', 'Interesting technology focus', 'Remote testing', 'Global availability'],
-    cons: ['Limited testing slots', 'Must provide detailed feedback', 'Tech products only', 'Irregular campaign schedule']
   },
   {
     title: 'Chatterbox by House Party',
@@ -2342,11 +2230,11 @@ const CURATED_PLATFORMS = [
     cons: ['In-person required', 'Must meet criteria', 'Location-dependent', 'Study commitments']
   },
   {
-    title: 'TrialSpark',
+    title: 'TrialSpark (now Formation Bio)',
     category: 'medical-studies',
-    url: 'https://www.trialspark.com',
-    signupUrl: 'https://www.trialspark.com/patients/',
-    description: 'Technology-driven clinical trial company that connects patients with trials near them. Focuses on making trial participation easier with local clinics and streamlined processes.',
+    url: 'https://formation.bio',
+    signupUrl: 'https://formation.bio',
+    description: 'Formerly TrialSpark, now part of Formation Bio. Technology-driven clinical trial company that connects patients with trials near them. Focuses on making trial participation easier with local clinics and streamlined processes.',
     payType: 'cash',
     typicalPay: '$100-$3,000/study',
     payRange: { min: 100, max: 3000 },
@@ -2422,11 +2310,11 @@ const CURATED_PLATFORMS = [
     cons: ['Must share detailed health info', 'Not all matches lead to acceptance', 'US-focused', 'In-person visits often required']
   },
   {
-    title: 'Acurian',
+    title: 'Acurian (now TrialMed)',
     category: 'medical-studies',
-    url: 'https://www.acurian.com',
-    signupUrl: 'https://www.acurian.com/patients/',
-    description: 'Clinical trial recruitment company that connects patients with paid research studies. Phone screening process to match you with appropriate trials in your area.',
+    url: 'https://www.trialmed.com',
+    signupUrl: 'https://www.trialmed.com',
+    description: 'Formerly Acurian, now operating as TrialMed. Clinical trial recruitment company that connects patients with paid research studies. Phone screening process to match you with appropriate trials in your area.',
     payType: 'cash',
     typicalPay: '$100-$5,000/study',
     payRange: { min: 100, max: 5000 },
@@ -2458,23 +2346,7 @@ const CURATED_PLATFORMS = [
     cons: ['Fewer studies than Prolific', 'Variable availability', 'Some studies are unpaid']
   },
   {
-    title: 'Focus Group by Recruit',
-    category: 'focus-groups',
-    url: 'https://www.focusgroup.com',
-    signupUrl: 'https://www.focusgroup.com/join',
-    description: 'National focus group recruiting firm aggregating paid research opportunities including in-person groups, phone interviews, and online studies.',
-    payType: 'cash',
-    typicalPay: '$50-$250/session',
-    payRange: { min: 50, max: 250 },
-    format: 'both',
-    qualification: 'US, 18+',
-    trustLevel: 'high',
-    badges: ['verified', 'cash', 'high-pay'],
-    pros: ['National reach', 'Multiple study formats', 'Good pay', 'Regular emails about opportunities'],
-    cons: ['Competitive screening', 'Must match demographics', 'Email heavy']
-  },
-  {
-    title: 'Legerdemain Research',
+    title: 'Leger',
     category: 'focus-groups',
     url: 'https://leger360.com',
     signupUrl: 'https://leger360.com/panel/',

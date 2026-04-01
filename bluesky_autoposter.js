@@ -110,6 +110,8 @@ function buildPostText(item, category) {
     '',
     link,
     '',
+    `\u{1F449} More deals at allfreealerts.com`,
+    '',
     'Follow us everywhere:',
     '\u{1F4F8} IG @allfreealerts | \u{1F464} FB facebook.com/allfreealerts | \u{1F426} X @allfreealerts',
     '',
@@ -138,6 +140,16 @@ function buildFacets(text, link) {
     facets.push({
       index: linkIndices,
       features: [{ $type: 'app.bsky.richtext.facet#link', uri: link }]
+    });
+  }
+
+  // Site link
+  const siteUrl = 'allfreealerts.com';
+  const siteIndices = getByteIndices(text, siteUrl);
+  if (siteIndices) {
+    facets.push({
+      index: siteIndices,
+      features: [{ $type: 'app.bsky.richtext.facet#link', uri: 'https://allfreealerts.com' }]
     });
   }
 

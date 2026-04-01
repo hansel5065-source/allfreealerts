@@ -154,13 +154,25 @@ function buildFacets(text, link) {
   }
 
   // Cross-promo links
-  const fbUrl = 'facebook.com/allfreealerts';
-  const fbIndices = getByteIndices(text, fbUrl);
-  if (fbIndices) {
-    facets.push({
-      index: fbIndices,
-      features: [{ $type: 'app.bsky.richtext.facet#link', uri: 'https://facebook.com/allfreealerts' }]
-    });
+  const crossLinks = [
+    { text: '@allfreealerts', uri: 'https://instagram.com/allfreealerts', after: 'IG ' },
+    { text: 'facebook.com/allfreealerts', uri: 'https://facebook.com/allfreealerts' },
+    { text: '@allfreealerts', uri: 'https://x.com/allfreealerts', after: 'X ' },
+  ];
+  for (const cl of crossLinks) {
+    // Find the specific mention by searching after its label
+    let searchFrom = 0;
+    if (cl.after) {
+      const labelIdx = text.indexOf(cl.after);
+      if (labelIdx >= 0) searchFrom = labelIdx;
+    }
+    const indices = getByteIndices(text, cl.text, searchFrom);
+    if (indices) {
+      facets.push({
+        index: indices,
+        features: [{ $type: 'app.bsky.richtext.facet#link', uri: cl.uri }]
+      });
+    }
   }
 
   // Hashtags

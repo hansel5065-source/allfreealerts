@@ -265,16 +265,21 @@ function stitchVideo(slideFiles, durations, voiceFile) {
   const segNames = ['intro', 'sweep', 'freebie', 'settle', 'outro'];
 
   // Build FFmpeg inputs for slides
+  // Add extra time to last slide to compensate for crossfade overlap (fadeDur * numTransitions)
+  const fadeDur = 0.3;
+  const numTransitions = slideFiles.length - 1;
+  const fadeCompensation = fadeDur * numTransitions;
+
   let inputs = '';
   let filterParts = [];
   for (let i = 0; i < slideFiles.length; i++) {
-    const dur = durations[segNames[i]];
+    let dur = durations[segNames[i]];
+    if (i === slideFiles.length - 1) dur += fadeCompensation + 0.5; // extra 0.5s buffer
     inputs += ` -loop 1 -t ${dur.toFixed(3)} -i "${slideFiles[i]}"`;
     filterParts.push(`[${i}:v]scale=1080:1920,setsar=1,fps=30[v${i}]`);
   }
 
   // Crossfade transitions
-  const fadeDur = 0.3;
   let prev = 'v0';
   let cumOffset = durations[segNames[0]];
   for (let i = 1; i < slideFiles.length; i++) {
@@ -303,7 +308,7 @@ function stitchVideo(slideFiles, durations, voiceFile) {
 
   // Mix: video + voice + beat
   const beatVol = '0.25';
-  const mixCmd = `ffmpeg -y -i "${videoOnly}" -i "${voiceFile}" -i "${beatLoop}" -filter_complex "[1:a]volume=1.0[voice];[2:a]volume=${beatVol}[beat];[voice][beat]amix=inputs=2:duration=first[aout]" -map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 128k -shortest -movflags +faststart "${VOICE_REEL_FILE}"`;
+  const mixCmd = `ffmpeg -y -i "${videoOnly}" -i "${voiceFile}" -i "${beatLoop}" -filter_complex "[1:a]volume=1.0[voice];[2:a]volume=${beatVol}[beat];[voice][beat]amix=inputs=2:duration=first[aout]" -map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 128k -movflags +faststart "${VOICE_REEL_FILE}"`;
   execSync(mixCmd, { stdio: 'pipe', timeout: 300000 });
 
   const size = (fs.statSync(VOICE_REEL_FILE).size / 1024 / 1024).toFixed(1);

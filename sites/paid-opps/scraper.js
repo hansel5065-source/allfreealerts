@@ -2648,6 +2648,11 @@ async function main() {
   // Step 3: Validate URLs
   allListings = await validateUrls(allListings);
 
+  // Step 3b: Remove inactive listings (dead links are useless)
+  const beforeCount = allListings.length;
+  allListings = allListings.filter(l => l.isActive);
+  log(`Removed ${beforeCount - allListings.length} inactive listings (dead links)`);
+
   // Step 4: Sort
   allListings = sortListings(allListings);
 

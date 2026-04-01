@@ -2,16 +2,16 @@
   "meta": {
     "title": "Verified Paid Opportunities Directory",
     "description": "Curated directory of legitimate paid opportunities including surveys, user testing, focus groups, product testing, mystery shopping, and clinical studies.",
-    "generated": "2026-04-01T08:14:57.589Z",
-    "totalListings": 179,
-    "activeListings": 158,
+    "generated": "2026-04-01T08:21:07.833Z",
+    "totalListings": 157,
+    "activeListings": 157,
     "categories": {
-      "surveys": 37,
-      "user-testing": 22,
-      "focus-groups": 22,
-      "product-testing": 22,
-      "mystery-shopping": 14,
-      "medical-studies": 62
+      "surveys": 29,
+      "user-testing": 21,
+      "focus-groups": 19,
+      "product-testing": 16,
+      "mystery-shopping": 13,
+      "medical-studies": 59
     }
   },
   "listings": [
@@ -161,82 +161,6 @@
       "isActive": true
     },
     {
-      "id": "freecash",
-      "title": "Freecash",
-      "category": "surveys",
-      "url": "https://freecash.com",
-      "description": "Global rewards platform combining surveys, offer walls, and games. Offers PayPal, crypto, and gift card payouts. Fast-growing community with leaderboard bonuses.",
-      "payType": "mixed",
-      "typicalPay": "$0.50-$10/task",
-      "payRange": {
-        "min": 0,
-        "max": 50
-      },
-      "format": "remote",
-      "qualification": "Global, 16+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://freecash.com/signup",
-      "pros": [
-        "Crypto payout option",
-        "Global availability",
-        "Multiple earning methods",
-        "Leaderboard bonuses for top earners"
-      ],
-      "cons": [
-        "Some offers are spammy",
-        "Earnings vary widely",
-        "Must be careful with offer walls",
-        "Newer platform"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
-      "id": "iresearch-panel",
-      "title": "iResearch Panel",
-      "category": "surveys",
-      "url": "https://www.iresearchpanel.com",
-      "description": "Market research survey panel offering PayPal payments for completing surveys on consumer products and services. Averaging about $1 per survey.",
-      "payType": "cash",
-      "typicalPay": "$0.50-$3/survey",
-      "payRange": {
-        "min": 0,
-        "max": 5
-      },
-      "format": "remote",
-      "qualification": "Global, 18+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.iresearchpanel.com/signup",
-      "pros": [
-        "PayPal payments",
-        "Global availability",
-        "Straightforward surveys",
-        "No minimum for some rewards"
-      ],
-      "cons": [
-        "Low pay per survey",
-        "Frequent disqualifications",
-        "Limited survey volume",
-        "Slow invitation rate"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "kashkick",
       "title": "KashKick",
       "category": "surveys",
@@ -345,42 +269,6 @@
       "source": "curated",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "oneopinion",
-      "title": "OneOpinion",
-      "category": "surveys",
-      "url": "https://www.oneopinion.com",
-      "description": "Survey panel offering points for surveys and product testing. Redeem points for Visa virtual prepaid cards or Amazon gift cards.",
-      "payType": "mixed",
-      "typicalPay": "$1-$5/survey",
-      "payRange": {
-        "min": 0,
-        "max": 10
-      },
-      "format": "remote",
-      "qualification": "US, 18+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "remote"
-      ],
-      "signupUrl": "https://www.oneopinion.com/join",
-      "pros": [
-        "Visa virtual card option",
-        "Product testing opportunities",
-        "25,000 points = $25",
-        "No spam emails"
-      ],
-      "cons": [
-        "US only",
-        "Limited survey availability",
-        "Points take time to accumulate"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "pointclub",
@@ -603,43 +491,6 @@
       "isActive": true
     },
     {
-      "id": "univox-community",
-      "title": "Univox Community",
-      "category": "surveys",
-      "url": "https://www.univoxcommunity.com",
-      "description": "Global survey community with a milestone bonus system. Earn points for surveys and get bonuses for reaching activity milestones.",
-      "payType": "mixed",
-      "typicalPay": "$0.50-$3/survey",
-      "payRange": {
-        "min": 0,
-        "max": 5
-      },
-      "format": "remote",
-      "qualification": "Global, 18+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.univoxcommunity.com/signup",
-      "pros": [
-        "Milestone bonuses for activity",
-        "Global availability",
-        "PayPal and gift card options",
-        "Community forums"
-      ],
-      "cons": [
-        "Points conversion rate varies",
-        "Disqualifications common",
-        "Minimum $25 for PayPal"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "valued-opinions",
       "title": "Valued Opinions",
       "category": "surveys",
@@ -713,43 +564,6 @@
       "isActive": true
     },
     {
-      "id": "branded-surveys",
-      "title": "Branded Surveys",
-      "category": "surveys",
-      "url": "https://www.branded.com/surveys",
-      "description": "Growing survey platform with a loyalty program that increases earnings over time. Offers daily and weekly challenges for bonus points.",
-      "payType": "mixed",
-      "typicalPay": "$0.50-$5/survey",
-      "payRange": {
-        "min": 0,
-        "max": 10
-      },
-      "format": "remote",
-      "qualification": "US, UK, Canada, 16+",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.branded.com/surveys/signup",
-      "pros": [
-        "Loyalty tiers increase earnings",
-        "Daily polls for quick points",
-        "Multiple cashout options",
-        "Fast payments"
-      ],
-      "cons": [
-        "Screener disqualifications",
-        "Need to reach $5 minimum",
-        "Some surveys are repetitive"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "google-opinion-rewards",
       "title": "Google Opinion Rewards",
       "category": "surveys",
@@ -784,78 +598,6 @@
       "source": "curated",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "harris-poll-online",
-      "title": "Harris Poll Online",
-      "category": "surveys",
-      "url": "https://www.harrispollonline.com",
-      "description": "Online survey arm of the famous Harris Poll. Participate in influential surveys on politics, public policy, and consumer trends.",
-      "payType": "mixed",
-      "typicalPay": "$1-$3/survey",
-      "payRange": {
-        "min": 0,
-        "max": 10
-      },
-      "format": "remote",
-      "qualification": "US, 18+",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "remote"
-      ],
-      "signupUrl": "https://www.harrispollonline.com/join",
-      "pros": [
-        "Prestigious research organization",
-        "Surveys influence public discourse",
-        "Multiple reward options"
-      ],
-      "cons": [
-        "Fewer surveys than other panels",
-        "Slow point accumulation",
-        "High minimum for redemption"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
-      "id": "i-say-ipsos",
-      "title": "i-Say (Ipsos)",
-      "category": "surveys",
-      "url": "https://www.ipsosisay.com",
-      "description": "Survey panel by Ipsos, one of the world's largest market research companies. Earn points for sharing opinions on brands, products, and services.",
-      "payType": "mixed",
-      "typicalPay": "$0.50-$3/survey",
-      "payRange": {
-        "min": 0,
-        "max": 5
-      },
-      "format": "remote",
-      "qualification": "Global, 16+",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.ipsosisay.com/join",
-      "pros": [
-        "Backed by Ipsos - major research firm",
-        "Loyalty program with bonuses",
-        "Poll predictions for extra points",
-        "Available globally"
-      ],
-      "cons": [
-        "Frequent disqualifications",
-        "Low pay for short surveys",
-        "Can be slow to accumulate enough to redeem"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "inboxdollars",
@@ -1229,42 +971,6 @@
       "isActive": true
     },
     {
-      "id": "surveymonkey-rewards",
-      "title": "SurveyMonkey Rewards",
-      "category": "surveys",
-      "url": "https://www.surveymonkey.com/mp/earn-money/",
-      "description": "Mobile app by SurveyMonkey that donates to charity or gives gift cards for completing surveys. Simple interface backed by a well-known brand.",
-      "payType": "mixed",
-      "typicalPay": "$0.25-$1/survey (donated or gift card)",
-      "payRange": {
-        "min": 0,
-        "max": 2
-      },
-      "format": "remote",
-      "qualification": "US, 18+",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.surveymonkey.com/mp/earn-money/",
-      "pros": [
-        "Charity donation option",
-        "Trusted SurveyMonkey brand",
-        "Simple clean interface",
-        "Quick surveys"
-      ],
-      "cons": [
-        "Very low pay per survey",
-        "Gift cards only (or charity)",
-        "Limited availability"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "swagbucks",
       "title": "Swagbucks",
       "category": "surveys",
@@ -1447,41 +1153,6 @@
       "source": "curated",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "enroll",
-      "title": "Enroll",
-      "category": "user-testing",
-      "url": "https://www.enrollapp.com",
-      "description": "Quick screener-based user research platform. Answer questions to qualify for paid studies that include interviews, surveys, and usability tests.",
-      "payType": "cash",
-      "typicalPay": "$10-$100/study",
-      "payRange": {
-        "min": 10,
-        "max": 100
-      },
-      "format": "remote",
-      "qualification": "US primarily, 18+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "remote"
-      ],
-      "signupUrl": "https://www.enrollapp.com",
-      "pros": [
-        "Quick screener process",
-        "Good pay for qualified studies",
-        "Variety of study types"
-      ],
-      "cons": [
-        "Must pass screeners",
-        "Limited availability",
-        "US-focused"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "loop11",
@@ -2270,43 +1941,6 @@
       "isActive": true
     },
     {
-      "id": "focuslynx",
-      "title": "FocusLynx",
-      "category": "focus-groups",
-      "url": "https://www.focuslynx.com",
-      "description": "Focus group recruiting firm offering both in-person and online research sessions. Pays $75-300 per session for consumer opinions on products and services.",
-      "payType": "cash",
-      "typicalPay": "$75-$300/session",
-      "payRange": {
-        "min": 75,
-        "max": 300
-      },
-      "format": "both",
-      "qualification": "US, 18+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "high-pay"
-      ],
-      "signupUrl": "https://www.focuslynx.com/join",
-      "pros": [
-        "High pay per session",
-        "Both online and in-person options",
-        "Nationwide recruitment",
-        "Variety of study topics"
-      ],
-      "cons": [
-        "Competitive screening process",
-        "Must match demographics",
-        "Irregular scheduling",
-        "In-person may require travel"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "herron-associates",
       "title": "Herron Associates",
       "category": "focus-groups",
@@ -2341,42 +1975,6 @@
       "source": "curated",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "inspired-opinions",
-      "title": "Inspired Opinions",
-      "category": "focus-groups",
-      "url": "https://www.inspiredopinions.com",
-      "description": "Charlotte, NC based market research facility. Conducts focus groups, product tests, taste tests, and online research studies.",
-      "payType": "cash",
-      "typicalPay": "$50-$200/session",
-      "payRange": {
-        "min": 50,
-        "max": 200
-      },
-      "format": "both",
-      "qualification": "US (Charlotte NC area), 18+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "high-pay"
-      ],
-      "signupUrl": "https://www.inspiredopinions.com/join-our-panel",
-      "pros": [
-        "Charlotte NC local studies",
-        "Variety of study types",
-        "Fair pay",
-        "Online options available"
-      ],
-      "cons": [
-        "Regional focus",
-        "Must pass screeners",
-        "Variable availability"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "nichols-research",
@@ -2851,42 +2449,6 @@
       "isActive": true
     },
     {
-      "id": "plaza-research",
-      "title": "Plaza Research",
-      "category": "focus-groups",
-      "url": "https://www.plazaresearch.com",
-      "description": "Focus group facility based in South Florida with a large participant database. Conducts consumer research studies with competitive compensation.",
-      "payType": "cash",
-      "typicalPay": "$75-$200/session",
-      "payRange": {
-        "min": 75,
-        "max": 200
-      },
-      "format": "both",
-      "qualification": "US (FL), 18+",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "high-pay"
-      ],
-      "signupUrl": "https://www.plazaresearch.com/participants",
-      "pros": [
-        "Established facility",
-        "Good pay",
-        "Regular studies",
-        "Professional environment"
-      ],
-      "cons": [
-        "Florida-focused",
-        "Must be local for in-person",
-        "Limited online options"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "recruit-field",
       "title": "Recruit & Field",
       "category": "focus-groups",
@@ -3148,81 +2710,6 @@
       "isActive": true
     },
     {
-      "id": "verizon-device-testing",
-      "title": "Verizon Device Testing",
-      "category": "product-testing",
-      "url": "https://devicetrial.com",
-      "description": "Verizon's device trial program. Test unreleased phones, tablets, and connected devices for Verizon's network.",
-      "payType": "mixed",
-      "typicalPay": "$50-$200 + device time",
-      "payRange": {
-        "min": 50,
-        "max": 200
-      },
-      "format": "remote",
-      "qualification": "US, Verizon customers preferred",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "cash",
-        "remote"
-      ],
-      "signupUrl": "https://devicetrial.com",
-      "pros": [
-        "Test new devices",
-        "Cash compensation",
-        "Major carrier",
-        "Interesting products"
-      ],
-      "cons": [
-        "Limited availability",
-        "Must return devices",
-        "Verizon-focused",
-        "Geographic restrictions"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
-      "id": "viewpoints",
-      "title": "Viewpoints",
-      "category": "product-testing",
-      "url": "https://www.viewpoints.com",
-      "description": "Product review platform where you write detailed reviews of products you own or receive. Earn rewards and occasionally receive free products to test and review.",
-      "payType": "mixed",
-      "typicalPay": "Free products + reward points",
-      "payRange": {
-        "min": 0,
-        "max": 25
-      },
-      "format": "remote",
-      "qualification": "US, 18+",
-      "trustLevel": "medium",
-      "badges": [
-        "verified",
-        "product-only",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.viewpoints.com/signup",
-      "pros": [
-        "Write reviews for products you already own",
-        "Occasional free products",
-        "Build reviewer reputation",
-        "Simple to get started"
-      ],
-      "cons": [
-        "Low monetary rewards",
-        "Must write detailed reviews",
-        "Free product offers are competitive",
-        "Slow reward accumulation"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "amazon-vine",
       "title": "Amazon Vine",
       "category": "product-testing",
@@ -3256,44 +2743,6 @@
         "Must write detailed reviews",
         "Tax implications on product value",
         "Items may be low quality"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": true
-    },
-    {
-      "id": "apple-beta-software-program",
-      "title": "Apple Beta Software Program",
-      "category": "product-testing",
-      "url": "https://beta.apple.com",
-      "description": "Apple's public beta program. Test pre-release versions of iOS, macOS, iPadOS, watchOS, and tvOS before public launch.",
-      "payType": "product",
-      "typicalPay": "Early access to Apple software",
-      "payRange": {
-        "min": 0,
-        "max": 0
-      },
-      "format": "remote",
-      "qualification": "Apple device owners, Apple ID",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "product-only",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://beta.apple.com",
-      "pros": [
-        "Early access to Apple OS updates",
-        "Free to join",
-        "Easy enrollment",
-        "Help improve Apple products"
-      ],
-      "cons": [
-        "No payment",
-        "Beta software may have bugs",
-        "Can affect device stability",
-        "Apple devices required"
       ],
       "source": "curated",
       "lastChecked": "2026-04-01",
@@ -3411,44 +2860,6 @@
       "source": "curated",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "influenster",
-      "title": "Influenster",
-      "category": "product-testing",
-      "url": "https://www.influenster.com",
-      "description": "Product discovery and review platform. Receive free VoxBoxes with full-size products to test. Write reviews and share on social media.",
-      "payType": "product",
-      "typicalPay": "Free product boxes ($20-$100 value)",
-      "payRange": {
-        "min": 20,
-        "max": 100
-      },
-      "format": "remote",
-      "qualification": "US, 18+, social media accounts",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "product-only",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.influenster.com/signup",
-      "pros": [
-        "Full-size products",
-        "Major brand partnerships",
-        "Fun unboxing experience",
-        "Build your reviewer profile"
-      ],
-      "cons": [
-        "Must be active on social media",
-        "Long waits between boxes",
-        "Can't choose products",
-        "No cash payment"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "johnson-johnson-panel",
@@ -3636,43 +3047,6 @@
       "isActive": true
     },
     {
-      "id": "samsung-members",
-      "title": "Samsung Members",
-      "category": "product-testing",
-      "url": "https://www.samsung.com/us/samsung-members/",
-      "description": "Samsung's community app for Galaxy device owners. Beta test new software, provide feedback, and occasionally test unreleased hardware.",
-      "payType": "product",
-      "typicalPay": "Early access + beta features",
-      "payRange": {
-        "min": 0,
-        "max": 0
-      },
-      "format": "remote",
-      "qualification": "Samsung device owners",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "product-only",
-        "remote"
-      ],
-      "signupUrl": "https://www.samsung.com/us/samsung-members/",
-      "pros": [
-        "Early access to features",
-        "Direct Samsung community",
-        "Beta testing new software",
-        "Samsung rewards points"
-      ],
-      "cons": [
-        "Samsung devices only",
-        "No cash payment",
-        "Beta software can have bugs",
-        "Limited hardware testing"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "social-nature",
       "title": "Social Nature",
       "category": "product-testing",
@@ -3781,44 +3155,6 @@
       "source": "curated",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "xbox-insiders",
-      "title": "Xbox Insiders",
-      "category": "product-testing",
-      "url": "https://www.xbox.com/en-US/insiders",
-      "description": "Microsoft's Xbox insider program. Beta test console updates, new features, and games before public release. Earn XP and badges.",
-      "payType": "product",
-      "typicalPay": "Early access + exclusive content",
-      "payRange": {
-        "min": 0,
-        "max": 0
-      },
-      "format": "remote",
-      "qualification": "Xbox owners",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "product-only",
-        "remote",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.xbox.com/en-US/insiders",
-      "pros": [
-        "Early access to Xbox features",
-        "Beta test games",
-        "Community badges",
-        "Help shape Xbox products"
-      ],
-      "cons": [
-        "Xbox required",
-        "No monetary compensation",
-        "Beta software issues",
-        "XP system has limited value"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "isecretshop",
@@ -3965,43 +3301,6 @@
       "source": "curated",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "a-closer-look",
-      "title": "A Closer Look",
-      "category": "mystery-shopping",
-      "url": "https://www.acloserlook.com",
-      "description": "Mystery shopping company focusing on retail, restaurants, entertainment, and apartments. Known for good communication with shoppers.",
-      "payType": "mixed",
-      "typicalPay": "$10-$35/shop + reimbursements",
-      "payRange": {
-        "min": 10,
-        "max": 35
-      },
-      "format": "in-person",
-      "qualification": "US, 18+",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "beginner-friendly"
-      ],
-      "signupUrl": "https://www.acloserlook.com/mystery-shoppers/",
-      "pros": [
-        "Good shopper communication",
-        "Entertainment venue shops",
-        "Apartment shopping opportunities",
-        "Beginner-friendly"
-      ],
-      "cons": [
-        "Lower base pay",
-        "In-person required",
-        "Report writing",
-        "Some shops have tight deadlines"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "bare-international",
@@ -5710,44 +5009,6 @@
       "isActive": true
     },
     {
-      "id": "meridian-clinical-research",
-      "title": "Meridian Clinical Research",
-      "category": "medical-studies",
-      "url": "https://www.meridiantrials.com",
-      "description": "Multi-site research organization conducting Phase I-IV clinical trials. Studies in vaccines, infectious disease, dermatology, and more.",
-      "payType": "cash",
-      "typicalPay": "$100-$5,000/study",
-      "payRange": {
-        "min": 100,
-        "max": 5000
-      },
-      "format": "in-person",
-      "qualification": "US, varies by study, 18+",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "medical",
-        "high-pay"
-      ],
-      "signupUrl": "https://www.meridiantrials.com/volunteer/",
-      "pros": [
-        "Multiple US locations",
-        "Vaccine and infectious disease studies",
-        "Good compensation",
-        "Professional facilities"
-      ],
-      "cons": [
-        "In-person visits required",
-        "Must meet health criteria",
-        "Location-dependent",
-        "Study commitments can be long"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "parexel",
       "title": "Parexel",
       "category": "medical-studies",
@@ -6152,44 +5413,6 @@
       "isActive": true
     },
     {
-      "id": "recruit-me",
-      "title": "Recruit.me",
-      "category": "medical-studies",
-      "url": "https://www.recruit.me",
-      "description": "Clinical trial matching service that pairs volunteers with relevant studies based on their health profile. Free to join with personalized study recommendations.",
-      "payType": "cash",
-      "typicalPay": "$100-$5,000/study",
-      "payRange": {
-        "min": 100,
-        "max": 5000
-      },
-      "format": "both",
-      "qualification": "US, varies by study",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "medical",
-        "high-pay"
-      ],
-      "signupUrl": "https://www.recruit.me/volunteers/",
-      "pros": [
-        "Personalized study matching",
-        "Free to join",
-        "Wide range of therapeutic areas",
-        "Both remote and in-person options"
-      ],
-      "cons": [
-        "Must share health information",
-        "Not all matches lead to enrollment",
-        "Study availability varies",
-        "Must meet specific criteria"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
-    },
-    {
       "id": "researchmatch",
       "title": "ResearchMatch",
       "category": "medical-studies",
@@ -6299,44 +5522,6 @@
       "source": "clinicaltrials",
       "lastChecked": "2026-04-01",
       "isActive": true
-    },
-    {
-      "id": "studypages",
-      "title": "StudyPages",
-      "category": "medical-studies",
-      "url": "https://www.studypages.com",
-      "description": "Clinical trial search platform helping patients discover local paid research studies. Aggregates trials from multiple research centers with compensation details.",
-      "payType": "cash",
-      "typicalPay": "$50-$5,000/study",
-      "payRange": {
-        "min": 50,
-        "max": 5000
-      },
-      "format": "both",
-      "qualification": "US, varies by study",
-      "trustLevel": "high",
-      "badges": [
-        "verified",
-        "cash",
-        "medical",
-        "high-pay"
-      ],
-      "signupUrl": "https://www.studypages.com/patients/",
-      "pros": [
-        "Easy trial search by location",
-        "Compensation details shown upfront",
-        "Wide range of studies",
-        "Both remote and in-person"
-      ],
-      "cons": [
-        "Aggregator — must apply separately",
-        "Must meet study criteria",
-        "Variable availability by area",
-        "Enrollment not guaranteed"
-      ],
-      "source": "curated",
-      "lastChecked": "2026-04-01",
-      "isActive": false
     },
     {
       "id": "ct-nct06522529-sumamos-excelencia-project-implementati",

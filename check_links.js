@@ -16,7 +16,7 @@ function checkUrl(url) {
     const mod = url.startsWith('https') ? https : http;
     const req = mod.get(url, {
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
-      timeout: 10000
+      timeout: 5000
     }, res => {
       let d = '';
       res.on('data', c => d += c);
@@ -36,7 +36,7 @@ function checkUrl(url) {
       });
     });
     req.on('error', () => resolve({ dead: false, status: 0 }));
-    req.setTimeout(10000, () => { req.destroy(); resolve({ dead: false, status: 0 }); });
+    req.setTimeout(5000, () => { req.destroy(); resolve({ dead: false, status: 0 }); });
   });
 }
 
@@ -45,11 +45,21 @@ async function main() {
   const data = JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8'));
   // Only check links older than 3 days (new ones are almost always live)
   const threeDaysAgo = new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0];
-  const toCheck = data.filter(i => i.category !== 'Settlements' && (!i.date_found || i.date_found <= threeDaysAgo));
-  console.log(`Checking ${toCheck.length} links (skipping items newer than 3 days)...`);
+  // Only recheck each link once per 7 days to keep runtime under 5 minutes
+  const RECHECK_FILE = path.join(__dirname, 'data', 'link_check_cache.json');
+  let checkCache = {};
+  try { checkCache = JSON.parse(fs.readFileSync(RECHECK_FILE, 'utf8')); } catch {}
+  const now = Date.now();
+  const WEEK = 7 * 86400000;
+  const toCheck = data.filter(i =>
+    i.category !== 'Settlements' &&
+    (!i.date_found || i.date_found <= threeDaysAgo) &&
+    (!checkCache[i.link] || now - checkCache[i.link] > WEEK)
+  );
+  console.log(`Checking ${toCheck.length} links (skipping items newer than 3 days or checked within 7 days)...`);
 
   const deadLinks = new Set();
-  const BATCH = 30;
+  const BATCH = 100;
 
   for (let i = 0; i < toCheck.length; i += BATCH) {
     const batch = toCheck.slice(i, i + BATCH);
@@ -62,6 +72,17 @@ async function main() {
     }));
     process.stdout.write(`  ${Math.min(i + BATCH, toCheck.length)}/${toCheck.length}\r`);
   }
+
+  // Update check cache with timestamps
+  for (const item of toCheck) {
+    checkCache[item.link] = now;
+  }
+  // Clean cache of links no longer in data
+  const dataLinks = new Set(data.map(i => i.link));
+  for (const link of Object.keys(checkCache)) {
+    if (!dataLinks.has(link)) delete checkCache[link];
+  }
+  fs.writeFileSync(RECHECK_FILE, JSON.stringify(checkCache));
 
   console.log(`\nDead links found: ${deadLinks.size}`);
 

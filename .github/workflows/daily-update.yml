@@ -10,7 +10,7 @@ jobs:
   # ── Scrape & Deploy AllFreeAlerts ──
   allfreealerts:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     permissions:
       contents: write
     steps:
@@ -21,6 +21,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Cache Puppeteer
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          restore-keys: puppeteer-${{ runner.os }}-
 
       - name: Scrape all sources
         run: node scraper.js
@@ -107,7 +114,7 @@ jobs:
         run: |
           git config user.name "AllFreeAlerts Bot"
           git config user.email "bot@allfreealerts.com"
-          git add data/results.json data/results.csv site/data.json data/qa_log.json
+          git add data/results.json data/results.csv site/data.json data/qa_log.json data/link_check_cache.json
           git diff --staged --quiet || git commit -m "Daily update: AllFreeAlerts $(date +%Y-%m-%d)"
           git push
 
@@ -150,7 +157,7 @@ jobs:
   autopost-ig-fb:
     runs-on: ubuntu-latest
     needs: [allfreealerts]
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       contents: write
     steps:
@@ -165,6 +172,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Cache Puppeteer
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          restore-keys: puppeteer-${{ runner.os }}-
 
       - name: Install Puppeteer
         run: npm install puppeteer

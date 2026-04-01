@@ -270,9 +270,7 @@ function stitchVideo(slideFiles, durations, voiceFile) {
   for (let i = 0; i < slideFiles.length; i++) {
     const dur = durations[segNames[i]];
     inputs += ` -loop 1 -t ${dur.toFixed(3)} -i "${slideFiles[i]}"`;
-    // Scale + Ken Burns zoom
-    const zoomDir = i % 2 === 0 ? '1+0.0008*on' : '1.15-0.0008*on';
-    filterParts.push(`[${i}:v]scale=1080:1920,zoompan=z='${zoomDir}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${Math.ceil(dur * 30)}:s=1080x1920:fps=30,setsar=1[v${i}]`);
+    filterParts.push(`[${i}:v]scale=1080:1920,setsar=1,fps=30[v${i}]`);
   }
 
   // Crossfade transitions
@@ -291,7 +289,7 @@ function stitchVideo(slideFiles, durations, voiceFile) {
 
   // First pass: video only
   const videoOnly = path.join(OUT_DIR, 'voice_reel_video.mp4');
-  const videoCmd = `ffmpeg -y${inputs} -filter_complex "${filter}" -map "[outv]" -c:v libx264 -preset fast -crf 23 -pix_fmt yuv420p -r 30 "${videoOnly}"`;
+  const videoCmd = `ffmpeg -y${inputs} -filter_complex "${filter}" -map "[outv]" -c:v libx264 -preset ultrafast -crf 23 -pix_fmt yuv420p -r 30 "${videoOnly}"`;
   execSync(videoCmd, { stdio: 'pipe', timeout: 300000 });
   log('Video stitched');
 

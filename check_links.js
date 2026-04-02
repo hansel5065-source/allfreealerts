@@ -42,7 +42,18 @@ function checkUrl(url) {
 
 async function main() {
   console.log('Dead-link checker starting...');
-  const data = JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8'));
+  let data = JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8'));
+
+  // Remove expired items (deadline/end_date in the past)
+  const today = new Date().toISOString().split('T')[0];
+  const beforeExpiry = data.length;
+  data = data.filter(i => {
+    const d = i.deadline || i.end_date;
+    if (!d) return true;
+    return d >= today;
+  });
+  const expiredCount = beforeExpiry - data.length;
+  if (expiredCount > 0) console.log(`Removed ${expiredCount} expired items (past deadline)`);
   // Only check links older than 3 days (new ones are almost always live)
   const threeDaysAgo = new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0];
   // Only recheck each link once per 7 days to keep runtime under 5 minutes

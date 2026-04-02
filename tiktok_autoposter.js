@@ -14,12 +14,13 @@ const path = require('path');
 
 const CLIENT_KEY = process.env.TIKTOK_CLIENT_KEY || '';
 const CLIENT_SECRET = process.env.TIKTOK_CLIENT_SECRET || '';
-const REFRESH_TOKEN = process.env.TIKTOK_REFRESH_TOKEN || '';
+let REFRESH_TOKEN = process.env.TIKTOK_REFRESH_TOKEN || '';
 const DRY_RUN = process.argv.includes('--dry-run');
 
 const DATA_FILE = path.join(__dirname, 'data', 'results.json');
 const VIDEO_FILE = path.join(__dirname, 'tmp_videos', 'reel.mp4');
 const HISTORY_FILE = path.join(__dirname, 'tiktok_post_history.json');
+const TOKEN_FILE = path.join(__dirname, 'tiktok_token_cache.json');
 
 function log(msg) { console.log(`[TikTok] ${msg}`); }
 
@@ -40,13 +41,28 @@ function httpRequest(options, body) {
   });
 }
 
+// ── Load cached refresh token (TikTok tokens are single-use) ──
+function loadCachedToken() {
+  try {
+    const cache = JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
+    if (cache.refresh_token) return cache.refresh_token;
+  } catch {}
+  return REFRESH_TOKEN; // fall back to env var
+}
+
+function saveCachedToken(refreshToken) {
+  fs.writeFileSync(TOKEN_FILE, JSON.stringify({ refresh_token: refreshToken, updated: new Date().toISOString() }));
+  log('New refresh token cached');
+}
+
 // ── Refresh access token ──
 async function getAccessToken() {
+  const currentToken = loadCachedToken();
   const body = new URLSearchParams({
     client_key: CLIENT_KEY,
     client_secret: CLIENT_SECRET,
     grant_type: 'refresh_token',
-    refresh_token: REFRESH_TOKEN
+    refresh_token: currentToken
   }).toString();
 
   const res = await httpRequest({
@@ -58,6 +74,8 @@ async function getAccessToken() {
 
   const t = res.body.data || res.body;
   if (t.access_token) {
+    // Save the NEW refresh token (old one is now invalid)
+    if (t.refresh_token) saveCachedToken(t.refresh_token);
     log('Access token refreshed');
     return t.access_token;
   }

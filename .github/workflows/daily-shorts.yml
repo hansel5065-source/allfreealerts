@@ -1,0 +1,60 @@
+name: Daily Shorts — YouTube + TikTok
+
+on:
+  schedule:
+    # 6pm ET = 10pm UTC (during EDT)
+    - cron: '0 22 * * *'
+  workflow_dispatch: # manual trigger button
+
+jobs:
+  upload-shorts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: git pull origin main
+        name: Pull latest data
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Download reel from CDN
+        run: |
+          mkdir -p tmp_videos
+          curl -f -o tmp_videos/reel.mp4 "https://allfreealerts.com/social/generated/reel.mp4" || {
+            echo "CDN download failed, checking if local video exists..."
+            if [ ! -f tmp_videos/reel.mp4 ]; then
+              echo "No video available. Run daily-reel workflow first."
+              exit 1
+            fi
+          }
+          ls -la tmp_videos/reel.mp4
+
+      - name: Upload to YouTube Shorts
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: node youtube_shorts_autoposter.js
+
+      - name: Upload to TikTok
+        env:
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
+        run: node tiktok_autoposter.js
+
+      - name: Commit post history
+        run: |
+          git config user.name "AllFreeAlerts Bot"
+          git config user.email "bot@allfreealerts.com"
+          git add youtube_post_history.json tiktok_post_history.json
+          git diff --staged --quiet || git commit -m "Update Shorts post history $(date +%Y-%m-%d)"
+          git push || echo "Push failed, will retry next run"

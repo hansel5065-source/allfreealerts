@@ -97,22 +97,29 @@ async function main() {
 
   console.log(`\nDead links found: ${deadLinks.size}`);
 
+  // Remove dead links from data
   if (deadLinks.size > 0) {
-    const clean = data.filter(i => !deadLinks.has(i.link));
-    console.log(`Removed ${data.length - clean.length} dead items. Remaining: ${clean.length}`);
-    fs.writeFileSync(RESULTS_FILE, JSON.stringify(clean, null, 2));
+    data = data.filter(i => !deadLinks.has(i.link));
+    console.log(`Removed ${deadLinks.size} dead items.`);
+  }
+
+  // Save if anything changed (expired items or dead links)
+  const totalRemoved = expiredCount + deadLinks.size;
+  if (totalRemoved > 0) {
+    console.log(`Remaining: ${data.length} items`);
+    fs.writeFileSync(RESULTS_FILE, JSON.stringify(data, null, 2));
     // Encode for anti-scraping (XOR + base64, strip source field)
-    const publicData = clean.map(({ source, ...rest }) => rest);
+    const publicData = data.map(({ source, ...rest }) => rest);
     const jsonStr = JSON.stringify(publicData);
     const key = 'aFa2026xK';
     const encoded = Buffer.from(jsonStr).map((b, i) => b ^ key.charCodeAt(i % key.length));
     fs.writeFileSync(SITE_DATA, encoded.toString('base64'), 'utf8');
     console.log('Saved.');
   } else {
-    console.log('All links are live!');
+    console.log('All links are live, nothing expired!');
   }
 
-  return deadLinks.size;
+  return totalRemoved;
 }
 
 main().catch(e => { console.error('FATAL:', e.message); process.exit(1); });

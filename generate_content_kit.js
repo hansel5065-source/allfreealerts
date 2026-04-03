@@ -464,7 +464,11 @@ function buildEmailHtml(tweets, tweetDeals, tweetImageUrls, redditPosts, fbPost,
   fbContent += copyBlock(fbPost, `Suggested images: ${SOCIAL_IMG_BASE}/sweepstakes_1.png, ${SOCIAL_IMG_BASE}/freebies_1.png, ${SOCIAL_IMG_BASE}/settlements_1.png`);
 
   // -- TikTok section --
-  let tikTokContent = '<p style="margin:0 0 12px 0;font-size:13px;color:#666;">Paste this as the caption when uploading today\'s reel video.</p>';
+  let tikTokContent = '<p style="margin:0 0 12px 0;font-size:13px;color:#666;">Paste this as the caption when uploading the reel video to TikTok.</p>';
+  tikTokContent += `<p style="margin:0 0 8px 0;font-size:13px;font-weight:700;color:#333;">📥 Download today's videos:</p>`;
+  tikTokContent += `<p style="margin:0 0 4px 0;font-size:13px;"><a href="${SITE_URL}/social/generated/reel.mp4" style="color:#0ABAB5;font-weight:600;">🎵 Music Reel (reel.mp4)</a></p>`;
+  tikTokContent += `<p style="margin:0 0 16px 0;font-size:13px;"><a href="${SITE_URL}/social/generated/voice_reel.mp4" style="color:#0ABAB5;font-weight:600;">🔊 Voice Reel (voice_reel.mp4)</a></p>`;
+  tikTokContent += `<p style="margin:0 0 8px 0;font-size:11px;color:#999;">Videos are generated at 4:13pm (music) and 6:30pm (voice). Links will have today's videos after those times.</p>`;
   tikTokContent += copyBlock(tikTokCaption);
 
   return `<!DOCTYPE html>

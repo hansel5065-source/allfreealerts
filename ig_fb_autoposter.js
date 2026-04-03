@@ -309,17 +309,26 @@ async function waitForContainer(containerId) {
 
 // ── Post Instagram Carousel (multiple images in one post) ──
 async function postInstagramCarousel(picks, caption) {
-  // Step 1: Create child containers for each slide
+  // Step 1: Create child containers for each slide (with retry)
   const childIds = [];
   for (let i = 0; i < picks.length; i++) {
     const pick = picks[i];
-    console.log(`📸 Creating carousel slide ${i + 1}/${picks.length} (${pick.category})...`);
-    const child = await graphAPI('POST', `${IG_USER_ID}/media`, {
-      image_url: pick.imageUrl,
-      is_carousel_item: 'true',
-      access_token: IG_ACCESS_TOKEN
-    });
-    if (child.error) throw new Error(`Slide ${i + 1} failed: ${child.error.message}`);
+    let child = null;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      console.log(`📸 Creating carousel slide ${i + 1}/${picks.length} (${pick.category})${attempt > 1 ? ` — retry ${attempt}/3` : ''}...`);
+      child = await graphAPI('POST', `${IG_USER_ID}/media`, {
+        image_url: pick.imageUrl,
+        is_carousel_item: 'true',
+        access_token: IG_ACCESS_TOKEN
+      });
+      if (!child.error) break;
+      console.log(`⚠️ Slide ${i + 1} attempt ${attempt} failed: ${child.error.message}`);
+      if (attempt < 3) {
+        console.log(`⏳ Waiting ${attempt * 5}s before retry...`);
+        await new Promise(r => setTimeout(r, attempt * 5000));
+      }
+    }
+    if (child.error) throw new Error(`Slide ${i + 1} failed after 3 attempts: ${child.error.message}`);
     childIds.push(child.id);
     await waitForContainer(child.id);
     console.log(`✅ Slide ${i + 1} ready`);

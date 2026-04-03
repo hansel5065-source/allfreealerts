@@ -19,6 +19,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const { execSync } = require('child_process');
 
 // ── Config ──
 const DRY_RUN = process.argv.includes('--dry-run') || process.argv.includes('--preview');
@@ -338,9 +339,86 @@ function generateTikTokCaption(sweepDeal, freebieDeal, settlementDeal) {
   return caption;
 }
 
+// ── Deal Image Generation (Puppeteer) ──
+
+const IMG_DIR = path.join(__dirname, 'site', 'social', 'content-kit');
+
+function generateImageHTML(item, category) {
+  const title = escapeHtml((item.title || '').slice(0, 80));
+  const summary = escapeHtml((item.prize_summary || '').slice(0, 100));
+
+  const templates = {
+    Sweepstakes: { gradient: 'linear-gradient(135deg,#0ABAB5 0%,#087f7b 50%,#065a57 100%)', emoji: '🎉', badge: 'SWEEPSTAKES ALERT', badgeBg: '#FF6F3C', sub: summary || 'Enter now for a chance to win!' },
+    Freebies: { gradient: 'linear-gradient(135deg,#FF6F3C 0%,#e85525 50%,#c44218 100%)', emoji: '🎁', badge: 'FREE STUFF ALERT', badgeBg: '#ffffff', badgeColor: '#FF6F3C', sub: 'No purchase necessary. No credit card.' },
+    Settlements: { gradient: 'linear-gradient(135deg,#F5A623 0%,#e8950f 50%,#c47e0a 100%)', emoji: '💰', badge: '⚠️ SETTLEMENT ALERT', badgeBg: '#ff3333', sub: summary || 'You may be owed money. Check if you qualify.' },
+  };
+  const t = templates[category] || templates.Freebies;
+
+  return `<!DOCTYPE html><html><head><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{width:1080px;height:1080px;display:flex;justify-content:center;align-items:center;background:#0e1628}
+    .card{width:1080px;height:1080px;background:${t.gradient};display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px;position:relative;overflow:hidden;font-family:'Segoe UI',Arial,sans-serif}
+    .card::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,0.1)}
+    .emoji{font-size:80px;margin-bottom:30px;z-index:1}
+    .badge{background:${t.badgeBg};color:${t.badgeColor || 'white'};padding:10px 30px;border-radius:50px;font-size:24px;font-weight:800;letter-spacing:2px;margin-bottom:30px;z-index:1}
+    .title{font-size:46px;font-weight:800;color:white;text-align:center;line-height:1.3;z-index:1;margin-bottom:20px;text-shadow:0 2px 10px rgba(0,0,0,0.2)}
+    .sub{font-size:28px;color:rgba(255,255,255,0.9);text-align:center;z-index:1;line-height:1.4}
+    .brand{position:absolute;bottom:50px;font-size:28px;font-weight:700;color:white;background:rgba(0,0,0,0.3);padding:12px 30px;border-radius:50px;z-index:1}
+    .brand span{color:#0ABAB5}
+  </style></head><body><div class="card">
+    <div class="emoji">${t.emoji}</div>
+    <div class="badge">${t.badge}</div>
+    <div class="title">${title}</div>
+    <div class="sub">${t.sub}</div>
+    <div class="brand">All<span>Free</span>Alerts.com</div>
+  </div></body></html>`;
+}
+
+async function generateTweetImages(tweetDeals) {
+  if (!fs.existsSync(IMG_DIR)) fs.mkdirSync(IMG_DIR, { recursive: true });
+
+  let puppeteer;
+  try { puppeteer = require('puppeteer'); } catch { log('Puppeteer not available — skipping image generation'); return []; }
+
+  const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1080, height: 1080 });
+
+  const imagePaths = [];
+  for (let i = 0; i < tweetDeals.length; i++) {
+    const deal = tweetDeals[i];
+    const html = generateImageHTML(deal, deal.category);
+    const htmlFile = path.join(IMG_DIR, `tweet_${i}.html`);
+    const pngFile = path.join(IMG_DIR, `tweet_${i}.png`);
+
+    fs.writeFileSync(htmlFile, html);
+    await page.goto('file:///' + htmlFile.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+    await page.screenshot({ path: pngFile, type: 'png' });
+    fs.unlinkSync(htmlFile);
+    imagePaths.push(pngFile);
+    log(`  Image ${i + 1}: ${deal.title.substring(0, 40)}...`);
+  }
+
+  await browser.close();
+  return imagePaths;
+}
+
+function deployImages() {
+  try {
+    execSync('npx wrangler pages deploy site/ --project-name=allfreealerts --commit-dirty=true', {
+      stdio: 'inherit', env: { ...process.env }
+    });
+    log('Images deployed to Cloudflare');
+    return true;
+  } catch (e) {
+    log('Cloudflare deploy failed: ' + e.message);
+    return false;
+  }
+}
+
 // ── HTML Email Generation ──
 
-function buildEmailHtml(tweets, tweetDeals, redditPosts, fbPost, tikTokCaption, dateStr) {
+function buildEmailHtml(tweets, tweetDeals, tweetImageUrls, redditPosts, fbPost, tikTokCaption, dateStr) {
   const platformSection = (icon, name, color, content) => `
     <tr><td style="padding:0 0 24px 0;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:10px;border:1px solid #e8e8e8;overflow:hidden;">
@@ -361,11 +439,14 @@ function buildEmailHtml(tweets, tweetDeals, redditPosts, fbPost, tikTokCaption, 
   };
 
   // -- Tweets section --
-  let tweetContent = '<p style="margin:0 0 12px 0;font-size:13px;color:#666;">5 tweets ready for Buffer. Copy each tweet + download the image.</p>';
+  let tweetContent = '<p style="margin:0 0 12px 0;font-size:13px;color:#666;">5 tweets ready for Buffer. Copy the text + save the image below each tweet.</p>';
   tweets.forEach((tweet, i) => {
-    const imgUrl = getCategoryImage(tweetDeals[i].category, i);
+    const imgUrl = tweetImageUrls[i] || getCategoryImage(tweetDeals[i].category, i);
     tweetContent += `<p style="margin:16px 0 4px 0;font-size:12px;font-weight:700;color:#1DA1F2;">Tweet ${i + 1} — ${escapeHtml(tweetDeals[i].category)}</p>`;
-    tweetContent += copyBlock(tweet, `Image: ${imgUrl}`);
+    tweetContent += copyBlock(tweet);
+    tweetContent += `<p style="margin:4px 0 4px 0;font-size:12px;color:#888;">Image for this tweet:</p>`;
+    tweetContent += `<a href="${imgUrl}" download style="display:inline-block;margin-bottom:16px;"><img src="${imgUrl}" alt="Tweet ${i+1} image" style="width:200px;height:200px;border-radius:8px;border:1px solid #ddd;"/></a>`;
+    tweetContent += `<p style="margin:0 0 16px 0;font-size:11px;color:#aaa;">Right-click image → Save, or <a href="${imgUrl}" style="color:#1DA1F2;">download here</a></p>`;
   });
 
   // -- Reddit section --
@@ -535,11 +616,28 @@ async function main() {
   const tikTokCaption = generateTikTokCaption(sweepPicks[0], freebiePicks[0], settlementPicks[0]);
   log('Generated TikTok caption');
 
+  // -- Generate deal-specific images --
+  let tweetImageUrls = [];
+  if (!DRY_RUN) {
+    log('Generating tweet images...');
+    const imagePaths = await generateTweetImages(tweetDeals);
+    if (imagePaths.length > 0 && process.env.CLOUDFLARE_API_TOKEN) {
+      log('Deploying images to Cloudflare...');
+      deployImages();
+      // Wait for CDN propagation
+      log('Waiting 10s for CDN...');
+      await new Promise(r => setTimeout(r, 10000));
+      tweetImageUrls = tweetDeals.map((_, i) => `${SITE_URL}/social/content-kit/tweet_${i}.png`);
+    } else if (imagePaths.length > 0) {
+      log('No CLOUDFLARE_API_TOKEN — images generated locally but not deployed');
+    }
+  }
+
   // -- Build email HTML --
   const dateStr = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   });
-  const emailHtml = buildEmailHtml(tweets, tweetDeals, redditPosts, fbPost, tikTokCaption, dateStr);
+  const emailHtml = buildEmailHtml(tweets, tweetDeals, tweetImageUrls, redditPosts, fbPost, tikTokCaption, dateStr);
   const subject = `Daily Content Kit — ${dateStr}`;
 
   if (DRY_RUN) {

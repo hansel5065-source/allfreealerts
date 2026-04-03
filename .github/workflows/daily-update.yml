@@ -2,8 +2,8 @@ name: Daily Scrape & Deploy — AllFreeAlerts
 
 on:
   schedule:
-    # 10am ET = 2pm UTC (during EDT)
-    - cron: '0 14 * * *'
+    # 10:07am ET = 2:07pm UTC (during EDT)
+    - cron: '7 14 * * *'
   workflow_dispatch: # manual trigger button
 
 jobs:
@@ -37,6 +37,9 @@ jobs:
 
       - name: QA new entries (validate links + remove middlemen)
         run: node qa_new_entries.js
+
+      - name: Final cleanup (expired + stale entries)
+        run: node cleanup_expired.js
 
       - name: Email QA report
         continue-on-error: true

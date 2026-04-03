@@ -103,19 +103,23 @@ function buildPostText(item, category) {
   const title = (item.title || '').slice(0, 120);
   const link = item.link || 'https://allfreealerts.com';
 
+  // Bluesky limit: 300 graphemes. Keep posts compact.
+  // Footer is ~58 chars, emoji+label ~20, newlines ~6 = ~84 overhead
+  // Budget remaining chars between title and link
+  const footer = 'allfreealerts.com | #freestuff #sweepstakes #settlements';
+  const overhead = 20 + 6 + footer.length; // label + newlines + footer
+  const maxTotal = 300 - overhead; // chars left for title + link
+  const maxTitle = Math.min(90, maxTotal - link.length);
+  const trimmedTitle = title.length > maxTitle ? title.slice(0, Math.max(30, maxTitle - 1)) + '…' : title;
+
   const lines = [
     `${category.emoji} ${category.label}`,
     '',
-    title,
+    trimmedTitle,
     '',
     link,
     '',
-    `\u{1F449} More deals at allfreealerts.com`,
-    '',
-    'Follow us everywhere:',
-    '\u{1F4F8} IG @allfreealerts | \u{1F464} FB facebook.com/allfreealerts | \u{1F426} X @allfreealerts',
-    '',
-    '#allfreealerts #freestuff #sweepstakes #settlements #freebies'
+    `allfreealerts.com | #freestuff #sweepstakes #settlements`
   ];
 
   return lines.join('\n');
@@ -151,28 +155,6 @@ function buildFacets(text, link) {
       index: siteIndices,
       features: [{ $type: 'app.bsky.richtext.facet#link', uri: 'https://allfreealerts.com' }]
     });
-  }
-
-  // Cross-promo links
-  const crossLinks = [
-    { text: '@allfreealerts', uri: 'https://instagram.com/allfreealerts', after: 'IG ' },
-    { text: 'facebook.com/allfreealerts', uri: 'https://facebook.com/allfreealerts' },
-    { text: '@allfreealerts', uri: 'https://x.com/allfreealerts', after: 'X ' },
-  ];
-  for (const cl of crossLinks) {
-    // Find the specific mention by searching after its label
-    let searchFrom = 0;
-    if (cl.after) {
-      const labelIdx = text.indexOf(cl.after);
-      if (labelIdx >= 0) searchFrom = labelIdx;
-    }
-    const indices = getByteIndices(text, cl.text, searchFrom);
-    if (indices) {
-      facets.push({
-        index: indices,
-        features: [{ $type: 'app.bsky.richtext.facet#link', uri: cl.uri }]
-      });
-    }
   }
 
   // Hashtags

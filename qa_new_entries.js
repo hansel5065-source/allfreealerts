@@ -36,6 +36,10 @@ const MIDDLEMAN_DOMAINS = [
   'coupons.com', 'groupon.com',
   // Shortlink/tracking domains used by aggregators
   'freebi.es', 'trk.adbloom.co', 'bmv.biz', 'a.pub.network',
+  // Shopping/affiliate redirect domains
+  'shopstyle.it', 'shoplowes.me', 'gotoaisle.com', 'ibotta.onelink.me',
+  'mavely.app.link', 'caliber.app.link', 'brandcycle.shop', 'hp2win.com',
+  'promos.mardenkane.com',
 ];
 
 // === KNOWN GOOD DOMAINS ===
@@ -168,8 +172,63 @@ function isMiddleman(link, category) {
   return { isMiddleman: false };
 }
 
+// === BROKEN AD/SCRIPT DOMAINS ===
+// Links pointing to ad networks or tracking scripts, not real deals
+const BROKEN_AD_DOMAINS = [
+  'scorecardresearch.com', 'pubmatic.com', 'clarity.ms',
+  'adthrive.com', 'privacymanager.io', 'doubleclick.net',
+  'googlesyndication.com', 'googleadservices.com',
+];
+
+// === PRESS RELEASE DOMAINS ===
+// Press releases about deals are not the deals themselves
+const PRESS_RELEASE_DOMAINS = [
+  'prnewswire.com', 'businesswire.com', 'globenewswire.com',
+  'prweb.com', 'prbuzz.com',
+];
+
+// === SEASONAL KEYWORDS ===
+// Items tied to past seasons/holidays that are no longer relevant
+const STALE_SEASONAL_PATTERNS = [
+  /christmas\s+20[0-9]{2}/i, /black friday\s+20[0-9]{2}/i,
+  /cyber monday\s+20[0-9]{2}/i, /valentine'?s?\s+day\s+20[0-9]{2}/i,
+  /easter\s+20[0-9]{2}/i, /mother'?s?\s+day\s+20[0-9]{2}/i,
+  /father'?s?\s+day\s+20[0-9]{2}/i, /halloween\s+20[0-9]{2}/i,
+  /new year'?s?\s+20[0-9]{2}/i, /labor day\s+20[0-9]{2}/i,
+  /memorial day\s+20[0-9]{2}/i, /4th of july\s+20[0-9]{2}/i,
+  /july 4th\s+20[0-9]{2}/i, /thanksgiving\s+20[0-9]{2}/i,
+];
+
+function isStaleSeasonalItem(title) {
+  const currentYear = new Date().getFullYear().toString();
+  for (const pattern of STALE_SEASONAL_PATTERNS) {
+    const match = title.match(pattern);
+    if (match && !match[0].includes(currentYear)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function fixHtmlEntities(text) {
+  if (!text) return text;
+  return text
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#x27;/g, "'")
+    .replace(/&#x2F;/g, '/');
+}
+
 function validateContent(item) {
   const issues = [];
+
+  // Fix HTML entities in title and link before validation
+  if (item.title) item.title = fixHtmlEntities(item.title);
+  if (item.link) item.link = fixHtmlEntities(item.link);
 
   // Title checks
   if (!item.title || item.title.trim().length === 0) {
@@ -193,6 +252,54 @@ function validateContent(item) {
   // Duplicate title/link patterns
   if (item.title && /^(test|example|sample|lorem|ipsum)/i.test(item.title)) {
     issues.push('Title looks like test/sample content');
+  }
+
+  // Broken ad/script link check
+  if (item.link) {
+    const lowerLink = item.link.toLowerCase();
+    for (const domain of BROKEN_AD_DOMAINS) {
+      if (lowerLink.includes(domain)) {
+        issues.push(`Link points to ad/script domain: ${domain}`);
+        break;
+      }
+    }
+  }
+
+  // Press release link check
+  if (item.link) {
+    const lowerLink = item.link.toLowerCase();
+    for (const domain of PRESS_RELEASE_DOMAINS) {
+      if (lowerLink.includes(domain)) {
+        issues.push(`Link points to press release: ${domain}`);
+        break;
+      }
+    }
+  }
+
+  // Stale seasonal content (past year's holidays)
+  if (item.title && isStaleSeasonalItem(item.title)) {
+    issues.push('Stale seasonal content from a past year');
+  }
+
+  // Sweepstakes miscategorized as Freebies
+  if (item.category === 'Freebies' && item.title) {
+    const t = item.title.toLowerCase();
+    if (/sweepstakes|giveaway|win a |enter to win|drawing|raffle/i.test(t) && !/free sample|free trial|freebie|coupon/i.test(t)) {
+      // Recategorize instead of removing
+      item.category = 'Sweepstakes';
+      log(`  [RECATEGORIZED] "${item.title.substring(0, 50)}" Freebies → Sweepstakes`);
+    }
+  }
+
+  // Non-claimable lawsuit investigations in Settlements
+  if (item.category === 'Settlements' && item.title) {
+    const t = item.title.toLowerCase();
+    const l = (item.link || '').toLowerCase();
+    if ((/investigation|lawsuit filed|class action filed/i.test(t)) && !(/settlement|claim/i.test(t))) {
+      if (l.includes('/investigation') || l.includes('/lawsuit') || l.includes('/class-action-lawsuit')) {
+        issues.push('Non-claimable investigation/lawsuit (no settlement yet)');
+      }
+    }
   }
 
   return issues;

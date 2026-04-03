@@ -23,6 +23,17 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Check Brevo key exists
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: |
+          if [ -z "$BREVO_API_KEY" ]; then
+            echo "ERROR: BREVO_API_KEY is empty!"
+          else
+            echo "Key found, starts with: ${BREVO_API_KEY:0:8}..."
+            echo "Key length: ${#BREVO_API_KEY}"
+          fi
+
       - name: Generate and email content kit
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}

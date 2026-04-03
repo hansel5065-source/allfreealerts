@@ -88,9 +88,25 @@ function pickItems() {
 
 // ── Build YouTube title + description ──
 function buildMetadata(picks) {
-  const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-  const title = `Free Stuff Today — ${today} #shorts`;
+  // Catchy rotating titles — no dates, focus on what the site offers
+  const titles = [
+    'Free Stuff You Didn\'t Know Existed 🤯 #shorts',
+    'Stop Scrolling — This Stuff Is Actually FREE 🎁 #shorts',
+    'Get Paid From Class Action Settlements 💰 #shorts',
+    'Free Stuff + Cash Settlements You\'re Missing Out On #shorts',
+    'I Find Free Stuff So You Don\'t Have To 🔍 #shorts',
+    'Sweepstakes, Freebies & Settlement Cash — All Free #shorts',
+    'Why Are People Not Claiming This Free Money?! 💸 #shorts',
+    'The Internet\'s Best Kept Secret: Free Stuff Daily #shorts',
+    'Companies Are Giving Away Free Stuff Right Now 🎉 #shorts',
+    'How To Get Free Stuff Every Single Day #shorts',
+    'You\'re Leaving Free Money On The Table 💰 #shorts',
+    'Free Samples, Sweepstakes & Settlement Checks ✅ #shorts',
+    'This Free Stuff Won\'t Last Long — Grab It Now #shorts',
+    'Real Freebies, Real Sweepstakes, Real Money #shorts',
+  ];
+  const day = Math.floor(Date.now() / 86400000);
+  const title = titles[day % titles.length];
 
   const lines = [`Today's top free stuff picks:\n`];
   const emojis = { Sweepstakes: '🎉', Freebies: '🎁', Settlements: '💰' };

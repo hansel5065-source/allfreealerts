@@ -10,12 +10,21 @@
 const { execSync, spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 // ── Config ──
 const DRY_RUN = process.argv.includes('--dry-run') || process.argv.includes('--preview');
 const OUT_DIR = path.join(__dirname, 'tmp_videos');
 const BEAT_FILE = path.join(OUT_DIR, 'beat.wav');
 const VOICE_REEL_FILE = path.join(OUT_DIR, 'voice_reel.mp4');
+
+// ── Meta API ──
+const IG_USER_ID = '17841436221523604';
+const IG_ACCESS_TOKEN = process.env.IG_ACCESS_TOKEN || '';
+const FB_PAGE_ID = '1127348030451082';
+const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN || '';
+const API_VERSION = 'v25.0';
+const SITE_BASE = 'https://allfreealerts.com';
 
 // ── Brand ──
 const COLORS = { teal: '#0ABAB5', orange: '#FF6F3C', gold: '#F5A623' };
@@ -443,6 +452,118 @@ function stitchVideo(slides, voiceFiles, durations) {
   }
 }
 
+// ── Build caption ──
+function buildVoiceReelCaption(picks) {
+  const lines = ["🔊 Today's deals — with voice narration 👇\n"];
+  for (const { category, item } of picks) {
+    const emoji = CAT_EMOJI[category];
+    lines.push(`${emoji} ${item.title.substring(0, 60)}`);
+  }
+  lines.push(`\n👉 Link in bio — allfreealerts.com`);
+  lines.push(`📱 Follow @allfreealerts for daily finds!`);
+  lines.push(`\n👤 facebook.com/allfreealerts`);
+  lines.push(`🐦 @allfreealerts on X`);
+  lines.push(`🦋 @allfreealerts.bsky.social`);
+  lines.push(`\n#freestuff #sweepstakes #giveaway #freebie #classaction #settlements #free #deals #win #contest`);
+  return lines.join('\n');
+}
+
+// ── Meta Graph API helper ──
+function graphAPI(endpoint, params, method = 'POST') {
+  return new Promise((resolve, reject) => {
+    const body = new URLSearchParams(params).toString();
+    const url = `https://graph.facebook.com/${API_VERSION}/${endpoint}`;
+    if (method === 'GET') {
+      https.get(url + '?' + body, (res) => {
+        let data = '';
+        res.on('data', chunk => data += chunk);
+        res.on('end', () => { try { resolve(JSON.parse(data)); } catch { resolve(data); } });
+      }).on('error', reject);
+      return;
+    }
+    const parsed = new URL(url);
+    const req = https.request({
+      hostname: parsed.hostname, path: parsed.pathname, method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': Buffer.byteLength(body) }
+    }, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => { try { resolve(JSON.parse(data)); } catch { resolve(data); } });
+    });
+    req.on('error', reject);
+    req.write(body); req.end();
+  });
+}
+
+// ── Post Reel to Instagram ──
+async function postIGReel(videoUrl, caption) {
+  log('Posting voice reel to Instagram...');
+  const container = await graphAPI(`${IG_USER_ID}/media`, {
+    media_type: 'REELS', video_url: videoUrl, caption, access_token: IG_ACCESS_TOKEN
+  });
+  if (container.error) { log('IG container error: ' + JSON.stringify(container.error)); return null; }
+  log(`  Container created: ${container.id}`);
+
+  for (let i = 0; i < 30; i++) {
+    await new Promise(r => setTimeout(r, 5000));
+    const status = await graphAPI(`${container.id}`, { fields: 'status_code', access_token: IG_ACCESS_TOKEN }, 'GET');
+    log(`  Status: ${status.status_code}`);
+    if (status.status_code === 'FINISHED') break;
+    if (status.status_code === 'ERROR') { log('  Container processing failed'); return null; }
+  }
+
+  const result = await graphAPI(`${IG_USER_ID}/media_publish`, { creation_id: container.id, access_token: IG_ACCESS_TOKEN });
+  if (result.id) { log(`  IG Reel published: ${result.id}`); return result.id; }
+  log('  IG publish error: ' + JSON.stringify(result));
+  return null;
+}
+
+// ── Post Reel to Facebook ──
+async function postFBReel(videoFilePath, caption) {
+  log('Posting voice reel to Facebook...');
+  const init = await graphAPI(`${FB_PAGE_ID}/video_reels`, { upload_phase: 'start', access_token: FB_PAGE_TOKEN });
+  if (init.error) { log('FB init error: ' + JSON.stringify(init.error)); return null; }
+  const videoId = init.video_id;
+  log(`  FB upload initialized: ${videoId}`);
+
+  const videoData = fs.readFileSync(videoFilePath);
+  const uploaded = await new Promise((resolve, reject) => {
+    const parsed = new URL(init.upload_url);
+    const req = https.request({
+      hostname: parsed.hostname, path: parsed.pathname, method: 'POST',
+      headers: {
+        'Authorization': `OAuth ${FB_PAGE_TOKEN}`, 'offset': '0',
+        'file_size': videoData.length.toString(), 'Content-Type': 'application/octet-stream', 'Content-Length': videoData.length
+      }
+    }, (res) => {
+      let data = ''; res.on('data', chunk => data += chunk);
+      res.on('end', () => { try { resolve(JSON.parse(data)); } catch { resolve(data); } });
+    });
+    req.on('error', reject);
+    req.write(videoData); req.end();
+  });
+  if (!uploaded.success) { log('  FB upload failed: ' + JSON.stringify(uploaded)); return null; }
+  log('  FB binary upload successful');
+
+  log('  Waiting for FB video processing...');
+  for (let i = 0; i < 30; i++) {
+    await new Promise(r => setTimeout(r, 5000));
+    const check = await graphAPI(`${videoId}`, { fields: 'status,published', access_token: FB_PAGE_TOKEN }, 'GET');
+    const vs = check?.status?.video_status || check?.status?.processing_phase?.status || check?.status;
+    log(`  Processing check (${i + 1}/30): ${JSON.stringify(check?.status || check)}`);
+    if (vs === 'ready' || vs === 'complete' || check?.status?.uploading_phase?.status === 'complete') break;
+    if (vs === 'error') { log('  FB processing error'); return null; }
+  }
+
+  const finish = await graphAPI(`${FB_PAGE_ID}/video_reels`, {
+    upload_phase: 'finish', video_id: videoId, title: "Today's Free Stuff Picks 🔊",
+    description: caption, video_state: 'PUBLISHED', access_token: FB_PAGE_TOKEN
+  });
+  if (finish.success) { log(`  FB Reel published: ${videoId}`); return videoId; }
+  log('  FB finish error: ' + JSON.stringify(finish));
+  return null;
+}
+
 // ── Main ──
 async function main() {
   log('=== Voice Reel Generator ===');
@@ -490,7 +611,59 @@ async function main() {
     process.exit(1);
   }
 
-  log('\nDone! Voice reel saved to: ' + VOICE_REEL_FILE);
+  // Build caption
+  const caption = buildVoiceReelCaption(picks);
+  log('\n--- Caption ---');
+  log(caption);
+  log('--- End Caption ---\n');
+
+  if (DRY_RUN) {
+    log(`DRY RUN complete. Video saved to: ${VOICE_REEL_FILE}`);
+    return;
+  }
+
+  // Deploy video to Cloudflare so IG can access it via URL
+  log('Deploying voice reel to Cloudflare...');
+  const videoDir = path.join(__dirname, 'site', 'social', 'generated');
+  if (!fs.existsSync(videoDir)) fs.mkdirSync(videoDir, { recursive: true });
+  fs.copyFileSync(VOICE_REEL_FILE, path.join(videoDir, 'voice_reel.mp4'));
+
+  execSync('npx wrangler pages deploy site/ --project-name=allfreealerts --commit-dirty=true', {
+    stdio: 'inherit', env: { ...process.env }
+  });
+
+  log('Waiting 20s for CDN propagation...');
+  await new Promise(r => setTimeout(r, 20000));
+
+  const videoUrl = `${SITE_BASE}/social/generated/voice_reel.mp4`;
+  log(`Video URL: ${videoUrl}`);
+
+  // Post to Instagram
+  if (IG_ACCESS_TOKEN) {
+    await postIGReel(videoUrl, caption);
+  } else {
+    log('Skipping IG (no access token)');
+  }
+
+  // Post to Facebook
+  if (FB_PAGE_TOKEN) {
+    await postFBReel(VOICE_REEL_FILE, caption);
+  } else {
+    log('Skipping FB (no page token)');
+  }
+
+  // Update history
+  const history = loadHistory();
+  for (const p of picks) {
+    if (!history.posted.includes(p.item.link)) {
+      history.posted.push(p.item.link);
+    }
+  }
+  if (history.posted.length > 500) history.posted = history.posted.slice(-500);
+  fs.writeFileSync(path.join(__dirname, 'ig_fb_post_history.json'), JSON.stringify(history, null, 2));
+  log('History updated');
+
+  log('Done!');
 }
 
 main().catch(e => {

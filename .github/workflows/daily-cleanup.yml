@@ -1,0 +1,37 @@
+name: Daily Cleanup — Remove Expired Entries
+
+on:
+  schedule:
+    # 12:05am ET = 4:05am UTC (during EDT)
+    - cron: '5 4 * * *'
+  workflow_dispatch: # manual trigger
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: git pull origin main
+        name: Pull latest data
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Remove expired entries
+        run: node cleanup_expired.js
+
+      - name: Commit if changes
+        run: |
+          git config user.name "AllFreeAlerts Bot"
+          git config user.email "bot@allfreealerts.com"
+          git add data/results.json site/data.json
+          git diff --staged --quiet || git commit -m "Remove expired entries $(date +%Y-%m-%d)"
+          git push || echo "Push failed, will retry next run"

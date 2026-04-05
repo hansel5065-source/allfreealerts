@@ -1307,6 +1307,7 @@ async function main() {
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
   log(`\nDone in ${elapsed}s`);
+  process.exit(0);
 }
 
 main().catch(e => { log(`FATAL: ${e.message}`); process.exit(1); });

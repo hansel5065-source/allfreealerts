@@ -11,6 +11,40 @@ const path = require('path');
 const RESULTS_FILE = path.join(__dirname, 'data', 'results.json');
 const SITE_DATA = path.join(__dirname, 'site', 'data.json');
 
+const MONTH_MAP = {
+  january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
+  july: 6, august: 7, september: 8, october: 9, november: 10, december: 11,
+};
+
+/**
+ * Parse dates in any format: M/D/YY, Month D YYYY, Month D at time, ISO
+ */
+function parseDate(str) {
+  if (!str || str === 'Unknown') return null;
+  str = str.trim();
+  if (/^\d{4}-\d{2}-\d{2}/.test(str)) {
+    const d = new Date(str + 'T00:00:00');
+    return isNaN(d) ? null : d;
+  }
+  const slashMatch = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if (slashMatch) {
+    let [, m, d, y] = slashMatch;
+    y = parseInt(y);
+    if (y < 100) y += 2000;
+    return new Date(y, parseInt(m) - 1, parseInt(d));
+  }
+  const monthMatch = str.match(/^([A-Za-z]+)\s+(\d{1,2})(?:,?\s*(\d{4}))?/);
+  if (monthMatch) {
+    const monthIdx = MONTH_MAP[monthMatch[1].toLowerCase()];
+    if (monthIdx !== undefined) {
+      const day = parseInt(monthMatch[2]);
+      const year = monthMatch[3] ? parseInt(monthMatch[3]) : new Date().getFullYear();
+      return new Date(year, monthIdx, day);
+    }
+  }
+  return null;
+}
+
 function checkUrl(url) {
   return new Promise(resolve => {
     const mod = url.startsWith('https') ? https : http;
@@ -31,7 +65,13 @@ function checkUrl(url) {
           body.includes('sweepstakes has ended') || body.includes('this offer has ended') ||
           body.includes('survey_is_not_public') || body.includes('contest is closed') ||
           body.includes('giveaway has ended') || body.includes('this sweepstakes is over') ||
-          body.includes('this promotion has ended') || body.includes('offer expired');
+          body.includes('this promotion has ended') || body.includes('offer expired') ||
+          body.includes('claim deadline has passed') || body.includes('claims period has ended') ||
+          body.includes('settlement has been completed') || body.includes('filing deadline has passed') ||
+          body.includes('this deal has expired') || body.includes('this freebie has expired') ||
+          body.includes('offer has ended') || body.includes('no longer accepting claims') ||
+          body.includes('this giveaway is over') || body.includes('entry period has ended') ||
+          body.includes('redemption period has ended') || body.includes('campaign has ended');
         resolve({ dead, status: res.statusCode });
       });
     });
@@ -44,30 +84,22 @@ async function main() {
   console.log('Dead-link checker starting...');
   let data = JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8'));
 
-  // Remove expired items (deadline/end_date in the past)
-  const today = new Date().toISOString().split('T')[0];
+  // Remove expired items (deadline/end_date in the past, with proper date parsing)
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const beforeExpiry = data.length;
   data = data.filter(i => {
     const d = i.deadline || i.end_date;
     if (!d) return true;
-    return d >= today;
+    const parsed = parseDate(d);
+    if (!parsed) return true;
+    return parsed >= startOfToday;
   });
   const expiredCount = beforeExpiry - data.length;
   if (expiredCount > 0) console.log(`Removed ${expiredCount} expired items (past deadline)`);
-  // Only check links older than 3 days (new ones are almost always live)
-  const threeDaysAgo = new Date(Date.now() - 3 * 86400000).toISOString().split('T')[0];
-  // Only recheck each link once per 7 days to keep runtime under 5 minutes
-  const RECHECK_FILE = path.join(__dirname, 'data', 'link_check_cache.json');
-  let checkCache = {};
-  try { checkCache = JSON.parse(fs.readFileSync(RECHECK_FILE, 'utf8')); } catch {}
-  const now = Date.now();
-  const WEEK = 7 * 86400000;
-  const toCheck = data.filter(i =>
-    i.category !== 'Settlements' &&
-    (!i.date_found || i.date_found <= threeDaysAgo) &&
-    (!checkCache[i.link] || now - checkCache[i.link] > WEEK)
-  );
-  console.log(`Checking ${toCheck.length} links (skipping items newer than 3 days or checked within 7 days)...`);
+  // Check every link every night — no caching, no skipping
+  const toCheck = data.filter(i => i.link);
+  console.log(`Checking ${toCheck.length} links (all categories)...`);
 
   const deadLinks = new Set();
   const BATCH = 100;
@@ -83,17 +115,6 @@ async function main() {
     }));
     process.stdout.write(`  ${Math.min(i + BATCH, toCheck.length)}/${toCheck.length}\r`);
   }
-
-  // Update check cache with timestamps
-  for (const item of toCheck) {
-    checkCache[item.link] = now;
-  }
-  // Clean cache of links no longer in data
-  const dataLinks = new Set(data.map(i => i.link));
-  for (const link of Object.keys(checkCache)) {
-    if (!dataLinks.has(link)) delete checkCache[link];
-  }
-  fs.writeFileSync(RECHECK_FILE, JSON.stringify(checkCache));
 
   console.log(`\nDead links found: ${deadLinks.size}`);
 

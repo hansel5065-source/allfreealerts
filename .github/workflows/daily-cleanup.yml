@@ -1,4 +1,4 @@
-name: Daily Cleanup — Remove Expired Entries
+name: Nightly Deep Cleanup
 
 on:
   schedule:
@@ -9,7 +9,7 @@ on:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     permissions:
       contents: write
     steps:
@@ -28,10 +28,18 @@ jobs:
       - name: Remove expired entries
         run: node cleanup_expired.js
 
+      - name: Check all links (every category)
+        run: node check_links.js
+
+      - name: Deploy to Cloudflare
+        run: npx wrangler pages deploy site/ --project-name=allfreealerts --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
       - name: Commit if changes
         run: |
           git config user.name "AllFreeAlerts Bot"
           git config user.email "bot@allfreealerts.com"
           git add data/results.json site/data.json
-          git diff --staged --quiet || git commit -m "Remove expired entries $(date +%Y-%m-%d)"
+          git diff --staged --quiet || git commit -m "Nightly cleanup $(date +%Y-%m-%d)"
           git push || echo "Push failed, will retry next run"

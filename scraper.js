@@ -1373,9 +1373,14 @@ async function main() {
   const newItems = [];
   const seenLinks = new Set();
   const seenTitles = new Set();
-  // Also build title set from existing items for cross-source dedup
+  const seenClaimDomains = new Set(); // domain-level dedup for settlements
+  // Build dedup sets from existing items
   for (const e of existing) {
     if (e.title) seenTitles.add(e.title.toLowerCase().replace(/[^a-z0-9]/g, ''));
+    // Track claim domains for existing settlements too
+    if (e.category === 'Settlements' && e.link) {
+      try { seenClaimDomains.add(new URL(e.link).hostname.replace('www.', '').toLowerCase()); } catch {}
+    }
   }
   for (const item of allScraped) {
     if (!item.link || !item.title) continue;
@@ -1388,6 +1393,18 @@ async function main() {
     // Title-based dedup: catch same contest from different sources
     const normTitle = item.title.toLowerCase().replace(/[^a-z0-9]/g, '');
     if (seenTitles.has(normTitle)) continue;
+    // Settlement domain-level dedup: same claim site = same settlement
+    if (item.category === 'Settlements') {
+      try {
+        const claimDomain = new URL(link).hostname.replace('www.', '').toLowerCase();
+        // Skip generic domains that host many settlements (form builders, administrators)
+        const genericDomains = ['simpluris.com', 'cw.simpluris.com', 'angeion-public.s3.amazonaws.com', 'strategicclaims.net', 'ftc.gov', 'azag.gov', 'form.jotform.com', 'forms.ksacms.com', 'justice.gov'];
+        if (!genericDomains.some(d => claimDomain.includes(d))) {
+          if (seenClaimDomains.has(claimDomain)) continue;
+          seenClaimDomains.add(claimDomain);
+        }
+      } catch {}
+    }
     seenLinks.add(link);
     seenTitles.add(normTitle);
     item.date_found = new Date().toISOString().split('T')[0];

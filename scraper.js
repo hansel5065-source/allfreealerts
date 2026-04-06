@@ -880,6 +880,166 @@ async function settlemate() {
   return items;
 }
 
+async function openClassActions() {
+  log('Scraping OpenClassActions.com (settlement cards + detail follow)...');
+  const items = [];
+  const html = await fetchPage('https://openclassactions.com');
+  if (!html) { log('  OCA: FAILED'); return items; }
+
+  // Extract settlement cards from homepage: <a href="...settlements/SLUG.php"><div class="settlement-card">
+  const cardRe = /<a[^>]*href="(https?:\/\/openclassactions\.com\/(?:settlements\/)?[^"]+\.php)"[^>]*>[\s\S]*?<h2[^>]*class="[^"]*settlement-card-title[^"]*"[^>]*>([\s\S]*?)<\/h2>[\s\S]*?<\/a>/g;
+  let m;
+  const candidates = [];
+  const seen = new Set();
+  while ((m = cardRe.exec(html)) !== null) {
+    const detailUrl = m[1].trim();
+    const title = decodeEntities(m[2].trim().replace(/<[^>]+>/g, ''));
+    if (seen.has(detailUrl) || title.length < 10) continue;
+    seen.add(detailUrl);
+    candidates.push({ detailUrl, title });
+  }
+  log(`  OCA: ${candidates.length} settlement cards, following for claim URLs...`);
+
+  // Follow each detail page to extract actual claim form URL
+  let found = 0;
+  await resolveInBatches(candidates, async (c) => {
+    const detail = await fetchPage(c.detailUrl, 8000);
+    if (!detail) return;
+
+    // Claim form URL: <a class="btn" href="EXTERNAL_URL">File Your Claim</a>
+    const btnMatch = detail.match(/<a[^>]*class="btn"[^>]*href="(https?:\/\/[^"]+)"[^>]*>/i);
+    if (btnMatch && !btnMatch[1].includes('openclassactions.com')) {
+      c.claimUrl = btnMatch[1].replace(/&amp;/g, '&');
+    }
+    // Fallback: "Claim Form Website: <a href="...">"
+    if (!c.claimUrl) {
+      const siteMatch = detail.match(/Claim Form Website[^<]*<a[^>]*href="(https?:\/\/[^"]+)"/i);
+      if (siteMatch && !siteMatch[1].includes('openclassactions.com')) {
+        c.claimUrl = siteMatch[1].replace(/&amp;/g, '&');
+      }
+    }
+    // Extract deadline from detail page
+    const deadlineMatch = detail.match(/Deadline[:\s]*([A-Z][a-z]+ \d{1,2},?\s*\d{4})/i)
+      || detail.match(/Deadline[:\s]*(\d{1,2}\/\d{1,2}\/\d{2,4})/i);
+    if (deadlineMatch) c.deadline = deadlineMatch[1];
+
+    // Extract payout
+    const payoutMatch = detail.match(/Without Proof[:\s]*(\$[\d,.]+)/i)
+      || detail.match(/Estimated Payout[:\s]*(\$[\d,.]+)/i);
+    if (payoutMatch) c.payout = payoutMatch[1];
+
+    if (c.claimUrl) found++;
+  }, 10);
+
+  // Build final items — only those with actual claim URLs
+  for (const c of candidates) {
+    if (!c.claimUrl) continue;
+    items.push({
+      title: c.title,
+      link: c.claimUrl,
+      source: 'openclassactions', category: 'Settlements',
+      scope: detectScope(c.title),
+      ...(c.deadline ? { end_date: c.deadline } : {}),
+      ...(c.payout ? { payout: c.payout } : {}),
+    });
+  }
+  log(`  OCA: ${found}/${candidates.length} settlements with claim URLs`);
+  return items;
+}
+
+async function claimDepot() {
+  log('Scraping ClaimDepot.com (paginated settlement cards + detail follow)...');
+  const items = [];
+  const candidates = [];
+  const seen = new Set();
+
+  // Paginate through listings — 100 per page
+  for (let page = 1; page <= 15; page++) {
+    const url = page === 1
+      ? 'https://www.claimdepot.com/settlements'
+      : `https://www.claimdepot.com/settlements?0ff52671_page=${page}`;
+    const html = await fetchPage(url);
+    if (!html) break;
+
+    // Extract cards: title, slug, status, deadline
+    const cardRe = /<div[^>]*role="listitem"[^>]*class="[^"]*c-collection_item[^"]*"[^>]*>([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/g;
+    let m;
+    let pageCount = 0;
+    // Simpler approach: extract title links and status
+    const titleRe = /<a[^>]*fs-cmsfilter-field="name"[^>]*href="(\/settlements\/[^"]+)"[^>]*class="[^"]*c-title-3[^"]*"[^>]*>([\s\S]*?)<\/a>/g;
+    while ((m = titleRe.exec(html)) !== null) {
+      const slug = m[1].trim();
+      const title = decodeEntities(m[2].trim().replace(/<[^>]+>/g, ''));
+      if (seen.has(slug) || title.length < 10) continue;
+      seen.add(slug);
+      candidates.push({ slug, title });
+      pageCount++;
+    }
+    if (pageCount === 0) break;
+    log(`  CD: page ${page}: ${pageCount} items`);
+  }
+
+  // Filter: only follow detail pages to get claim URLs for open settlements
+  log(`  CD: ${candidates.length} total items, following for claim URLs...`);
+
+  let found = 0;
+  await resolveInBatches(candidates, async (c) => {
+    const detail = await fetchPage(`https://www.claimdepot.com${c.slug}`, 8000);
+    if (!detail) return;
+
+    // Check status — only keep "Open for Claims"
+    const statusMatch = detail.match(/summary-status[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+    if (statusMatch) {
+      const status = statusMatch[1].trim().toLowerCase();
+      if (!status.includes('open')) return; // skip non-open settlements
+    }
+
+    // Claim form URL: <a class="primary-button-4" target="_blank" href="EXTERNAL">
+    const btnMatch = detail.match(/<a[^>]*href="(https?:\/\/[^"]+)"[^>]*class="[^"]*primary-button-4[^"]*"[^>]*target="_blank"/i)
+      || detail.match(/<a[^>]*class="[^"]*primary-button-4[^"]*"[^>]*target="_blank"[^>]*href="(https?:\/\/[^"]+)"/i)
+      || detail.match(/<a[^>]*class="[^"]*primary-button-4[^"]*"[^>]*href="(https?:\/\/[^"]+)"[^>]*target="_blank"/i);
+    if (btnMatch) {
+      const claimUrl = (btnMatch[1] || btnMatch[2]).replace(/&amp;/g, '&');
+      if (!claimUrl.includes('claimdepot.com')) {
+        c.claimUrl = claimUrl;
+      }
+    }
+
+    // Fallback: Settlement Website link in sidebar
+    if (!c.claimUrl) {
+      const siteMatch = detail.match(/Settlement Website[\s\S]*?<a[^>]*href="(https?:\/\/[^"]+)"/i);
+      if (siteMatch && !siteMatch[1].includes('claimdepot.com')) {
+        c.claimUrl = siteMatch[1].replace(/&amp;/g, '&');
+      }
+    }
+
+    // Extract deadline
+    const deadlineMatch = detail.match(/Claim Deadline[\s\S]*?case-title-data[^>]*>([\s\S]*?)<\/div>/i);
+    if (deadlineMatch) c.deadline = deadlineMatch[1].trim();
+
+    // Extract payout
+    const payoutMatch = detail.match(/Estimated Payout[\s\S]*?case-title-data[^>]*>([\s\S]*?)<\/div>/i);
+    if (payoutMatch) c.payout = payoutMatch[1].trim();
+
+    if (c.claimUrl) found++;
+  }, 10);
+
+  // Build final items
+  for (const c of candidates) {
+    if (!c.claimUrl) continue;
+    items.push({
+      title: c.title,
+      link: c.claimUrl,
+      source: 'claimdepot', category: 'Settlements',
+      scope: detectScope(c.title),
+      ...(c.deadline ? { end_date: c.deadline } : {}),
+      ...(c.payout ? { payout: c.payout } : {}),
+    });
+  }
+  log(`  CD: ${found}/${candidates.length} settlements with claim URLs`);
+  return items;
+}
+
 // === NEW SOURCES ===
 
 // UltraContest - scrape category pages for direct contest links
@@ -1180,7 +1340,7 @@ async function main() {
   const existingLinks = new Set(existing.map(e => e.link));
 
   // Scrape all sources in parallel where possible
-  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, sm] = await Promise.all([
+  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, sm, oca, cd] = await Promise.all([
     scrapeContestgirl().catch(e => { log(`CG ERROR: ${e.message}`); return []; }),
     sweepstakesFanatics().catch(e => { log(`SF ERROR: ${e.message}`); return []; }),
     freebieshark().catch(e => { log(`FS ERROR: ${e.message}`); return []; }),
@@ -1202,9 +1362,11 @@ async function main() {
     contestListing().catch(e => { log(`CL ERROR: ${e.message}`); return []; }),
     giveawayBase().catch(e => { log(`GB ERROR: ${e.message}`); return []; }),
     settlemate().catch(e => { log(`SM ERROR: ${e.message}`); return []; }),
+    openClassActions().catch(e => { log(`OCA ERROR: ${e.message}`); return []; }),
+    claimDepot().catch(e => { log(`CD ERROR: ${e.message}`); return []; }),
   ]);
 
-  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm];
+  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd];
 
   // Clean + Deduplicate
   const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/'];

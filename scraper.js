@@ -511,21 +511,54 @@ async function topClassActions() {
   const xml = await fetchPage('https://topclassactions.com/feed/');
   if (!xml) { log('  TCA: FAILED'); return items; }
 
+  // Only keep open settlements (skip news, investigations, lawsuits)
+  const candidates = [];
   for (const rss of parseRssItems(xml)) {
     if (!rss.title || !rss.link) continue;
+    const link = rss.link.trim();
     const titleLower = rss.title.toLowerCase();
-    if (titleLower.includes('settlement') || titleLower.includes('class action') ||
-        titleLower.includes('refund') || titleLower.includes('claim')) {
-      const tcaTitle = decodeEntities(rss.title.trim());
-      items.push({
-        title: tcaTitle,
-        link: rss.link.trim(),
-        source: 'topclassactions', category: 'Settlements',
-        scope: detectScope(tcaTitle),
-      });
-    }
+    // Must be an open settlement with "settlement" in title — skip news/investigations
+    if (!titleLower.includes('settlement')) continue;
+    if (titleLower.includes('investigation') || titleLower.includes('lawsuit filed') ||
+        titleLower.includes('sued') || titleLower.includes('accused') ||
+        titleLower.includes('alleges') || titleLower.includes('class action claims')) continue;
+    candidates.push({ title: decodeEntities(rss.title.trim()), tcaLink: link });
   }
-  log(`  TCA: ${items.length} settlement articles`);
+  log(`  TCA: ${candidates.length} settlement articles, following for claim URLs...`);
+
+  // Follow each article page to extract the actual claim form URL
+  const CLAIM_DOMAINS = /claim|filing|submit|epiq|gilardi|simpluris|angeion|jnd|kcc|rust|atticus|settlementadministrator|settlementonline|classactionsettlement|settlement/i;
+  const BATCH = 10;
+  let found = 0;
+  for (let i = 0; i < candidates.length; i += BATCH) {
+    const batch = candidates.slice(i, i + BATCH);
+    await Promise.all(batch.map(async (c) => {
+      const html = await fetchPage(c.tcaLink);
+      if (!html) return;
+      // Find external links with claim/settlement keywords
+      const linkRe = /href="(https?:\/\/[^"]+)"/gi;
+      let m;
+      const claimUrls = [];
+      while ((m = linkRe.exec(html)) !== null) {
+        const href = m[1];
+        if (href.includes('topclassactions.com')) continue;
+        if (href.includes('facebook.com') || href.includes('twitter.com') || href.includes('instagram.com') || href.includes('tiktok.com')) continue;
+        if (CLAIM_DOMAINS.test(href)) claimUrls.push(href);
+      }
+      if (claimUrls.length > 0) {
+        // Pick the most specific claim URL (prefer /claim, /file, /submit paths)
+        const best = claimUrls.find(u => /\/claim|\/file|\/submit/i.test(u)) || claimUrls[0];
+        items.push({
+          title: c.title,
+          link: best,
+          source: 'topclassactions', category: 'Settlements',
+          scope: detectScope(c.title),
+        });
+        found++;
+      }
+    }));
+  }
+  log(`  TCA: ${found}/${candidates.length} settlements with claim URLs`);
   return items;
 }
 

@@ -108,7 +108,10 @@ function checkUrl(url) {
       body.includes('this link has expired') || body.includes('this form is no longer accepting') ||
       body.includes('sign-ups closed') || body.includes('signups closed') || body.includes('sign ups closed') ||
       body.includes('registration is closed') || body.includes('entries are closed') ||
-      body.includes('submissions are closed') || body.includes('not available in your region');
+      body.includes('submissions are closed') || body.includes('not available in your region') ||
+      body.includes('giveaway is now closed') || body.includes('supply has been claimed') ||
+      body.includes('giveaway is closed') || body.includes('all items have been claimed') ||
+      body.includes('sold out') && body.includes('giveaway');
     // Flag pages that embed login-wall widgets (gleam.io, etc.)
     const hasGleam = !dead && ['gleam.io/js/widget', 'e.gleam.io', 'rafflecopter.com/rafl/'].some(d => body.includes(d));
     // Flag pages with login/signup/age-gate walls

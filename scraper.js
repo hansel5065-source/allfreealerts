@@ -1369,6 +1369,11 @@ async function main() {
   const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd];
 
   // Clean + Deduplicate
+  // Load blocklist of manually removed links (prevents zombies from coming back)
+  const REMOVED_BLOCKLIST = fs.existsSync(path.join(__dirname, 'data', 'removed_blocklist.json'))
+    ? JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'removed_blocklist.json'), 'utf8'))
+    : [];
+
   const BAD_LINK_DOMAINS = [
     // Social media
     'facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/',
@@ -1399,6 +1404,7 @@ async function main() {
     const link = item.link.trim();
     if (!link.startsWith('http')) continue;
     if (BAD_LINK_DOMAINS.some(d => link.includes(d))) continue; // skip social media links
+    if (REMOVED_BLOCKLIST.some(b => link.includes(b))) continue; // skip manually removed entries
     // Skip items that require a purchase (not free) — but keep "no purchase necessary" items
     const NO_PURCHASE = /\bno purchase (necessary|needed|required)\b/i;
     if (item.category !== 'Settlements' && PURCHASE_REQUIRED.test(item.title) && !NO_PURCHASE.test(item.title)) {

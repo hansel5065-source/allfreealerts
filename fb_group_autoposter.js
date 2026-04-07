@@ -135,7 +135,8 @@ function buildPostText(item, category) {
     text += `\n🔗 Enter here: ${link}\n\n`;
     text += `💬 Drop a 🎉 if you entered!\n\n`;
     text += `───────────────────\n`;
-    text += `👉 allfreealerts.com — hundreds more free deals updated daily`;
+    text += `👉 allfreealerts.com — hundreds more free deals updated daily\n`;
+    text += `📬 Get deals in your inbox → allfreealerts.com/#subscribe`;
     return text;
   }
 
@@ -147,7 +148,8 @@ function buildPostText(item, category) {
     text += `\n🔗 Claim it: ${link}\n\n`;
     text += `💬 Tag someone who needs to see this!\n\n`;
     text += `───────────────────\n`;
-    text += `👉 allfreealerts.com — hundreds more free deals updated daily`;
+    text += `👉 allfreealerts.com — hundreds more free deals updated daily\n`;
+    text += `📬 Get deals in your inbox → allfreealerts.com/#subscribe`;
     return text;
   }
 
@@ -160,11 +162,12 @@ function buildPostText(item, category) {
     text += `\n🔗 File your claim: ${link}\n\n`;
     text += `💬 Share this — most people don't know they're owed money!\n\n`;
     text += `───────────────────\n`;
-    text += `👉 allfreealerts.com — hundreds more free deals updated daily`;
+    text += `👉 allfreealerts.com — hundreds more free deals updated daily\n`;
+    text += `📬 Get deals in your inbox → allfreealerts.com/#subscribe`;
     return text;
   }
 
-  return `${title}\n\n🔗 ${link}\n\n👉 allfreealerts.com`;
+  return `${title}\n\n🔗 ${link}\n\n👉 allfreealerts.com\n📬 Get deals in your inbox → allfreealerts.com/#subscribe`;
 }
 
 // ── Facebook Graph API ──

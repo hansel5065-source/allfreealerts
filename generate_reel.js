@@ -507,6 +507,7 @@ function buildReelCaption(picks) {
   }
   lines.push(`\n🚨 These are just 3 — we have HUNDREDS more!`);
   lines.push(`👉 allfreealerts.com`);
+  lines.push(`📬 Get deals in your inbox → allfreealerts.com/#subscribe`);
   lines.push(`📱 Follow @allfreealerts for daily finds!`);
   lines.push(`\n👤 facebook.com/allfreealerts`);
   lines.push(`🐦 @allfreealerts on X`);

@@ -104,9 +104,9 @@ function buildPostText(item, category) {
   const link = item.link || 'https://allfreealerts.com';
 
   // Bluesky limit: 300 graphemes. Keep posts compact.
-  // Footer lines: "100s more → allfreealerts.com" (~32) + hashtags (~30) = ~62
-  // + emoji+label ~20, newlines ~8 = ~90 overhead
-  const overhead = 90;
+  // Footer: "100s more → allfreealerts.com" (~32) + email CTA (~48) + hashtags (~30) = ~110
+  // + emoji+label ~20, newlines ~10 = ~140 overhead
+  const overhead = 140;
   const maxTotal = 300 - overhead;
   const maxTitle = Math.min(80, maxTotal - link.length);
   const trimmedTitle = title.length > maxTitle ? title.slice(0, Math.max(30, maxTitle - 1)) + '…' : title;
@@ -119,6 +119,7 @@ function buildPostText(item, category) {
     link,
     '',
     `100s more \u{1F449} allfreealerts.com`,
+    `\u{1F4EC} Daily inbox deals \u{2192} allfreealerts.com/#subscribe`,
     '#freestuff #sweepstakes #settlements'
   ];
 
@@ -147,13 +148,23 @@ function buildFacets(text, link) {
     });
   }
 
-  // Site link
+  // Site link (first occurrence — the "100s more" line)
   const siteUrl = 'allfreealerts.com';
   const siteIndices = getByteIndices(text, siteUrl);
   if (siteIndices) {
     facets.push({
       index: siteIndices,
       features: [{ $type: 'app.bsky.richtext.facet#link', uri: 'https://allfreealerts.com' }]
+    });
+  }
+
+  // Subscribe link (second occurrence)
+  const subUrl = 'allfreealerts.com/#subscribe';
+  const subIndices = getByteIndices(text, subUrl);
+  if (subIndices) {
+    facets.push({
+      index: subIndices,
+      features: [{ $type: 'app.bsky.richtext.facet#link', uri: 'https://allfreealerts.com/#subscribe' }]
     });
   }
 

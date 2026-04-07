@@ -410,6 +410,7 @@ function buildCarouselCaption(picks) {
   }
   caption += '\u{1F6A8} These are just 3 \u2014 we have HUNDREDS more on the site!\n';
   caption += '\u{1F449} allfreealerts.com\n';
+  caption += '\u{1F4EC} Get deals in your inbox \u2192 allfreealerts.com/#subscribe\n';
   caption += '\u{1F4F1} Follow @allfreealerts for daily finds!\n';
   caption += pickPromo(IG_CROSS_PROMO) + '\n\n';
   caption += '#freestuff #sweepstakes #classaction #settlement #freebie #giveaway #freemoney #savemoney #freesample #allfreealerts';
@@ -600,7 +601,7 @@ async function main() {
     for (let i = 0; i < activePicks.length; i++) {
       const pick = activePicks[i];
       try {
-        const fbCaption = `${pick.caption.split('\n\n#')[0]}\n\n🔗 ${pick.item.link}\n\n🚨 This is just 1 of HUNDREDS of free deals on our site!\n👉 allfreealerts.com`;
+        const fbCaption = `${pick.caption.split('\n\n#')[0]}\n\n🔗 ${pick.item.link}\n\n🚨 This is just 1 of HUNDREDS of free deals on our site!\n👉 allfreealerts.com\n📬 Get deals in your inbox → allfreealerts.com/#subscribe`;
         const fbPostId = await postToFacebook(fbCaption, pick.imageUrl);
         console.log(`✅ Facebook posted! Post ID: ${fbPostId}`);
       } catch (e) {

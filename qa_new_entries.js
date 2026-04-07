@@ -151,7 +151,7 @@ function checkBody(url, statusCode, body, resolve) {
     }
   }
 
-  resolve({ alive: true, status: statusCode });
+  resolve({ alive: true, status: statusCode, body: body });
 }
 
 function isMiddleman(link, category) {
@@ -366,7 +366,36 @@ async function main() {
         }
       }
 
-      // 5. Flag items that need manual review (403s, timeouts) but still pass
+      // 5. Purchase-required check — page content says you need to buy something
+      if (item.category !== 'Settlements' && result.body) {
+        const b = result.body.toLowerCase();
+        const PURCHASE_PHRASES = [
+          'purchase required', 'purchase necessary', 'must purchase',
+          'order .{0,20} to (enter|win|qualify)', 'buy .{0,20} to (enter|win)',
+          'with (any )?purchase', 'no purchase necessary.*void where',
+        ];
+        // Strong signals that it requires buying something (check multiple indicators)
+        const purchaseSignals = [
+          b.includes('purchase required'),
+          b.includes('must purchase') || b.includes('must buy') || b.includes('must order'),
+          /order .{0,30}(to enter|for a chance|to win|to qualify)/i.test(b),
+          /buy .{0,30}(to enter|for a chance|to win|to qualify)/i.test(b),
+          b.includes('with purchase') || b.includes('with any purchase'),
+          b.includes('spend $') && /spend \$\d+.{0,20}(to enter|to qualify|for a chance)/i.test(b),
+          b.includes('log in to order') && b.includes('chance to win'),
+        ].filter(Boolean).length;
+        // "No purchase necessary" means it IS free — don't flag it
+        const noPurchase = b.includes('no purchase necessary') || b.includes('no purchase required');
+        if (purchaseSignals >= 2 && !noPurchase) {
+          removed.push({ ...item, qa_reason: 'Purchase required — not free' });
+          return;
+        }
+        if (purchaseSignals >= 1 && !noPurchase) {
+          flagged.push({ ...item, qa_flag: 'May require purchase — check manually' });
+        }
+      }
+
+      // 6. Flag items that need manual review (403s, timeouts) but still pass
       if (result.flagged) {
         flagged.push({ ...item, qa_flag: result.flagged });
       }

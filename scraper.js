@@ -1369,7 +1369,7 @@ async function main() {
   const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd];
 
   // Clean + Deduplicate
-  const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/'];
+  const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/', 'gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com'];
   const newItems = [];
   const seenLinks = new Set();
   const seenTitles = new Set();
@@ -1382,12 +1382,22 @@ async function main() {
       try { seenClaimDomains.add(new URL(e.link).hostname.replace('www.', '').toLowerCase()); } catch {}
     }
   }
+  // Purchase-required filter — if it's not free, we don't want it
+  const PURCHASE_REQUIRED = /\b(purchase required|purchase necessary|must (buy|order|purchase)|buy .* to (enter|win)|order .* (to|for a) chance|spend \$\d+ to|with (any )?purchase|when you (buy|order|spend)|requires? (a )?purchase|loyalty (reward|member)|log in to order)\b/i;
+  let purchaseFiltered = 0;
+
   for (const item of allScraped) {
     if (!item.link || !item.title) continue;
     if (item.title.length < 10) continue; // skip broken short titles
     const link = item.link.trim();
     if (!link.startsWith('http')) continue;
     if (BAD_LINK_DOMAINS.some(d => link.includes(d))) continue; // skip social media links
+    // Skip items that require a purchase (not free) — but keep "no purchase necessary" items
+    const NO_PURCHASE = /\bno purchase (necessary|needed|required)\b/i;
+    if (item.category !== 'Settlements' && PURCHASE_REQUIRED.test(item.title) && !NO_PURCHASE.test(item.title)) {
+      purchaseFiltered++;
+      continue;
+    }
     if (existingLinks.has(link)) continue;
     if (seenLinks.has(link)) continue;
     // Title-based dedup: catch same contest from different sources
@@ -1439,6 +1449,7 @@ async function main() {
   log(`Total scraped: ${allScraped.length}`);
   log(`New items: ${newItems.length} (${existing.length} already known)`);
   log(`Direct links: ${directCount} | Middleman: ${middlemanCount}`);
+  if (purchaseFiltered > 0) log(`Purchase-required filtered: ${purchaseFiltered}`);
   log('');
   log('By source (total / new):');
   for (const src of Object.keys(counts).sort()) {

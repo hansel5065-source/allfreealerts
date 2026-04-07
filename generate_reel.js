@@ -67,6 +67,53 @@ function loadHistory() {
   catch { return { posted: [] }; }
 }
 
+// Score items for social appeal — higher = more eye-catching
+function socialScore(item) {
+  const title = (item.title || '').toLowerCase();
+  let score = 0;
+
+  // Big brands people recognize
+  const brands = ['amazon', 'walmart', 'target', 'costco', 'starbucks', 'mcdonald', 'chick-fil-a',
+    'chipotle', 'dunkin', 'wendy', 'burger king', 'taco bell', 'pizza hut', 'domino',
+    'apple', 'samsung', 'nike', 'adidas', 'coca-cola', 'pepsi', 'ben & jerry',
+    'sephora', 'ulta', 'lego', 'disney', 'netflix', 'spotify', 'uber', 'doordash',
+    'kroger', 'walgreen', 'cvs', 'aldi', 'ikea', 'seaworld', 'planet fitness',
+    'rita', 'sonic', 'dairy queen', 'smoothie king', 'panera', 'subway'];
+  if (brands.some(b => title.includes(b))) score += 30;
+
+  // Dollar amounts catch eyes
+  const dollarMatch = title.match(/\$[\d,.]+/);
+  if (dollarMatch) {
+    const amount = parseFloat(dollarMatch[0].replace(/[$,]/g, ''));
+    if (amount >= 1000000) score += 40;
+    else if (amount >= 100000) score += 30;
+    else if (amount >= 10000) score += 20;
+    else if (amount >= 100) score += 10;
+  }
+
+  // Free food/drinks always do well
+  if (/free .*(coffee|pizza|burger|taco|ice cream|smoothie|fries|nugget|cone|soda|beer|wine|meal|sandwich|chicken|donut|pancake|milkshake|lollypop|candy|cookie)/i.test(title)) score += 25;
+
+  // Gift cards
+  if (/gift card/i.test(title)) score += 20;
+
+  // Winners count suggests real prizes
+  if (/\d+\s*winners/i.test(title)) score += 10;
+
+  // "No purchase" / "no proof" = easy claim
+  if (/no purchase|no proof/i.test(title)) score += 10;
+
+  // Penalize boring/niche items
+  if (/seed|calendar|sticker|printable|ebook|label|magazine|survey|kit.*teacher|classroom/i.test(title)) score -= 20;
+  if (/today only/i.test(title)) score -= 15; // likely expired by post time
+  if (/order|purchase|buy|log in to order|spend \$/i.test(title)) score -= 30; // requires purchase = not free
+
+  // Add small random factor so it's not the same pick every day
+  score += Math.random() * 15;
+
+  return score;
+}
+
 function pickItems() {
   const data = loadData();
   const history = loadHistory();
@@ -83,7 +130,11 @@ function pickItems() {
     const newItems = catItems.filter(i => i.date_found === today);
     const pool = newItems.length > 0 ? newItems : catItems;
     if (pool.length > 0) {
-      const item = pool[Math.floor(Math.random() * pool.length)];
+      // Pick the most eye-catching item by social score
+      pool.sort((a, b) => socialScore(b) - socialScore(a));
+      // Pick from top 5 to keep some variety
+      const topPicks = pool.slice(0, Math.min(5, pool.length));
+      const item = topPicks[Math.floor(Math.random() * topPicks.length)];
       picks.push({ category: cat, item });
     }
   }

@@ -80,6 +80,30 @@ const DEAD_PATTERNS = [
   'submissions are closed', 'this form is closed', 'form is no longer accepting',
   'sweepstakes is closed', 'promotion is closed', 'offer is no longer',
   'redemption period has ended', 'claim deadline has passed',
+  // Added from manual QA
+  'giveaway is now closed', 'supply has been claimed', 'giveaway is closed',
+  'all items have been claimed', 'this competition has ended',
+  'sign-ups closed', 'signups closed', 'registration is closed', 'entries are closed',
+  'not available in your region', 'problem accessing the intended page',
+  'this page is no longer available', 'this link has expired',
+  'sorry, this promotion has ended', 'promotion is over',
+  'claims period has ended', 'settlement has been completed', 'filing deadline has passed',
+  'no longer accepting claims', 'campaign has ended',
+];
+
+// === LOGIN WALL PATTERNS (pages that require signup/age gate) ===
+const LOGIN_WALL_PATTERNS = [
+  'sign in to continue', 'log in to continue', 'register to enter',
+  'create an account to', 'sign up to enter', 'verify your age',
+  'sign up to start earning', 'are you 21', 'are you over 21',
+  'you must be 21', 'you must be 18', 'age verification required',
+  'please verify your age', 'confirm you are of legal',
+  'sign in or register', 'login or register',
+];
+
+// === BLOCKED REDIRECT DOMAINS (login-wall platforms) ===
+const BLOCKED_REDIRECT_DOMAINS = [
+  'gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com', 'kingsumo.com',
 ];
 
 function log(msg) {
@@ -101,7 +125,20 @@ function checkUrl(url) {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         const loc = res.headers.location;
         const finalUrl = loc.startsWith('http') ? loc : new URL(loc, url).href;
+        const locLower = finalUrl.toLowerCase();
         res.resume(); // drain response
+        // Redirect to expired path
+        if (/\/(over|ended|closed|expired|unavailable|not-found|404)\b/.test(locLower)) {
+          return resolve({ alive: false, status: res.statusCode, reason: `Redirect to expired: ${finalUrl.substring(0,60)}` });
+        }
+        // Redirect to login-wall platform
+        if (BLOCKED_REDIRECT_DOMAINS.some(d => locLower.includes(d))) {
+          return resolve({ alive: false, status: res.statusCode, reason: `Redirect to login-wall: ${finalUrl.substring(0,60)}` });
+        }
+        // Redirect to login/age-gate page
+        if (/\/(login|signin|sign-in|register|agegate|age-gate|age_gate|verify-age|auth)\b/i.test(locLower)) {
+          return resolve({ alive: false, status: res.statusCode, reason: `Redirect to login page: ${finalUrl.substring(0,60)}` });
+        }
         return resolve({ alive: true, status: res.statusCode, redirectTo: finalUrl });
       }
 
@@ -114,8 +151,12 @@ function checkUrl(url) {
       res.on('end', () => checkBody(url, res.statusCode, body, resolve));
       res.on('close', () => checkBody(url, res.statusCode, body, resolve));
     });
-    req.on('error', (e) => resolve({ alive: true, status: 0, flagged: `Network error: ${e.message} — check manually` }));
-    req.setTimeout(12000, () => { req.destroy(); resolve({ alive: true, status: 0, flagged: 'Timeout (12s) — check manually' }); });
+    req.on('error', (e) => {
+      const fatal = ['ENOTFOUND', 'EAI_AGAIN', 'ECONNREFUSED', 'ERR_TLS_CERT_ALTNAME_INVALID', 'EPROTO'].includes(e.code);
+      if (fatal) return resolve({ alive: false, status: 0, reason: `DNS/Network dead: ${e.code}` });
+      resolve({ alive: true, status: 0, flagged: `Network error: ${e.message} — check manually` });
+    });
+    req.setTimeout(12000, () => { req.destroy(); resolve({ alive: false, status: 0, reason: 'Timeout (12s) — likely dead' }); });
   });
 }
 
@@ -142,6 +183,18 @@ function checkBody(url, statusCode, body, resolve) {
     }
   }
 
+  // Check for login wall / age gate patterns
+  for (const pattern of LOGIN_WALL_PATTERNS) {
+    if (lowerBody.includes(pattern)) {
+      return resolve({ alive: false, status: statusCode, reason: `Login wall: "${pattern}"` });
+    }
+  }
+
+  // Check for gleam/rafflecopter embeds
+  if (['gleam.io/js/widget', 'e.gleam.io', 'rafflecopter.com/rafl/'].some(d => lowerBody.includes(d))) {
+    return resolve({ alive: false, status: statusCode, reason: 'Embeds login-wall widget (gleam/rafflecopter)' });
+  }
+
   // Check redirect headers in body (some sites use meta refresh)
   const metaRefresh = lowerBody.match(/meta[^>]*http-equiv="refresh"[^>]*url=([^">\s]+)/);
   if (metaRefresh) {
@@ -149,6 +202,11 @@ function checkBody(url, statusCode, body, resolve) {
     if (redirectUrl.includes('error') || redirectUrl.includes('expired') || redirectUrl.includes('notfound')) {
       return resolve({ alive: false, status: statusCode, reason: `Meta redirect to error page` });
     }
+  }
+
+  // Empty page = likely dead or blocking
+  if (body.length < 100) {
+    return resolve({ alive: false, status: statusCode, reason: `Empty page (${body.length} bytes)` });
   }
 
   resolve({ alive: true, status: statusCode, body: body });

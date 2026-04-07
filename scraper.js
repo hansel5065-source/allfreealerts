@@ -1369,7 +1369,19 @@ async function main() {
   const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd];
 
   // Clean + Deduplicate
-  const BAD_LINK_DOMAINS = ['facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/', 'gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com'];
+  const BAD_LINK_DOMAINS = [
+    // Social media
+    'facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/',
+    // Login-wall giveaway platforms
+    'gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com', 'kingsumo.com',
+    // Tobacco brands (age gate + account required)
+    'pallmallusa.com', 'camel.com', 'marlboro.com', 'newport-pleasure.com', 'skoal.com', 'naturalamericanspirit.com',
+    // Alcohol brands (age gate + account required)
+    'budweiser.com', 'budlight.com', 'jackdaniels.com', 'captainmorgan.com', 'smirnoff.com',
+    'jagermeister.com', 'dosequis.com', 'modelo.com', 'michelobultra.com',
+    // Signup-wall platforms
+    'us-joy.com', 'paidviewpoint.com'
+  ];
   const newItems = [];
   const seenLinks = new Set();
   const seenTitles = new Set();

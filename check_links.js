@@ -104,10 +104,16 @@ function checkUrl(url) {
       body.includes('redemption period has ended') || body.includes('campaign has ended') ||
       body.includes('sorry, this promotion has ended') || body.includes('this contest has ended') ||
       body.includes('this sweepstakes has closed') || body.includes('promotion is over');
-    // Also flag pages that embed login-wall widgets (gleam.io, etc.)
-    const loginWall = !dead && (finalUrl || '').includes('gleam.io') === false &&
-      ['gleam.io/js/widget', 'e.gleam.io', 'rafflecopter.com/rafl/'].some(d => body.includes(d));
-    resolve({ dead: dead || loginWall, status });
+    // Flag pages that embed login-wall widgets (gleam.io, etc.)
+    const hasGleam = !dead && ['gleam.io/js/widget', 'e.gleam.io', 'rafflecopter.com/rafl/'].some(d => body.includes(d));
+    // Flag pages with login/signup/age-gate walls
+    const loginSignals = ['sign in to continue', 'log in to continue', 'register to enter',
+      'create an account to', 'sign up to enter', 'verify your age', 'sign up to start earning',
+      'are you 21', 'are you over 21', 'you must be 21', 'you must be 18',
+      'age verification required', 'please verify your age', 'confirm you are of legal',
+      'sign in or register', 'login or register', 'this competition has ended'];
+    const hasLoginWall = !dead && loginSignals.some(s => body.includes(s));
+    resolve({ dead: dead || hasGleam || hasLoginWall, status });
   });
   });
 }

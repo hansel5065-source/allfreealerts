@@ -1372,14 +1372,9 @@ async function main() {
   const BAD_LINK_DOMAINS = [
     // Social media
     'facebook.com', 'instagram.com', 'tiktok.com', 'twitter.com/', 'youtube.com', 'x.com/',
-    // Login-wall giveaway platforms
+    // Login-wall giveaway platforms (always require account)
     'gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com', 'kingsumo.com',
-    // Tobacco brands (age gate + account required)
-    'pallmallusa.com', 'camel.com', 'marlboro.com', 'newport-pleasure.com', 'skoal.com', 'naturalamericanspirit.com',
-    // Alcohol brands (age gate + account required)
-    'budweiser.com', 'budlight.com', 'jackdaniels.com', 'captainmorgan.com', 'smirnoff.com',
-    'jagermeister.com', 'dosequis.com', 'modelo.com', 'michelobultra.com',
-    // Signup-wall platforms
+    // Signup-wall platforms (always require account)
     'us-joy.com', 'paidviewpoint.com'
   ];
   const newItems = [];

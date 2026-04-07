@@ -76,15 +76,17 @@ function fetchWithRedirects(url, maxRedirects = 5) {
       res.on('data', c => d += c);
       res.on('end', () => resolve({ body: d, status: res.statusCode, finalUrl: url }));
     });
-    req.on('error', () => resolve({ body: '', status: 0, finalUrl: url }));
-    req.setTimeout(8000, () => { req.destroy(); resolve({ body: '', status: 0, finalUrl: url }); });
+    req.on('error', (err) => resolve({ body: '', status: 0, finalUrl: url, networkError: true, errorMsg: err.code || err.message }));
+    req.setTimeout(8000, () => { req.destroy(); resolve({ body: '', status: 0, finalUrl: url, networkError: true, errorMsg: 'TIMEOUT' }); });
   });
 }
 
 function checkUrl(url) {
   return new Promise(async resolve => {
-    const { body: rawBody, status, finalUrl, redirectDead } = await fetchWithRedirects(url);
+    const { body: rawBody, status, finalUrl, redirectDead, networkError, errorMsg } = await fetchWithRedirects(url);
     if (redirectDead) return resolve({ dead: true, status });
+    // DNS failures, connection refused, timeouts = dead
+    if (networkError) return resolve({ dead: true, status: 0 });
     const body = rawBody.toLowerCase();
     const dead =
       status === 404 || status === 410 ||

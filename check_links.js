@@ -63,6 +63,11 @@ function fetchWithRedirects(url, maxRedirects = 5) {
             locLower.includes('notavailable') || locLower.includes('expired') || locLower.includes('error')) {
           return resolve({ body: '', status: res.statusCode, finalUrl: resolved, redirectDead: true });
         }
+        // Check if redirect goes to login-wall platform
+        const LOGIN_WALL = ['gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com'];
+        if (LOGIN_WALL.some(d => locLower.includes(d))) {
+          return resolve({ body: '', status: res.statusCode, finalUrl: resolved, redirectDead: true });
+        }
         // Otherwise follow the redirect
         res.resume();
         return fetchWithRedirects(resolved, maxRedirects - 1).then(resolve);
@@ -97,7 +102,10 @@ function checkUrl(url) {
       body.includes('redemption period has ended') || body.includes('campaign has ended') ||
       body.includes('sorry, this promotion has ended') || body.includes('this contest has ended') ||
       body.includes('this sweepstakes has closed') || body.includes('promotion is over');
-    resolve({ dead, status });
+    // Also flag pages that embed login-wall widgets (gleam.io, etc.)
+    const loginWall = !dead && (finalUrl || '').includes('gleam.io') === false &&
+      ['gleam.io/js/widget', 'e.gleam.io', 'rafflecopter.com/rafl/'].some(d => body.includes(d));
+    resolve({ dead: dead || loginWall, status });
   });
   });
 }

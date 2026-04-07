@@ -45,38 +45,60 @@ function parseDate(str) {
   return null;
 }
 
-function checkUrl(url) {
+function fetchWithRedirects(url, maxRedirects = 5) {
   return new Promise(resolve => {
+    if (maxRedirects <= 0) return resolve({ body: '', status: 0, finalUrl: url });
     const mod = url.startsWith('https') ? https : http;
     const req = mod.get(url, {
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
-      timeout: 5000
+      timeout: 8000
     }, res => {
+      // Follow redirects — but check the redirect URL for expired signals first
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        const loc = res.headers.location;
+        const resolved = loc.startsWith('http') ? loc : new URL(loc, url).href;
+        const locLower = resolved.toLowerCase();
+        // Check if redirect itself signals expiration
+        if (/\/(over|ended|closed|expired|unavailable|not-found|404)\b/.test(locLower) ||
+            locLower.includes('notavailable') || locLower.includes('expired') || locLower.includes('error')) {
+          return resolve({ body: '', status: res.statusCode, finalUrl: resolved, redirectDead: true });
+        }
+        // Otherwise follow the redirect
+        res.resume();
+        return fetchWithRedirects(resolved, maxRedirects - 1).then(resolve);
+      }
       let d = '';
       res.on('data', c => d += c);
-      res.on('end', () => {
-        const loc = (res.headers.location || '').toLowerCase();
-        const body = d.toLowerCase();
-        const dead =
-          res.statusCode === 404 || res.statusCode === 410 ||
-          loc.includes('notavailable') || loc.includes('expired') || loc.includes('error') ||
-          body.includes('no longer available') || body.includes('has expired') ||
-          body.includes('page not found') || body.includes('promotion has ended') ||
-          body.includes('sweepstakes has ended') || body.includes('this offer has ended') ||
-          body.includes('survey_is_not_public') || body.includes('contest is closed') ||
-          body.includes('giveaway has ended') || body.includes('this sweepstakes is over') ||
-          body.includes('this promotion has ended') || body.includes('offer expired') ||
-          body.includes('claim deadline has passed') || body.includes('claims period has ended') ||
-          body.includes('settlement has been completed') || body.includes('filing deadline has passed') ||
-          body.includes('this deal has expired') || body.includes('this freebie has expired') ||
-          body.includes('offer has ended') || body.includes('no longer accepting claims') ||
-          body.includes('this giveaway is over') || body.includes('entry period has ended') ||
-          body.includes('redemption period has ended') || body.includes('campaign has ended');
-        resolve({ dead, status: res.statusCode });
-      });
+      res.on('end', () => resolve({ body: d, status: res.statusCode, finalUrl: url }));
     });
-    req.on('error', () => resolve({ dead: false, status: 0 }));
-    req.setTimeout(5000, () => { req.destroy(); resolve({ dead: false, status: 0 }); });
+    req.on('error', () => resolve({ body: '', status: 0, finalUrl: url }));
+    req.setTimeout(8000, () => { req.destroy(); resolve({ body: '', status: 0, finalUrl: url }); });
+  });
+}
+
+function checkUrl(url) {
+  return new Promise(async resolve => {
+    const { body: rawBody, status, finalUrl, redirectDead } = await fetchWithRedirects(url);
+    if (redirectDead) return resolve({ dead: true, status });
+    const body = rawBody.toLowerCase();
+    const dead =
+      status === 404 || status === 410 ||
+      body.includes('no longer available') || body.includes('has expired') ||
+      body.includes('page not found') || body.includes('promotion has ended') ||
+      body.includes('sweepstakes has ended') || body.includes('this offer has ended') ||
+      body.includes('survey_is_not_public') || body.includes('contest is closed') ||
+      body.includes('giveaway has ended') || body.includes('this sweepstakes is over') ||
+      body.includes('this promotion has ended') || body.includes('offer expired') ||
+      body.includes('claim deadline has passed') || body.includes('claims period has ended') ||
+      body.includes('settlement has been completed') || body.includes('filing deadline has passed') ||
+      body.includes('this deal has expired') || body.includes('this freebie has expired') ||
+      body.includes('offer has ended') || body.includes('no longer accepting claims') ||
+      body.includes('this giveaway is over') || body.includes('entry period has ended') ||
+      body.includes('redemption period has ended') || body.includes('campaign has ended') ||
+      body.includes('sorry, this promotion has ended') || body.includes('this contest has ended') ||
+      body.includes('this sweepstakes has closed') || body.includes('promotion is over');
+    resolve({ dead, status });
+  });
   });
 }
 

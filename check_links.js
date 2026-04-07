@@ -133,7 +133,6 @@ function checkUrl(url) {
     const hasLoginWall = !dead && loginSignals.some(s => body.includes(s));
     resolve({ dead: dead || hasGleam || hasLoginWall, status });
   });
-  });
 }
 
 async function main() {

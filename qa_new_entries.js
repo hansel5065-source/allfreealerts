@@ -89,6 +89,11 @@ const DEAD_PATTERNS = [
   'sorry, this promotion has ended', 'promotion is over',
   'claims period has ended', 'settlement has been completed', 'filing deadline has passed',
   'no longer accepting claims', 'campaign has ended',
+  // Supply claimed / out of stock
+  'fresh out of', 'sold out', 'out of stock', 'currently unavailable',
+  'thanks for stopping by', 'we ran out', 'all gone', 'no more available',
+  'scooped up', 'all scooped up', 'samples were all', 'all claimed',
+  'this sample is no longer available', 'sample is no longer available',
 ];
 
 // === LOGIN WALL PATTERNS (pages that require signup/age gate) ===
@@ -357,6 +362,86 @@ function validateContent(item) {
       if (l.includes('/investigation') || l.includes('/lawsuit') || l.includes('/class-action-lawsuit')) {
         issues.push('Non-claimable investigation/lawsuit (no settlement yet)');
       }
+    }
+  }
+
+  // === FREEBIE-SPECIFIC RULES (prevent promo/store/article pages) ===
+  if (item.category === 'Freebies' && item.title && item.link) {
+    const t = item.title.toLowerCase();
+    const l = item.link.toLowerCase();
+
+    // 1. "Today Only" deals — these expire within hours, not worth keeping
+    if (/today only|– today|today –|today!$/i.test(t) && !/free cone day|national .* day/i.test(t)) {
+      issues.push('One-day deal — expires too fast for daily scrape cycle');
+    }
+
+    // 2. Seasonal/holiday content outside of season window
+    const SEASONAL_HOLIDAYS = {
+      'christmas': [11, 0],     // Nov-Jan
+      'thanksgiving': [10, 11], // Nov-Dec
+      'halloween': [9, 10],     // Oct-Nov
+      'veterans day': [10, 11], // Nov-Dec
+      'black friday': [10, 11], // Nov-Dec
+      'cyber monday': [10, 11], // Nov-Dec
+      'valentine': [1, 2],      // Feb-Mar
+      'easter': [2, 3],         // Mar-Apr
+      'st. patrick': [2, 3],    // Mar-Apr
+      'new year': [11, 0],      // Dec-Jan
+      'track santa': [11, 0],   // Dec-Jan
+      'charlie brown': [10, 11],// Nov-Dec
+    };
+    const currentMonth = new Date().getMonth();
+    for (const [holiday, months] of Object.entries(SEASONAL_HOLIDAYS)) {
+      if (t.includes(holiday) && !months.includes(currentMonth)) {
+        issues.push(`Seasonal content (${holiday}) — out of season`);
+        break;
+      }
+    }
+
+    // 3. Generic store/restaurant homepage — no specific freebie path
+    try {
+      const u = new URL(item.link);
+      const isHomepage = u.pathname === '/' || u.pathname === '';
+      if (isHomepage) {
+        // Homepages are almost never a direct freebie link
+        // Exception: dedicated freebie sites like bajablasthomeruns.com etc.
+        const knownFreebieHomepages = ['freeconeday', 'freebie', 'giveaway', 'sample', 'free'];
+        const isDedicatedFreebieUrl = knownFreebieHomepages.some(kw => u.hostname.includes(kw));
+        if (!isDedicatedFreebieUrl) {
+          issues.push('Link goes to store/brand homepage — no specific freebie page');
+        }
+      }
+    } catch {}
+
+    // 4. Article/roundup/listicle titles (not an actual offer)
+    if (/^(here's how|here's where|best |over \d+ |ways to|\d+ best|\d+ ways|the ultimate|how to score|don't miss|we rounded up)/i.test(t)) {
+      // These are articles ABOUT freebies, not direct freebie links
+      // Only flag if the link doesn't go to a specific offer page
+      const hasOfferPath = /\/(free|sample|claim|giveaway|promo|offer|coupon|trial|redeem)/i.test(l);
+      if (!hasOfferPath) {
+        issues.push('Article/listicle title — likely not a direct freebie link');
+      }
+    }
+
+    // 5. Charity/donation/volunteer pages — not freebies
+    if (/\b(donate|donation|volunteer|give blood|give back|support our|help us|charity)\b/i.test(t)) {
+      // Exception: legitimate freebies tied to donations (e.g. "free gift card when you donate blood")
+      if (!/free .*(gift card|reward|voucher|coupon|item|product)/i.test(t)) {
+        issues.push('Charity/donation page — not a freebie');
+      }
+    }
+
+    // 6. Requires purchase disguised as freebie
+    if (/\b(when you (order|buy|purchase|spend)|with (any )?(purchase|order|buy)|free with)\b/i.test(t)) {
+      // "Free with purchase" = not free
+      if (!/no purchase (necessary|needed|required)/i.test(t)) {
+        issues.push('Requires purchase — not a true freebie');
+      }
+    }
+
+    // 7. App download / rewards signup (not a direct freebie)
+    if (/\b(download the app|join rewards|earn rewards|rewards program|loyalty program)\b/i.test(t)) {
+      issues.push('App download or rewards signup — not a direct freebie');
     }
   }
 

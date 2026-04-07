@@ -64,6 +64,10 @@ function fetchWithRedirects(url, maxRedirects = 5) {
           return resolve({ body: '', status: res.statusCode, finalUrl: resolved, redirectDead: true });
         }
         // Check if redirect goes to login-wall platform
+        // Check if sample/free page redirected to a shop/product page (sample expired)
+        if (/\/(free|sample|giveaway)/.test(url.toLowerCase()) && /\/(shop|product|buy|store|cleansing|collection)/.test(locLower)) {
+          return resolve({ body: '', status: res.statusCode, finalUrl: resolved, redirectDead: true });
+        }
         const LOGIN_WALL = ['gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com'];
         if (LOGIN_WALL.some(d => locLower.includes(d))) {
           return resolve({ body: '', status: res.statusCode, finalUrl: resolved, redirectDead: true });
@@ -111,7 +115,13 @@ function checkUrl(url) {
       body.includes('submissions are closed') || body.includes('not available in your region') ||
       body.includes('giveaway is now closed') || body.includes('supply has been claimed') ||
       body.includes('giveaway is closed') || body.includes('all items have been claimed') ||
-      body.includes('sold out') && body.includes('giveaway');
+      body.includes('sold out') && body.includes('giveaway') ||
+      body.includes('fresh out of') || body.includes('out of stock') ||
+      body.includes('currently unavailable') || body.includes('thanks for stopping by') ||
+      body.includes('we ran out') || body.includes('all gone') || body.includes('no more available') ||
+      body.includes('scooped up') || body.includes('all scooped up') ||
+      body.includes('samples were all') || body.includes('all claimed') ||
+      body.includes('this sample is no longer available') || body.includes('sample is no longer available');
     // Flag pages that embed login-wall widgets (gleam.io, etc.)
     const hasGleam = !dead && ['gleam.io/js/widget', 'e.gleam.io', 'rafflecopter.com/rafl/'].some(d => body.includes(d));
     // Flag pages with login/signup/age-gate walls

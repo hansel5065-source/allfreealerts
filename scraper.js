@@ -1405,6 +1405,25 @@ async function main() {
       purchaseFiltered++;
       continue;
     }
+    // === FREEBIE QUALITY FILTERS ===
+    if (item.category === 'Freebies') {
+      const t = item.title.toLowerCase();
+      // Skip "today only" one-day deals (expire before next scrape cycle)
+      if (/today only|– today$|today –|today!$/i.test(t) && !/free cone day|national .* day/i.test(t)) continue;
+      // Skip charity/donation/volunteer pages (not freebies)
+      if (/\b(donate|donation|volunteer|give blood|give back|charity)\b/i.test(t) && !/free .*(gift card|reward|voucher)/i.test(t)) continue;
+      // Skip generic store homepage links (no freebie-specific path)
+      try {
+        const u = new URL(link);
+        if ((u.pathname === '/' || u.pathname === '') && !u.hostname.match(/free|giveaway|sample|coupon/)) continue;
+      } catch {}
+      // Skip article roundups that link to store homepages
+      if (/^(here's how|here's where|best |over \d+ |ways to|\d+ best|\d+ ways|the ultimate|we rounded up)/i.test(t)) {
+        if (!/\/(free|sample|claim|giveaway|promo|offer|coupon|trial|redeem)/i.test(link)) continue;
+      }
+      // Skip discount/BOGO offers — not free
+      if (/\b(\d+% off|bogo|half off|buy one get one|promo code|discount code|coupon code)\b/i.test(t) && !/free/i.test(t)) continue;
+    }
     if (existingLinks.has(link)) continue;
     if (seenLinks.has(link)) continue;
     // Title-based dedup: catch same contest from different sources

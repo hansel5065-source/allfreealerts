@@ -104,12 +104,11 @@ function buildPostText(item, category) {
   const link = item.link || 'https://allfreealerts.com';
 
   // Bluesky limit: 300 graphemes. Keep posts compact.
-  // Footer is ~58 chars, emoji+label ~20, newlines ~6 = ~84 overhead
-  // Budget remaining chars between title and link
-  const footer = 'allfreealerts.com | #freestuff #sweepstakes #settlements';
-  const overhead = 20 + 6 + footer.length; // label + newlines + footer
-  const maxTotal = 300 - overhead; // chars left for title + link
-  const maxTitle = Math.min(90, maxTotal - link.length);
+  // Footer lines: "100s more → allfreealerts.com" (~32) + hashtags (~30) = ~62
+  // + emoji+label ~20, newlines ~8 = ~90 overhead
+  const overhead = 90;
+  const maxTotal = 300 - overhead;
+  const maxTitle = Math.min(80, maxTotal - link.length);
   const trimmedTitle = title.length > maxTitle ? title.slice(0, Math.max(30, maxTitle - 1)) + '…' : title;
 
   const lines = [
@@ -119,7 +118,8 @@ function buildPostText(item, category) {
     '',
     link,
     '',
-    `allfreealerts.com | #freestuff #sweepstakes #settlements`
+    `100s more \u{1F449} allfreealerts.com`,
+    '#freestuff #sweepstakes #settlements'
   ];
 
   return lines.join('\n');

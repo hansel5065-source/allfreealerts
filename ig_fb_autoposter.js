@@ -362,17 +362,21 @@ function buildCarouselCaption(picks) {
     if (p.category === 'Sweepstakes') {
       caption += `\u{1F389} SWEEPSTAKES: ${p.item.title}\n`;
       if (p.item.prize_summary) caption += `   ${p.item.prize_summary.slice(0, 100)}\n`;
+      caption += `   \u{1F517} ${p.item.link}\n`;
     } else if (p.category === 'Freebies') {
       caption += `\u{1F381} FREE: ${p.item.title}\n`;
       caption += '   No purchase necessary!\n';
+      caption += `   \u{1F517} ${p.item.link}\n`;
     } else if (p.category === 'Settlements') {
       caption += `\u{1F4B0} SETTLEMENT: ${p.item.title}\n`;
       if (p.item.prize_summary) caption += `   ${p.item.prize_summary.slice(0, 100)}\n`;
       if (p.item.proof_required === 'No') caption += '   \u2705 No proof needed!\n';
+      caption += `   \u{1F517} ${p.item.link}\n`;
     }
     caption += '\n';
   }
-  caption += '\u{1F449} Link in bio \u2014 allfreealerts.com\n';
+  caption += '\u{1F6A8} These are just 3 \u2014 we have HUNDREDS more on the site!\n';
+  caption += '\u{1F449} allfreealerts.com\n';
   caption += '\u{1F4F1} Follow @allfreealerts for daily finds!\n';
   caption += pickPromo(IG_CROSS_PROMO) + '\n\n';
   caption += '#freestuff #sweepstakes #classaction #settlement #freebie #giveaway #freemoney #savemoney #freesample #allfreealerts';
@@ -563,7 +567,7 @@ async function main() {
     for (let i = 0; i < activePicks.length; i++) {
       const pick = activePicks[i];
       try {
-        const fbCaption = `${pick.caption.split('\n\n#')[0]}\n\n👉 allfreealerts.com`;
+        const fbCaption = `${pick.caption.split('\n\n#')[0]}\n\n🔗 ${pick.item.link}\n\n🚨 This is just 1 of HUNDREDS of free deals on our site!\n👉 allfreealerts.com`;
         const fbPostId = await postToFacebook(fbCaption, pick.imageUrl);
         console.log(`✅ Facebook posted! Post ID: ${fbPostId}`);
       } catch (e) {

@@ -452,8 +452,10 @@ function buildReelCaption(picks) {
   for (const { category, item } of picks) {
     const emoji = CAT_EMOJI[category];
     lines.push(`${emoji} ${item.title.substring(0, 60)}`);
+    lines.push(`   🔗 ${item.link}`);
   }
-  lines.push(`\n👉 Link in bio — allfreealerts.com`);
+  lines.push(`\n🚨 These are just 3 — we have HUNDREDS more!`);
+  lines.push(`👉 allfreealerts.com`);
   lines.push(`📱 Follow @allfreealerts for daily finds!`);
   lines.push(`\n👤 facebook.com/allfreealerts`);
   lines.push(`🐦 @allfreealerts on X`);

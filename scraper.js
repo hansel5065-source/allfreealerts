@@ -1342,6 +1342,68 @@ async function redditFreebies() {
   return items;
 }
 
+async function sweetFreeStuff() {
+  log('Scraping SweetFreeStuff (RSS + article follow)...');
+  const items = [];
+  const xml = await fetchPage('https://sweetfreestuff.com/feed/');
+  if (!xml) { log('  SFS: FAILED'); return items; }
+
+  for (const rss of parseRssItems(xml)) {
+    if (!rss.title || !rss.link) continue;
+    const t = rss.title.toLowerCase();
+    // Skip non-freebie items (deals, coupons, discounts)
+    if (/\d+% off|coupon code|discount|bogo|half off|clearance/i.test(t)) continue;
+    items.push({
+      title: decodeEntities(rss.title.trim()),
+      articleUrl: rss.link.trim(),
+      link: rss.link.trim(),
+      source: 'sweetfreestuff', category: 'Freebies',
+    });
+  }
+  log(`  SFS: ${items.length} RSS items, following articles...`);
+  let direct = 0;
+  await resolveInBatches(items, async (item) => {
+    const html = await fetchPage(item.articleUrl);
+    if (!html) return;
+    const d = extractOutboundLink(html, 'sweetfreestuff.com');
+    if (d) { item.link = d; direct++; }
+  }, 5);
+  log(`  SFS: ${direct}/${items.length} direct links found`);
+  return items.map(({ articleUrl, ...rest }) => rest);
+}
+
+async function redditFreeStickers() {
+  log('Scraping r/freestickers (Reddit JSON API)...');
+  const items = [];
+  const json = await fetchJSON('https://www.reddit.com/r/freestickers/new.json?limit=50');
+  if (!json || !json.data || !json.data.children) { log('  STICKERS: FAILED'); return items; }
+
+  const now = Date.now();
+  const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+
+  for (const child of json.data.children) {
+    const post = child.data;
+    if (!post) continue;
+    const flair = (post.link_flair_text || '').toLowerCase();
+    if (flair.includes('expired') || flair.includes('dead') || flair.includes('removed')) continue;
+    if (post.is_self) continue;
+    if (now - (post.created_utc * 1000) > thirtyDays) continue;
+    if (post.score < 3) continue;
+    const url = post.url || '';
+    if (!url.startsWith('http')) continue;
+    if (/reddit\.com|redd\.it|imgur\.com|facebook\.com|instagram\.com|twitter\.com|tiktok\.com|youtube\.com/i.test(url)) continue;
+
+    items.push({
+      title: decodeEntities(post.title.trim()),
+      link: url,
+      source: 'reddit-freestickers',
+      category: 'Freebies',
+    });
+  }
+  log(`  STICKERS: ${items.length} active sticker freebies found`);
+  return items;
+}
+
 // === IMAGE EXTRACTION ===
 function extractImage(html) {
   // Try og:image first (most reliable)
@@ -1393,7 +1455,7 @@ async function main() {
   const existingLinks = new Set(existing.map(e => e.link));
 
   // Scrape all sources in parallel where possible
-  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, sm, oca, cd, rdf] = await Promise.all([
+  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, sm, oca, cd, rdf, sfs, rdst] = await Promise.all([
     scrapeContestgirl().catch(e => { log(`CG ERROR: ${e.message}`); return []; }),
     sweepstakesFanatics().catch(e => { log(`SF ERROR: ${e.message}`); return []; }),
     freebieshark().catch(e => { log(`FS ERROR: ${e.message}`); return []; }),
@@ -1418,9 +1480,11 @@ async function main() {
     openClassActions().catch(e => { log(`OCA ERROR: ${e.message}`); return []; }),
     claimDepot().catch(e => { log(`CD ERROR: ${e.message}`); return []; }),
     redditFreebies().catch(e => { log(`REDDIT ERROR: ${e.message}`); return []; }),
+    sweetFreeStuff().catch(e => { log(`SFS ERROR: ${e.message}`); return []; }),
+    redditFreeStickers().catch(e => { log(`STICKERS ERROR: ${e.message}`); return []; }),
   ]);
 
-  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd, ...rdf];
+  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd, ...rdf, ...sfs, ...rdst];
 
   // Clean + Deduplicate
   // Load blocklist of manually removed links (prevents zombies from coming back)

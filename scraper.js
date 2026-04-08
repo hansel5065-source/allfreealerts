@@ -1289,6 +1289,59 @@ async function giveawayFrenzy() {
   return items.map(({ articleUrl, ...rest }) => rest);
 }
 
+async function redditFreebies() {
+  log('Scraping r/freebies (Reddit JSON API)...');
+  const items = [];
+  const json = await fetchJSON('https://www.reddit.com/r/freebies/new.json?limit=100');
+  if (!json || !json.data || !json.data.children) { log('  REDDIT: FAILED'); return items; }
+
+  const now = Date.now();
+  const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+
+  for (const child of json.data.children) {
+    const post = child.data;
+    if (!post) continue;
+
+    // Skip expired-flaired posts
+    const flair = (post.link_flair_text || '').toLowerCase();
+    if (flair.includes('expired') || flair.includes('dead') || flair.includes('removed')) continue;
+
+    // Skip self/text posts (no external link)
+    if (post.is_self) continue;
+
+    // Skip old posts (>30 days)
+    const postAge = now - (post.created_utc * 1000);
+    if (postAge > thirtyDays) continue;
+
+    // Skip low-score posts
+    if (post.score < 3) continue;
+
+    const url = post.url || '';
+    if (!url.startsWith('http')) continue;
+
+    // Skip reddit/imgur/social media/image links
+    if (/reddit\.com|redd\.it|imgur\.com|facebook\.com|instagram\.com|twitter\.com|tiktok\.com|youtube\.com/i.test(url)) continue;
+    // Skip Google Docs (aggregated lists, not direct freebies)
+    if (/docs\.google\.com/i.test(url)) continue;
+
+    // Determine category from flair or title
+    let category = 'Freebies';
+    const title = (post.title || '').toLowerCase();
+    if (/sweepstakes|giveaway|enter to win|drawing|raffle|win a /i.test(title)) {
+      category = 'Sweepstakes';
+    }
+
+    items.push({
+      title: decodeEntities(post.title.trim()),
+      link: url,
+      source: 'reddit-freebies',
+      category,
+    });
+  }
+  log(`  REDDIT: ${items.length} active freebies found`);
+  return items;
+}
+
 // === IMAGE EXTRACTION ===
 function extractImage(html) {
   // Try og:image first (most reliable)
@@ -1340,7 +1393,7 @@ async function main() {
   const existingLinks = new Set(existing.map(e => e.link));
 
   // Scrape all sources in parallel where possible
-  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, sm, oca, cd] = await Promise.all([
+  const [cg, sf, fs_, ff, h2s, ca, ss, sa, tca, ftc, hif, tfg, yfs, gf, uc, ilg, fsf, cl, gb, sm, oca, cd, rdf] = await Promise.all([
     scrapeContestgirl().catch(e => { log(`CG ERROR: ${e.message}`); return []; }),
     sweepstakesFanatics().catch(e => { log(`SF ERROR: ${e.message}`); return []; }),
     freebieshark().catch(e => { log(`FS ERROR: ${e.message}`); return []; }),
@@ -1364,9 +1417,10 @@ async function main() {
     settlemate().catch(e => { log(`SM ERROR: ${e.message}`); return []; }),
     openClassActions().catch(e => { log(`OCA ERROR: ${e.message}`); return []; }),
     claimDepot().catch(e => { log(`CD ERROR: ${e.message}`); return []; }),
+    redditFreebies().catch(e => { log(`REDDIT ERROR: ${e.message}`); return []; }),
   ]);
 
-  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd];
+  const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd, ...rdf];
 
   // Clean + Deduplicate
   // Load blocklist of manually removed links (prevents zombies from coming back)

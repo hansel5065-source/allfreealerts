@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class-Action Settlements — AllFreeAlerts</title>
+  <meta name="description" content="Find open class-action settlements where you may be owed money. Updated daily with claim deadlines, payout amounts, and proof requirements. File your claim today.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://allfreealerts.com/settlements">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3295178838066537" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --teal:#0ABAB5;--teal-dark:#089E9A;--teal-light:#E6FAF9;
+      --orange:#FF6F3C;--orange-hover:#E8612F;
+      --gold:#F5A623;--gold-light:#FFF8EB;--gold-border:#F5D78E;
+      --coral:#FF6B6B;--coral-light:#FFF0F0;
+      --green:#10B981;--green-light:#ECFDF5;
+      --blue:#3B82F6;--blue-light:#EFF6FF;
+      --bg:#F5F7FA;--white:#FFFFFF;
+      --text:#1A1D21;--text-mid:#636E72;--text-light:#9CA3AF;
+      --border:#E5E7EB;--border-light:#F1F3F5;
+      --shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg:0 10px 30px rgba(0,0,0,0.1);
+      --radius:16px;
+    }
+    body{font-family:'Inter',-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+
+    /* NAV */
+    .nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;height:60px;gap:2rem}
+    .nav-logo{font-size:1.35rem;font-weight:900;color:var(--teal);letter-spacing:-0.03em;flex-shrink:0}
+    .nav-logo span{color:var(--text)}
+    .nav-tabs{display:flex;align-items:center;gap:0.25rem}
+    .nav-tab{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.84rem;font-weight:600;color:var(--text-mid);border:none;background:none;font-family:inherit;cursor:pointer;transition:all 0.15s;text-decoration:none;display:inline-flex;align-items:center}
+    .nav-tab:hover{color:var(--text);background:var(--bg)}
+    .nav-tab.active{color:var(--white);background:var(--teal)}
+    .nav-right{margin-left:auto;display:flex;align-items:center;gap:0.75rem}
+
+    /* HERO */
+    .hero{background:linear-gradient(180deg,var(--blue-light) 0%,var(--bg) 100%);padding:2.5rem 1.5rem 1.5rem;text-align:center}
+    .hero h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;line-height:1.25;color:var(--text)}
+    .hero h1 b{color:var(--blue);font-weight:800}
+    .hero-sub{margin-top:0.5rem;font-size:1rem;color:var(--text-mid);font-weight:400;max-width:600px;margin-left:auto;margin-right:auto}
+
+    /* CONTENT SECTION */
+    .content-section{max-width:900px;margin:2rem auto;padding:0 1.5rem}
+    .content-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem 2rem}
+    .content-card h2{font-size:1.3rem;font-weight:800;margin-bottom:1rem;letter-spacing:-0.02em}
+    .content-card h3{font-size:1rem;font-weight:700;margin-top:1.25rem;margin-bottom:0.3rem;color:var(--blue)}
+    .content-card p{font-size:0.9rem;color:var(--text-mid);margin-bottom:0.75rem;line-height:1.65}
+    .content-card ul{font-size:0.9rem;color:var(--text-mid);margin:0.5rem 0 0.75rem 1.5rem;line-height:1.65}
+    .content-card li{margin-bottom:0.3rem}
+
+    /* SEARCH BAR */
+    .search-wrap{max-width:680px;margin:1.5rem auto 0;display:flex;align-items:center;background:var(--white);border:1.5px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;transition:border-color 0.2s}
+    .search-wrap:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(10,186,181,0.1)}
+    .search-icon{padding:0 0 0 1rem;color:var(--text-light);display:flex}
+    .search-input{flex:1;padding:0.85rem 0.75rem;border:none;font-size:0.95rem;font-family:inherit;color:var(--text);outline:none;background:transparent}
+    .search-input::placeholder{color:var(--text-light)}
+    .search-btn{padding:0.65rem 1.5rem;margin:0.35rem;border-radius:10px;background:var(--teal);color:#fff;border:none;font-size:0.88rem;font-weight:700;font-family:inherit;cursor:pointer;transition:background 0.15s;white-space:nowrap}
+    .search-btn:hover{background:var(--teal-dark)}
+
+    /* SECTION HEADER */
+    .section-header{max-width:1200px;margin:2rem auto 0;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    .section-header h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em}
+    .pills{display:flex;gap:0.35rem;flex-wrap:wrap}
+    .pill{padding:0.4rem 0.9rem;border-radius:100px;font-size:0.8rem;font-weight:600;color:var(--text-mid);background:var(--white);border:1.5px solid var(--border);cursor:pointer;font-family:inherit;transition:all 0.15s}
+    .pill:hover{border-color:var(--teal);color:var(--teal)}
+    .pill.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+    .section-right{margin-left:auto;font-size:0.85rem;font-weight:600;color:var(--teal);display:flex;align-items:center;gap:0.3rem}
+
+    /* GRID */
+    .main{max-width:1200px;margin:1rem auto;padding:0 1.5rem 3rem}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+
+    /* CARD */
+    .card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;transition:all 0.2s;position:relative}
+    .card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:transparent}
+    .card.done{opacity:0.45}
+    .card-img-wrap{position:relative;width:100%;height:160px;overflow:hidden;background:var(--bg)}
+    .card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s}
+    .card:hover .card-img{transform:scale(1.05)}
+    .card-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+    .card-img-fallback.sweep{background:linear-gradient(135deg,#FFF8EB 0%,#FDE68A 50%,#FBBF24 100%)}
+    .card-img-fallback.freebie{background:linear-gradient(135deg,#ECFDF5 0%,#6EE7B7 50%,#34D399 100%)}
+    .card-img-fallback.settle{background:linear-gradient(135deg,#EFF6FF 0%,#93C5FD 50%,#60A5FA 100%)}
+    .card-badge-wrap{position:absolute;top:0.6rem;left:0.6rem;display:flex;gap:0.35rem;flex-wrap:wrap}
+    .card-new{padding:0.2rem 0.55rem;border-radius:6px;font-size:0.65rem;font-weight:700;background:var(--orange);color:#fff}
+    .card-days{padding:0.2rem 0.55rem;border-radius:6px;font-size:0.65rem;font-weight:700}
+    .card-days.urgent{background:var(--coral);color:#fff}
+    .card-days.ok{background:rgba(255,255,255,0.9);color:var(--green);backdrop-filter:blur(4px)}
+
+    .card-body{padding:0.9rem 1rem;flex:1;display:flex;flex-direction:column}
+    .card-cat{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.72rem;font-weight:700;margin-bottom:0.4rem}
+    .card-cat.sweep{color:#D97706}
+    .card-cat.freebie{color:#059669}
+    .card-cat.settle{color:var(--blue)}
+    .card-cat-icon{font-size:0.85rem}
+    .card-title{font-size:0.9rem;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text)}
+    .card-desc{font-size:0.78rem;color:var(--text-mid);margin-top:0.3rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .card-value{font-size:0.95rem;font-weight:800;margin-top:0.5rem}
+    .card-value.money{color:var(--green)}
+    .card-value.prize{color:var(--gold)}
+    .card-detail{font-size:0.75rem;color:var(--text-mid);margin-top:0.25rem;display:flex;align-items:center;gap:0.3rem}
+    .card-detail svg{width:12px;height:12px;flex-shrink:0}
+
+    .card-footer{padding:0 1rem 0.9rem;margin-top:auto;display:flex;gap:0.5rem;align-items:center}
+    .card-cta{flex:1;display:flex;align-items:center;justify-content:center;gap:0.35rem;padding:0.65rem;font-size:0.82rem;font-weight:700;border-radius:10px;border:none;cursor:pointer;font-family:inherit;transition:all 0.15s;text-decoration:none}
+    .card-cta.sweep-btn{background:var(--teal);color:#fff}
+    .card-cta.sweep-btn:hover{background:var(--teal-dark)}
+    .card-cta.freebie-btn{background:var(--green);color:#fff}
+    .card-cta.freebie-btn:hover{background:#0DA472}
+    .card-cta.settle-btn{background:var(--white);color:var(--text);border:1.5px solid var(--border)}
+    .card-cta.settle-btn:hover{border-color:var(--blue);color:var(--blue)}
+    .card-cta.done-btn{background:var(--green-light);color:var(--green)}
+    .check-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.15s;color:var(--text-light);flex-shrink:0}
+    .check-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-light)}
+    .check-btn.checked{background:var(--green);color:#fff;border-color:var(--green)}
+
+    /* SHARE BUTTON & POPUP */
+    .share-wrap{position:relative;flex-shrink:0}
+    .share-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.15s;color:var(--text-light);flex-shrink:0}
+    .share-btn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light)}
+    .share-popup{display:none;position:absolute;bottom:calc(100% + 6px);right:0;background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-md);padding:0.35rem 0;min-width:140px;z-index:50}
+    .share-popup.open{display:block}
+    .share-popup a,.share-popup button{display:flex;align-items:center;gap:0.45rem;width:100%;padding:0.4rem 0.75rem;font-size:0.78rem;font-weight:500;color:var(--text);background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;white-space:nowrap;transition:background 0.1s}
+    .share-popup a:hover,.share-popup button:hover{background:var(--bg)}
+    .share-popup .share-icon{font-size:0.85rem;width:1.1rem;text-align:center}
+
+    /* EMAIL SIGNUP */
+    .email-section{max-width:1200px;margin:2rem auto 0;padding:0 1.5rem}
+    .email-box{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;color:#fff}
+    .email-box h3{font-size:1.25rem;font-weight:800}
+    .email-box p{font-size:0.9rem;opacity:0.9;margin-top:0.3rem}
+    .email-form{display:flex;gap:0.5rem;max-width:460px;margin:1.2rem auto 0}
+    .email-input{flex:1;padding:0.75rem 1rem;border:2px solid rgba(255,255,255,0.25);border-radius:10px;background:rgba(255,255,255,0.12);color:#fff;font-size:0.9rem;font-family:inherit;outline:none;backdrop-filter:blur(8px)}
+    .email-input::placeholder{color:rgba(255,255,255,0.6)}
+    .email-input:focus{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.18)}
+    .email-btn{padding:0.75rem 1.5rem;border:none;border-radius:10px;background:var(--orange);color:#fff;font-size:0.9rem;font-weight:700;font-family:inherit;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+    .email-btn:hover{background:var(--orange-hover)}
+
+    /* STATES */
+    .loading{text-align:center;padding:4rem;color:var(--text-light);grid-column:1/-1}
+    .spinner{display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:.8rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .no-results{text-align:center;padding:3rem;color:var(--text-light);grid-column:1/-1}
+    .pagination{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.5rem 0}
+    .pg-btn{padding:0.55rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--white);color:var(--text-mid);font-size:0.84rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:0.3rem}
+    .pg-btn:hover{border-color:var(--teal);color:var(--teal)}
+    .pg-btn:disabled{opacity:0.35;cursor:default;border-color:var(--border);color:var(--text-light)}
+    .pg-btn:disabled:hover{border-color:var(--border);color:var(--text-light)}
+    .pg-info{font-size:0.84rem;font-weight:600;color:var(--text-mid);padding:0 0.5rem}
+
+    /* FOOTER */
+    .footer{background:var(--white);border-top:1px solid var(--border);text-align:center;padding:2rem 1.5rem;color:var(--text-light);font-size:.8rem;margin-top:1rem}
+    .footer-social{display:flex;justify-content:center;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap}
+    .footer-social a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--bg);color:var(--text-mid);transition:all 0.2s;font-size:1.1rem}
+    .footer-social a:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+    .footer-social a svg{width:20px;height:20px;fill:currentColor}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:768px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero{padding:2rem 1rem 1rem}
+      .hero h1{font-size:1.35rem}
+      .hero-sub{font-size:0.88rem}
+      .search-wrap{margin:1rem auto 0;border-radius:12px}
+      .search-input{padding:0.75rem 0.6rem;font-size:0.9rem}
+      .search-btn{padding:0.6rem 1rem;font-size:0.82rem;margin:0.3rem}
+      .nav-tabs{display:none}
+      .nav-inner{padding:0 1rem}
+      .section-header{padding:0 1rem;margin-top:1.5rem}
+      .section-header h2{font-size:1.1rem}
+      .main{padding:0 1rem 2rem}
+      .email-section{padding:0 1rem}
+      .email-box{padding:1.5rem 1rem}
+      .content-section{padding:0 1rem}
+      .content-card{padding:1.5rem 1.25rem}
+      .card-img-wrap{height:140px}
+      .card-body{padding:0.75rem 0.85rem}
+      .card-footer{padding:0 0.85rem 0.75rem}
+      .pills{gap:0.25rem}
+      .pill{padding:0.35rem 0.7rem;font-size:0.75rem}
+    }
+    @media(max-width:500px){
+      .grid{grid-template-columns:repeat(2,1fr);gap:0.6rem}
+      .search-btn{display:none}
+      .search-wrap{border-radius:12px}
+      .search-input{padding:0.8rem 0.7rem}
+      .email-form{flex-direction:column}
+      .card-img-wrap{height:120px}
+      .card-title{font-size:0.82rem}
+      .card-value{font-size:0.85rem}
+      .card-detail{font-size:0.7rem}
+      .card-cta{padding:0.55rem;font-size:0.78rem}
+      .check-btn{width:34px;height:34px;font-size:0.9rem}
+      .share-btn{width:34px;height:34px;font-size:0.9rem}
+      .card-cat{font-size:0.68rem}
+      .footer{padding:1.5rem 1rem}
+    }
+    @media(max-width:380px){
+      .grid{grid-template-columns:repeat(2,1fr);gap:0.5rem}
+      .hero h1{font-size:1.15rem}
+      .hero-sub{font-size:0.8rem}
+      .card-body{padding:0.6rem 0.7rem}
+      .card-footer{padding:0 0.7rem 0.6rem;gap:0.35rem}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">All<span>Free</span>Alerts</a>
+      <div class="nav-tabs">
+        <a class="nav-tab" href="/">Browse Deals</a>
+        <a class="nav-tab" href="/sweepstakes">Sweepstakes</a>
+        <a class="nav-tab" href="/freebies">Freebies</a>
+        <a class="nav-tab active" href="/settlements">Settlements</a>
+      </div>
+      <div class="nav-right">
+        <a href="/blog/" style="font-size:0.84rem;font-weight:600;color:var(--text-mid);padding:0.4rem 0.5rem">Blog</a>
+        <a href="/about" style="font-size:0.84rem;font-weight:600;color:var(--text-mid);padding:0.4rem 0.5rem">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1><b>Class-Action Settlements</b></h1>
+    <p class="hero-sub">Discover open settlement claims where you may be owed money. We track deadlines, payout amounts, and proof requirements so you know exactly what to expect.</p>
+    <div class="search-wrap">
+      <span class="search-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input type="text" class="search-input" id="search" placeholder="Search settlements...">
+      <button class="search-btn" onclick="curQ=document.getElementById('search').value.trim();doFilter()">Find Settlements</button>
+    </div>
+  </section>
+
+  <!-- ORIGINAL CONTENT -->
+  <div class="content-section">
+    <div class="content-card">
+      <h2>Your Guide to Class-Action Settlements</h2>
+      <p>Class-action settlements happen when a company resolves a lawsuit by agreeing to compensate the people affected. You do not need to have been part of the original lawsuit to file a claim &mdash; in most cases, anyone who purchased the product or used the service during the covered time period is eligible. Billions of dollars in settlement funds go unclaimed every year simply because people do not know about them.</p>
+
+      <h3>How to File a Claim</h3>
+      <p>Filing a claim is usually straightforward. You visit the official settlement website, fill out a short claim form with your name and contact information, and submit it before the deadline. Some claims can be completed in under two minutes. After the claim period closes, the settlement administrator reviews all submissions and distributes payments, which typically arrive within three to twelve months as a check or direct deposit.</p>
+
+      <h3>Proof vs. No-Proof Claims</h3>
+      <p>Settlements fall into two main categories based on documentation requirements. No-proof claims are the easiest &mdash; you simply confirm that you purchased the product or used the service, and you receive a payment. No receipts or records needed. Proof-required claims ask you to provide documentation such as receipts, order confirmations, or account statements. Proof-required claims generally pay out significantly more because fewer people can provide the documentation.</p>
+
+      <h3>Nationwide vs. State-Specific</h3>
+      <p>Some settlements are open to everyone in the United States, while others are limited to residents of specific states. We clearly label each settlement so you can quickly see which ones apply to you. Nationwide settlements tend to have larger claim pools and are open to the most people.</p>
+
+      <h3>What to Expect</h3>
+      <ul>
+        <li>Payouts range from a few dollars to hundreds or even thousands, depending on the settlement.</li>
+        <li>Most no-proof claims pay between $5 and $50 per person.</li>
+        <li>Proof-required claims can pay $100 or more if you have documentation.</li>
+        <li>Payments typically arrive three to twelve months after the claim deadline closes.</li>
+        <li>You will never be asked to pay anything to file a claim &mdash; it is always free.</li>
+      </ul>
+
+      <h3>How AllFreeAlerts Helps</h3>
+      <p>We check trusted settlement databases every day to find newly opened claims. Each listing includes the claim deadline, estimated payout amount, whether proof is required, and whether the settlement is available nationwide or in specific states. Every link goes directly to the official claim form so you can file quickly and with confidence.</p>
+    </div>
+  </div>
+
+  <!-- SORT + FILTER PILLS -->
+  <div class="section-header">
+    <h2>Open Settlements</h2>
+    <div class="pills" id="sortPills">
+      <button class="pill active" data-sort="newest">All</button>
+      <button class="pill" data-sort="newtoday">New Today</button>
+      <button class="pill" data-sort="deadline">Ending Soon</button>
+      <button class="pill" data-sort="payout">Top Value</button>
+      <button class="pill" data-sort="noproof">No Proof Needed</button>
+      <button class="pill" data-sort="proofyes">Proof Required</button>
+      <button class="pill" data-sort="nationwide">Nationwide</button>
+      <button class="pill" data-sort="state-specific">State-Specific</button>
+    </div>
+    <span class="section-right" id="totalCount">-</span>
+  </div>
+
+  <main class="main">
+    <div class="grid" id="grid">
+      <div class="loading"><div class="spinner"></div><br>Finding settlements...</div>
+    </div>
+  </main>
+
+  <!-- EMAIL SIGNUP -->
+  <div class="email-section" id="subscribe">
+    <div class="email-box">
+      <h3>Get Daily Settlement Alerts</h3>
+      <p>New class-action settlements delivered to your inbox every morning &mdash; never miss a claim deadline.</p>
+      <form class="email-form" onsubmit="return handleEmail(event)">
+        <input type="email" class="email-input" id="emailInput" placeholder="Enter your email" required>
+        <button type="submit" class="email-btn">Subscribe Free</button>
+      </form>
+      <p id="emailMsg" style="margin-top:0.5rem;font-size:0.8rem;display:none"></p>
+    </div>
+  </div>
+
+  <noscript>
+    <div style="max-width:800px;margin:2rem auto;padding:2rem;text-align:center;background:#fff;border-radius:16px">
+      <h2>Class-Action Settlements &mdash; AllFreeAlerts</h2>
+      <p>AllFreeAlerts finds open class-action settlements updated every day where you may be owed money. We track deadlines, payout amounts, and proof requirements. Enable JavaScript to browse, search, and filter all listings interactively, or subscribe to receive daily alerts by email.</p>
+    </div>
+  </noscript>
+
+  <footer class="footer">
+    <div class="footer-social">
+      <a href="https://instagram.com/allfreealerts" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://facebook.com/allfreealerts" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://x.com/allfreealerts" target="_blank" rel="noopener" aria-label="X/Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://bsky.app/profile/allfreealerts.bsky.social" target="_blank" rel="noopener" aria-label="Bluesky"><svg viewBox="0 0 24 24"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.627 3.6 3.476 6.158 3.226-4.477.763-8.32 3.206-4.78 8.527 3.895 4.103 6.652-1.164 7.998-4.554 1.346 3.39 3.096 8.44 7.998 4.554 3.54-5.321-.303-7.764-4.78-8.527 2.558.25 5.373-.599 6.158-3.226.246-.828.624-5.788.624-6.479 0-.688-.139-1.86-.902-2.203-.659-.3-1.664-.62-4.3 1.24C12.046 4.747 9.087 8.686 12 10.8z"/></svg></a>
+      <a href="https://tiktok.com/@allfreealerts" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+      <a href="https://youtube.com/@allfreealerts" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+    &copy; 2026 AllFreeAlerts.com &mdash; We look for them so you don't have to.<br>
+    AllFreeAlerts is an independent aggregator. We are not affiliated with, endorsed by, or responsible for any listed brand, contest, sweepstakes, or settlement administrator.<br>
+    Always verify details on the official page before entering. If you represent a listed organization and wish to update or remove a listing, contact us.<br>
+    <a href="mailto:contact@allfreealerts.com" style="color:var(--teal);font-weight:600">contact@allfreealerts.com</a> · <a href="/blog/" style="color:var(--teal);font-weight:600">Blog</a> · <a href="/about" style="color:var(--teal);font-weight:600">About</a> · <a href="/advertise" style="color:var(--teal);font-weight:600">Advertise</a> · <a href="/privacy" style="color:var(--teal);font-weight:600">Privacy Policy</a> · <a href="/terms" style="color:var(--teal);font-weight:600">Terms of Service</a>
+  </footer>
+
+<script>
+let allItems=[],filtered=[],curPage=1;
+const PER_PAGE=12;
+let curSort='newest',curQ='';
+
+const entered=new Set(JSON.parse(localStorage.getItem('afa_entered')||'[]'));
+function saveEntered(){localStorage.setItem('afa_entered',JSON.stringify([...entered]))}
+
+const today=new Date().toISOString().split('T')[0];
+function isNew(item){return item.date_found===today}
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function payNum(s){if(!s)return 0;const m=s.match(/\$[\d,]+/);return m?parseInt(m[0].replace(/[$,]/g,'')):0}
+function dlMs(i){const d=i.deadline||i.end_date||'';if(!d)return Infinity;const p=new Date(d);return isNaN(p)?Infinity:p.getTime()}
+function daysL(i){const d=i.deadline||i.end_date||'';if(!d)return null;const p=new Date(d);if(isNaN(p))return null;const n=Math.ceil((p-new Date())/864e5);return n>=0?n:null}
+function itemId(i){return(i.link||'').substring(0,100)}
+
+function valueFor(i){
+  if(i.payout)return{text:i.payout+' Refund',cls:'money'};
+  return null;
+}
+
+function detailFor(i){
+  const dl=i.deadline?'Ends '+i.deadline:'Open';
+  const pr=i.proof_required&&i.proof_required!=='No'?'Proof needed':'No proof';
+  const sc=i.scope==='state-specific'?'State-Specific':'Nationwide';
+  return dl+' \u00B7 '+pr+' \u00B7 '+sc;
+}
+
+function doFilter(){
+  let items=allItems.filter(i=>i.category==='Settlements');
+  if(curQ){const q=curQ.toLowerCase();items=items.filter(i=>(i.title||'').toLowerCase().includes(q)||(i.description||'').toLowerCase().includes(q)||(i.payout||'').toLowerCase().includes(q))}
+  items=[...items];
+  if(curSort==='deadline')items.sort((a,b)=>dlMs(a)-dlMs(b));
+  else if(curSort==='payout')items.sort((a,b)=>payNum(b.payout)-payNum(a.payout));
+  else if(curSort==='newtoday')items=items.filter(i=>isNew(i));
+  else if(curSort==='noproof')items=items.filter(i=>!i.proof_required||i.proof_required==='No'||i.proof_required==='N/A');
+  else if(curSort==='proofyes')items=items.filter(i=>i.proof_required==='Yes');
+  else if(curSort==='nationwide')items=items.filter(i=>!i.scope||i.scope==='nationwide');
+  else if(curSort==='state-specific')items=items.filter(i=>i.scope==='state-specific');
+  filtered=items;curPage=1;render();
+  const newCount=filtered.filter(i=>isNew(i)).length;
+  document.getElementById('totalCount').innerHTML=(newCount>0?`<span style="color:var(--orange);font-weight:700">${newCount} New Today</span><span style="color:var(--border)"> \u00B7 </span>`:'')+`<span style="font-weight:600">${filtered.length}</span> Active`;
+}
+
+function render(){
+  const g=document.getElementById('grid');
+  const totalPages=Math.ceil(filtered.length/PER_PAGE)||1;
+  if(curPage>totalPages)curPage=totalPages;
+  const vis=filtered.slice((curPage-1)*PER_PAGE,curPage*PER_PAGE);
+  if(!vis.length){g.innerHTML='<div class="no-results">No settlements found. Try a different search or filter.</div>';return}
+  let h='';
+  for(const i of vis){
+    const id=itemId(i);
+    const isDone=entered.has(id);
+    const act=isDone?'&#10003; Done':'View Details';
+    const btnCls=isDone?'done-btn':'settle-btn';
+    const days=daysL(i);
+    const isNewItem=isNew(i);
+    const val=valueFor(i);
+    const detail=detailFor(i);
+
+    const imgInner=i.image?`<img class="card-img" src="${esc(i.image)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'card-img-fallback settle\\'>&#9878;&#65039;</div>'">`:`<div class="card-img-fallback settle">&#9878;&#65039;</div>`;
+
+    let badges='';
+    if(isNewItem)badges+=`<span class="card-new">NEW</span>`;
+    if(days!==null&&days<=7)badges+=`<span class="card-days urgent">${days}d left</span>`;
+    else if(days!==null)badges+=`<span class="card-days ok">${days}d left</span>`;
+
+    h+=`<div class="card ${isDone?'done':''}" data-id="${esc(id)}">
+      <a href="${esc(i.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">
+        <div class="card-img-wrap">
+          ${imgInner}
+          ${badges?`<div class="card-badge-wrap">${badges}</div>`:''}
+        </div>
+      </a>
+      <div class="card-body">
+        <div class="card-cat settle"><span class="card-cat-icon">&#9878;&#65039;</span> Settlements</div>
+        <a href="${esc(i.link)}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="card-title">${esc(i.title)}</div>
+        </a>
+        ${i.description?`<div class="card-desc">${esc(i.description)}</div>`:''}
+        ${val?`<div class="card-value ${val.cls}">${esc(val.text)}</div>`:''}
+        ${detail?`<div class="card-detail"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${esc(detail)}</div>`:''}
+      </div>
+      <div class="card-footer">
+        <a class="card-cta ${btnCls}" href="${esc(i.link)}" target="_blank" rel="noopener">${act}</a>
+        <div class="share-wrap">
+          <button class="share-btn" onclick="toggleShare(event,this)" title="Share">&#8599;</button>
+          <div class="share-popup">
+            <button onclick="copyLink(event,this,'${esc(i.link)}')"><span class="share-icon">&#128203;</span> Copy Link</button>
+            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(i.link)}&text=${encodeURIComponent(i.title)}" target="_blank" rel="noopener" onclick="closeSharePopups()"><span class="share-icon">&#120143;</span> Share on X</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(i.link)}" target="_blank" rel="noopener" onclick="closeSharePopups()"><span class="share-icon">&#128216;</span> Share on Facebook</a>
+          </div>
+        </div>
+        <button class="check-btn ${isDone?'checked':''}" onclick="toggleDone(this)" title="Save">
+          ${isDone?'&#10003;':'&#9825;'}
+        </button>
+      </div>
+    </div>`;
+  }
+  if(totalPages>1)h+=`<div class="pagination">
+    <button class="pg-btn" onclick="goPage(curPage-1)" ${curPage<=1?'disabled':''}>&#8592; Prev</button>
+    <span class="pg-info">Page ${curPage} of ${totalPages}</span>
+    <button class="pg-btn" onclick="goPage(curPage+1)" ${curPage>=totalPages?'disabled':''}>Next &#8594;</button>
+  </div>`;
+  g.innerHTML=h;
+}
+
+function goPage(p){
+  const totalPages=Math.ceil(filtered.length/PER_PAGE)||1;
+  if(p<1||p>totalPages)return;
+  curPage=p;render();
+  window.scrollTo({top:document.getElementById('grid').offsetTop-80,behavior:'smooth'});
+}
+
+function closeSharePopups(){document.querySelectorAll('.share-popup.open').forEach(p=>p.classList.remove('open'))}
+function toggleShare(e,btn){e.stopPropagation();const popup=btn.nextElementSibling;const wasOpen=popup.classList.contains('open');closeSharePopups();if(!wasOpen)popup.classList.add('open')}
+function copyLink(e,btn,url){e.stopPropagation();navigator.clipboard.writeText(url).then(()=>{const orig=btn.innerHTML;btn.innerHTML='<span class="share-icon">&#10003;</span> Copied!';setTimeout(()=>{btn.innerHTML=orig},1500)});closeSharePopups()}
+document.addEventListener('click',()=>closeSharePopups());
+
+function toggleDone(btn){
+  const card=btn.closest('.card');const id=card.dataset.id;
+  if(entered.has(id)){entered.delete(id);card.classList.remove('done');btn.classList.remove('checked');btn.innerHTML='&#9825;'}
+  else{entered.add(id);card.classList.add('done');btn.classList.add('checked');btn.innerHTML='&#10003;'}
+  saveEntered();
+}
+
+document.getElementById('sortPills').addEventListener('click',e=>{
+  const p=e.target.closest('.pill');if(!p)return;
+  document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');curSort=p.dataset.sort;doFilter();
+});
+
+let st;document.getElementById('search').addEventListener('input',e=>{clearTimeout(st);st=setTimeout(()=>{curQ=e.target.value.trim();doFilter()},250)});
+
+async function handleEmail(e){
+  e.preventDefault();const form=e.target;const input=form.querySelector('input[type="email"]');const email=input.value;
+  const msg=document.getElementById('emailMsg');const btn=form.querySelector('button');
+  btn.textContent='Subscribing...';btn.disabled=true;
+  try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});const d=await r.json();msg.textContent=d.message||"You're in!";msg.style.display='block';if(d.ok)input.value=''}
+  catch(err){msg.textContent="You're in! We'll send you daily alerts.";msg.style.display='block';const subs=JSON.parse(localStorage.getItem('afa_subs')||'[]');subs.push({email,date:new Date().toISOString()});localStorage.setItem('afa_subs',JSON.stringify(subs));input.value=''}
+  btn.textContent='Subscribe Free';btn.disabled=false;return false;
+}
+
+fetch('data.json').then(r=>r.text()).then(raw=>{
+  const k='aFa2026xK';
+  const b=Uint8Array.from(atob(raw),c=>c.charCodeAt(0));
+  const d=JSON.parse(new TextDecoder().decode(b.map((v,i)=>v^k.charCodeAt(i%k.length))));
+  allItems=d;doFilter();
+}).catch(()=>{document.getElementById('grid').innerHTML='<div class="no-results">Failed to load data.</div>'});
+</script>
+</body>
+</html>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- v2 2026-04-09 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AllFreeAlerts — Sweepstakes, Freebies & Settlements</title>
   <meta name="description" content="Daily alerts for sweepstakes, freebies, and class-action settlements. We find them so you never miss free stuff.">
@@ -9,6 +10,93 @@
   <link rel="canonical" href="https://allfreealerts.com/">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3295178838066537" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AllFreeAlerts",
+    "url": "https://allfreealerts.com",
+    "description": "Daily alerts for sweepstakes, freebies, and class-action settlements. We find them so you never miss free stuff.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "AllFreeAlerts",
+      "url": "https://allfreealerts.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://allfreealerts.com/app-icon-1024.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@allfreealerts.com",
+        "contactType": "customer support"
+      },
+      "sameAs": [
+        "https://instagram.com/allfreealerts",
+        "https://facebook.com/allfreealerts",
+        "https://x.com/allfreealerts",
+        "https://tiktok.com/@allfreealerts",
+        "https://youtube.com/@allfreealerts",
+        "https://bsky.app/profile/allfreealerts.bsky.social"
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is AllFreeAlerts really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, completely free. We do not charge for access, require signups, or hide listings behind a paywall. Our site is supported by advertising."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often do you update listings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every day. We check dozens of trusted sources each morning for the latest sweepstakes, freebies, and settlement claims."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these sweepstakes legitimate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every listing links directly to the official entry page or claim form. We recommend always reading the official rules before entering."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do class-action settlements work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When companies lose or settle lawsuits, affected consumers can file claims for refunds. Some require proof of purchase, while others pay everyone who files."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to create an account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. You can browse, search, and access all listings without any account. Your saved items are stored locally in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I get email alerts for new listings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enter your email in the subscribe box and you will receive a daily summary of new sweepstakes, freebies, and settlements each morning."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
@@ -281,6 +369,8 @@
         <button class="nav-tab" data-cat="Settlements">Settlements</button>
       </div>
       <div class="nav-right">
+        <a href="/blog/" style="font-size:0.84rem;font-weight:600;color:var(--text-mid);padding:0.4rem 0.5rem;text-decoration:none">Blog</a>
+        <a href="/about" style="font-size:0.84rem;font-weight:600;color:var(--text-mid);padding:0.4rem 0.5rem;text-decoration:none">About</a>
         <button class="nav-new" id="newTodayBtn" onclick="syncCat('all');curSort='newest';document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('active',p.dataset.sort==='newest'));doFilter()">New Today <span class="dot"></span></button>
         <button class="nav-saved" onclick="showSaved()">Saved</button>
       </div>
@@ -482,9 +572,31 @@
   </section>
 
   <noscript>
-    <div style="max-width:800px;margin:2rem auto;padding:2rem;text-align:center;background:#fff;border-radius:16px">
-      <h2>AllFreeAlerts — Daily Sweepstakes, Freebies &amp; Settlements</h2>
-      <p>AllFreeAlerts aggregates hundreds of active sweepstakes, free product samples, and class-action settlement claims updated every day. Enable JavaScript to browse, search, and filter all listings interactively, or subscribe to receive daily alerts by email.</p>
+    <div style="max-width:800px;margin:2rem auto;padding:2rem;background:#fff;border-radius:16px">
+      <h2 style="text-align:center;margin-bottom:1rem">AllFreeAlerts — Daily Sweepstakes, Freebies &amp; Settlements</h2>
+      <p style="text-align:center;color:#636E72;margin-bottom:2rem">We check dozens of trusted sources every day to find free stuff you can actually claim. Enable JavaScript to browse, search, and filter all listings interactively.</p>
+
+      <h3 style="margin:1.5rem 0 0.5rem;color:#D97706">Sweepstakes &amp; Giveaways</h3>
+      <p style="color:#636E72">Hundreds of active sweepstakes from legitimate brands — cash prizes, gift cards, vacations, electronics, and more. Every listing links directly to the official entry page with clear deadlines and entry requirements. <a href="/sweepstakes" style="color:#0ABAB5;font-weight:600">Browse Sweepstakes</a></p>
+
+      <h3 style="margin:1.5rem 0 0.5rem;color:#059669">Free Samples &amp; Products</h3>
+      <p style="color:#636E72">Genuine free products from major brands — skincare, snacks, pet food, baby items, and household products shipped to your door. No purchase required, no credit card needed. We filter out anything with hidden costs or misleading strings attached. <a href="/freebies" style="color:#0ABAB5;font-weight:600">Browse Freebies</a></p>
+
+      <h3 style="margin:1.5rem 0 0.5rem;color:#3B82F6">Class-Action Settlements</h3>
+      <p style="color:#636E72">Open settlement claims where you may be owed money. We track claim deadlines, estimated payout amounts, whether proof of purchase is required, and whether the settlement is nationwide or state-specific. Every listing links directly to the official claim form. <a href="/settlements" style="color:#0ABAB5;font-weight:600">Browse Settlements</a></p>
+
+      <h3 style="margin:2rem 0 0.5rem">How AllFreeAlerts Works</h3>
+      <p style="color:#636E72">Every morning, we check over 20 trusted sources for new opportunities. New listings are verified for working links and legitimate offers. Every night, we recheck all existing listings and automatically remove anything expired or broken. The result: a clean, up-to-date directory of free stuff you can trust.</p>
+
+      <h3 style="margin:1.5rem 0 0.5rem">Learn More</h3>
+      <ul style="color:#636E72;padding-left:1.5rem">
+        <li><a href="/blog/how-to-file-class-action-settlement-claims" style="color:#0ABAB5">How to File Class-Action Settlement Claims</a></li>
+        <li><a href="/blog/how-to-spot-fake-sweepstakes" style="color:#0ABAB5">How to Spot Fake Sweepstakes: 8 Red Flags</a></li>
+        <li><a href="/blog/beginners-guide-to-free-samples" style="color:#0ABAB5">Beginner's Guide to Free Samples</a></li>
+        <li><a href="/about" style="color:#0ABAB5">About AllFreeAlerts</a></li>
+      </ul>
+
+      <p style="text-align:center;margin-top:2rem"><a href="mailto:contact@allfreealerts.com" style="color:#0ABAB5;font-weight:600">contact@allfreealerts.com</a></p>
     </div>
   </noscript>
 
@@ -500,7 +612,7 @@
     &copy; 2026 AllFreeAlerts.com &mdash; We look for them so you don't have to.<br>
     AllFreeAlerts is an independent aggregator. We are not affiliated with, endorsed by, or responsible for any listed brand, contest, sweepstakes, or settlement administrator.<br>
     Always verify details on the official page before entering. If you represent a listed organization and wish to update or remove a listing, contact us.<br>
-    <a href="mailto:contact@allfreealerts.com" style="color:var(--teal);font-weight:600">contact@allfreealerts.com</a> · <a href="/advertise" style="color:var(--teal);font-weight:600">Advertise</a> · <a href="/privacy" style="color:var(--teal);font-weight:600">Privacy Policy</a> · <a href="/terms" style="color:var(--teal);font-weight:600">Terms of Service</a>
+    <a href="mailto:contact@allfreealerts.com" style="color:var(--teal);font-weight:600">contact@allfreealerts.com</a> · <a href="/blog/" style="color:var(--teal);font-weight:600">Blog</a> · <a href="/about" style="color:var(--teal);font-weight:600">About</a> · <a href="/advertise" style="color:var(--teal);font-weight:600">Advertise</a> · <a href="/privacy" style="color:var(--teal);font-weight:600">Privacy Policy</a> · <a href="/terms" style="color:var(--teal);font-weight:600">Terms of Service</a>
   </footer>
 
 <script>

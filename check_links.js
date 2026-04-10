@@ -10,6 +10,7 @@ const path = require('path');
 
 const RESULTS_FILE = path.join(__dirname, 'data', 'results.json');
 const SITE_DATA = path.join(__dirname, 'site', 'data.json');
+const BLOCKLIST_FILE = path.join(__dirname, 'data', 'removed_blocklist.json');
 
 const MONTH_MAP = {
   january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
@@ -177,6 +178,28 @@ async function main() {
   if (deadLinks.size > 0) {
     data = data.filter(i => !deadLinks.has(i.link));
     console.log(`Removed ${deadLinks.size} dead items.`);
+  }
+
+  // Add dead/expired URLs to blocklist so scraper doesn't re-add them
+  if (deadLinks.size > 0) {
+    const blocklist = fs.existsSync(BLOCKLIST_FILE)
+      ? JSON.parse(fs.readFileSync(BLOCKLIST_FILE, 'utf8'))
+      : [];
+    let blockedCount = 0;
+    for (const link of deadLinks) {
+      try {
+        const u = new URL(link);
+        const fragment = u.hostname + u.pathname.replace(/\/$/, '');
+        if (!blocklist.some(b => fragment.includes(b) || b.includes(fragment))) {
+          blocklist.push(fragment);
+          blockedCount++;
+        }
+      } catch (e) { /* skip */ }
+    }
+    if (blockedCount > 0) {
+      fs.writeFileSync(BLOCKLIST_FILE, JSON.stringify(blocklist, null, 2));
+      console.log(`Added ${blockedCount} dead URLs to blocklist (total: ${blocklist.length})`);
+    }
   }
 
   // Save if anything changed (expired items or dead links)

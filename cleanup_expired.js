@@ -10,6 +10,7 @@ const path = require('path');
 
 const DATA_FILE = path.join(__dirname, 'data', 'results.json');
 const SITE_DATA = path.join(__dirname, 'site', 'data.json');
+const BLOCKLIST_FILE = path.join(__dirname, 'data', 'removed_blocklist.json');
 const ENCODE_KEY = 'aFa2026xK';
 
 // No age-based guessing — only remove items with confirmed expired dates
@@ -132,6 +133,30 @@ function main() {
 
   log(`\nRemoved ${removed.length} entries:`);
   removed.forEach(r => log(`  ${r}`));
+
+  // Add removed URLs to blocklist so scraper doesn't re-add them
+  const blocklist = fs.existsSync(BLOCKLIST_FILE)
+    ? JSON.parse(fs.readFileSync(BLOCKLIST_FILE, 'utf8'))
+    : [];
+  const removedItems = data.filter(item => !clean.includes(item));
+  let blockedCount = 0;
+  for (const item of removedItems) {
+    if (item.link) {
+      // Extract a stable URL fragment (domain + path) for matching
+      try {
+        const u = new URL(item.link);
+        const fragment = u.hostname + u.pathname.replace(/\/$/, '');
+        if (!blocklist.some(b => fragment.includes(b) || b.includes(fragment))) {
+          blocklist.push(fragment);
+          blockedCount++;
+        }
+      } catch (e) { /* skip malformed URLs */ }
+    }
+  }
+  if (blockedCount > 0) {
+    fs.writeFileSync(BLOCKLIST_FILE, JSON.stringify(blocklist, null, 2));
+    log(`Added ${blockedCount} URLs to blocklist (total: ${blocklist.length})`);
+  }
 
   // Save cleaned data
   fs.writeFileSync(DATA_FILE, JSON.stringify(clean, null, 2));

@@ -453,8 +453,8 @@ async function sweepsAdvantage() {
     const html = await fetchPage(pageUrl);
     if (!html) { log(`  SA: FAILED ${pageUrl.split('/').pop()}`); continue; }
 
-    // Pattern 1: image links with alt text
-    const entryRe = /href="(https?:\/\/[^"]+)"[^>]*target="_blank"[^>]*rel="nofollow"[^>]*>[\s\S]*?alt="([^"]+)"/g;
+    // Pattern 1: image links with alt text (constrained to not cross </a> boundaries)
+    const entryRe = /href="(https?:\/\/[^"]+)"[^>]*target="_blank"[^>]*rel="nofollow"[^>]*>(?:(?!<\/a>|<a )[\s\S])*?alt="([^"]+)"/g;
     let m, count = 0;
     while ((m = entryRe.exec(html)) !== null) {
       const url = m[1];
@@ -1463,6 +1463,7 @@ async function main() {
     hip2save().catch(e => { log(`H2S ERROR: ${e.message}`); return []; }),
     classactionOrg().catch(e => { log(`CA ERROR: ${e.message}`); return []; }),
     sweetiesSweeps().catch(e => { log(`SS ERROR: ${e.message}`); return []; }),
+    // FIXED: regex constrained to not cross </a> boundaries (was causing title-URL mismatches)
     sweepsAdvantage().catch(e => { log(`SA ERROR: ${e.message}`); return []; }),
     topClassActions().catch(e => { log(`TCA ERROR: ${e.message}`); return []; }),
     ftcRefunds().catch(e => { log(`FTC ERROR: ${e.message}`); return []; }),
@@ -1498,7 +1499,13 @@ async function main() {
     // Login-wall giveaway platforms (always require account)
     'gleam.io', 'rafflecopter.com', 'woobox.com', 'shortstack.com', 'kingsumo.com',
     // Signup-wall platforms (always require account)
-    'us-joy.com', 'paidviewpoint.com'
+    'us-joy.com', 'paidviewpoint.com',
+    // Middleman/aggregator sites (link to deals, not the actual source)
+    'giveawaydrop.com', 'giveawayfrenzy.com',
+    // Shortlinks and trackers (mask the real destination)
+    'bit.ly', 'swee.ps', 'tnspk.co', 'llclick.com',
+    // Telegram (not a deal source)
+    't.me'
   ];
   const newItems = [];
   const seenLinks = new Set();

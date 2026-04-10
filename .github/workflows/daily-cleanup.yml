@@ -31,6 +31,13 @@ jobs:
       - name: Check all links (every category)
         run: node check_links.js
 
+      - name: Verify critical site files exist
+        run: |
+          for f in site/ads.txt site/about.html site/blog/index.html site/sitemap.xml site/sweepstakes.html site/freebies.html site/settlements.html; do
+            if [ ! -f "$f" ]; then echo "FATAL: $f is missing! Aborting deploy."; exit 1; fi
+          done
+          echo "All critical files present."
+
       - name: Deploy to Cloudflare
         run: npx wrangler pages deploy site/ --project-name=allfreealerts --branch=main
         env:

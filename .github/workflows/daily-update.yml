@@ -102,6 +102,15 @@ jobs:
           npm install puppeteer
           node ig_fb_autoposter.js --dry-run
 
+      - name: Verify critical site files exist
+        run: |
+          echo "Checking critical files before deploy..."
+          for f in site/ads.txt site/about.html site/blog/index.html site/sitemap.xml site/sweepstakes.html site/freebies.html site/settlements.html; do
+            if [ ! -f "$f" ]; then echo "FATAL: $f is missing! Aborting deploy."; exit 1; fi
+            echo "  OK: $f"
+          done
+          echo "All critical files present."
+
       - name: Deploy AllFreeAlerts to Cloudflare
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

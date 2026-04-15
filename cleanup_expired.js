@@ -108,6 +108,26 @@ function main() {
       return false;
     }
 
+    // 4b. Detect month+day dates in the title (e.g. "April 14th", "Through March 30")
+    // Only applies to Freebies/Sweepstakes — settlement titles often reference historic dates.
+    // If the parsed date is in the past and within the last ~120 days, treat as expired.
+    if (category === 'Freebies' || category === 'Sweepstakes') {
+      const titleDateMatch = item.title && item.title.match(
+        /\b(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2})(?:st|nd|rd|th)?(?:,?\s*(\d{4}))?/i
+      );
+      if (titleDateMatch) {
+        const monthIdx = MONTH_MAP[titleDateMatch[1].toLowerCase()];
+        const day = parseInt(titleDateMatch[2]);
+        const year = titleDateMatch[3] ? parseInt(titleDateMatch[3]) : now.getFullYear();
+        const titleDate = new Date(year, monthIdx, day);
+        const daysDiff = (startOfToday - titleDate) / (1000 * 60 * 60 * 24);
+        if (daysDiff > 0 && daysDiff < 120) {
+          removed.push(`[EXPIRED-TITLE] ${item.title.substring(0, 60)} (${titleDateMatch[0]})`);
+          return false;
+        }
+      }
+    }
+
     // 5. Remove broken ad/script links
     const brokenDomains = ['scorecardresearch.com', 'pubmatic.com', 'clarity.ms', 'adthrive.com', 'privacymanager.io'];
     if (brokenDomains.some(d => link.includes(d))) {

@@ -5085,5 +5085,2056 @@
         "flag": "May require purchase — check manually"
       }
     ]
+  },
+  {
+    "date": "2026-04-10",
+    "timestamp": "2026-04-10T15:08:57.394Z",
+    "total_checked": 68,
+    "passed": 39,
+    "flagged": 10,
+    "removed": 29,
+    "removed_entries": [
+      {
+        "title": "Thyme & Table Instagram Giveaway (5 Winners)",
+        "link": "https://www.freebieshark.com/2026/04/thyme-table-instagram-giveaway-5-winners.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "Undercover Snacks “Snacks + Ice Cream” Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/04/undercover-snacks-snacks-ice-cream-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "FREE Tiff’s Treats Ice Cream Sandwiches on 4/11 (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Better Than FREE nutpods Coffee Creamer After Cash Back at Walmart",
+        "link": "https://try.gotoaisle.com/nutpods-cng",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Floor & Decor $5,000 Floor Makeover Sweepstakes",
+        "link": "https://floormakeoversyracuse.com/register.aspx?AspxAutoDetectCookieSupport=1",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [302]: Redirect to login page: https://floormakeoversyracuse.com/(X(1)S(hwvf3ijsjzmzw24535x"
+      },
+      {
+        "title": "Yunite - Share and Earn Rewards",
+        "link": "https://trk.adbloom.co/SHtS",
+        "source": "ultracontest",
+        "reason": "Middleman: Link points to aggregator: trk.adbloom.co"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Kemps “Headed North” Sweepstakes",
+        "link": "https://kempsheadednorth.com/",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "TruMoo STAR WARS Blue Milk Instant Win Game and Sweepstakes",
+        "link": "https://starwarsmilksweepstakes.com/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "The Ultimate Music City Rodeo Giveaway Sweepstakes",
+        "link": "https://www.visitmusiccity.com/music-city-rodeo-giveaway",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Stella Rosa Grocery Giveaway Sweepstakes",
+        "link": "https://stellarosagrocerygiveaway.com/index",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "EatingWell Spring Grocery Sweepstakes – Win $25,000",
+        "link": "https://www.eatingwell.com/sweepstakes/entry?brandId=etg&sweepId=etg-25k-grocery-spring2026",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Sugarfina You, Me, & Tuscany Sweepstakes",
+        "link": "https://www.sugarfina.com/evergreen-sweepstakes",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Harkla Autism Acceptance Month Giveaway – Win $3,000 in Prizes",
+        "link": "https://harkla.co/pages/aam-giveaway",
+        "source": "ilovegiveaways",
+        "flag": "May require purchase — check manually"
+      },
+      {
+        "title": "Whitman Hospital $500,000 Data Breach Settlement",
+        "link": "https://whitmansettlement.eagclaims.com/",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Pawn America $3.19M Customer Data Breach Settlement",
+        "link": "https://www.pawnamericasettlement.com/media/6838409/v4_padb_claim_032626.pdf",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "MetLife Auto Insurance $1.2M Class Action Settlement",
+        "link": "https://metropolitanuimsettlement.com/Content/Documents/Settlement%20Agreement.pdf",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-11",
+    "timestamp": "2026-04-11T14:57:20.021Z",
+    "total_checked": 52,
+    "passed": 21,
+    "flagged": 6,
+    "removed": 31,
+    "removed_entries": [
+      {
+        "title": "Premier Guitar - Lag Guitars Giveaway",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "Back to Nature Spring Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/04/back-to-nature-spring-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "FragranceNet April Shopping Spree Sweepstakes",
+        "link": "https://brandcycle.shop/688o7",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: brandcycle.shop"
+      },
+      {
+        "title": "Earl’s at Nashville Yards Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/04/earls-at-nashville-yards-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "Duraflame “Get Outside” Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/04/duraflame-get-outside-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "FREE Tiff’s Treats Ice Cream Sandwiches TODAY (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Better Than FREE nutpods Coffee Creamer After Cash Back at Walmart",
+        "link": "https://try.gotoaisle.com/nutpods-cng",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Yunite - Share and Earn Rewards",
+        "link": "https://trk.adbloom.co/SHtS",
+        "source": "ultracontest",
+        "reason": "Middleman: Link points to aggregator: trk.adbloom.co"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Peanut Butter and Whine 50 Your Way April 2026 Giveaway",
+        "link": "https://peanutbutterandwhine.com/50-your-way-giveaway-april-2026/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "IcelandAir Wanted: a Bad Photographer Contest",
+        "link": "https://www.icelandair.com/flights/campaign/really-bad-photographer/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "FOX & Friends 2026 For All America Camper Giveaway",
+        "link": "https://www.campergiveaway2026.com/home",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Absolute Dental Group $3.3 Million Data Breach Settlement",
+        "link": "https://www.absolutedatasettlement.com/",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Travelers Indemnity New Jersey PIP Class Action Settlement",
+        "link": "https://njpipsettlement.com/",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Aosom April Sweepstakes – Win a Patio Bistro Set",
+        "link": "https://www.aosom.com/page/contest",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "timestamp": "2026-04-12T14:59:59.023Z",
+    "total_checked": 42,
+    "passed": 13,
+    "flagged": 3,
+    "removed": 29,
+    "removed_entries": [
+      {
+        "title": "YALA - Dream It, Create It Giveaway",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "Amazon: Burt’s Bees Lip Balm 4-Pack – Only $5.47",
+        "link": "https://www.freebieshark.com/2026/04/amazon-burts-bees-lip-balm-4-pack-only-5-47.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Better Than FREE nutpods Coffee Creamer After Cash Back at Walmart",
+        "link": "https://try.gotoaisle.com/nutpods-cng",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Yunite - Share and Earn Rewards",
+        "link": "https://trk.adbloom.co/SHtS",
+        "source": "ultracontest",
+        "reason": "Middleman: Link points to aggregator: trk.adbloom.co"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "Cinemark Theatres Showers of Movie Club Sweepstakes",
+        "link": "https://www.cinemark.com/movie-rewards/loyalty-reward/4616/0",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [302]: Redirect to login page: https://www.cinemark.com/Membership/SignIn?returnUrl=/movie-"
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Northern Tool + Equipment Bucket Caption Contest",
+        "link": "https://ntebucketcaption.turnkeysweeps.com/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Yamazaki Home Gift Card Giveaway",
+        "link": "https://app.viralsweep.com/sweeps/full/81f562-223553?framed=1",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Maverik Ready to Roam Bronco Sweepstakes",
+        "link": "https://www.maverik.com/sweepstakes/ready-to-roam-rules",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-13",
+    "timestamp": "2026-04-13T15:47:40.981Z",
+    "total_checked": 42,
+    "passed": 15,
+    "flagged": 1,
+    "removed": 27,
+    "removed_entries": [
+      {
+        "title": "Jonny Pops National Unicorn Day Instagram Giveaway (10 Winners)",
+        "link": "https://www.freebieshark.com/2026/04/jonny-pops-national-unicorn-day-instagram-giveaway-10-winners.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "FREE Domino’s Slice Sauce w/ Pan or Stuffed Crust Pizza",
+        "link": "https://www.prnewswire.com/news-releases/dominos-celebrates-new-signature-sauce-with-exclusive-access-to-cobranded-merchandise-from-shinola-302734992.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Better Than FREE nutpods Coffee Creamer After Cash Back at Walmart",
+        "link": "https://try.gotoaisle.com/nutpods-cng",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Celebrate Tax Day on 4/15 w/ the Best Freebies & Restaurant Deals!",
+        "link": "https://www.qsrmagazine.com/news/churchs-chicken-to-offer-4-99-eight-piece-meal-on-tax-day/",
+        "source": "hip2save",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-14",
+    "timestamp": "2026-04-14T15:25:43.117Z",
+    "total_checked": 48,
+    "passed": 20,
+    "flagged": 0,
+    "removed": 28,
+    "removed_entries": [
+      {
+        "title": "Cornell Lab - Ultimate Spring Birdwatching Bundle Giveaway",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "Amazon Subscribe & Save Deals: e.l.f., Cottonelle & More",
+        "link": "https://www.freebieshark.com/2026/04/amazon-subscribe-save-deals-e-l-f-cottonelle-more.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "FREE Domino’s Slice Sauce w/ Pan or Stuffed Crust Pizza",
+        "link": "https://www.prnewswire.com/news-releases/dominos-celebrates-new-signature-sauce-with-exclusive-access-to-cobranded-merchandise-from-shinola-302734992.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Better Than FREE nutpods Coffee Creamer After Cash Back at Walmart",
+        "link": "https://try.gotoaisle.com/nutpods-cng",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": []
+  },
+  {
+    "date": "2026-04-15",
+    "timestamp": "2026-04-15T15:25:57.019Z",
+    "total_checked": 45,
+    "passed": 18,
+    "flagged": 3,
+    "removed": 27,
+    "removed_entries": [
+      {
+        "title": "BD Outdoors - Huk Pro Series Giveaway Sweepstakes",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "New Chipotle Rewards = Free Chips & Guac w/ $5 Purchase + More",
+        "link": "https://www.prnewswire.com/news-releases/chipotle-relaunches-rewards-with-rewards-on-repeat-delivering-more-value-without-trade-offs-302739734.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Domino’s Slice Sauce w/ Pan or Stuffed Crust Pizza",
+        "link": "https://www.prnewswire.com/news-releases/dominos-celebrates-new-signature-sauce-with-exclusive-access-to-cobranded-merchandise-from-shinola-302734992.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "HGTV “Rock The Vegas Block” Sweepstakes (7 Winners)",
+        "link": "https://www.hgtv.com/shows/rock-the-block/giveaway",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "$3.85M Cardiovascular Consultants data breach class action settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/eform/CVCDataSettlement_claimform/new?form-version=1",
+        "source": "topclassactions",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Trader Joe's $7.4M Credit/Debit Card Class Action Settlement",
+        "link": "https://www.tj-factasettlement.com/",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "timestamp": "2026-04-16T15:56:25.267Z",
+    "total_checked": 49,
+    "passed": 21,
+    "flagged": 6,
+    "removed": 28,
+    "removed_entries": [
+      {
+        "title": "Makeup Eraser Sephora Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/04/makeup-eraser-sephora-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "Peter Rabbit Organics Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/04/peter-rabbit-organics-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "New Chipotle Rewards = Free Chips & Guac w/ $5 Purchase + More",
+        "link": "https://www.prnewswire.com/news-releases/chipotle-relaunches-rewards-with-rewards-on-repeat-delivering-more-value-without-trade-offs-302739734.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Domino’s Slice Sauce w/ Pan or Stuffed Crust Pizza",
+        "link": "https://www.prnewswire.com/news-releases/dominos-celebrates-new-signature-sauce-with-exclusive-access-to-cobranded-merchandise-from-shinola-302734992.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "T-Mobile “Online Adventure on Us” Sweepstakes",
+        "link": "https://www.adventureonusonline.com/en",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Pacifico Bottle Rock Music Festival Sweepstakes",
+        "link": "https://cbisweeps.com/PacificoMusicFest",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Corona The Music Festivals Sweepstakes",
+        "link": "https://cbisweeps.com/CoronaMusicFestChi",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Ben & Jerry’s Free Cone Day Sweepstakes 2026",
+        "link": "https://www.benjerry.com/scoop-shops/free-cone-day/free-cone-day-contest-2026",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Camarena Soccer Watch Party Sweepstakes",
+        "link": "https://kickoffwithcamarena.com/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Camarena Tequila Soccer Watch Party Sweepstakes 2026",
+        "link": "https://kickoffwithcamarena.com",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-17",
+    "timestamp": "2026-04-17T15:15:22.510Z",
+    "total_checked": 47,
+    "passed": 20,
+    "flagged": 3,
+    "removed": 27,
+    "removed_entries": [
+      {
+        "title": "Ben & Jerry's - Free Cone Day Giveaway",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "New Chipotle Rewards = Free Chips & Guac w/ $5 Purchase + More",
+        "link": "https://www.prnewswire.com/news-releases/chipotle-relaunches-rewards-with-rewards-on-repeat-delivering-more-value-without-trade-offs-302739734.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Domino’s Slice Sauce w/ Pan or Stuffed Crust Pizza",
+        "link": "https://www.prnewswire.com/news-releases/dominos-celebrates-new-signature-sauce-with-exclusive-access-to-cobranded-merchandise-from-shinola-302734992.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Corona Premier US Open Sweepstakes",
+        "link": "https://cbisweeps.com/CPUSOPEN2026EBU",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "GlensFalls Adirondack Wine & Food Festival Experience Giveaway",
+        "link": "https://www.glensfalls.com/sweepstakes/adirondack-wine-and-food-festival-944/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Splish Splash Ticket Fee $1M Class Action Settlement",
+        "link": "https://splishsplashticketfeesettlement.com/Login",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-18",
+    "timestamp": "2026-04-18T15:00:20.751Z",
+    "total_checked": 44,
+    "passed": 17,
+    "flagged": 7,
+    "removed": 27,
+    "removed_entries": [
+      {
+        "title": "Temppro - Rebrand Giveaway",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "Nothing Bundt Cakes “Steeped in Sweetness” Instagram Giveaway",
+        "link": "https://www.freebieshark.com/2026/04/nothing-bundt-cakes-steeped-in-sweetness-instagram-giveaway.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "New Chipotle Rewards = Free Chips & Guac w/ $5 Purchase + More",
+        "link": "https://www.prnewswire.com/news-releases/chipotle-relaunches-rewards-with-rewards-on-repeat-delivering-more-value-without-trade-offs-302739734.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Domino’s Slice Sauce w/ Pan or Stuffed Crust Pizza",
+        "link": "https://www.prnewswire.com/news-releases/dominos-celebrates-new-signature-sauce-with-exclusive-access-to-cobranded-merchandise-from-shinola-302734992.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Small Business Tariff Refund — How to Apply for IEEPA Tariff Refund",
+        "link": "https://tariffrefundreview.com/?aid=84&cid=89&subid1=&subid2=&subid3=",
+        "source": "openclassactions",
+        "reason": "Dead link [401]: Empty page (0 bytes)"
+      },
+      {
+        "title": "California Labor Workers' Rights - Lawsuits & Investigations",
+        "link": "https://form.jotform.com/openclassactions/california",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "Uber, Lyft & Rideshare Abuse - Lawsuits & Investigation",
+        "link": "https://form.jotform.com/openclassactions/rideshare",
+        "source": "openclassactions",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Teacher Appreciation DIY: Cute Gift Card Holders You Can Make in Minutes!",
+        "link": "https://www.skiptomylou.org/teacher-favorite-things-questionnaire-printable/",
+        "source": "hip2save",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Alaska Seafood The Alaska Cruise for 2 Giveaway",
+        "link": "https://www.alaskaseafood.org/alaska-cruise-giveaway-2026/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Rapid Magazine Niphean Dreamspace Paddle Board Sweepstakes",
+        "link": "https://paddlingmag.com/sweepstakes/niphean-dreamspace-series-10-with-seat/",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "$117.5M Comcast data breach class action settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/eform/comcastbreachsettlement_claimform/new?form-version=1&#038;fr-wizard-page=section-1",
+        "source": "topclassactions",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "MassMutual Red Sox Grand Slam Sweepstakes 2026",
+        "link": "https://www.massmutual.com/redsox",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Tocca Mother’s Day Sweepstakes",
+        "link": "https://www.tocca.com/pages/sweeps",
+        "source": "sweepsadvantage",
+        "flag": "May require purchase — check manually"
+      },
+      {
+        "title": "Hardee’s Victory Lap Instant Win Game and Sweepstakes",
+        "link": "https://secure.cataboom.com/direct/hardees-turn-and-earn-spin-to-win-entry-2026",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-19",
+    "timestamp": "2026-04-19T15:00:50.258Z",
+    "total_checked": 40,
+    "passed": 17,
+    "flagged": 7,
+    "removed": 23,
+    "removed_entries": [
+      {
+        "title": "FREE Auntie Anne’s Pretzel on April 26th (+ How to Get a Free Pretzel Every Week!)",
+        "link": "https://www.prnewswire.com/news-releases/auntie-annes-celebrates-national-pretzel-day-with-free-pretzels-for-all-and-the-debut-of-the-exclusive-golden-pretzel-pass-302744494.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "New Chipotle Rewards = Free Chips & Guac w/ $5 Purchase + More",
+        "link": "https://www.prnewswire.com/news-releases/chipotle-relaunches-rewards-with-rewards-on-repeat-delivering-more-value-without-trade-offs-302739734.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Domino’s Slice Sauce w/ Pan or Stuffed Crust Pizza",
+        "link": "https://www.prnewswire.com/news-releases/dominos-celebrates-new-signature-sauce-with-exclusive-access-to-cobranded-merchandise-from-shinola-302734992.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop on 4/18 | Register Now to Make a Terrarium",
+        "link": "https://shoplowes.me/45EUNoS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Maverik “Ready to Roam” Sweepstakes (Select States)",
+        "link": "https://www.maverik.com/sweepstakes/ready-to-roam-rules#entry-form",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "BHG “Rounded Arch Cabinet” Sweepstakes (10 Winners)",
+        "link": "https://www.bhg.com/sweepstakes/entry?sweepId=bhg-flash-archcabinet-0426-eo",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Melissainsurancehelp $250 e-Gift Card Giveaway",
+        "link": "https://melissainsurancehelp.com/2026/03/23/enter-a-free-rewards-giveaway-just-for-stopping-by/",
+        "source": "sweepsadvantage",
+        "flag": "Network error: socket hang up — check manually"
+      },
+      {
+        "title": "Travel South Dakota New Year’s Day Parade Giveaway",
+        "link": "https://www.travelsouthdakota.com/podcast/giveaway",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Bang Lime Pop Drop Year Supply Sweepstakes",
+        "link": "https://www.bangenergy.com/en-us/promotions/lpd-year-supply/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "SoFi Amplify Your Ambitions Contest",
+        "link": "https://www.amplifyyourambitions.com/home",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Rock Out at CMA Fest in Music City Giveaway Sweepstakes",
+        "link": "https://www.visitmusiccity.com/cmafest-nashville-giveaway",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
   }
 ]

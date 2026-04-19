@@ -1487,6 +1487,21 @@ async function main() {
 
   const allScraped = [...cg, ...sf, ...fs_, ...ff, ...h2s, ...ca, ...ss, ...sa, ...tca, ...ftc, ...hif, ...tfg, ...yfs, ...gf, ...uc, ...ilg, ...fsf, ...cl, ...gb, ...sm, ...oca, ...cd, ...rdf, ...sfs, ...rdst];
 
+  // Today's date at midnight — used to filter already-expired entries at scrape time
+  const _now = new Date();
+  const scrapeDay = new Date(_now.getFullYear(), _now.getMonth(), _now.getDate());
+  const SCRAPE_MONTH_MAP = { january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11 };
+  function parseDeadline(str) {
+    if (!str || str === 'Unknown') return null;
+    str = str.trim();
+    if (/^\d{4}-\d{2}-\d{2}/.test(str)) { const d = new Date(str + 'T00:00:00'); return isNaN(d) ? null : d; }
+    const slash = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+    if (slash) { let [,m,d,y] = slash; y = parseInt(y); if (y < 100) y += 2000; return new Date(y, parseInt(m)-1, parseInt(d)); }
+    const mn = str.match(/^([A-Za-z]+)\s+(\d{1,2})(?:,?\s*(\d{4}))?/);
+    if (mn) { const idx = SCRAPE_MONTH_MAP[mn[1].toLowerCase()]; if (idx !== undefined) { const yr = mn[3] ? parseInt(mn[3]) : _now.getFullYear(); return new Date(yr, idx, parseInt(mn[2])); } }
+    return null;
+  }
+
   // Clean + Deduplicate
   // Load blocklist of manually removed links (prevents zombies from coming back)
   const REMOVED_BLOCKLIST = fs.existsSync(path.join(__dirname, 'data', 'removed_blocklist.json'))
@@ -1530,6 +1545,12 @@ async function main() {
     if (!link.startsWith('http')) continue;
     if (BAD_LINK_DOMAINS.some(d => link.includes(d))) continue; // skip social media links
     if (REMOVED_BLOCKLIST.some(b => link.includes(b))) continue; // skip manually removed entries
+    // Skip entries whose deadline/end_date is already in the past — prevents re-adding expired items
+    if (item.end_date || item.deadline) {
+      const ds = item.end_date || item.deadline;
+      const parsed = parseDeadline(ds);
+      if (parsed && parsed < scrapeDay) continue;
+    }
     // Skip items that require a purchase (not free) — but keep "no purchase necessary" items
     const NO_PURCHASE = /\bno purchase (necessary|needed|required)\b/i;
     if (item.category !== 'Settlements' && PURCHASE_REQUIRED.test(item.title) && !NO_PURCHASE.test(item.title)) {

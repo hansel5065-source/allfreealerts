@@ -1,87 +1,6 @@
 [
   {
     "date": "2026-03-29",
-    "timestamp": "2026-03-29T16:23:51.925Z",
-    "total_checked": 40,
-    "passed": 28,
-    "removed": 12,
-    "removed_entries": [
-      {
-        "title": "Wonderful Halos “Spring Snacking” Instagram Giveaway",
-        "link": "https://www.freebieshark.com/2026/03/wonderful-halos-spring-snacking-instagram-giveaway.html",
-        "source": "freebieshark",
-        "reason": "Middleman: Link points to aggregator: freebieshark.com"
-      },
-      {
-        "title": "Kernel Seasons “Super Mario Galaxy” Sweepstakes (200 Winners)",
-        "link": "https://www.freebieshark.com/2026/03/kernel-seasons-super-mario-galaxy-sweepstakes-200-winners.html",
-        "source": "freebieshark",
-        "reason": "Middleman: Link points to aggregator: freebieshark.com"
-      },
-      {
-        "title": "Sunday Mail Call – March 23-29",
-        "link": "https://www.freebieshark.com/2026/03/sunday-mail-call-march-23-29.html",
-        "source": "freebieshark",
-        "reason": "Middleman: Link points to aggregator: freebieshark.com"
-      },
-      {
-        "title": "Aorus - Gigabyte Resident Evil Requiem Custom PC Giveaway",
-        "link": "https://gleam.io/VPItO/gigabyte-resident-evil-requiem-custom-pc-giveaway",
-        "source": "contestgirl",
-        "reason": "Dead link [403]: HTTP 403"
-      },
-      {
-        "title": "Babylist “Hello Baby Box” Giveaway",
-        "link": "https://gleam.io/IXerz/hbb-group-giveaway-q1-2026",
-        "source": "freebieshark",
-        "reason": "Dead link [403]: HTTP 403"
-      },
-      {
-        "title": "Sportsman's Outdoor Superstore Gift Card Giveaway",
-        "link": "https://gleam.io/6DMxs/mambasnake-giveaway-round-51",
-        "source": "sweepsadvantage",
-        "reason": "Dead link [403]: HTTP 403"
-      },
-      {
-        "title": "Goldvine - Gourmet Syrups Giveaway",
-        "link": "https://givelab.com/g/O38FUc/goldvine-gourmet-syrups-giveaway",
-        "source": "contestgirl",
-        "reason": "Dead link [403]: HTTP 403"
-      },
-      {
-        "title": "MRT Tire Set Giveaway",
-        "link": "https://app.viralsweep.com/sweeps/full/538ee5-223993",
-        "source": "sweepsadvantage",
-        "reason": "Dead link [403]: HTTP 403"
-      },
-      {
-        "title": "Wedding Vibe The Cutting Edge Sweepstakes",
-        "link": "https://gleam.io/KEVO0/evo-awards-2026-giveaway",
-        "source": "sweepsadvantage",
-        "reason": "Dead link [403]: HTTP 403"
-      },
-      {
-        "title": "Ntonpower 2026 Easter Giveaway",
-        "link": "https://weddingvibe.com/giveaway/dinner4two/",
-        "source": "sweepsadvantage",
-        "reason": "Dead link [0]: Network error: socket hang up"
-      },
-      {
-        "title": "LOccitane Spring Sweepstakes",
-        "link": "https://gleam.io/0O14y/2026-easter-giveaway",
-        "source": "sweepsadvantage",
-        "reason": "Dead link [403]: HTTP 403"
-      },
-      {
-        "title": "From Fans to Dream Rigs Sweepstakes",
-        "link": "https://gleam.io/R4K0g/from-fans-to-dream-rigs-hall-of-tech",
-        "source": "ultracontest",
-        "reason": "Dead link [403]: HTTP 403"
-      }
-    ]
-  },
-  {
-    "date": "2026-03-29",
     "timestamp": "2026-03-29T16:25:01.708Z",
     "total_checked": 28,
     "passed": 28,
@@ -8471,6 +8390,204 @@
         "title": "$50M Google discrimination class action settlement",
         "link": "https://www.curleysettlement.com/claim-form-login/",
         "source": "topclassactions",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-04-26",
+    "timestamp": "2026-04-26T15:03:38.088Z",
+    "total_checked": 39,
+    "passed": 12,
+    "flagged": 4,
+    "removed": 27,
+    "removed_entries": [
+      {
+        "title": "Dude Perfect - Operation Trick Shot Sweepstakes",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "Rice Krispies Treats “Confetti Cake Kit” Instagram Giveaway (10 Winners)",
+        "link": "https://www.freebieshark.com/2026/04/rice-krispies-treats-confetti-cake-kit-instagram-giveaway-10-winners.html",
+        "source": "freebieshark",
+        "reason": "Middleman: Link points to aggregator: freebieshark.com"
+      },
+      {
+        "title": "FREE Auntie Anne’s Pretzel TODAY (+ How to Get a Free Pretzel Every Week!)",
+        "link": "https://www.prnewswire.com/news-releases/auntie-annes-celebrates-national-pretzel-day-with-free-pretzels-for-all-and-the-debut-of-the-exclusive-golden-pretzel-pass-302744494.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Spring Flower on 5/9 for First 200 Rewards Members",
+        "link": "https://shoplowes.me/4eqlGT1",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Lowe’s Kids Workshop: Build a Garden Basket on 5/16 (Spots Are Limited!)",
+        "link": "https://shoplowes.me/4e1uluK",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "New Chipotle Rewards = Free Chips & Guac w/ $5 Purchase + More",
+        "link": "https://www.prnewswire.com/news-releases/chipotle-relaunches-rewards-with-rewards-on-repeat-delivering-more-value-without-trade-offs-302739734.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Last Chance to Grab FREE Tiff’s Treats Ice Cream Sandwiches (Just Wear Your Uniform)",
+        "link": "https://www.prnewswire.com/news-releases/tiffs-treats-offers-free-post-game-ice-cream-sandwiches-for-athletes-all-weekend-long-302733243.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE PetSmart Easter Event on 4/4 (First 50 People Score $20 Coupon!)",
+        "link": "https://www.prnewswire.com/news-releases/petsmarts-easter-egg-hunt-is-hopping-into-stores-nationwide-302720301.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Blue Buffalo Refrigerated Dog Food After Walmart Cash",
+        "link": "https://shopstyle.it/l/cxlVr",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "10 of the BEST Christmas Gifts for Teachers (According to Educators)",
+        "link": "https://shopstyle.it/l/cd1do",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (christmas) — out of season"
+      },
+      {
+        "title": "How to Watch the Charlie Brown Halloween Movie for FREE on Apple TV",
+        "link": "https://shopstyle.it/l/bzj57",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (halloween) — out of season"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Milton’s Gluten Free Crackers After Walmart Cash",
+        "link": "https://shopstyle.it/l/cvaeN",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
+        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Top Homeschool Discounts & Freebies in 2025",
+        "link": "https://shopstyle.it/l/bxiif",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "FREE Fancypants Cookies After Cash Back",
+        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
+        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Gutzy Organic Fruit & Veggie Pouches 4-Pack After Walmart Cash",
+        "link": "https://shopstyle.it/l/csDm3",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shopstyle.it"
+      },
+      {
+        "title": "Melissa & Doug Easter Basket Giveaway",
+        "link": "https://sweetiessweeps.com/melissadoug-easter-basket-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Margaritaville at Sea 4-Night Caribbean Cruise Giveaway",
+        "link": "https://sweetiessweeps.com/margaritaville-at-sea-4-night-caribbean-cruise-giveawa/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Yunite - Share and Earn Rewards",
+        "link": "https://trk.adbloom.co/SHtS",
+        "source": "ultracontest",
+        "reason": "Middleman: Link points to aggregator: trk.adbloom.co"
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "South Dakota Stories “Podcast” Sweepstakes",
+        "link": "https://www.travelsouthdakota.com/podcast/giveaway",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "The Parent Game Amazon Gift Cards Giveaway",
+        "link": "https://app.viralsweep.com/sweeps/full/fbe00d-225461",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Shop JR Nation Autographed Tire Giveaway",
+        "link": "https://shopjrnation.com/page/sweepstakes",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Myrtle Beach Cosmic Baseball Trip Giveaway",
+        "link": "https://www.visitmyrtlebeach.com/plan/contests/cosmic-baseball",
+        "source": "ultracontest",
         "flag": "403 — may be bot-blocked, check manually"
       }
     ]

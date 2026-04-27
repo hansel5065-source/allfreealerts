@@ -24,7 +24,7 @@ jobs:
       - name: Post to Facebook Group
         env:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          FB_GROUP_ID: '1238490111787169'
+          FB_GROUP_ID: '935874152569187'
         run: node fb_group_autoposter.js
 
       - name: Commit post history

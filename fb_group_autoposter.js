@@ -13,7 +13,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ── Config ──
-const FB_GROUP_ID = process.env.FB_GROUP_ID || '1238490111787169';
+const FB_GROUP_ID = process.env.FB_GROUP_ID || '935874152569187';
 const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN || '';
 const API_VERSION = 'v25.0';
 

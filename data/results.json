@@ -957,39 +957,6 @@
     "date_found": "2026-03-27"
   },
   {
-    "title": "Outcomes One - Data Breach Class Action Settlement",
-    "link": "https://www.outcomesonedataincident.com/",
-    "source": "classaction",
-    "category": "Settlements",
-    "deadline": "5/5/26",
-    "payout": "$75 - $3,500",
-    "proof_required": "No",
-    "description": "If your private information was impacted in the July 2025 Outcomes One data breach, you may be able to claim a piece of this settlement.",
-    "date_found": "2026-03-27"
-  },
-  {
-    "title": "PHH Mortgage - Default Notices Class Action Settlement",
-    "link": "https://www.williamsphhsettlement.com/",
-    "source": "classaction",
-    "category": "Settlements",
-    "deadline": "5/5/26",
-    "payout": "Varies",
-    "proof_required": "N/A",
-    "description": "This settlement covers PHH residential mortgage borrowers who were sent default notices on or after January 14, 2021.",
-    "date_found": "2026-03-27"
-  },
-  {
-    "title": "Maximum Booting (Georgia) Class Action Settlement",
-    "link": "https://www.maximumbootcosettlement.com/",
-    "source": "classaction",
-    "category": "Settlements",
-    "deadline": "5/5/26",
-    "payout": "Up to $200",
-    "proof_required": "Yes",
-    "description": "This settlement covers those who owned or controlled a vehicle booted by Maximum Booting or paid for a boot to be removed by Maximum Booting in Union City, Georgia between June 15, 2012 and November 7, 2025.",
-    "date_found": "2026-03-27"
-  },
-  {
     "title": "Tropicana x Thomas’ Serve Up the Morning Hits Sweepstakes (100 Winners)",
     "link": "https://www.serveupthemorninghits.com/",
     "source": "sweetiessweeps",
@@ -1124,14 +1091,6 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "Invitation Homes Settlement",
-    "link": "https://www.ftc.gov/enforcement/refunds/invitation-homes-settlement",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "WealthPress Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/wealthpress-refunds",
     "source": "ftc",
@@ -1164,24 +1123,8 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "Mission Hills Federal Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/mission-hills-federal-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "Golden Sunrise Settlement",
     "link": "https://www.ftc.gov/enforcement/refunds/golden-sunrise-settlement",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "First American Payment Systems Settlement",
-    "link": "https://www.ftc.gov/enforcement/refunds/first-american-payment-systems-settlement",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -1244,14 +1187,6 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "Coaching Department Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/coaching-department-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "RevMountain Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/revmountain-refunds",
     "source": "ftc",
@@ -1260,40 +1195,8 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "Arise Settlement",
-    "link": "https://www.ftc.gov/enforcement/refunds/arise-settlement",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Consumer Health Benefits Association Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/consumer-health-benefits-association-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "Ring Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/ring-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "BCO Consulting Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/bco-consulting-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "SL Finance Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/sl-finance-refunds",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -1316,56 +1219,8 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "Ygrene Settlement",
-    "link": "https://www.ftc.gov/enforcement/refunds/ygrene-settlement",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Rando Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/rando-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "Nexway Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/nexway-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Care.com Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/carecom-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "John Beck Amazing Profits Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/john-beck-amazing-profits-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Consumer Defense Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/consumer-defense-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "I Works Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/i-works-refunds",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -1404,14 +1259,6 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "Lifewatch Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/lifewatch-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "BetterHelp Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/betterhelp-refunds",
     "source": "ftc",
@@ -1422,14 +1269,6 @@
   {
     "title": "NutraClick Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/nutraclick-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Vroom Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/vroom-refunds",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -1508,30 +1347,6 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "American Financial Benefits Center Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/american-financial-benefits-center-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/system/files/styles/social_standard/private/ftc_gov/images/ameritech-redress-graphic_1200x630_en.png?h=ec041e41&amp;itok=A8pXnKjA"
-  },
-  {
-    "title": "Fashion Nova Settlement",
-    "link": "https://www.ftc.gov/enforcement/refunds/fashion-nova-settlement",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "ACRO Services Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/acro-services-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "The Sales Mentor Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/sales-mentor-refunds",
     "source": "ftc",
@@ -1542,22 +1357,6 @@
   {
     "title": "Razer Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/razer-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "National Landmark Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/national-landmark-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Vivint Smart Home Settlement",
-    "link": "https://www.ftc.gov/enforcement/refunds/vivint-smart-home-settlement",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -1580,14 +1379,6 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "MyScore Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/myscore-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "Rejuvica Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/rejuvica-refunds",
     "source": "ftc",
@@ -1604,36 +1395,12 @@
     "image": "https://www.ftc.gov/sites/default/files/styles/social_standard/public/images/press-releases/social-share/ftc_social_share_default_en_2.jpg?h=ec041e41&amp;itok=Csus1Fqb"
   },
   {
-    "title": "Brigit Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/brigit-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "Credit Karma Settlement",
     "link": "https://www.ftc.gov/enforcement/refunds/credit-karma-settlement",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
     "image": "https://www.ftc.gov/system/files/styles/social_standard/private/consumer_ftc_gov/images/creditkarma-1200x630.png?h=ec041e41&amp;itok=eQeFyLP_"
-  },
-  {
-    "title": "Rhinelander Auto Center Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/rhinelander-auto-center-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "American Vehicle Protection Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/american-vehicle-protection-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
     "title": "LasikPlus Settlement",
@@ -1652,24 +1419,8 @@
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
-    "title": "FloatMe Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/floatme-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
     "title": "Yellowstone Capital Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/yellowstone-capital-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Zurixx Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/zurixx-refunds",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -1686,14 +1437,6 @@
   {
     "title": "DeVry Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/devry-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "AT&T Data Throttling Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/att-data-throttling-refunds",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -1766,14 +1509,6 @@
   {
     "title": "Trudeau Refunds",
     "link": "https://www.ftc.gov/enforcement/refunds/trudeau-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
-  },
-  {
-    "title": "Helping America Group Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/helping-america-group-refunds",
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
@@ -5497,16 +5232,6 @@
     "image": "https://media.ceros.com/pga-tour/page-thumbnails/2026/04/20/0de95c92cade5edb23e219f909a57f36/page-thumbnail.jpg?imageOpt=1&crop=870,489,x0,y0"
   },
   {
-    "title": "Sutter Health $21.5M Privacy Class Action Settlement",
-    "link": "https://www.sutteranalyticssettlement.com/Content/Documents/Claim%20Form.pdf",
-    "source": "claimdepot",
-    "category": "Settlements",
-    "scope": "nationwide",
-    "end_date": "May 5, 2026",
-    "payout": "Up to $90",
-    "date_found": "2026-04-29"
-  },
-  {
     "title": "Hot Head Burritos Cinco de Montho Scratch Off Promotion Sweepstakes",
     "link": "https://hotheadburritos.com/Cinco-de-Mayo",
     "source": "sweepsadvantage",
@@ -6246,13 +5971,6 @@
     "scope": "nationwide",
     "end_date": "Open for Claims",
     "payout": "$0.24 per ADS and $0.05 per Class A share",
-    "date_found": "2026-05-04"
-  },
-  {
-    "title": "Duracell Messi Instant Win Game Sweepstakes",
-    "link": "https://soccersweeps.duracell.com/home?amoe=1",
-    "source": "sweepsadvantage",
-    "category": "Sweepstakes",
     "date_found": "2026-05-04"
   },
   {

@@ -30,9 +30,17 @@ function fmtDate(d){ return d.toLocaleDateString('en-US',{month:'long',day:'nume
 
 const items = JSON.parse(fs.readFileSync(RESULTS, 'utf8'));
 const S = items.filter(i => i.category === 'Settlements' && i.link);
-const noProof = S.filter(i => !i.proof_required || /^(no|n\/a)$/i.test(i.proof_required));
-const nationwide = S.filter(i => !i.scope || i.scope === 'nationwide');
+// Proof status is only asserted when the administrator actually specifies it.
+// "No"/"N/A" = confirmed no proof; "Yes" = confirmed proof; missing = unknown.
+const noProofKnown = S.filter(i => /^(no|n\/a)$/i.test((i.proof_required || '').trim()));
+const proofKnown = S.filter(i => /^yes$/i.test((i.proof_required || '').trim()));
+const nationwide = S.filter(i => i.scope === 'nationwide');   // scope is now backfilled for all
+const stateSpecific = S.filter(i => i.scope === 'state-specific');
 const withPayout = S.filter(i => /\$\s?[\d,]/.test(i.payout || ''));
+function proofLabel(i){ const p=(i.proof_required||'').trim();
+  if(/^yes$/i.test(p)) return 'Proof required';
+  if(/^(no|n\/a)$/i.test(p)) return 'No proof';
+  return 'Check claim form'; }
 
 const closing = S.map(i => ({ i, d: parseDate(i.deadline || i.end_date) }))
   .filter(x => x.d && (x.d - now) / 864e5 >= 0 && (x.d - now) / 864e5 <= 10)
@@ -41,12 +49,12 @@ const closing = S.map(i => ({ i, d: parseDate(i.deadline || i.end_date) }))
 const ranked = withPayout.map(i => ({ i, v: maxPay(i.payout) }))
   .sort((a, b) => b.v - a.v).slice(0, 15);
 
-const noProofNation = noProof.filter(i => !i.scope || i.scope === 'nationwide').slice(0, 12);
+const noProofNation = noProofKnown.filter(i => i.scope === 'nationwide').slice(0, 12);
 
 const payoutRows = ranked.map(({ i }) => `<tr>
         <td><a href="${esc(i.link)}" target="_blank" rel="nofollow noopener">${esc(i.title)}</a></td>
         <td class="pay">${esc(i.payout)}</td>
-        <td>${i.proof_required && /^yes$/i.test(i.proof_required) ? 'Proof needed' : 'No proof'}</td>
+        <td>${proofLabel(i)}</td>
       </tr>`).join('\n      ');
 
 const closingRows = closing.map(({ i, d }) => `<tr>
@@ -67,7 +75,7 @@ const html = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Class-Action Settlements You Can Claim — Live Tracker (${now.getFullYear()}) | AllFreeAlerts</title>
-  <meta name="description" content="A live tracker of ${S.length} open class-action settlements you can claim right now — ${noProof.length} need no proof of purchase. Ranked by payout, with claim deadlines closing this week. Updated ${updated}.">
+  <meta name="description" content="A live tracker of ${S.length} open class-action settlements you can claim right now — ${nationwide.length} open nationwide, ranked by payout, with claim deadlines closing this week. Updated ${updated}.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://allfreealerts.com/settlement-tracker">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3295178838066537" crossorigin="anonymous"></script>
@@ -126,16 +134,16 @@ const html = `<!DOCTYPE html>
   <div class="wrap">
     <div class="stats">
       <div class="stat"><div class="num">${S.length}</div><div class="lbl">Open settlements</div></div>
-      <div class="stat"><div class="num">${noProof.length}</div><div class="lbl">Need no proof</div></div>
-      <div class="stat"><div class="num">${nationwide.length}</div><div class="lbl">Nationwide</div></div>
+      <div class="stat"><div class="num">${nationwide.length}</div><div class="lbl">Open nationwide</div></div>
+      <div class="stat"><div class="num">${closing.length}</div><div class="lbl">Closing within 10 days</div></div>
       <div class="stat"><div class="num">$${topPay}</div><div class="lbl">Top payout</div></div>
     </div>
 
     <div class="card">
       <p class="byline">By <a href="/about">Hansel M.</a>, Founder · Updated ${updated}</p>
       <h2>Billions in settlement money goes unclaimed every year. Here's what's open today.</h2>
-      <p>Every year, U.S. companies settle class-action lawsuits by paying into funds meant to compensate ordinary consumers — and most of that money is never claimed, simply because people don't know the settlements exist or assume the process is complicated. It usually isn't. Right now we're tracking <strong>${S.length} open settlements</strong>, and <strong>${noProof.length} of them require no proof of purchase at all</strong> — you confirm you qualify, submit a short form, and wait for a check or deposit.</p>
-      <p>This page is different from a typical settlement blog. Instead of writing up one settlement at a time, we aggregate every open claim we can verify and rank them by what actually matters to you: how much they pay, whether you need receipts, and how soon the deadline hits. The tables below are regenerated automatically as settlements open and close, so what you see is current as of ${updated}. Every link goes to the official claim administrator — never a middleman.</p>
+      <p>Every year, U.S. companies settle class-action lawsuits by paying into funds meant to compensate ordinary consumers — and most of that money is never claimed, simply because people don't know the settlements exist or assume the process is complicated. It usually isn't. Right now we're tracking <strong>${S.length} open settlements</strong>, <strong>${nationwide.length} of them open to consumers nationwide</strong>. Many require no proof of purchase at all — you confirm you qualify, submit a short form, and wait for a check or deposit.</p>
+      <p>This page is different from a typical settlement blog. Instead of writing up one settlement at a time, we aggregate every open claim we can verify and rank them by what actually matters to you: how much they pay, whether documentation is required, and how soon the deadline hits. The tables below are regenerated automatically as settlements open and close, so what you see is current as of ${updated}. Every link goes to the official claim administrator — never a middleman. Where a settlement's documentation rules aren't specified by the administrator, we say "check the claim form" rather than guess.</p>
       <h3>How to read this tracker</h3>
       <p><strong>No-proof claims</strong> are the easiest money: you attest that you bought the product or used the service during the covered period and receive a flat payment, usually $5–$50. <strong>Proof-required claims</strong> ask for receipts or statements but tend to pay far more because fewer people file. <strong>Nationwide</strong> settlements are open to anyone in the U.S.; <strong>state-specific</strong> ones are limited to certain states. When in doubt, file the no-proof claims first — they take two minutes and there's no downside.</p>
     </div>
@@ -163,11 +171,11 @@ const html = `<!DOCTYPE html>
     </div>
 
     <div class="card">
-      <h2>No-proof settlements open to everyone in the U.S.</h2>
-      <p>The most accessible claims on the board: nationwide, no receipts required. A sample of what's open — <a href="/settlements">see all ${S.length} on the full settlements page</a>.</p>
-      <ul class="np">
+      <h2>Confirmed no-proof settlements, open nationwide</h2>
+      <p>These are claims the administrator has confirmed need <strong>no receipts or documentation</strong> — the most accessible money on the board. ${noProofNation.length ? 'A sample of what\'s open' : 'Check back as new ones open'} — <a href="/settlements">see all ${S.length} on the full settlements page</a>.</p>
+      ${noProofNation.length ? `<ul class="np">
         ${noProofList}
-      </ul>
+      </ul>` : ''}
     </div>
 
     <div class="cta">
@@ -195,5 +203,5 @@ const html = `<!DOCTYPE html>
 `;
 
 fs.writeFileSync(OUT, html);
-console.log(`[settlement-tracker] ${S.length} settlements | ${noProof.length} no-proof | ${nationwide.length} nationwide | ${closing.length} closing<=10d | top $${topPay}`);
+console.log(`[settlement-tracker] ${S.length} settlements | ${noProofKnown.length} confirmed-no-proof (${proofKnown.length} proof, ${S.length-noProofKnown.length-proofKnown.length} unspecified) | ${nationwide.length} nationwide / ${stateSpecific.length} state | ${closing.length} closing<=10d | top $${topPay}`);
 console.log(`  Wrote ${OUT}`);

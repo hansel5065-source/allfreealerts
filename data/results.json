@@ -168,7 +168,8 @@
     "payout": "$375 - $4,500",
     "proof_required": "Yes",
     "description": "You may be included in this settlement if you owned or leased certain 2011-2022 Hyundai or Kia vehicles that were stolen or almost stolen on or after April 29, 2025.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Hyundai, Kia - Airbag Control Units Class Action Settlement",
@@ -179,7 +180,8 @@
     "payout": "Up to $150 - $350+",
     "proof_required": "Yes",
     "description": "This settlement includes those who, as of April 14, 2025, owned or leased certain Hyundai or Kia models. You can find the full list of vehicles on the settlement website.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Toyota IC Forklift Class Action Settlement",
@@ -190,7 +192,8 @@
     "payout": "Varies",
     "proof_required": "Yes",
     "description": "You may be included in this settlement if you bought or leased an IC Toyota forklift on or before January 20, 2026.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Tinder Age Discrimination (California) Class Action Settlement",
@@ -201,7 +204,8 @@
     "payout": "Varies",
     "proof_required": "N/A",
     "description": "You may be included in this settlement if you paid for Tinder Plus or Tinder Gold in California when you were over the age of 29 at any time between March 2, 2015 and February 10, 2019.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "state-specific"
   },
   {
     "title": "Hard Rock Stadium - Copa America Final Class Action Settlement",
@@ -212,7 +216,8 @@
     "payout": "$100 - $2,000 per ticket",
     "proof_required": "Yes",
     "description": "You may be included in this settlement if you were a ticketholder to the July 14, 2024 Copa America Final and were denied access to the stadium or were admitted but denied access to stadium facilities or to your specific seats.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Sprouts Farmers Market - Receipts Class Action Settlement",
@@ -223,7 +228,8 @@
     "payout": "Varies",
     "proof_required": "No",
     "description": "You may be included in this settlement if you used your personal credit or debit card at a Sprouts grocery store in the United States and had more than the last five digits of your card number printed on the receipt.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Shimano Crankset Recall Class Action Settlement",
@@ -234,7 +240,8 @@
     "payout": "Varies",
     "proof_required": "Yes",
     "description": "You may be included in this settlement if you bought, received or owned a Shimano bicycle crankset manufactured before July 2019.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Traeger Pellet Grills (California, Utah) Class Action Settlement",
@@ -245,7 +252,8 @@
     "payout": "$3 Coupon",
     "proof_required": "N/A",
     "description": "You may be included in this settlement if you bought wood pellets made by Traeger Pellet Grills in California or Utah after October 1, 2015.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "state-specific"
   },
   {
     "title": "Amazon Prime - FTC Case Class Action Settlement",
@@ -256,7 +264,8 @@
     "payout": "Up to $51",
     "proof_required": "No",
     "description": "You may be able to claim a piece of this settlement if you were unintentionally enrolled into a Prime membership between June 23, 2019 and June 23, 2025.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Nutramax - Cosequin (California) Class Action Settlement",
@@ -267,7 +276,8 @@
     "payout": "$25 - $150",
     "proof_required": "No",
     "description": "If you live in California and purchased certain dog Cosequin products between May 3, 2016 and May 6, 2022, you may be included in this settlement.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "state-specific"
   },
   {
     "title": "Beef - Indirect Purchasers Class Action Settlement",
@@ -278,7 +288,8 @@
     "payout": "Varies",
     "proof_required": "No",
     "description": "You may be included in this settlement if you bought beef products between August 1, 2014 and December 31, 2019 to feed yourself, family or friends.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Mizuno - Data Breach Class Action Settlement",
@@ -289,7 +300,8 @@
     "payout": "$50 - $5,000",
     "proof_required": "No",
     "description": "You may be covered by this settlement if you received notice that your personal information was potentially exposed in the Mizuno data breach discovered in November 2024.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Centrelake Medical Group - Data Breach (California) Class Action Settlement",
@@ -300,7 +312,8 @@
     "payout": "$20 - $3,500",
     "proof_required": "No",
     "description": "You may be included in this settlement if you were a Centrelake Medical Group patient with a California address and received a data breach notice in April 2019.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "state-specific"
   },
   {
     "title": "Excelsior Orthopaedics, Buffalo Surgery Center - Data Breach Class Action Settlement",
@@ -311,7 +324,8 @@
     "payout": "Up to $5,000",
     "proof_required": "No",
     "description": "You may be included in this settlement if your personal information was potentially accessible as a result of the data breach affecting Excelsior Orthopaedics and Buffalo Surgery Center.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Boostrix Vaccination (New York) Class Action Settlement",
@@ -322,7 +336,8 @@
     "payout": "$10 - $50",
     "proof_required": "No",
     "description": "You may be included in this settlement if you lived in New York and were vaccinated with Boostrix or received the vaccination in the state between May 20, 2016 and May 20, 2020 after viewing certain advertisements about the vaccine.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "state-specific"
   },
   {
     "title": "University of Southern California - Fees Class Action Settlement",
@@ -333,7 +348,8 @@
     "payout": "Varies",
     "proof_required": "No",
     "description": "If you were a student at the University of Southern California who, at any time between July 14, 2016 and March 4, 2026, was charged certain late fees, you may be included in this settlement.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "state-specific"
   },
   {
     "title": "Cadence Bank - MOVEit Data Breach Class Action Settlement",
@@ -344,7 +360,8 @@
     "payout": "$100 - $12,500",
     "proof_required": "No",
     "description": "You may be covered by this settlement if you were notified that your personal information may have been exposed in the May 2023 MOVEit data breach that affected Cadence Bank.",
-    "date_found": "2026-03-27"
+    "date_found": "2026-03-27",
+    "scope": "nationwide"
   },
   {
     "title": "Xfinity Wants to Send You to Universal Orlando Resort Sweepstakes",
@@ -456,7 +473,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "WealthPress Refunds",
@@ -464,7 +482,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Restoro-Reimage Refunds",
@@ -472,7 +491,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Pyrex Refunds",
@@ -480,7 +500,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "AH Media Group Refunds",
@@ -488,7 +509,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Next-Gen Refunds",
@@ -496,7 +518,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Amazon Refunds",
@@ -504,7 +527,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "CarShield Settlement",
@@ -512,7 +536,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Legion Media Refunds",
@@ -520,7 +545,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Progressive Leasing Refunds",
@@ -528,7 +554,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Blueprint to Wealth Settlement",
@@ -536,7 +563,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "University of Phoenix Settlement",
@@ -544,7 +572,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "RevMountain Refunds",
@@ -552,7 +581,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Ring Refunds",
@@ -560,7 +590,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Lurn Refunds",
@@ -568,7 +599,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Roca Labs Refunds",
@@ -576,7 +608,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Nexway Refunds",
@@ -584,7 +617,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Refunds for Amazon Flex Drivers",
@@ -592,7 +626,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Cerebral Refunds",
@@ -600,7 +635,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Publishers Clearing House Refunds",
@@ -608,7 +644,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "The Bountiful Company Refunds",
@@ -616,7 +653,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "BetterHelp Refunds",
@@ -624,7 +662,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "NutraClick Refunds",
@@ -632,7 +671,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Career Step Refunds",
@@ -640,7 +680,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Response Marketing Refunds",
@@ -648,7 +689,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Vitagene Refunds",
@@ -656,7 +698,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Arete Financial Refunds",
@@ -664,7 +707,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Pure Green Coffee Refunds",
@@ -672,7 +716,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "T-Mobile Refunds",
@@ -680,7 +725,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Aqua Finance Refunds",
@@ -688,7 +734,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Hey Dude Refunds",
@@ -696,7 +743,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Hubble Contacts Refunds",
@@ -704,7 +752,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "The Sales Mentor Refunds",
@@ -712,7 +761,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Razer Refunds",
@@ -720,7 +770,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "SuperGoodDeals.com Refunds",
@@ -728,7 +779,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Warrior Trading Refunds",
@@ -736,7 +788,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Rejuvica Refunds",
@@ -744,7 +797,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Equifax Data Breach Settlement",
@@ -752,7 +806,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/sites/default/files/styles/social_standard/public/images/press-releases/social-share/ftc_social_share_default_en_2.jpg?h=ec041e41&amp;itok=Csus1Fqb"
+    "image": "https://www.ftc.gov/sites/default/files/styles/social_standard/public/images/press-releases/social-share/ftc_social_share_default_en_2.jpg?h=ec041e41&amp;itok=Csus1Fqb",
+    "scope": "nationwide"
   },
   {
     "title": "Credit Karma Settlement",
@@ -760,7 +815,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/system/files/styles/social_standard/private/consumer_ftc_gov/images/creditkarma-1200x630.png?h=ec041e41&amp;itok=eQeFyLP_"
+    "image": "https://www.ftc.gov/system/files/styles/social_standard/private/consumer_ftc_gov/images/creditkarma-1200x630.png?h=ec041e41&amp;itok=eQeFyLP_",
+    "scope": "nationwide"
   },
   {
     "title": "Apex Capital Group Refunds",
@@ -768,7 +824,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Yellowstone Capital Refunds",
@@ -776,7 +833,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Student Debt Doctor Refunds",
@@ -784,7 +842,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "DeVry Refunds",
@@ -792,7 +851,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Opendoor Refunds",
@@ -800,7 +860,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Benefytt Technologies Refunds",
@@ -808,7 +869,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Ed Napleton Automotive Group Refunds",
@@ -816,7 +878,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Vonage Refunds",
@@ -824,7 +887,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Western Union Refunds",
@@ -832,7 +896,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/sites/default/files/styles/social_standard/public/images/refunds/social-share/ftc_social_share_default_en.jpg?h=ec041e41&amp;itok=X1Yckwtc"
+    "image": "https://www.ftc.gov/sites/default/files/styles/social_standard/public/images/refunds/social-share/ftc_social_share_default_en.jpg?h=ec041e41&amp;itok=X1Yckwtc",
+    "scope": "nationwide"
   },
   {
     "title": "Herbalife Refunds",
@@ -840,7 +905,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "AMG Services Refunds",
@@ -848,7 +914,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "AdvoCare Refunds",
@@ -856,7 +923,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Trudeau Refunds",
@@ -864,7 +932,8 @@
     "source": "ftc",
     "category": "Settlements",
     "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
+    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
+    "scope": "nationwide"
   },
   {
     "title": "Sixzee High Score Challenge",

@@ -28,7 +28,7 @@ const MIDDLEMAN_DOMAINS = [
   'freebieshark.com', 'freeflys.com', 'hip2save.com', 'yofreetsamples.com',
   'thefreebieguy.com', 'freebiefindingmom.com', 'freestuff.com',
   'heysitsfree.net', 'freesamples.org', 'allfreestuff.com',
-  'freestuffinder.com', 'ilovegiveaways.com',
+  'freestuffinder.com', 'ilovegiveaways.com', 'shopwithmemama.com',
   // Settlement aggregators (we scrape FROM them but links should go to actual claim forms)
   'settlemate.io',
   // Generic deal aggregators
@@ -36,6 +36,7 @@ const MIDDLEMAN_DOMAINS = [
   'coupons.com', 'groupon.com',
   // Shortlink/tracking domains used by aggregators
   'freebi.es', 'trk.adbloom.co', 'bmv.biz', 'a.pub.network',
+  'sovrn.co', 'tinyurl.com', 'on.ltk.com',
   // Shopping/affiliate redirect domains
   'shopstyle.it', 'shoplowes.me', 'gotoaisle.com', 'ibotta.onelink.me',
   'mavely.app.link', 'caliber.app.link', 'brandcycle.shop', 'hp2win.com',

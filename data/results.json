@@ -798,7 +798,8 @@
     "category": "Settlements",
     "date_found": "2026-03-27",
     "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg",
-    "scope": "nationwide"
+    "scope": "nationwide",
+    "proof_required": "No"
   },
   {
     "title": "Equifax Data Breach Settlement",
@@ -2709,7 +2710,8 @@
     "scope": "nationwide",
     "end_date": "Open for Claims",
     "payout": "Up to $5,000 and credit monitoring",
-    "date_found": "2026-04-20"
+    "date_found": "2026-04-20",
+    "proof_required": "Yes"
   },
   {
     "title": "Enterprise Car Rental $1.8M Age Discrimination Settlement",
@@ -8749,7 +8751,8 @@
     "source": "topclassactions",
     "category": "Settlements",
     "scope": "nationwide",
-    "date_found": "2026-06-02"
+    "date_found": "2026-06-02",
+    "proof_required": "No"
   },
   {
     "title": "Sideshow Collectibles Imperial Remnant Snowtrooper Giveaway",

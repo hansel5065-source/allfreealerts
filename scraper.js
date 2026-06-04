@@ -136,6 +136,16 @@ function detectScope(text) {
   return 'nationwide';
 }
 
+// Detect whether a settlement requires proof of purchase, from page text.
+// Returns 'No' / 'Yes' / '' (unknown). Conservative: only asserts on explicit
+// phrasing so we never guess (matches the accuracy rule on the tracker page).
+function detectProof(text) {
+  const t = (text || '').toLowerCase();
+  if (/no proof of purchase|without proof|no receipt|proof of purchase is not required|no proof (is )?required|no documentation (is )?required|without (any )?documentation|attestation only|no purchase records? (are )?(needed|required)/.test(t)) return 'No';
+  if (/proof of purchase (is )?required|receipts? (are |is )?required|documentation (is )?required|must (provide|submit|upload) (proof|documentation|receipts?)|valid proof of purchase|requires proof/.test(t)) return 'Yes';
+  return '';
+}
+
 function extractOutboundLink(html, excludeDomain) {
   const linkRegex = /href="(https?:\/\/[^"]+)"/g;
   let m;
@@ -858,6 +868,9 @@ async function settlemate() {
     // Extract image
     const img = extractImage(detailHtml);
     if (img) item.image = img;
+
+    // Proof of purchase (only when the detail page states it explicitly)
+    item.proof_required = detectProof(detailHtml);
   }, 5);
 
   // Build final items — only those with claim URLs and not expired
@@ -872,6 +885,7 @@ async function settlemate() {
       source: 'settlemate', category: 'Settlements',
       scope: detectScope(item.title),
       ...(item.end_date ? { end_date: item.end_date } : {}),
+      ...(item.proof_required ? { proof_required: item.proof_required } : {}),
       ...(item.image ? { image: item.image } : {}),
     });
   }
@@ -923,10 +937,13 @@ async function openClassActions() {
       || detail.match(/Deadline[:\s]*(\d{1,2}\/\d{1,2}\/\d{2,4})/i);
     if (deadlineMatch) c.deadline = deadlineMatch[1];
 
-    // Extract payout
-    const payoutMatch = detail.match(/Without Proof[:\s]*(\$[\d,.]+)/i)
-      || detail.match(/Estimated Payout[:\s]*(\$[\d,.]+)/i);
+    // Extract payout — a "Without Proof: $X" figure means no proof is needed
+    const withoutProofMatch = detail.match(/Without Proof[:\s]*(\$[\d,.]+)/i);
+    const payoutMatch = withoutProofMatch || detail.match(/Estimated Payout[:\s]*(\$[\d,.]+)/i);
     if (payoutMatch) c.payout = payoutMatch[1];
+
+    // Proof of purchase: explicit "Without Proof" payout = No; else scan text
+    c.proof_required = withoutProofMatch ? 'No' : detectProof(detail);
 
     if (c.claimUrl) found++;
   }, 10);
@@ -941,6 +958,7 @@ async function openClassActions() {
       scope: detectScope(c.title),
       ...(c.deadline ? { end_date: c.deadline } : {}),
       ...(c.payout ? { payout: c.payout } : {}),
+      ...(c.proof_required ? { proof_required: c.proof_required } : {}),
     });
   }
   log(`  OCA: ${found}/${candidates.length} settlements with claim URLs`);
@@ -1021,6 +1039,9 @@ async function claimDepot() {
     const payoutMatch = detail.match(/Estimated Payout[\s\S]*?case-title-data[^>]*>([\s\S]*?)<\/div>/i);
     if (payoutMatch) c.payout = payoutMatch[1].trim();
 
+    // Proof of purchase (only when the detail page states it explicitly)
+    c.proof_required = detectProof(detail);
+
     if (c.claimUrl) found++;
   }, 10);
 
@@ -1034,6 +1055,7 @@ async function claimDepot() {
       scope: detectScope(c.title),
       ...(c.deadline ? { end_date: c.deadline } : {}),
       ...(c.payout ? { payout: c.payout } : {}),
+      ...(c.proof_required ? { proof_required: c.proof_required } : {}),
     });
   }
   log(`  CD: ${found}/${candidates.length} settlements with claim URLs`);
@@ -1632,6 +1654,14 @@ async function main() {
   log('By source (total / new):');
   for (const src of Object.keys(counts).sort()) {
     log(`  ${src}: ${counts[src]} total / ${newCounts[src] || 0} new`);
+  }
+
+  // Universal scope fallback: guarantee every settlement has a scope
+  // (some sources may not set it). detectProof is left blank when unknown.
+  for (const item of newItems) {
+    if (item.category === 'Settlements' && !item.scope) {
+      item.scope = detectScope(`${item.title || ''} ${item.description || ''}`);
+    }
   }
 
   // Merge with existing and save

@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 /**
- * SEO content injector — makes deal content crawlable.
+ * SEO content injector — makes deal content crawlable (Track A).
  *
- * The site renders deals client-side from an XOR-obfuscated data.json, so
- * crawlers (and AdSense's content review) see an near-empty shell. This script
- * injects a curated, current set of REAL deal listings (title + summary +
- * official link) into the crawlable <noscript> fallback of each page, between
- * idempotent markers, so it can be re-run every deploy.
+ * The site renders deals client-side from an XOR-obfuscated data.json, so the
+ * raw HTML crawlers/AdSense first see is an empty shell. This script seeds the
+ * #grid container with REAL, visible server-rendered deal cards (title +
+ * summary + official link) between idempotent markers. On load, the page's JS
+ * (render(): g.innerHTML=h) overwrites #grid with the interactive version, so
+ * this is seamless progressive enhancement — crawlers and no-JS users see real
+ * content; JS users get the full app.
  *
- * Outbound deal links use rel="nofollow sponsored" so Google doesn't read the
- * page as a link farm passing PageRank to thousands of external sites.
+ * Outbound links use rel="nofollow sponsored" so the page isn't read as a link
+ * farm. Only a curated subset is rendered — the full dataset stays obfuscated.
  *
  * Run after cleanup, before deploy:  node build_seo_content.js
  */
@@ -18,12 +20,16 @@ const path = require('path');
 
 const RESULTS = path.join(__dirname, 'data', 'results.json');
 const SITE = path.join(__dirname, 'site');
-const START = '<!--SEO_DEALS_START-->';
-const END = '<!--SEO_DEALS_END-->';
+const GS = '<!--SEO_GRID_START-->';
+const GE = '<!--SEO_GRID_END-->';
+
+const CLS = { Sweepstakes: 'sweep', Freebies: 'freebie', Settlements: 'settle' };
+const EMOJI = { Sweepstakes: '🎰', Freebies: '🎁', Settlements: '⚖️' };
 
 function esc(s) {
   return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
+function rx(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
 function newest(items, n) {
   return [...items]
@@ -31,36 +37,47 @@ function newest(items, n) {
     .slice(0, n);
 }
 
-function listHtml(items) {
-  const li = items.map(it => {
-    const title = esc(it.title);
-    const desc = esc((it.prize_summary || it.description || '').slice(0, 220));
-    const link = esc(it.link);
-    return `        <li style="margin-bottom:0.75rem"><a href="${link}" rel="nofollow sponsored" style="color:#0ABAB5;font-weight:600">${title}</a>${desc ? ` &mdash; ${desc}` : ''}</li>`;
-  }).join('\n');
-  return `<ul style="color:#636E72;padding-left:1.25rem;list-style:disc">\n${li}\n      </ul>`;
+function card(it) {
+  const cls = CLS[it.category] || 'freebie';
+  const emoji = EMOJI[it.category] || '🎁';
+  const title = esc(it.title);
+  const desc = esc((it.prize_summary || it.description || '').slice(0, 200));
+  const link = esc(it.link);
+  const val = esc((it.payout || '').slice(0, 40));
+  return `<div class="card">
+        <div class="card-img-wrap"><div class="card-img-fallback ${cls}">${emoji}</div></div>
+        <div class="card-body">
+          <div class="card-cat ${cls}"><span class="card-cat-icon">${emoji}</span> ${esc(it.category)}</div>
+          <a href="${link}" target="_blank" rel="nofollow sponsored" style="text-decoration:none;color:inherit"><div class="card-title">${title}</div></a>
+          ${desc ? `<div class="card-desc">${desc}</div>` : ''}
+          ${val ? `<div class="card-value money">${val}</div>` : ''}
+        </div>
+      </div>`;
 }
 
-function block(heading, items, blurb) {
-  return `${START}
-      <h3 style="margin:2rem 0 0.5rem">${heading}</h3>
-      <p style="color:#636E72;margin-bottom:0.75rem">${blurb}</p>
-      ${listHtml(items)}
-      ${END}`;
+function gridBlock(items) {
+  return `${GS}\n      ${items.map(card).join('\n      ')}\n      ${GE}`;
 }
 
-function inject(file, blockHtml) {
+function seedGrid(file, items) {
   const fp = path.join(SITE, file);
   if (!fs.existsSync(fp)) { console.log(`  SKIP ${file} (not found)`); return false; }
   let html = fs.readFileSync(fp, 'utf8');
-  const re = new RegExp(START.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?' + END.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  if (re.test(html)) {
-    html = html.replace(re, blockHtml);
+
+  // 1. Remove any v1 noscript deal block (SEO_DEALS markers) to avoid duplicate titles
+  const deals = new RegExp(rx('<!--SEO_DEALS_START-->') + '[\\s\\S]*?' + rx('<!--SEO_DEALS_END-->') + '\\s*');
+  html = html.replace(deals, '');
+
+  const block = gridBlock(items);
+
+  // 2. Seed #grid: replace existing marker block, else the loading spinner
+  const existing = new RegExp(rx(GS) + '[\\s\\S]*?' + rx(GE));
+  if (existing.test(html)) {
+    html = html.replace(existing, block);
   } else {
-    // insert just before the closing </noscript>
-    const idx = html.indexOf('</noscript>');
-    if (idx === -1) { console.log(`  SKIP ${file} (no <noscript> region)`); return false; }
-    html = html.slice(0, idx) + '\n      ' + blockHtml + '\n  ' + html.slice(idx);
+    const spinner = /<div class="loading"><div class="spinner"><\/div><br>Finding [^<]*<\/div>/;
+    if (!spinner.test(html)) { console.log(`  SKIP ${file} (no grid spinner / markers)`); return false; }
+    html = html.replace(spinner, block);
   }
   fs.writeFileSync(fp, html);
   return true;
@@ -73,34 +90,18 @@ function main() {
   const free = byCat('Freebies');
   const settle = byCat('Settlements');
 
-  // Homepage: combined block with newest deals from all three categories
-  // (curated subset, not the full dataset — preserves anti-bulk-scrape)
-  const homeCombined = `${START}
-      <h3 style="margin:2rem 0 0.5rem">Latest Sweepstakes &amp; Giveaways</h3>
-      <p style="color:#636E72;margin-bottom:0.75rem">A sample of the newest active sweepstakes we're tracking. Each links to the official entry page.</p>
-      ${listHtml(newest(sweeps, 12))}
-      <h3 style="margin:2rem 0 0.5rem">Latest Free Samples</h3>
-      <p style="color:#636E72;margin-bottom:0.75rem">Recently added freebies from real brands &mdash; no purchase, no card required.</p>
-      ${listHtml(newest(free, 8))}
-      <h3 style="margin:2rem 0 0.5rem">Newly Opened Settlements</h3>
-      <p style="color:#636E72;margin-bottom:0.75rem">Open class-action claims you may be eligible for. Each links to the official claim form.</p>
-      ${listHtml(newest(settle, 12))}
-      ${END}`;
+  // Homepage: interleaved mix of newest across categories (~28 cards)
+  const home = [...newest(sweeps, 12), ...newest(free, 6), ...newest(settle, 12)]
+    .sort((a, b) => String(b.date_found || '').localeCompare(String(a.date_found || '')));
 
-  const results = [];
-  results.push(['index.html', inject('index.html', homeCombined)]);
-  results.push(['sweepstakes.html', inject('sweepstakes.html',
-    block('Latest Active Sweepstakes', newest(sweeps, 40),
-      'A current sample of active sweepstakes. Enable JavaScript to search and filter the full list.'))]);
-  results.push(['freebies.html', inject('freebies.html',
-    block('Latest Free Samples', newest(free, 40),
-      'A current sample of active freebies. Enable JavaScript to search and filter the full list.'))]);
-  results.push(['settlements.html', inject('settlements.html',
-    block('Newly Opened Settlements', newest(settle, 40),
-      'A current sample of open settlement claims. Enable JavaScript to search and filter the full list.'))]);
+  const r = [];
+  r.push(['index.html', seedGrid('index.html', home)]);
+  r.push(['sweepstakes.html', seedGrid('sweepstakes.html', newest(sweeps, 36))]);
+  r.push(['freebies.html', seedGrid('freebies.html', newest(free, 36))]);
+  r.push(['settlements.html', seedGrid('settlements.html', newest(settle, 36))]);
 
   console.log(`[SEO] Sweeps:${sweeps.length} Freebies:${free.length} Settlements:${settle.length}`);
-  results.forEach(([f, ok]) => console.log(`  ${ok ? 'OK  ' : 'SKIP'} ${f}`));
+  r.forEach(([f, ok]) => console.log(`  ${ok ? 'OK  ' : 'SKIP'} ${f}`));
 }
 
 main();

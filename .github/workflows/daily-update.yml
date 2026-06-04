@@ -47,6 +47,9 @@ jobs:
       - name: Generate settlement tracker page
         run: BUILD_DATE=$(date +%F) node build_settlement_report.js
 
+      - name: Generate sweepstakes tracker page
+        run: BUILD_DATE=$(date +%F) node build_sweepstakes_report.js
+
       - name: Email QA report
         continue-on-error: true
         env:
@@ -132,7 +135,7 @@ jobs:
         run: |
           git config user.name "AllFreeAlerts Bot"
           git config user.email "bot@allfreealerts.com"
-          git add data/results.json data/results.csv site/data.json data/qa_log.json data/link_check_cache.json data/removed_blocklist.json site/index.html site/sweepstakes.html site/freebies.html site/settlements.html site/settlement-tracker.html
+          git add data/results.json data/results.csv site/data.json data/qa_log.json data/link_check_cache.json data/removed_blocklist.json site/index.html site/sweepstakes.html site/freebies.html site/settlements.html site/settlement-tracker.html site/sweepstakes-tracker.html
           git diff --staged --quiet || git commit -m "Daily update: AllFreeAlerts $(date +%Y-%m-%d)"
           git push
 

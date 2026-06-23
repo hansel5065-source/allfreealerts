@@ -736,14 +736,6 @@
     "date_found": "2026-03-27"
   },
   {
-    "title": "Madison County Fishing Trip Sweepstakes",
-    "link": "https://www.blueridgeoutdoors.com/contests/win-a-fishing-tripto-virginias-madison-county/",
-    "source": "ultracontest",
-    "category": "Sweepstakes",
-    "date_found": "2026-03-27",
-    "image": "https://www.blueridgeoutdoors.com/wp-content/uploads/2026/03/VTC_Promo_enews_0326_01.jpg"
-  },
-  {
     "title": "The EchoPark Automotive Sweepstakes",
     "link": "https://www.speedwaymotorsports.com/echopark/",
     "source": "ultracontest",
@@ -762,13 +754,6 @@
   {
     "title": "2026 FCA US LLC Sweepstakes",
     "link": "https://sweeps.stellantisexperiences.com/",
-    "source": "ultracontest",
-    "category": "Sweepstakes",
-    "date_found": "2026-03-27"
-  },
-  {
-    "title": "Toyota Win a Truck Giveaway Sweepstakes",
-    "link": "https://cloud.mail.gulfstatestoyota.com/Win-A-Truck",
     "source": "ultracontest",
     "category": "Sweepstakes",
     "date_found": "2026-03-27"
@@ -1541,14 +1526,6 @@
     "scope": "nationwide",
     "end_date": "July 6, 2026",
     "payout": "Varies",
-    "date_found": "2026-05-14"
-  },
-  {
-    "title": "Good Inside Baby Sweepstakes – Win a $1,105 Prize Package",
-    "link": "https://www.goodinside.com/legal-disclosures/",
-    "source": "ilovegiveaways",
-    "category": "Sweepstakes",
-    "image": "https://ilovegiveaways.com/wp-content/uploads/2026/03/ilg-logo-350x55b-1.png",
     "date_found": "2026-05-14"
   },
   {
@@ -2692,14 +2669,6 @@
     "category": "Sweepstakes",
     "date_found": "2026-05-21",
     "image": "https://www.superplay.co/wp-content/uploads/2025/05/website-link-screen-1-1024x537.jpg"
-  },
-  {
-    "title": "2026 Crocs Coast to Coast Sweepstakes",
-    "link": "https://crocstocoastsweepstakes.com/",
-    "source": "sweepsadvantage",
-    "category": "Sweepstakes",
-    "date_found": "2026-05-21",
-    "image": "https://cdn.prod.website-files.com/69d5501a680908122987993c/6a0b5d7c5af5ea5be9355399_VMBxCrocs_SEO.png"
   },
   {
     "title": "BowSeat Ocean Awareness Contest",
@@ -4152,14 +4121,6 @@
     "category": "Sweepstakes",
     "date_found": "2026-05-31",
     "image": "https://web.witcontests.com/cdn-img/width=854,quality=80/https://s3.amazonaws.com/wit-challenge-assets-prod/share-images/75-ee5087e1-38e1-4fbb-8c7b-65959f974557.jpeg"
-  },
-  {
-    "title": "Union Plus Hometown Heroes $165,440 Prizes 2026 Contest",
-    "link": "https://www.unionplus.org/upacontestrules",
-    "source": "ilovegiveaways",
-    "category": "Sweepstakes",
-    "image": "https://ilovegiveaways.com/wp-content/uploads/2026/03/ilg-logo-350x55b-1.png",
-    "date_found": "2026-05-31"
   },
   {
     "title": "Maxx the Savings Instant Win Game Sweepstakes",
@@ -7588,5 +7549,430 @@
     "end_date": "Open for Claims",
     "payout": "Approximately $2.27 per hour worked",
     "date_found": "2026-06-22"
+  },
+  {
+    "title": "Dixie “Goal Time” Sweepstakes",
+    "link": "https://www.dixie.com/win-a-year-supply-sweeps",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23",
+    "image": "https://d3f8e2yx8gxglk.cloudfront.net/adaptivemedia/rendition?id=e67937c6f648d6ff6ad6821b4e6e274de143bddd&amp;prid=WebP&amp;q=95"
+  },
+  {
+    "title": "French’s “Minion Mustard” Sweepstakes (20 Winners)",
+    "link": "https://www.mccormick.com/pages/brands/frenchs",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23",
+    "image": "http://www.mccormick.com/cdn/shop/files/mccormick-logo-seo_5f4fa290-8c13-4007-a877-a56ca7b7dea9_1200x628.jpg?v=1748610637"
+  },
+  {
+    "title": "Strides Pharma - Testosterone Gel Class Action Settlement",
+    "link": "https://stridesgelsettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "9/16/26",
+    "payout": "Varies",
+    "proof_required": "Yes",
+    "description": "If you purchased testosterone gel manufactured by Strides Pharma between June 1, 2022 and July 31, 2025, you may be included in this settlement.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Crimson Wine - Data Breach Class Action Settlement",
+    "link": "https://crimsonwinesettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "9/1/26",
+    "payout": "$100 - $5,000",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if your private information was compromised in the January 2024 Crimson Wine data breach.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Okanogan Behavioral Healthcare - Data Breach Class Action Settlement",
+    "link": "https://okanogandatasettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "9/3/26",
+    "payout": "$50 - $5,350",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if your private information was exposed in the data breach discovered by Okanogan Behavioral Healthcare in May 2024.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Urban One - Data Breach Class Action Settlement",
+    "link": "https://urbanonedataincident.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "8/31/26",
+    "payout": "$500 - $10,000",
+    "proof_required": "No",
+    "description": "You may be covered by this settlement if your personal information was exposed in the Urban One data breach discovered in March 2025.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Mitsubishi Outlander Hoods Class Action Settlement",
+    "link": "https://hoodsettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/30/26",
+    "payout": "Varies",
+    "proof_required": "Yes",
+    "description": "You may be covered by this settlement if you currently or previously owned or leased certain 2022 Mitsubishi Outlander vehicles.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Splish Splash - Ticket Fees Class Action Settlement",
+    "link": "https://splishsplashticketfeesettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "8/10/26",
+    "payout": "Varies",
+    "proof_required": "No",
+    "description": "This settlement covers those who bought electronic tickets to the Splish Splash waterpark from SplishSplash.com between August 29, 2022 and March 5, 2024.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "First Federal Bank of Kansas City - Overdraft Fees Class Action Settlement",
+    "link": "https://monkoverdraftfeesettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "8/3/26",
+    "payout": "Varies",
+    "proof_required": "N/A",
+    "description": "You may be included in this settlement if you had a checking account with First Federal Bank of Kansas City and were charged overdraft fees between February 23, 2019 and May 5, 2026.",
+    "scope": "state-specific",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "WaterStreet Company - Data Breach Class Action Settlement",
+    "link": "https://waterstreetsettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "8/19/26",
+    "payout": "$55 - $3,000",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if your private information was potentially impacted in the March 2025 WaterStreet Company data breach.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Union Bank and Trust - MOVEit Data Breach Class Action Settlement",
+    "link": "https://www.ubtdatasettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/21/26",
+    "payout": "$100 - $12,500",
+    "proof_required": "No",
+    "description": "If you received notice from Union Bank and Trust Company that your personal information was potentially compromised in the 2023 MOVEit data breach, you may be covered by this settlement.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Stonegate Meadows Apartments Class Action Settlement",
+    "link": "https://www.stonegatesettlements.com/index.html",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/13/26",
+    "payout": "Varies",
+    "proof_required": "N/A",
+    "description": "If you were a tenant at Stonegate Meadows Apartments, you may be covered by this settlement.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Hunter Warfield - Debt Collection Class Action Settlement",
+    "link": "https://www.hwisettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/27/26",
+    "payout": "$350",
+    "proof_required": "N/A",
+    "description": "You may be included in this settlement if you were a tenant of an unlicensed property who was sued in a failure-to-pay rent case or otherwise had collection efforts directed toward you by Hunter Warfield with respect to unlicensed rent.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "TRISTAR Insurance Group - Data Breach Class Action Settlement",
+    "link": "https://tristardatasettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/15/26",
+    "payout": "$40 - $5,600",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if you were notified that your personal information was exposed in the November 2022 TRISTAR Insurance Group data breach.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "QPharma - Data Breach Class Action Settlement",
+    "link": "https://qpharmadataincident.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/7/26",
+    "payout": "$50 - $5,750",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if your personal information was exposed in a December 2024 QPharma data breach.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "State Farm - Underinsured Motorist Coverage (New Mexico) Class Action Settlement",
+    "link": "https://schwartzuimclasssettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/2/26",
+    "payout": "Varies",
+    "proof_required": "No",
+    "description": "If you were insured under a New Mexico insurance policy issued by State Farm that included underinsured motorist coverage between January 1, 2010 and December 31, 2021, you may be included in this settlement.",
+    "scope": "state-specific",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "E Benefit Solution - Data Breach Class Action Settlement",
+    "link": "https://ebenefitdataincident.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/1/26",
+    "payout": "$40 - $5,000",
+    "proof_required": "No",
+    "description": "If your personal information was potentially affected by the December 2024 E Benefit Solution data breach, you may be included in this settlement.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "National Association of Realtors - Homebuyer Litigation Class Action Settlement",
+    "link": "https://homebuyerlitigation.com/home/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "8/25/26",
+    "payout": "Varies",
+    "proof_required": "Yes",
+    "description": "You may be included in this settlement if you bought residential real estate in the United States since 2006 that was listed on a multiple listing service.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Kickback Jack's - Discrimination Class Action Settlement",
+    "link": "https://www.kbjsettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "8/3/26",
+    "payout": "Varies",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if you are a male and were denied a nonmanagerial front-of-house position at Kickback Jack's because of your sex.",
+    "scope": "nationwide",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Posh Group - Ticket Fees (California) Class Action Settlement",
+    "link": "https://ticketfeesettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "7/7/26",
+    "payout": "Up to $15",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if you bought a ticket from Posh Group for an event in California and were charged fees not included in the advertised ticket price between July 21, 2021 and June 13, 2025.",
+    "scope": "state-specific",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Winston x Murphy Throttle & Torque Sweepstakes",
+    "link": "https://www.winstoncigarettes.com/murphy-truck-login/?",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Ticketmaster: The Ultimate Race Experience 2026 Sweepstakes - 2 Winners",
+    "link": "https://m.cmpgn.page/TNk2dM",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "2026 Jet’s and Coca Cola Detroit Style Pizza Day Sweepstakes - 6 Winners",
+    "link": "https://www.jetspizza.com/",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23",
+    "image": "https://www.jetspizza.com/wp-content/uploads/2020/06/SocialImage.png"
+  },
+  {
+    "title": "She Speaks Reese’s Pieces at Costco Giveaway",
+    "link": "https://shespeaks.com/One-Costco-Haul-Endless-Ways-to-Enjoy-Reese-s-Pieces-Stock-Up-Now",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Cadia Grilling Giveaway Summer 2026",
+    "link": "https://sweepwidget.com/c/100392-va4981dz",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23",
+    "image": "https://sweepwidgethosts.fra1.cdn.digitaloceanspaces.com/contestsmain/3am1hm6a31ae955b1dbt4xpt38/nralevfcuo.jpg"
+  },
+  {
+    "title": "Rekomi Cash Giveaway",
+    "link": "https://sweepwidget.com/c/100451-bkxh9fw1",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23",
+    "image": "https://sweepwidgethosts.fra1.cdn.digitaloceanspaces.com/contestsmain/1/gkn0yxq4fc.png"
+  },
+  {
+    "title": "7 Days of Atlas Giveaways - 7 Winners",
+    "link": "https://sweepwidget.com/c/100440-7405p9ud",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23",
+    "image": "https://sweepwidgethosts.fra1.cdn.digitaloceanspaces.com/contestsmain/avgmbv6a34330ba5c23tx6dda1/805pvm3ord.jpg"
+  },
+  {
+    "title": "A Limited-Edition Spinthewheel.Io Plush Mascot Lucky Cat Contest",
+    "link": "https://spinthewheel.io/more/pet-world-cup",
+    "source": "contestlisting",
+    "category": "Sweepstakes",
+    "eligibility": "United States, Canada, United Kingdom, Other Location",
+    "end_date": "July 19 at 11:59 PM",
+    "date_found": "2026-06-23",
+    "image": "https://spinthewheel.io/assets/og-images/og-main-image.webp"
+  },
+  {
+    "title": "The Tesla Giveaway - 3 Winners",
+    "link": "https://www.tesla-win.space/",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "GRIPA $2.15M MOVEit Data Breach Data Class Action Settlement",
+    "link": "https://www.moveitsettlementgripa.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Up to $12,500 plus credit monitoring",
+    "proof_required": "Yes",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "BonneVivante Seasons of Books Harper Lee Print Book Giveaway 2026",
+    "link": "https://bonnevivantelife.blogspot.com/2026/06/seasons-of-books-giveaway-hop.html",
+    "source": "ilovegiveaways",
+    "category": "Sweepstakes",
+    "image": "https://ilovegiveaways.com/wp-content/uploads/2026/03/ilg-logo-350x55b-1.png",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Tattooed Chef $4.75M Securities Class Action Settlement",
+    "link": "https://tattooedchefsecuritiessettlement.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "$0.11 per share before deductions",
+    "proof_required": "Yes",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "$2.5 Billion Amazon Prime Sign-Up/Cancellation Settlement",
+    "link": "https://veritaconnect.com/subscriptionmembershipsettlement",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Up to $51",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Google $50M Racial Discrimination Class Action Settlement",
+    "link": "https://www.curleysettlement.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Varies",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "They All Fall In Love At The End Giveaway",
+    "link": "https://muffin.wow-womenonwriting.com/2026/06/they-all-fall-in-love-at-end-by-haili.html",
+    "source": "contestlisting",
+    "category": "Sweepstakes",
+    "eligibility": "United States, Canada",
+    "end_date": "July 6 at 11:59 PM",
+    "date_found": "2026-06-23",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxRVdaujka9Ka0pNZ0loE-dB0aazEbsodc3ro65PrmUT6mdrobw8N1KjwifTzcXYOfnBO9Aeh4gTC7Z9NC6DDOF__wvePJKKqQ7UxjH8XXCL_iJR-MFXAuGRygtXy0IyibSbH9_r-3M-e9zt1SsQqiZjHEpk2BcoGpg7vmMcZWtnlEmJAIyZNbgQ/w1200-h630-p-k-no-nu/9781668204122%20-%20Haili%20S%20Blassingame.jpg"
+  },
+  {
+    "title": "$10  Amazon Gift Card (Ecard) Giveaway",
+    "link": "https://www.chatwithvera.com/2026/06/story-of-everything-science-documentary-giveaway.html",
+    "source": "contestlisting",
+    "category": "Sweepstakes",
+    "eligibility": "United States",
+    "end_date": "June 24 at 11:59 PM",
+    "date_found": "2026-06-23",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4XUKHSn8TiZYfrzwMvJm8b35QiK_DaN0ToBDvsyvHndspOF3woCPELLG8XYsv3pyoIgCSIMhDc_Pp75xeqj1flqJHmZo8oXC8JvBfvSLGRrlA4MEP0O5A76Hx6KnghtK4uaa8J0rlaTyc4T-5oA8x-bz9aXFp51cIpjNbEU4oZ1C4tjFC2gCW5HmU9Y6R/w1200-h630-p-k-no-nu/Poster.png"
+  },
+  {
+    "title": "T-Mobile Tuesdays Week #525 Sweepstakes",
+    "link": "https://amoe.t-mobiletuesdays.com/",
+    "source": "ultracontest",
+    "category": "Sweepstakes",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "OBI Seafoods $380,280 Data Breach Class Action Settlement",
+    "link": "https://obiseafoodsdatasettlement.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Up to $5,000 and/or credit monitoring",
+    "proof_required": "No",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Book And A Bear Giveaway: Win \"in A Quiet Meadow\" & A Plush Teddy Bear!",
+    "link": "https://mellibarrelli.com/",
+    "source": "contestlisting",
+    "category": "Sweepstakes",
+    "eligibility": "United States",
+    "end_date": "July 12 at 11:59 PM",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Tillamook Summer Sweepstakes 2026 – Win a Miami Getaway & Gift Cards",
+    "link": "https://www.activaterewards.com/tillamook/official-rules",
+    "source": "ilovegiveaways",
+    "category": "Sweepstakes",
+    "image": "https://ilovegiveaways.com/wp-content/uploads/2026/03/ilg-logo-350x55b-1.png",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Ozama Rum Grand Slam Getaway 2026 Baseball Trip Sweepstakes",
+    "link": "https://win.drinkozama.com/grandslamgetaway/rules.aspx",
+    "source": "ilovegiveaways",
+    "category": "Sweepstakes",
+    "image": "https://ilovegiveaways.com/wp-content/uploads/2026/03/ilg-logo-350x55b-1.png",
+    "date_found": "2026-06-23"
+  },
+  {
+    "title": "Central Valley Meat Co. Data Breach Class Action Settlement",
+    "link": "https://cw.simpluris.com/docs/public/downloads/CFC4/CLAIM_FORM",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Up to $5,075",
+    "date_found": "2026-06-23"
   }
 ]

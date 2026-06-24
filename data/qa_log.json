@@ -1,179 +1,5 @@
 [
   {
-    "date": "2026-05-23",
-    "timestamp": "2026-05-23T15:19:14.951Z",
-    "total_checked": 41,
-    "passed": 19,
-    "flagged": 5,
-    "removed": 22,
-    "removed_entries": [
-      {
-        "title": "Hamilton Beach - 2 in 1 Toaster And Oven Giveaway",
-        "link": "https://www.contestgirl.com",
-        "source": "contestgirl",
-        "reason": "Middleman: Link points to aggregator: contestgirl.com"
-      },
-      {
-        "title": "FREE TEMPTATIONS Cat Treat Samples",
-        "link": "https://www.freebieshark.com/2026/05/free-temptations-cat-treat-samples-2.html",
-        "source": "freebieshark",
-        "reason": "Middleman: Link points to aggregator: freebieshark.com"
-      },
-      {
-        "title": "FREE Grill Spatula for Lowe’s Reward Members on June 20th",
-        "link": "https://shoplowes.me/4dzYhfv",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "Teachers & Healthcare Workers, Did You Win Free Chipotle? Check Your Email!",
-        "link": "https://www.prnewswire.com/news-releases/chipotle-to-give-away-up-to-2-million-in-free-burritos-to-teachers-and-healthcare-workers-302756795.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "FREE Auntie Anne’s Pretzel TODAY (+ How to Get a Free Pretzel Every Week!)",
-        "link": "https://www.prnewswire.com/news-releases/auntie-annes-celebrates-national-pretzel-day-with-free-pretzels-for-all-and-the-debut-of-the-exclusive-golden-pretzel-pass-302744494.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "FREE Lowe’s Spring Flower on 5/9 for First 200 Rewards Members",
-        "link": "https://shoplowes.me/4eqlGT1",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "New Chipotle Rewards = Free Chips & Guac w/ $5 Purchase + More",
-        "link": "https://www.prnewswire.com/news-releases/chipotle-relaunches-rewards-with-rewards-on-repeat-delivering-more-value-without-trade-offs-302739734.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "FREE Ensure Protein Shake After Walmart Cash",
-        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
-      },
-      {
-        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
-        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
-      },
-      {
-        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
-        "link": "https://shoplowes.me/4qJVPs0",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
-        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: caliber.app.link"
-      },
-      {
-        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
-        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
-        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
-        "link": "https://mavely.app.link/e/RfFsReHtxSb",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: mavely.app.link"
-      },
-      {
-        "title": "FREE Café Tango Frozen Coffee at Convenience Stores – Every Tuesday in August!",
-        "link": "https://www.prnewswire.com/news-releases/frazil-launches-cafe-tango-tuesday-free-frozen-coffees-every-tuesday-in-august-302517364.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "FREE Fancypants Cookies After Cash Back",
-        "link": "https://try.gotoaisle.com/fancypants-baking-co-wsj",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
-      },
-      {
-        "title": "National Ice Cream Day Guide: Free Scoops & Best Deals Nearby",
-        "link": "https://www.prnewswire.com/news-releases/16-handles-drops-new-summer-flavor-lineup-302495109.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "Hot Wheels Tiniest Team Principal Title Contest",
-        "link": "https://sweetiessweeps.com/hotwheels-tiniest-team-principal-title-contest/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "MrBeast Cash Sweepstakes (Daily $1,000 Cash Winners)",
-        "link": "https://sweetiessweeps.com/mrbeast-cash-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Kraft Mac & Cheese Taste of Home Pack Sweepstakes (50 Winners)",
-        "link": "https://sweetiessweeps.com/kraft-mac-cheese-taste-of-home-pack-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Coca-Cola Presents America 250 Hy-Vee Sweepstakes",
-        "link": "https://promos.mardenkane.com/coca-cola/2026America250HyVeeSoccer/",
-        "source": "ultracontest",
-        "reason": "Middleman: Link points to aggregator: promos.mardenkane.com"
-      },
-      {
-        "title": "Little Debbie Berry Sweet Giveaway (20 Winners)",
-        "link": "https://www.littledebbie.com/aberrysweetgiveaway",
-        "source": "sweetiessweeps",
-        "reason": "Dead link [200]: Dead pattern: \"giveaway has ended\""
-      }
-    ],
-    "flagged_entries": [
-      {
-        "title": "Pawzitivity Pets PetPace Giveaway",
-        "link": "https://technobark.com/petpace-giveaway",
-        "source": "sweepsadvantage",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Free People x Travel & Leisure Giveaway Sweepstakes",
-        "link": "https://www.travelandleisure.com/sweepstakes/entry?sweepId=tal-freepeople-eo",
-        "source": "sweepsadvantage",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Thomas Rhett's Nashville Summer Kick Off Giveaway",
-        "link": "https://www.visitmusiccity.com/thomas-rhett-concert-giveaway",
-        "source": "ultracontest",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Robbie D. Wood Data Breach Class Action Settlement",
-        "link": "https://www.rdwsettlement.com/",
-        "source": "claimdepot",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Fandango Media $9.4M Convenience Fee Class Action Settlement",
-        "link": "https://fandangomediasettlement.com/Content/Documents/Beer%20v%20Fandango%20-%20Court-Approved%20Settlement%20Agreement.pdf",
-        "source": "claimdepot",
-        "flag": "403 — may be bot-blocked, check manually"
-      }
-    ]
-  },
-  {
     "date": "2026-05-24",
     "timestamp": "2026-05-24T15:22:50.135Z",
     "total_checked": 32,
@@ -5468,6 +5294,240 @@
         "link": "https://www.activaterewards.com/tillamook/official-rules",
         "source": "ilovegiveaways",
         "flag": "May require purchase — check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-06-24",
+    "timestamp": "2026-06-24T16:33:23.075Z",
+    "total_checked": 50,
+    "passed": 15,
+    "flagged": 2,
+    "removed": 35,
+    "removed_entries": [
+      {
+        "title": "Ticketmaster - The Ultimate Race Experience Sweepstakes",
+        "link": "https://www.contestgirl.com",
+        "source": "contestgirl",
+        "reason": "Middleman: Link points to aggregator: contestgirl.com"
+      },
+      {
+        "title": "FREE Starbucks Coffee or Cookie for Target Circle Members on 6/23",
+        "link": "https://on.ltk.com/+8qJ6EBCWkk8e7jZlu55LMA",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "FREE Beach Bucket Toy Set at Lowe’s on 7/4 (First 150 Customers)",
+        "link": "https://shoplowes.me/4egFmbn",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Neutrogena Travel-Size Face Wash After Walmart Cash",
+        "link": "https://ibotta.onelink.me/iUfE/8cc13c64?friend_code=hip2save",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: ibotta.onelink.me"
+      },
+      {
+        "title": "FREE Ensure Protein Shake After Walmart Cash",
+        "link": "https://on.ltk.com/+8fcN4dNu284fcxfVBa3baA",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "Kids Can Build a FREE Mini Toy Box at Lowe’s This Weekend – Register Now!",
+        "link": "https://shoplowes.me/4xgDpTQ",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Auntie Anne’s Pretzel TODAY (+ How to Get a Free Pretzel Every Week!)",
+        "link": "https://www.prnewswire.com/news-releases/auntie-annes-celebrates-national-pretzel-day-with-free-pretzels-for-all-and-the-debut-of-the-exclusive-golden-pretzel-pass-302744494.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Lowe’s Spring Flower on 5/9 for First 200 Rewards Members",
+        "link": "https://shoplowes.me/4eqlGT1",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
+        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
+        "link": "https://shoplowes.me/4qJVPs0",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
+        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: caliber.app.link"
+      },
+      {
+        "title": "Build-A-Bear’s New Animated Series KABU Now Streaming on YouTube",
+        "link": "https://www.prnewswire.com/news-releases/build-a-bear-to-debut-exclusive-new-animated-youtube-series-kabu-on-december-26-302644876.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "National Taco Day Is October 6th, 2026! | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/abuelos-mexican-restaurant-celebrates-national-taco-day-with-1-crispy-taco-add-ons-302570381.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Pantene Hair Serum at Walgreens (Regularly $10)",
+        "link": "https://mavely.app.link/e/RfFsReHtxSb",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: mavely.app.link"
+      },
+      {
+        "title": "Fit Ice $1000 Amazon Giveaway",
+        "link": "https://sweetiessweeps.com/fit-ice-amazon-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "FREE 3-Month Kindle Unlimited Trial for Prime Members | Access OVER 5 Million Titles",
+        "link": "https://www.amazon.com/kindle-dbs/hz/bookshelf?ccs_id=ad1d934a-8056-4e0a-b27d-e6eddd753d3f&linkCode=ll2&tag=wwwhip2saveco-20&linkId=3cefffb0cdf4c0f6976dd05419e181dc&language=en_US&ref_=as_li_ss_tl",
+        "source": "hip2save",
+        "reason": "Dead link [302]: Redirect to login page: https://www.amazon.com/ap/signin?openid.pape.max_auth_age=86"
+      },
+      {
+        "title": "Free Bird Beverages America 250 Summer $2,500 Sweepstakes",
+        "link": "https://sweetiessweeps.com/freebird-beverages-america-250-summer-sweepstakes/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Deplite IPL Hair Removal Device Self-Love Giveaway",
+        "link": "https://sweetiessweeps.com/deplite-ipl-hair-removal-device-self-love-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Amazon Haul $5,000 Sweepstakes",
+        "link": "https://sweetiessweeps.com/amazon-haul-sweepstakes/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Flooret & Sans Dream Home $6,000 Giveaway",
+        "link": "https://sweetiessweeps.com/flooret-sans-dream-home-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Mission Ridge Ultimate Father’s Day $1,400 Giveaway",
+        "link": "https://sweetiessweeps.com/mission-ridge-ultimate-fathers-day-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "M&M’s Sweet Fan Ticket D23 Fan Event Sweepstakes",
+        "link": "https://sweetiessweeps.com/mms-sweet-fan-ticket-d23-fan-event-sweepstake/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Newton Baby Little Moments of Summer $3,000 Sweepstakes",
+        "link": "https://sweetiessweeps.com/newtonbaby-little-moments-of-summer-sweepstakes/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Blue Sky Outdoor Living Red, White & Blue Sky Fire Pit Giveaway",
+        "link": "https://sweetiessweeps.com/blueskyoutdoorliving-red-white-blue-sky-fire-pit-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "44 Farms Angus Steaks Ultimate 4th of July Giveaway ($3,300 Prize)",
+        "link": "https://sweetiessweeps.com/44farms-angus-steaks-ultimate-4th-of-july-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Delta Faucet x BEHR $2,400 Bathroom Remodel Giveaway",
+        "link": "https://sweetiessweeps.com/deltafaucet-behr-bathroom-remodel-giveaway/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Alexa’s Got You Sweepstakes (100 $1,000 Amazon Winners)",
+        "link": "https://sweetiessweeps.com/alexas-got-you-sweepstakes/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Amazon “Free Groceries for a Year” Sweepstakes (100 $10,000 Winners)",
+        "link": "https://sweetiessweeps.com/amazon-free-groceries-for-a-year-sweepstakes/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Genie VIP Access Granted Sweepstakes",
+        "link": "https://sweetiessweeps.com/genie-vip-access-granted-sweepstake/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Hot Wheels Tiniest Team Principal Title Contest",
+        "link": "https://sweetiessweeps.com/hotwheels-tiniest-team-principal-title-contest/",
+        "source": "sweetiessweeps",
+        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
+      },
+      {
+        "title": "Templeton Whiskey Small Town Big Stage Sweepstakes - 11 Winners",
+        "link": "https://iframe-mdm.templetonamericanwhiskey.com/smalltownbigstage/register.aspx?AspxAutoDetectCookieSupport=1",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [302]: Redirect to login page: https://iframe-mdm.templetonamericanwhiskey.com/smalltownbig"
+      },
+      {
+        "title": "Sol-ti Let Yourself Shine Hawaii Sweepstakes - 23 Winners",
+        "link": "https://solti.com/pages/win",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [200]: Dead pattern: \"sold out\""
+      },
+      {
+        "title": "Brilliant Earth $1000 Gift Card Giveaway",
+        "link": "https://brilliantearth.attn.tv/p/OiJ/1000giftcard",
+        "source": "sweepsadvantage",
+        "reason": "Dead link [200]: Login wall: \"you must be 21\""
+      },
+      {
+        "title": "American Century Championship Fantasy Golf Contest",
+        "link": "https://www.accfantasygolf.com/",
+        "source": "ultracontest",
+        "reason": "Dead link [200]: Dead pattern: \"the page you requested\""
+      },
+      {
+        "title": "Marlboro-Chesterfield Pathology Data Breach Settlement",
+        "link": "https://m-cpsettlement.com/files/Marlboro-Chesterfield%20Data%20Incident_Claim%20Form_FINAL%20v1.pdf",
+        "source": "claimdepot",
+        "reason": "Dead link [200]: Dead pattern: \"page not found\""
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Farmers Insurance $2.88M Telemarketing TCPA Settlement",
+        "link": "https://www.starlingtcpaclassaction.com/",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Molson Coors Coors Light & Miller Lite Summer 2026 Sweepstakes",
+        "link": "https://www.promorules.com/MK263069",
+        "source": "ilovegiveaways",
+        "flag": "403 — may be bot-blocked, check manually"
       }
     ]
   }

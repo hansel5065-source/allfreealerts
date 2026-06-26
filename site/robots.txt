@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /data.json
+Disallow: /tiktok/
 
 # Block AI crawlers
 User-agent: GPTBot

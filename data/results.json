@@ -232,15 +232,6 @@
     "scope": "nationwide"
   },
   {
-    "title": "Equifax Data Breach Settlement",
-    "link": "https://www.ftc.gov/enforcement/refunds/equifax-data-breach-settlement",
-    "source": "ftc",
-    "category": "Settlements",
-    "date_found": "2026-03-27",
-    "image": "https://www.ftc.gov/sites/default/files/styles/social_standard/public/images/press-releases/social-share/ftc_social_share_default_en_2.jpg?h=ec041e41&amp;itok=Csus1Fqb",
-    "scope": "nationwide"
-  },
-  {
     "title": "March Hoops Sweepstakes & Instant Win",
     "link": "https://www.coorslight.com/en-US/marchhoops",
     "source": "giveawayfrenzy",
@@ -8588,14 +8579,6 @@
     "date_found": "2026-08-03"
   },
   {
-    "title": "SeatGeek Titans Season Starter Pack Sweepstakes",
-    "link": "https://tradablebits.com/tb_app/555433982",
-    "source": "sweepsadvantage",
-    "category": "Sweepstakes",
-    "date_found": "2026-08-03",
-    "image": "https://tradablebits.com/static/icons/tradablebits-icon256x256.png"
-  },
-  {
     "title": "iRhythm Technologies $45M Securities Class Action Settlement",
     "link": "https://irhythmsecuritieslitigation.com/",
     "source": "claimdepot",
@@ -9669,15 +9652,6 @@
     "source": "sweepsadvantage",
     "category": "Sweepstakes",
     "date_found": "2026-08-12"
-  },
-  {
-    "title": "Grubhub Refunds",
-    "link": "https://www.ftc.gov/enforcement/refunds/grubhub-refunds",
-    "source": "ftc",
-    "category": "Settlements",
-    "scope": "nationwide",
-    "date_found": "2026-08-12",
-    "image": "https://www.ftc.gov/themes/custom/ftc_uswds/img/ftc_social_share_default_en.jpg"
   },
   {
     "title": "Sportsman's Guide $1M Firearm Purchase Privacy Settlement",
@@ -14220,17 +14194,6 @@
     "date_found": "2026-09-10"
   },
   {
-    "title": "VeSync Levoit Air Purifier $15M False Advertising Settlement",
-    "link": "https://lapsettlement.com/download/a235f158-3ea4-43bd-95ce-291ec1d8b610",
-    "source": "claimdepot",
-    "category": "Settlements",
-    "scope": "nationwide",
-    "end_date": "November 3, 2026",
-    "payout": "$10",
-    "proof_required": "Yes",
-    "date_found": "2026-09-10"
-  },
-  {
     "title": "Concora Credit $9.38 Million TCPA Class Action Settlement",
     "link": "https://www.sealstcpasettlement.com/LinkClick.aspx?fileticket=4p1abwBW4ZI%3d&tabid=70&portalid=0&mid=478",
     "source": "claimdepot",
@@ -14704,5 +14667,200 @@
     "source": "sweepsadvantage",
     "category": "Sweepstakes",
     "date_found": "2026-09-13"
+  },
+  {
+    "title": "Red Roof “Find Your Route to Talladega” Sweepstakes",
+    "link": "https://www.redroof.com/talladega-sweepstakes",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "Kingsford “Who Said It” Sweepstakes",
+    "link": "https://web.witcontests.com/learfield/sweepstakes/vote/kingsford-who-said-it-260920",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://web.witcontests.com/cdn-img/width=854,quality=80/https://s3.amazonaws.com/wit-challenge-assets-prod/backgrounds/118-b1aab3db-c02e-4fea-8d39-581c69887fcf.png"
+  },
+  {
+    "title": "British Swim School “Jump On In” Sweepstakes (2 Winners)",
+    "link": "https://bssjumponin.carrd.co/",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://bssjumponin.carrd.co/assets/images/card.jpg?v=43a197cf"
+  },
+  {
+    "title": "TaylorMade Golf “NFL Kickoff” Sweepstakes",
+    "link": "https://www.taylormadegolf.com/taylormade-nfl-kickoff-giveaway.html?lang=en_US",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "Skin360 - Biometric Privacy (Illinois) Class Action Settlement",
+    "link": "https://www.skin360bipasettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "11/25/26",
+    "payout": "Varies",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if you performed a Skin360 skin assessment while in Illinois between December 9, 2019 and May 5, 2023.",
+    "scope": "state-specific",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "Laboratory Corporation of America - Data Privacy Class Action Settlement",
+    "link": "https://www.laboratorycorporationwebsitesettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "11/14/26",
+    "payout": "Varies",
+    "proof_required": "N/A",
+    "description": "You may be included in this settlement if you live in California or Pennsylvania and conducted search queries on Labcorp’s website between May 1, 2021 and April 1, 2026.",
+    "scope": "state-specific",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "NYC Department of Corrections - Strip Searches Class Action Settlement",
+    "link": "https://www.nystripsearchsettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "11/26/26",
+    "payout": "Varies",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if you were in NYC Department of Correction custody between March 28, 2020 and February 29, 2024 and were strip searched upon arrival at the Manhattan Court Division after having been searched prior.",
+    "scope": "nationwide",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "Diisocyanates Antitrust Class Action Settlement",
+    "link": "https://www.diisocyanatesantitrustlitigation.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "10/19/26",
+    "payout": "Varies",
+    "proof_required": "Yes",
+    "description": "You may be included in this settlement if you bought MDI or TDI chemical products at any time between January 1, 2016 and July 29, 2026.",
+    "scope": "nationwide",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "FastBucks Loans Class Action Settlement",
+    "link": "https://www.fastbucksnmrestitution.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "11/24/26",
+    "payout": "Varies",
+    "proof_required": "No",
+    "description": "You may be able to claim a piece of this settlement if you obtained one or more loans through FastBucks between 2007 and 2016.",
+    "scope": "nationwide",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "La Jolla Group - Data Breach Class Action Settlement",
+    "link": "https://ljgdatasettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "11/23/26",
+    "payout": "$45 - $2,000",
+    "proof_required": "No",
+    "description": "This settlement covers employees whose personal information was exposed in the November 2023 La Jolla Group data breach.",
+    "scope": "nationwide",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "CB2 Text To Join Sweepstakes - 2 Winners",
+    "link": "https://www.cb2.com/cb2-text-to-join-sweeps",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "Boone Health Patient Portal Privacy Class Action Settlement",
+    "link": "https://www.boonehealthsettlement.com/doe-v-boone-claim-form-login/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "$20 plus privacy monitoring",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "AARP Rewards CVS Pharmacy Game Instant Win Game Giveaway - 200 Winners",
+    "link": "https://sweeps.aarp.org/26q3instantwin/oamoe_entry?game=FA483E04-9272-11F1-BDF2-8FA309B52061",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://sweeps.aarp.org/26q3instantwin/public/images/socialDefault.png"
+  },
+  {
+    "title": "Belvedere F1 Vegas 2026 Sweepstakes",
+    "link": "https://belvedere.wyng.com/VegasRaceWeekend2026",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://s3.amazonaws.com/com.offerpop.services.media/images/media/5b3e7a2a2924d5131f7757a5/6aa32b4cd7dc39622c01add3.PNG"
+  },
+  {
+    "title": "Holley $12.75 Million Securities Class Action Settlement",
+    "link": "https://www.holleysecuritiessettlement.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "$0.16 per share before deductions",
+    "proof_required": "Yes",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "Musician’s Friend Guitar Fest Sweepstakes - 21 Winners",
+    "link": "https://www.musiciansfriend.com/Guitar-Fest-Giveaway",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://www.musiciansfriend.com/static/mf/2026/page-dynamic/gear-giveaway/guitar-fest/9-8-26-mf-guitar-fest-sweeps-828x828-meta.jpg"
+  },
+  {
+    "title": "Tactacam The Ultimate Hunt Giveaway",
+    "link": "https://www.tactacam.com/ultimate-hunt-giveaway",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "The Ultimate Rams Aussie Adventure Sweepstakes",
+    "link": "https://www.qantas.com/en-us/promotions/rams-aussie-adventure-sweepstakes",
+    "source": "ultracontest",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://www.qantas.com/adobe/assets/urn:aaid:aem:898d72d0-d432-46af-b5ca-19007b893020/as/a380-sydney-harbour-crown-skyline.avif?assetname=a380-sydney-harbour-crown-skyline.jpg"
+  },
+  {
+    "title": "Scent Thief's Bow Package Giveaway",
+    "link": "https://sweepwidget.com/c/102218-6f5qiupx",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://sweepwidgethosts.fra1.cdn.digitaloceanspaces.com/contestsmain/3isjxn6aa2c9992c0f29tatmn5/v8ltfiqwh2.png"
+  },
+  {
+    "title": "Muscatine Power and Water Data Breach Class Action Settlement",
+    "link": "https://cw.simpluris.com/docs/public/downloads/MCC5/CLAIM_FORM",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "$20 - $5,000",
+    "date_found": "2026-09-14"
+  },
+  {
+    "title": "Mother Earth News Keene Garlic Giveaway - 5 Winners",
+    "link": "https://www.motherearthnews.com/sweepstakes/keene-garlic",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-14",
+    "image": "https://ogden_images.s3.amazonaws.com/www.motherearthnews.com/images/2026/03/19124910/SWP_ME53-Keene-Garlic-1200x630-1.jpg"
   }
 ]

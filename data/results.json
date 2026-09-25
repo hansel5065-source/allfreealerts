@@ -408,14 +408,6 @@
     "date_found": "2026-03-27"
   },
   {
-    "title": "Amazon \"Today's Deals\"",
-    "link": "https://www.amazon.com/deals?linkCode=sl2&tag=ultracontests-20&linkId=cb2fb21c702b8ec8ca55f0bf4a0996e1&language=en_US&ref_=as_li_ss_tl",
-    "source": "ultracontest",
-    "category": "Sweepstakes",
-    "date_found": "2026-03-27",
-    "image": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png"
-  },
-  {
     "title": "25 Words or Less Super Fan Sweepstakes",
     "link": "https://25words.com/superfancontest/",
     "source": "ultracontest",
@@ -6701,16 +6693,6 @@
     "category": "Sweepstakes",
     "date_found": "2026-07-16",
     "image": "https://www.blueridgeoutdoors.com/wp-content/uploads/2026/06/543810609_18056857169550178_176971050540585266_n-1.jpg"
-  },
-  {
-    "title": "Night US, Brooklyn Bedding $8.16M Class Action Settlement",
-    "link": "https://nightbbsettlement.com/",
-    "source": "claimdepot",
-    "category": "Settlements",
-    "scope": "nationwide",
-    "end_date": "Open for Claims",
-    "payout": "$110 per qualifying mattress order",
-    "date_found": "2026-07-16"
   },
   {
     "title": "GREAT Entertainment Television House Call $1,000 Gift Card Sweepstakes 2026",
@@ -16186,5 +16168,162 @@
     "category": "Sweepstakes",
     "image": "https://ilovegiveaways.com/wp-content/uploads/2026/03/ilg-logo-350x55b-1.png",
     "date_found": "2026-09-24"
+  },
+  {
+    "title": "Winston “Offroad America” Sweepstakes (176 Winners)",
+    "link": "https://www.winstoncigarettes.com/offroad/",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Delizza “Game Day” Sweepstakes (5 Winners)",
+    "link": "https://m.cmpgn.page/LP4h91",
+    "source": "freebieshark",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Culver’s “Curdtoberfest” Instant Win Game (6,007 Winners)",
+    "link": "https://culvers.com/curdtoberfest",
+    "source": "freebieshark",
+    "category": "Freebies",
+    "date_found": "2026-09-25",
+    "image": "https://curdtoberfest.culvers.com/eprize-content/culvers/curdtoberfest/2026/socialDefault.png"
+  },
+  {
+    "title": "Molson Coors Beverage Company USA LLC Rolling Stone Rock Tour Ticket Sweeps - 7 Winners",
+    "link": "https://www.millerhighlife.com/rollingstone",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Broadway.com 2026 Broadway’s Biggest Fan Contest - 3 Winners",
+    "link": "https://www.broadway.com/biggestfan/",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Octopusapp Jobber Keys to Growth Giveaways - 6 Winners",
+    "link": "https://www.getjobber.com/events/keys-to-growth/",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "BelliWelli Fall Collab Sweepstakes - 8 Winners",
+    "link": "https://www.belliwelli8otherreasonssweeps.com/home",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "LHNH LaVista $8.45M Apartment Fire Class Action Settlement",
+    "link": "https://lavistafiresettlement.com/form/claim",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "November 22, 2026",
+    "payout": "Varies",
+    "proof_required": "Yes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Cellular Sales Glory Days Grill 2026 Sweepstakes - 4 Winners",
+    "link": "https://cellularsales.com/glory-days-sweepstakes-2",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Telmate $4.23 Million Data Breach Class Action Settlement",
+    "link": "https://forms.ksacms.com/efiling/fr/eform/cooper_v_telmate_claimform/new?form-version=1&fr-wizard-page=section-1",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Varies",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Better Luck Than Chuck Universal Studios Sweepstakes",
+    "link": "https://betterluckthanchuck.com/UniversalSweeps/",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Edwards Lifesciences $39M Securities Class Action Settlement",
+    "link": "https://edwardslifesciencessecuritieslitigation.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "$0.66 per share before deductions (estimated)",
+    "proof_required": "Yes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Equifax $30 Million Credit Inquiry Dispute Claims Settlement",
+    "link": "https://www.equifaxdisputeclassaction.com/claimform.aspx",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "November 29, 2026",
+    "payout": "Varies",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "No Proof: Generic Prescription Drug Price-Fixing Settlements",
+    "link": "https://aggenericdrugsclaims.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Varies",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Venetian Las Vegas $1.6 Million Website Privacy Settlement",
+    "link": "https://claim.venetianlasvegassettlement.com/Login",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "November 24, 2026",
+    "payout": "Varies",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Worn & Wound Windup Watch Fair Sweepstakes",
+    "link": "https://wornandwound.com/giveaways/",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25",
+    "image": "https://wornandwound.com/library/uploads/2026/09/VOXEL-12_24.jpg"
+  },
+  {
+    "title": "Mars Wrigley NFL Sweepstakes",
+    "link": "https://marscontest.ca/",
+    "source": "ultracontest",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25",
+    "image": "https://marscontest.ca/img/og-image.png"
+  },
+  {
+    "title": "She Speaks Fall Giveaway",
+    "link": "https://shespeaks.com/Make-Fall-Gatherings-Extra-Special-with-Montchevre-s-New-Limited-Time-Bruschetta-Goat-Cheese-Log",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25"
+  },
+  {
+    "title": "Proof Razor Ultimate Backcountry Sweepstakes",
+    "link": "https://proofrazor.com/pages/ultimate-backcountry-giveaway?",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-25",
+    "image": "http://proofrazor.com/cdn/shop/files/social-preview-image-sitewide.jpg?v=1773871837&width=2048"
   }
 ]

@@ -6879,16 +6879,6 @@
     "date_found": "2026-07-18"
   },
   {
-    "title": "T-Mobile $2.1M Washington Job Posting Settlement",
-    "link": "https://www.epoasettlementtmui.com/",
-    "source": "claimdepot",
-    "category": "Settlements",
-    "scope": "state-specific",
-    "end_date": "Open for Claims",
-    "payout": "$1,487.82 (estimated)",
-    "date_found": "2026-07-18"
-  },
-  {
     "title": "Richell Summer Kickoff Sweepstakes 2026 – Win a Pet Gate",
     "link": "https://www.richellusa.com/richell-july-sweepstakes-2026/",
     "source": "ilovegiveaways",
@@ -11307,17 +11297,6 @@
     "date_found": "2026-08-28"
   },
   {
-    "title": "Palomar Health Medical Group $3.1M Data Breach Settlement",
-    "link": "https://www.phmgdatasettlement.com/",
-    "source": "claimdepot",
-    "category": "Settlements",
-    "scope": "nationwide",
-    "end_date": "Open for Claims",
-    "payout": "Up to $5,000 plus credit monitoring",
-    "proof_required": "Yes",
-    "date_found": "2026-08-28"
-  },
-  {
     "title": "Yes Communities Data Breach Class Action Settlement",
     "link": "https://yescommunitiesdataincident.com/",
     "source": "claimdepot",
@@ -14199,13 +14178,6 @@
     "date_found": "2026-09-15"
   },
   {
-    "title": "TACO BELL LIVE MÁS OPEN QUALIFIER SWEEPSTAKES",
-    "link": "https://topgolf.com/us/promo/taco-bell-open-official-rules/enter/",
-    "source": "ultracontest",
-    "category": "Sweepstakes",
-    "date_found": "2026-09-15"
-  },
-  {
     "title": "Mattel, Inc. HOT WHEELS 2026 Ram Trucks Sweepstakes",
     "link": "https://ram.hotwheelssweepstakes.com/",
     "source": "sweepsadvantage",
@@ -16447,5 +16419,136 @@
     "category": "Sweepstakes",
     "date_found": "2026-09-27",
     "image": "https://atono-test.directus.app/assets/9e6f4e6d-a6f6-4062-bde8-27c7338ec941"
+  },
+  {
+    "title": "WeatherBeeta USA Shopping Spree Giveaway - 3 Winners",
+    "link": "https://www.weatherbeeta.com/win-weatherbeeta",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "Venetian Las Vegas Gaming - Data Privacy (California) Class Action Settlement",
+    "link": "https://venetianlasvegassettlement.com/",
+    "source": "classaction",
+    "category": "Settlements",
+    "deadline": "11/24/26",
+    "payout": "$70",
+    "proof_required": "No",
+    "description": "You may be included in this settlement if you are a California resident and accessed the Venetian Las Vegas website between September 18, 2024 and March 16, 2026.",
+    "scope": "state-specific",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "Arena Club x Jaguars London Sweepstakes",
+    "link": "https://www.arenaclub.com/giveaway",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "M&R Printing Equipment Red, White & Blue Crew Giveaway - 2 Winners",
+    "link": "https://www.mrprint.com/250giveaway",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28",
+    "image": "https://www.mrprint.com/images/image-landscape-1024x748-9r5nV00n9r20144yri.png"
+  },
+  {
+    "title": "Voyageurs National Park Sweepstakes",
+    "link": "https://www.voyageurs.org/sweepstakes",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "The Valpak Free Ride Sweepstakes",
+    "link": "https://valpak.com/freeride",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "Festival Fun Parks $500,000 Ticket Fee Claims Settlement",
+    "link": "https://lakecompounceticketfeesettlement.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Pro rata payment",
+    "proof_required": "No",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "Hardy Halloween Live in Nashville Giveaway",
+    "link": "https://www.visitmusiccity.com/hardy-concert-nashville-giveaway",
+    "source": "ultracontest",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "O-Cedar’s “Punch Up the Joy Awards” Giveaway - 6 Winners",
+    "link": "https://www.ocedar.com/punch-up-the-joy-awards",
+    "source": "sweepsadvantage",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "SPS Technologies $5 Million Fire Class Action Settlement",
+    "link": "https://forms.ksacms.com/efiling/fr/eform/spssettlement_claimform/new?form-version=1&fr-wizard-page=section-1",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "December 3, 2026",
+    "payout": "Varies",
+    "proof_required": "No",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "Roseland Community Hospital $650,000 Data Breach Settlement",
+    "link": "https://forms.ksacms.com/efiling/fr/eform/hallvroselandcommunityhospital_claimform/new?form-version=1&fr-wizard-page=section-1",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "Up to $5,000 plus medical records monitoring",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "MD Live, Evernorth $3.5M Privacy Class Action Settlement",
+    "link": "https://forms.ksacms.com/efiling/fr/eform/yates_v_evernorth_claimform/new?form-version=1&fr-wizard-page=section-1",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "December 1, 2026",
+    "payout": "Up to $15",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "Cronos Group $10 Million Securities Class Action Settlement",
+    "link": "https://cronosussecuritiessettlement.com/",
+    "source": "claimdepot",
+    "category": "Settlements",
+    "scope": "nationwide",
+    "end_date": "Open for Claims",
+    "payout": "$0.04 per share (estimated)",
+    "proof_required": "Yes",
+    "date_found": "2026-09-28"
+  },
+  {
+    "title": "The Jackson Hole Snowfall Sweepstakes",
+    "link": "https://www.jacksonhole.com/winter",
+    "source": "ultracontest",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28",
+    "image": "https://www.datocms-assets.com/50871/1786379085-early-bird-1920x1080-edited.png"
+  },
+  {
+    "title": "Unique Stays Club x Villains Brewing Horror Cabin Stay Giveaway",
+    "link": "https://sweepwidget.com/c/102343-lxb8t41r",
+    "source": "ultracontest",
+    "category": "Sweepstakes",
+    "date_found": "2026-09-28",
+    "image": "https://sweepwidgethosts.fra1.cdn.digitaloceanspaces.com/contestsmain/7gtgvx65b040d65b73eu9qk3h5/ct6n3auqko.png"
   }
 ]

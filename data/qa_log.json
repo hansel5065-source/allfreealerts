@@ -1,263 +1,5 @@
 [
   {
-    "date": "2026-09-14",
-    "timestamp": "2026-09-14T19:23:38.159Z",
-    "total_checked": 55,
-    "passed": 21,
-    "flagged": 7,
-    "removed": 34,
-    "removed_entries": [
-      {
-        "title": "Garrett Popcorn Shops Instagram Giveaway (3 Winners)",
-        "link": "https://www.freebieshark.com/2026/09/garrett-popcorn-shops-instagram-giveaway-3-winners.html",
-        "source": "freebieshark",
-        "reason": "Middleman: Link points to aggregator: freebieshark.com"
-      },
-      {
-        "title": "FREE LG Craft Ice Mold on 9/19 for Lowe’s Rewards Members",
-        "link": "https://shoplowes.me/4zFtTLa",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "FREE Tide Washing Machine Cleaner After Cash Back at Target",
-        "link": "https://on.ltk.com/+_NtZz-rygks3g5i6CVLF9A",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "Wear Your PJs to Insomnia Cookies on September 15th for a FREE Cookie",
-        "link": "https://www.prnewswire.com/news-releases/insomnia-cookies-eighth-annual-pj-party-returns-with-free-cookies-and-a-dream-dorm-giveaway-302875889.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "Better Than FREE Dove Ice Cream Parlor Mist or Deodorant at Target",
-        "link": "https://on.ltk.com/+I6v1_kkrHLv8281RL41k8A",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "Walmart Baby Registry Freebies = FREE Baby Box + FREE Home Cleaning!",
-        "link": "https://on.ltk.com/+OFKICwt_SP1hkGo08ECvSg",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "FREE Little Spoon Smoothie Pouch After Cash Back at Target",
-        "link": "https://on.ltk.com/+lbT28DhkNIjR41f47L4_Hg",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "FREE Starbucks Creamer?! Grab Yours With This Easy Rebate",
-        "link": "https://on.ltk.com/+fsHbZcXym57l4DBQX-vHFw",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "Pizza Hut’s Triple Treat Box Is Back: 2 Pizzas, Breadsticks & Cinnamon Sticks Just $21.99",
-        "link": "https://www.prnewswire.com/news-releases/pizza-hut-teams-up-with-pepsi-and-josh-allen-to-remind-fans-gameday-starts-with-the-hut-302858823.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "FREE 5-Count Pampers Amore Diaper Trial Pack at Target (Check Your Circle Offers!)",
-        "link": "https://on.ltk.com/+KNKElW8IjMfdYFYVEvdm4w",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "Check Again! Lowe’s MrBeast Kids Workshop Is Now Showing FREE for Some Readers",
-        "link": "https://shoplowes.me/4wkpzht",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "FREE Home Depot Kids Workshop on 9/5 | Register Now to Make a School Bus Organizer",
-        "link": "https://on.ltk.com/+QBFFG8BKrjyUysjziakI1A",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "National Chicken Wing Day Is July 29 | Celebrate with the BEST Deals, Freebies & Recipes",
-        "link": "https://www.prnewswire.com/news-releases/7-eleven-inc-brings-on-the-wings-for-national-chicken-finger-day-and-chicken-wing-day-302830146.html",
-        "source": "hip2save",
-        "reason": "Content: Link points to press release: prnewswire.com"
-      },
-      {
-        "title": "Soccer Fans! Enter Lowe’s Messi Sweepstakes for a Chance to Win Exclusive Prizes",
-        "link": "https://shoplowes.me/4h4TXZp",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "FREE Banza Wheat Protein Penne Pasta Box After Walmart Cash",
-        "link": "https://on.ltk.com/+_bR4SQJRcIseeNIb2nH8DQ",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "FREE Ensure Protein Shake After Walmart Cash",
-        "link": "https://on.ltk.com/+8fcN4dNu284fcxfVBa3baA",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: on.ltk.com"
-      },
-      {
-        "title": "FREE Lowe’s Spring Flower on 5/9 for First 200 Rewards Members",
-        "link": "https://shoplowes.me/4eqlGT1",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "FREE All In Nut & Seed Bar at Starbucks After Cash Back",
-        "link": "https://discover.gotoaisle.com/offers/cmb1hx3lr0001lumpgz2vxcjv",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
-      },
-      {
-        "title": "How to Declutter Your Home in Just 4 Weeks w/ Our FREE Printable Checklists!",
-        "link": "https://shoplowes.me/4qJVPs0",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: shoplowes.me"
-      },
-      {
-        "title": "FREE Workout Apps to Reach Any Goal in 2026 (No Gym, No Problem!)",
-        "link": "https://caliber.app.link/hip2save-best-overall-workout-app",
-        "source": "hip2save",
-        "reason": "Middleman: Link points to aggregator: caliber.app.link"
-      },
-      {
-        "title": "Pizza Inn SEC Championship Game Sweepstakes",
-        "link": "https://sweetiessweeps.com/pizza-inn-sec-championship-game-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Tire Agent School’s In Session New Tires Sweepstakes",
-        "link": "https://sweetiessweeps.com/tire-agent-schools-in-session-new-tires-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Chiquita September Travel Kit Giveaway (400 Winners)",
-        "link": "https://sweetiessweeps.com/chiquita-september-travel-kit-giveaway/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Passionate Penny Pincher’s Favorite Things Giveaway (Daily Prizes)",
-        "link": "https://sweetiessweeps.com/passionate-penny-pinchers-favorite-things-giveaway-daily-prizes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Members Mobile Ultimate Back-to-School Tech Bundle Giveaway",
-        "link": "https://sweetiessweeps.com/members-mobile-ultimate-back-to-school-tech-bundle-giveaway/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Amazon Haul Car Sweepstakes – Car or $50,000 Cash!",
-        "link": "https://sweetiessweeps.com/amazon-haul-car-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Samsung Odyssey ARK 55″ Monitor Giveaway",
-        "link": "https://sweetiessweeps.com/samsung-odyssey-ark-monitor-giveaway/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Aurphany Back-to-School Glow Bundle Giveaway",
-        "link": "https://sweetiessweeps.com/aurphany-back-to-school-glow-bundle-giveaway/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Bonus Joe Apple iPad Air 11 Giveaway",
-        "link": "https://sweetiessweeps.com/bonus-joe-apple-ipad-air-11-giveaway/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "OREO PUFFS Cereal Puff Life Summer Sweepstakes",
-        "link": "https://sweetiessweeps.com/oreo-puffs-cereal-puff-life-summer-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Access Hollywood’s Action-Packed Escape Sweepstakes",
-        "link": "https://sweetiessweeps.com/access-hollywoods-action-packed-escape-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "PatPat x SeaWorld Sweepstakes",
-        "link": "https://sweetiessweeps.com/patpat-x-seaworld-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Ferrellgas Propane Deal Days Sweepstakes (50 Winners)",
-        "link": "https://sweetiessweeps.com/ferrellgas-propane-deal-days-sweepstakes/",
-        "source": "sweetiessweeps",
-        "reason": "Middleman: Link points to aggregator: sweetiessweeps.com"
-      },
-      {
-        "title": "Hobby Miner Outlet LLC September 2026 Sweepstakes - 2 Winners",
-        "link": "https://form.jotform.com/262383542886064",
-        "source": "sweepsadvantage",
-        "reason": "Dead link [200]: Dead pattern: \"sold out\""
-      }
-    ],
-    "flagged_entries": [
-      {
-        "title": "Red Roof “Find Your Route to Talladega” Sweepstakes",
-        "link": "https://www.redroof.com/talladega-sweepstakes",
-        "source": "freebieshark",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Laboratory Corporation of America - Data Privacy Class Action Settlement",
-        "link": "https://www.laboratorycorporationwebsitesettlement.com/",
-        "source": "classaction",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "NYC Department of Corrections - Strip Searches Class Action Settlement",
-        "link": "https://www.nystripsearchsettlement.com/",
-        "source": "classaction",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Diisocyanates Antitrust Class Action Settlement",
-        "link": "https://www.diisocyanatesantitrustlitigation.com/",
-        "source": "classaction",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "CB2 Text To Join Sweepstakes - 2 Winners",
-        "link": "https://www.cb2.com/cb2-text-to-join-sweeps",
-        "source": "sweepsadvantage",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Boone Health Patient Portal Privacy Class Action Settlement",
-        "link": "https://www.boonehealthsettlement.com/doe-v-boone-claim-form-login/",
-        "source": "claimdepot",
-        "flag": "403 — may be bot-blocked, check manually"
-      },
-      {
-        "title": "Holley $12.75 Million Securities Class Action Settlement",
-        "link": "https://www.holleysecuritiessettlement.com/",
-        "source": "claimdepot",
-        "flag": "403 — may be bot-blocked, check manually"
-      }
-    ]
-  },
-  {
     "date": "2026-09-15",
     "timestamp": "2026-09-15T18:14:07.119Z",
     "total_checked": 79,
@@ -7560,6 +7302,246 @@
       {
         "title": "Washington Gastroenterology $4.6M Data Breach Settlement",
         "link": "https://wagastrodataincidentsettlement.com/Login",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23",
+    "timestamp": "2026-10-23T18:21:49.133Z",
+    "total_checked": 89,
+    "passed": 70,
+    "flagged": 19,
+    "removed": 19,
+    "removed_entries": [
+      {
+        "title": "FREE NYX & Maybelline + essie Beauty Events at Target on 10/24 (Includes Gem Stickers!)",
+        "link": "https://on.ltk.com/+_WGr-6FxxouYsc7LoznA5Q",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "FREE MrBeast Swarms for Lowe’s Rewards Members on October 24th",
+        "link": "https://shoplowes.me/4wkpzht",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "Free PetSmart Halloween Event Today w/ Tote Bag Giveaway & Costume Contest",
+        "link": "https://www.prnewswire.com/news-releases/petsmart-celebrates-halloween-with-free-in-store-events-including-new-meet-the-spooky-pets-experience-302895172.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Unlock a FREE Thanksgiving Turkey with Ibotta + Get FREE Sides Weekly",
+        "link": "https://home.ibotta.com/blog/Seasonal/thanksgiving-2026",
+        "source": "hip2save",
+        "reason": "Content: Seasonal content (thanksgiving) — out of season"
+      },
+      {
+        "title": "FREE Pet Photos with Santa at Petco on December 12th",
+        "link": "https://www.prnewswire.com/news-releases/paws-on-the-nice-list-petco-unveils-never-naughty-always-nice-holiday-campaign-ft-hundreds-of-gifts-at-10-or-less-free-santa-photos-and-in-store-events-302906363.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "Walmart+ Members Score 25 FREE 4×6 Photo Prints Every Month – Here’s How!",
+        "link": "https://on.ltk.com/+Y6kNLXWRmUAbYWaFc28WVw",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "$10 in FREE MyLowe’s Money (Just Download the App!)",
+        "link": "https://shoplowes.me/4B6Vy8v",
+        "source": "hip2save",
+        "reason": "Content: App download or rewards signup — not a direct freebie"
+      },
+      {
+        "title": "Score a FREE Bob’s Red Mill Product After Easy Online Rebate (Up to $8.99 Value!)",
+        "link": "https://discover.gotoaisle.com/offers/cmtvsdr6h0001xnmxdjv8jeau",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: gotoaisle.com"
+      },
+      {
+        "title": "Score FREE Lowe’s Merch Today at 10AM (See What We Got Yesterday!)",
+        "link": "https://shoplowes.me/4zFtTLa",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "National Taco Day is October 5th, 2027 | Here’s Where to Grab Free or Cheap Tacos",
+        "link": "https://www.prnewswire.com/news-releases/baja-fresh-serves-up-delicious-deal-to-celebrate-national-taco-day-302890734.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "2 FREE MrBeast Swarms for Lowe’s Rewards Members on 10/24",
+        "link": "https://shoplowes.me/4z33UvS",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: shoplowes.me"
+      },
+      {
+        "title": "FREE Littlest Pet Shop Kits at Five Below Today (First 50 Customers!)",
+        "link": "https://www.prnewswire.com/news-releases/littlest-pet-shop-and-like-nastya-global-youtube-sensation-launch-first-ever-collab-collection-at-global-retailers-and-announce-special-event-at-five-below-in-new-york-city-302882328.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      },
+      {
+        "title": "FREE Tide Washing Machine Cleaner After Cash Back at Target",
+        "link": "https://on.ltk.com/+_NtZz-rygks3g5i6CVLF9A",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "Better Than FREE Dove Ice Cream Parlor Mist or Deodorant at Target",
+        "link": "https://on.ltk.com/+I6v1_kkrHLv8281RL41k8A",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "Walmart Baby Registry Freebies = FREE Baby Box + FREE Home Cleaning!",
+        "link": "https://on.ltk.com/+OFKICwt_SP1hkGo08ECvSg",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "FREE Little Spoon Smoothie Pouch After Cash Back at Target",
+        "link": "https://on.ltk.com/+lbT28DhkNIjR41f47L4_Hg",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "FREE Starbucks Creamer?! Grab Yours With This Easy Rebate",
+        "link": "https://on.ltk.com/+fsHbZcXym57l4DBQX-vHFw",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "FREE 5-Count Pampers Amore Diaper Trial Pack at Target (Check Your Circle Offers!)",
+        "link": "https://on.ltk.com/+KNKElW8IjMfdYFYVEvdm4w",
+        "source": "hip2save",
+        "reason": "Middleman: Link points to aggregator: on.ltk.com"
+      },
+      {
+        "title": "National Chicken Wing Day Is July 29 | Celebrate with the BEST Deals, Freebies & Recipes",
+        "link": "https://www.prnewswire.com/news-releases/7-eleven-inc-brings-on-the-wings-for-national-chicken-finger-day-and-chicken-wing-day-302830146.html",
+        "source": "hip2save",
+        "reason": "Content: Link points to press release: prnewswire.com"
+      }
+    ],
+    "flagged_entries": [
+      {
+        "title": "Music City Nashville “Grand Holiday Escape” Sweepstakes",
+        "link": "https://www.visitmusiccity.com/grand-holiday-nashville-giveaway",
+        "source": "freebieshark",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Free LEGO Holiday Build Event at Barnes & Noble November 13-15",
+        "link": "https://stores.barnesandnoble.com/event/9780062224663-0",
+        "source": "hip2save",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Brockton Neighborhood Health Center - Data Breach Class Action Settlement",
+        "link": "https://bnhdatasettlement.com/",
+        "source": "classaction",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "2026 Scout Life Win Toys Giveaway - 30 Winners",
+        "link": "https://scoutlife.org/giveaways/toygiveaway/",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Ross Latin GRAMMY Awards Las Vegas Trip Sweepstakes",
+        "link": "https://www.rosslgsweeps.com/home",
+        "source": "sweepsadvantage",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "$6.4M American Medical Collection Agency data breach class action settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/eform/amcadatabreachsettlementsonic_claimform/new?form-version=1",
+        "source": "topclassactions",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "$4.225M ViaPath data breach class action settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/eform/cooper_v_telmate_claimform/new?form-version=1&fr-wizard-page=section-1",
+        "source": "topclassactions",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "$2.25M Jefferson County Health Center data breach class action settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/eform/jeffersoncounty_claimform/new?form-version=1",
+        "source": "topclassactions",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Hampton Regional Medical Center Data Breach Settlement",
+        "link": "https://hrmcdatasettlement.com/files/Hampton%20Regional%20Medical%20Center%20Data%20Incident%20Litigation%20-%20Claim%20Form.pdf",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Fertility Centers of Illinois $375,000 Privacy Settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/eform/lc_v_fertilitycentersofillinois_claimform/new",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Eckrich Big Ten Championship Game Sweepstakes",
+        "link": "https://eckrich.sfdbrands.com/en-us/promotions/ticket-giveaway/",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Fairmont Federal Credit Union $1.78M Data Breach Settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/tform/ffcudatasettlement_claimform/new?form-version=1&fr-wizard-page=section-1",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Bears Game Day Sweepstakes",
+        "link": "https://www.crateandbarrel.com/chicago-bears-game-day-sweepstakes",
+        "source": "ultracontest",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Ohio Bureau of Motor Vehicles License Plate Fees Settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/eform/bmvlicenseplatesettlement_claimform/new?form-version=1&fr-wizard-page=section-1",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Covenant Health $2M Data Breach Class Action Settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/tform/covenanthealth_claimform/new?form-version=1&fr-wizard-page=section-1",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Hospital Español Auxilio Mutuo $500K Data Breach Settlement",
+        "link": "https://forms.ksacms.com/efiling/fr/tform/hospitalespanolauxiliosettlement_claimform/new?form-version=1&fr-wizard-page=section-1",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Marqeta $13 Million Securities Class Action Settlement",
+        "link": "https://www.marqetasecuritiessettlement.com/",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "DaVita $15 Million Data Breach Class Action Settlement",
+        "link": "https://claim.dvacyberattacksettlement.com/login",
+        "source": "claimdepot",
+        "flag": "403 — may be bot-blocked, check manually"
+      },
+      {
+        "title": "Pulsz and Pulszbingo Virtual Chip Purchases Settlement",
+        "link": "https://ysisettlement.pnclassaction.com/?_gl=1*14fouzs*_ga*ODMzMzY5MDgzLjE3OTE1NTQwMjQ.*_ga_75GT6GN5YT*czE3OTE1NTQwMjMkbzEkZzAkdDE3OTE1NTQwNjEkajIyJGwwJGg1MDUzNDc4OTI.",
         "source": "claimdepot",
         "flag": "403 — may be bot-blocked, check manually"
       }
